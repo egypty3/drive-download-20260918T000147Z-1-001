@@ -1,0 +1,353 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/TasShared.csproj": {}
+  },
+  "projects": {
+    "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/Domain.csproj",
+        "packagesPath": "/Users/tarekmostafa/.nuget/packages/",
+        "outputPath": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tarekmostafa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Blazored.SessionStorage": {
+              "target": "Package",
+              "version": "[1.0.12, )"
+            },
+            "DevExpress.AspNetCore.Reporting": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.Blazor": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.Blazor.de": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.DataAccess": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "ProtectedBrowserStorage.NETStandard": {
+              "target": "Package",
+              "version": "[1.1.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.3.0, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/TasShared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/TasShared.csproj",
+        "projectName": "TasShared",
+        "projectPath": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/TasShared.csproj",
+        "packagesPath": "/Users/tarekmostafa/.nuget/packages/",
+        "outputPath": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tarekmostafa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/Domain.csproj": {
+                "projectPath": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.105.0, )"
+            },
+            "DeepCloner": {
+              "target": "Package",
+              "version": "[0.10.4, )"
+            },
+            "DevExpress.AspNetCore.Reporting": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.Blazor": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.Blazor.Reporting.JSBasedControls": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DevExpress.Blazor.de": {
+              "target": "Package",
+              "version": "[24.1.7, )"
+            },
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Syncfusion.Blazor.Buttons": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Calendars": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Cards": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Data": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.DataForm": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Diagram": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.DropDowns": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Gantt": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.InPlaceEditor": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Inputs": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Kanban": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Layouts": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.LinearGauge": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Navigations": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Notifications": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Popups": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.ProgressBar": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.QueryBuilder": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Schedule": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Spreadsheet": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.Themes": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.TreeGrid": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Blazor.WordProcessor": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.Licensing": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "Syncfusion.XlsIO.Net.Core": {
+              "target": "Package",
+              "version": "[30.2.6, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
+            "System.Text.RegularExpressions": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1414 @@
+[
+  {
+    "proccessID": "WorkTime",
+    "proccessParentID": [],
+    "proccessType": "WorkTime"
+  },
+  {
+    "proccessID": "Title",
+    "proccessParentID": [],
+    "proccessType": "Title"
+  },
+  {
+    "proccessID": "Enroute",
+    "proccessParentID": [],
+    "proccesTitle": "01- Enroute",
+    "isNext": true,
+    "rampProccessActions": [],
+    "newStatus": [
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart"
+    ]
+  },
+  {
+    "proccessID": "Touchdown",
+    "proccessParentID": [
+      "Enroute"
+    ],
+    "proccesTitle": "02- Touchdown",
+    "services": [
+      "LAND",
+      "BSC"
+    ],
+    "servicesConfig": {
+      "default": [
+        "LAND",
+        "BSC"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "Enroute",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart"
+    ]
+  },
+  {
+    "proccessID": "ChocksOn",
+    "proccessParentID": [
+      "Touchdown"
+    ],
+    "proccesTitle": "03- Chocks On",
+    "services": [
+      "CHKS"
+    ],
+    "servicesConfig": {
+      "default": [
+        "CHKS"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "Touchdown",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AGPUOn",
+    "proccessParentID": [
+      "ChocksOn"
+    ],
+    "proccesTitle": "04- GPU On",
+    "services": [
+      "GPU"
+    ],
+    "servicesConfig": {
+      "default": [
+        "GPU"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ALoadingEQH1On",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "05- Loading EQ H1 On",
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd",
+      "LoadingEQType1Selected"
+    ]
+  },
+  {
+    "proccessID": "ALoadingEQH2On",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "06- Loading EQ H2 On",
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd",
+      "LoadingEQType1Selected"
+    ]
+  },
+  {
+    "proccessID": "ASelfStepsOn",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "07- Self Steps On",
+    "isOptional": true,
+    "skipForDone": [
+      "ATubeOn",
+      "AStairsL1On",
+      "ATubeOff",
+      "AStairsL1Off",
+      "DTubeOn",
+      "DStairsL1On",
+      "DTubeOff",
+      "DStairsL1Off"
+    ],
+    "skipForSkip": [
+      "ASelfStepsOff",
+      "DSelfStepsOn",
+      "DSelfStepsOff"
+    ],
+    "services": [],
+    "servicesConfig": {
+      "default": [],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ATubeOn",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "08- Tube On",
+    "isOptional": true,
+    "skipForDone": [
+      "ASelfStepsOn",
+      "AStairsL1On",
+      "ASelfStepsOff",
+      "AStairsL1Off",
+      "DSelfStepsOn",
+      "DStairsL1On",
+      "DSelfStepsOff",
+      "DStairsL1Off"
+    ],
+    "skipForSkip": [
+      "ATubeOff",
+      "DTubeOn",
+      "DTubeOff"
+    ],
+    "services": [
+      "JETUBE"
+    ],
+    "servicesConfig": {
+      "default": [
+        "JETUBE"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AStairsL1On",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "09- Stairs L1 On",
+    "isOptional": true,
+    "skipForDone": [
+      "ASelfStepsOn",
+      "ATubeOn",
+      "ASelfStepsOff",
+      "ATubeOff",
+      "DSelfStepsOn",
+      "DTubeOn",
+      "DSelfStepsOff",
+      "DTubeOff"
+    ],
+    "skipForSkip": [
+      "AStairsL1Off",
+      "DStairsL1On",
+      "DStairsL1Off"
+    ],
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AStairsL2On",
+    "proccessParentID": [
+      "AGPUOn"
+    ],
+    "proccesTitle": "10- Stairs L2 On",
+    "skipForSkip": [
+      "AStairsL2Off",
+      "DStairsL2On",
+      "DStairsL2Off"
+    ],
+    "isOptional": true,
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ADoorOpen",
+    "proccessParentID": [
+      "ASelfStepsOn",
+      "ATubeOn",
+      "AStairsL1On"
+    ],
+    "proccesTitle": "11- Door Open",
+    "andStatus": true,
+    "rampProccessActions": [
+      {
+        "sourceID": "ChocksOn",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ASelfStepsOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ATubeOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "AStairsL1On",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.04,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AUnloadingH1",
+    "proccessParentID": [
+      "ALoadingEQH1On"
+    ],
+    "proccesTitle": "12- Unloading H1",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "SSWORK",
+      "TRCTR",
+      "BAGCRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "SSWORK",
+        "TRCTR",
+        "BAGCRT"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ALoadingEQH1On",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.3,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AUnloadingH2",
+    "proccessParentID": [
+      "ALoadingEQH2On"
+    ],
+    "proccesTitle": "13- Unloading H2",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "SSWORK",
+      "TRCTR",
+      "BAGCRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "SSWORK",
+        "TRCTR",
+        "BAGCRT"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ALoadingEQH2On",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.3,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ADisembarkation",
+    "proccessParentID": [
+      "ADoorOpen"
+    ],
+    "proccesTitle": "14- Disembarkation",
+    "proccessMultiAction": true,
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorOpen",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.1,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AWaterService",
+    "proccessParentID": [
+      "ADoorOpen"
+    ],
+    "proccesTitle": "15- Water Service",
+    "proccessMultiAction": true,
+    "andStatus": false,
+    "isOptional": true,
+    "services": [
+      "WTRSRV"
+    ],
+    "servicesConfig": {
+      "default": [
+        "WTRSRV"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorOpen",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.04,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AFireCart",
+    "proccessParentID": [],
+    "proccesTitle": "16- Fire Cart",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "FIRECRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "FIRECRT"
+      ],
+      "overrides": []
+    },
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ACleaning",
+    "proccessParentID": [
+      "ADisembarkation"
+    ],
+    "proccesTitle": "17- Cleaning",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "INTCLEAN"
+    ],
+    "servicesConfig": {
+      "default": [
+        "INTCLEAN"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADisembarkation",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.3,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ACatering",
+    "proccessParentID": [
+      "ADisembarkation"
+    ],
+    "proccesTitle": "18- Catering",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "CATER"
+    ],
+    "servicesConfig": {
+      "default": [
+        "CATER"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADisembarkation",
+        "statusStr": "Done"
+      }
+    ],
+    "proccessWeight": 0.3,
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AToiletService",
+    "proccessParentID": [
+      "AWaterService"
+    ],
+    "proccesTitle": "19- Toilet Service",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "andStatus": true,
+    "services": [
+      "TLTSRV"
+    ],
+    "servicesConfig": {
+      "default": [
+        "TLTSRV"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorOpen",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "AWaterService",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.04,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AFueling",
+    "proccessParentID": [
+      "ADisembarkation",
+      "AFireCart"
+    ],
+    "proccesTitle": "20- Fueling",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "FULJET"
+    ],
+    "servicesConfig": {
+      "default": [
+        "FULJET"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADisembarkation",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "AFireCart",
+        "statusStr": "InPro"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.4,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ADoorClose",
+    "proccessParentID": [
+      "ACleaning",
+      "ACatering",
+      "AFueling"
+    ],
+    "proccesTitle": "21- Door Close",
+    "andStatus": true,
+    "rampProccessActions": [
+      {
+        "sourceID": "ACleaning",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "ACatering",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "AFueling",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.04,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ALoadingEQH1Off",
+    "proccessParentID": [
+      "AUnloadingH1"
+    ],
+    "proccesTitle": "22- Loading EQ H2 Off",
+    "rampProccessActions": [
+      {
+        "sourceID": "AUnloadingH1",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ALoadingEQH2Off",
+    "proccessParentID": [
+      "AUnloadingH2"
+    ],
+    "proccesTitle": "23- Loading EQ H2 Off",
+    "rampProccessActions": [
+      {
+        "sourceID": "AUnloadingH2",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ASelfStepsOff",
+    "proccessParentID": [
+      "ADoorClose"
+    ],
+    "proccesTitle": "24- Self Steps Off",
+    "isOptional": true,
+    "services": [],
+    "servicesConfig": {
+      "default": [],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorClose",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "ATubeOff",
+    "proccessParentID": [
+      "ADoorClose"
+    ],
+    "proccesTitle": "25- Tube Off",
+    "isOptional": true,
+    "services": [
+      "JETUBE"
+    ],
+    "servicesConfig": {
+      "default": [
+        "JETUBE"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorClose",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "closeProccessID": "ATubeOn",
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AStairsL1Off",
+    "proccessParentID": [
+      "ADoorClose"
+    ],
+    "proccesTitle": "26- Stairs L1 Off",
+    "isOptional": true,
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorClose",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "closeProccessID": "AStairsL1On",
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AStairsL2Off",
+    "proccessParentID": [
+      "ADoorClose"
+    ],
+    "proccesTitle": "27- Stairs L2 Off",
+    "isOptional": true,
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorClose",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "closeProccessID": "AStairsL2On",
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "AGPUOff",
+    "proccessParentID": [
+      "ASelfStepsOff",
+      "ATubeOff",
+      "AStairsL1Off"
+    ],
+    "proccesTitle": "28- GPU Off",
+    "services": [
+      "GPU"
+    ],
+    "servicesConfig": {
+      "default": [
+        "GPU"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "ADoorClose",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "ALoadingEQH1Off",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "ALoadingEQH2Off",
+        "statusStr": "Done"
+      },
+      {
+        "sourceID": "ASelfStepsOff",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "ATubeOff",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "AStairsL1Off",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DGPUOn",
+    "proccessParentID": [
+      "AGPUOff"
+    ],
+    "proccesTitle": "29- GPU On",
+    "services": [
+      "GPU"
+    ],
+    "servicesConfig": {
+      "default": [
+        "GPU"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOff",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DLoadingEQH1On",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "30- Loading EQ H1 On",
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DLoadingEQH2On",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "31- Loading EQ H2 On",
+    "rampProccessActions": [
+      {
+        "sourceID": "AGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DSelfStepsOn",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "32- Self Steps On",
+    "isOptional": true,
+    "skipForDone": [
+      "DTubeOn",
+      "DStairsL1On",
+      "DTubeOff",
+      "DStairsL1Off"
+    ],
+    "skipForSkip": [
+      "DSelfStepsOff"
+    ],
+    "services": [],
+    "servicesConfig": {
+      "default": [],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DTubeOn",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "33- Tube On",
+    "isOptional": true,
+    "skipForDone": [
+      "DSelfStepsOn",
+      "DStairsL1On",
+      "DSelfStepsOff",
+      "DStairsL1Off"
+    ],
+    "skipForSkip": [
+      "DTubeOff"
+    ],
+    "services": [
+      "JETUBE"
+    ],
+    "servicesConfig": {
+      "default": [
+        "JETUBE"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DStairsL1On",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "34- Stairs L1 On",
+    "isOptional": true,
+    "skipForDone": [
+      "DSelfStepsOn",
+      "DTubeOn",
+      "DSelfStepsOff",
+      "DTubeOff"
+    ],
+    "skipForSkip": [
+      "DStairsL1Off"
+    ],
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DStairsL2On",
+    "proccessParentID": [
+      "DGPUOn"
+    ],
+    "proccesTitle": "35- Stairs L2 On",
+    "isOptional": true,
+    "skipForSkip": [
+      "DStairsL2Off"
+    ],
+    "services": [
+      "PAXSTP"
+    ],
+    "servicesConfig": {
+      "default": [
+        "PAXSTP"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DGPUOn",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DDoorOpen",
+    "proccessParentID": [
+      "DSelfStepsOn",
+      "DTubeOn",
+      "DStairsL1On"
+    ],
+    "proccesTitle": "36- Door Open",
+    "andStatus": true,
+    "rampProccessActions": [
+      {
+        "sourceID": "DSelfStepsOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "DTubeOn",
+        "statusStr": "Done,Skiped"
+      },
+      {
+        "sourceID": "DStairsL1On",
+        "statusStr": "Done,Skiped"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.02,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DCleaning",
+    "proccessParentID": [
+      "DDoorOpen"
+    ],
+    "proccesTitle": "37- Cleaning",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "INTCLEAN"
+    ],
+    "servicesConfig": {
+      "default": [
+        "INTCLEAN"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DDoorOpen",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.3,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DCatering",
+    "proccessParentID": [
+      "DDoorOpen"
+    ],
+    "proccesTitle": "38- Catering",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "CATER"
+    ],
+    "servicesConfig": {
+      "default": [
+        "CATER"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DDoorOpen",
+        "statusStr": "Done"
+      }
+    ],
+    "proccessWeight": 0.3,
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DloadingH1",
+    "proccessParentID": [
+      "DLoadingEQH1On"
+    ],
+    "proccesTitle": "39- Loading H1",
+    "proccessMultiAction": true,
+    "andStatus": true,
+    "isOptional": true,
+    "services": [
+      "SSWORK",
+      "TRCTR",
+      "BAGCRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "SSWORK",
+        "TRCTR",
+        "BAGCRT"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DLoadingEQH1On",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.3,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DloadingH2",
+    "proccessParentID": [
+      "DLoadingEQH2On"
+    ],
+    "proccesTitle": "40- Loading H2",
+    "proccessMultiAction": true,
+    "andStatus": true,
+    "isOptional": true,
+    "services": [
+      "SSWORK",
+      "TRCTR",
+      "BAGCRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "SSWORK",
+        "TRCTR",
+        "BAGCRT"
+      ],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DLoadingEQH2On",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DWaterService",
+    "proccessParentID": [
+      "DDoorOpen"
+    ],
+    "proccesTitle": "41- Water Service",
+    "proccessMultiAction": true,
+    "andStatus": false,
+    "isOptional": true,
+    "services": [
+    ],
+    "servicesConfig": {
+      "default": [],
+      "overrides": []
+    },
+    "rampProccessActions": [
+      {
+        "sourceID": "DDoorOpen",
+        "statusStr": "Done"
+      }
+    ],
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "proccessWeight": 0.024,
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  },
+  {
+    "proccessID": "DFireCart",
+    "proccessParentID": [],
+    "proccesTitle": "42- Fire Cart",
+    "proccessMultiAction": true,
+    "isOptional": true,
+    "services": [
+      "FIRECRT"
+    ],
+    "servicesConfig": {
+      "default": [
+        "FIRECRT"
+      ],
+      "overrides": []
+    },
+    "newStatus": [
+      "InPro",
+      "Done"
+    ],
+    "showFieldsProccessData": [
+      "ProccessStart",
+      "ProccessEnd"
+    ]
+  }
+]

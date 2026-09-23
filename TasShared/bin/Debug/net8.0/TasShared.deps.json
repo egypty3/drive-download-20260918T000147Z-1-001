@@ -1,0 +1,2835 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TasShared/1.0.0": {
+        "dependencies": {
+          "ClosedXML": "0.105.0",
+          "DeepCloner": "0.10.4",
+          "DevExpress.AspNetCore.Reporting": "25.1.3",
+          "DevExpress.Blazor": "25.1.3",
+          "DevExpress.Blazor.Reporting.JSBasedControls": "25.1.3",
+          "DevExpress.Blazor.de": "25.1.3",
+          "DocumentFormat.OpenXml": "3.3.0",
+          "Domain": "1.0.0",
+          "Microsoft.AspNetCore.SignalR.Client": "8.0.11",
+          "Npgsql": "8.0.6",
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Cards": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DataForm": "30.2.6",
+          "Syncfusion.Blazor.Diagram": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Gantt": "30.2.6",
+          "Syncfusion.Blazor.InPlaceEditor": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Kanban": "30.2.6",
+          "Syncfusion.Blazor.Layouts": "30.2.6",
+          "Syncfusion.Blazor.LinearGauge": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Notifications": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.ProgressBar": "30.2.6",
+          "Syncfusion.Blazor.QueryBuilder": "30.2.6",
+          "Syncfusion.Blazor.Schedule": "30.2.6",
+          "Syncfusion.Blazor.Spreadsheet": "30.2.6",
+          "Syncfusion.Blazor.Themes": "30.2.6",
+          "Syncfusion.Blazor.TreeGrid": "30.2.6",
+          "Syncfusion.Blazor.WordProcessor": "30.2.6",
+          "Syncfusion.Licensing": "30.2.6",
+          "Syncfusion.XlsIO.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "TasShared.dll": {}
+        }
+      },
+      "Blazored.LocalStorage/2.1.6": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.15",
+          "Microsoft.AspNetCore.Components.Web": "8.0.15"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Blazored.LocalStorage.dll": {
+            "assemblyVersion": "2.1.6.0",
+            "fileVersion": "2.1.6.0"
+          }
+        }
+      },
+      "Blazored.SessionStorage/1.0.12": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.15",
+          "Microsoft.AspNetCore.Components.Web": "8.0.15"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Blazored.SessionStorage.dll": {
+            "assemblyVersion": "1.0.12.0",
+            "fileVersion": "1.0.12.0"
+          }
+        }
+      },
+      "ClosedXML/0.105.0": {
+        "dependencies": {
+          "ClosedXML.Parser": "2.0.0",
+          "DocumentFormat.OpenXml": "3.3.0",
+          "ExcelNumberFormat": "1.1.0",
+          "RBush.Signed": "4.0.0",
+          "SixLabors.Fonts": "1.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/ClosedXML.dll": {
+            "assemblyVersion": "0.105.0.0",
+            "fileVersion": "0.105.0.0"
+          }
+        }
+      },
+      "ClosedXML.Parser/2.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/ClosedXML.Parser.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "DeepCloner/0.10.4": {
+        "runtime": {
+          "lib/netstandard1.3/DeepCloner.dll": {
+            "assemblyVersion": "0.10.0.0",
+            "fileVersion": "0.10.4.0"
+          }
+        }
+      },
+      "DevExpress.AspNetCore.Common/25.1.3": {
+        "dependencies": {
+          "DevExpress.AspNetCore.Core": "25.1.3",
+          "DevExpress.Data": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.AspNetCore.Common.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.AspNetCore.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Office.Core": "25.1.3",
+          "Microsoft.Extensions.DependencyModel": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.AspNetCore.Core.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.AspNetCore.Reporting/25.1.3": {
+        "dependencies": {
+          "DevExpress.AspNetCore.Common": "25.1.3",
+          "DevExpress.AspNetCore.Core": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.Reporting.Core": "25.1.3",
+          "DevExpress.Web.Reporting.Common": "25.1.3",
+          "DevExpress.Web.Reporting.Common.Services": "25.1.3",
+          "DevExpress.Web.Resources": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.AspNetCore.Reporting.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Blazor/25.1.3": {
+        "dependencies": {
+          "DevExpress.Blazor.Resources": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExtreme.AspNet.Data": "5.1.0",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Blazor.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Blazor.de/25.1.3": {
+        "dependencies": {
+          "DevExpress.Blazor": "25.1.3",
+          "DevExpress.Data.de": "25.1.3",
+          "DevExpress.Printing.Core.de": "25.1.3"
+        },
+        "resources": {
+          "lib/net8.0/de/DevExpress.Blazor.v25.1.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "DevExpress.Blazor.Reporting.JSBasedControls/25.1.3": {
+        "dependencies": {
+          "DevExpress.Blazor.Reporting.JSBasedControls.Common": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.Reporting.Core": "25.1.3",
+          "DevExpress.Web.Reporting.Common": "25.1.3",
+          "DevExpress.Web.Reporting.Common.Services": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Blazor.Reporting.v25.1.JSBasedControls.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Blazor.Reporting.JSBasedControls.Common/25.1.3": {
+        "dependencies": {
+          "DevExpress.Blazor.Resources": "25.1.3",
+          "DevExpress.Data": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Blazor.Reporting.v25.1.JSBasedControls.Common.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Blazor.Resources/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Blazor.Resources.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Charts/25.1.3": {
+        "dependencies": {
+          "DevExpress.Charts.Core": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataVisualization.Core": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.XtraCharts.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Charts.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Charts.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.CodeParser/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "System.CodeDom": "4.4.0"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.CodeParser.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Data/25.1.3": {
+        "dependencies": {
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Data.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Data.de/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3"
+        },
+        "resources": {
+          "lib/net8.0/de/DevExpress.Data.v25.1.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "DevExpress.DataAccess/25.1.3": {
+        "dependencies": {
+          "DevExpress.CodeParser": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Office.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.RichEdit.Core": "25.1.3",
+          "DevExpress.Xpo": "25.1.3",
+          "System.Configuration.ConfigurationManager": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.DataAccess.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.DataVisualization.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.DataVisualization.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Drawing/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Drawing.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Gauges.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.XtraGauges.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Office.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Office.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Pdf.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "System.Drawing.Common": "8.0.15",
+          "System.Security.Cryptography.Pkcs": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Pdf.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Pdf.Core.de/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data.de": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3"
+        },
+        "resources": {
+          "lib/net8.0/de/DevExpress.Pdf.v25.1.Core.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "DevExpress.Pdf.Drawing/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Pdf.v25.1.Drawing.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.PivotGrid.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "System.Data.OleDb": "8.0.1",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.PivotGrid.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Printing.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3",
+          "DevExpress.Pdf.Drawing": "25.1.3",
+          "System.Drawing.Common": "8.0.15",
+          "System.ServiceModel.Http": "8.1.2"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Printing.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Printing.Core.de/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data.de": "25.1.3",
+          "DevExpress.Pdf.Core.de": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3"
+        },
+        "resources": {
+          "lib/net8.0/de/DevExpress.Printing.v25.1.Core.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "DevExpress.Reporting.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Charts": "25.1.3",
+          "DevExpress.Charts.Core": "25.1.3",
+          "DevExpress.CodeParser": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Gauges.Core": "25.1.3",
+          "DevExpress.Office.Core": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3",
+          "DevExpress.Pdf.Drawing": "25.1.3",
+          "DevExpress.PivotGrid.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.RichEdit.Core": "25.1.3",
+          "DevExpress.RichEdit.Export": "25.1.3",
+          "DevExpress.Sparkline.Core": "25.1.3",
+          "DevExpress.Xpo": "25.1.3",
+          "System.CodeDom": "4.4.0",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.XtraReports.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.RichEdit.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Office.Core": "25.1.3",
+          "DevExpress.Pdf.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.RichEdit.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.RichEdit.Export/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Office.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.RichEdit.Core": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.RichEdit.v25.1.Export.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Sparkline.Core/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "System.Drawing.Common": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Sparkline.v25.1.Core.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Web.Reporting.Common/25.1.3": {
+        "dependencies": {
+          "DevExpress.Charts": "25.1.3",
+          "DevExpress.Charts.Core": "25.1.3",
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "DevExpress.Drawing": "25.1.3",
+          "DevExpress.Gauges.Core": "25.1.3",
+          "DevExpress.PivotGrid.Core": "25.1.3",
+          "DevExpress.Printing.Core": "25.1.3",
+          "DevExpress.Reporting.Core": "25.1.3",
+          "DevExpress.Sparkline.Core": "25.1.3",
+          "DevExpress.Xpo": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.XtraReports.v25.1.Web.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Web.Reporting.Common.Services/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "DevExpress.Reporting.Core": "25.1.3",
+          "DevExpress.Web.Reporting.Common": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Web.Reporting.v25.1.Common.Services.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Web.Resources/25.1.3": {
+        "dependencies": {
+          "DevExpress.AspNetCore.Core": "25.1.3",
+          "DevExpress.Data": "25.1.3"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Web.Resources.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExpress.Xpo/25.1.3": {
+        "dependencies": {
+          "DevExpress.Data": "25.1.3",
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "System.Drawing.Common": "8.0.15",
+          "System.ServiceModel.Http": "8.1.2",
+          "System.ServiceModel.NetTcp": "8.1.2"
+        },
+        "runtime": {
+          "lib/net8.0/DevExpress.Xpo.v25.1.dll": {
+            "assemblyVersion": "25.1.3.0",
+            "fileVersion": "25.1.3.0"
+          }
+        }
+      },
+      "DevExtreme.AspNet.Data/5.1.0": {
+        "runtime": {
+          "lib/net8.0/DevExtreme.AspNet.Data.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml/3.3.0": {
+        "dependencies": {
+          "DocumentFormat.OpenXml.Framework": "3.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml.Framework/3.3.0": {
+        "dependencies": {
+          "System.IO.Packaging": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.Framework.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "ExcelNumberFormat/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/ExcelNumberFormat.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/8.0.15": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "8.0.15",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/8.0.15": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "8.0.15",
+          "Microsoft.AspNetCore.Components": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Forms/8.0.15": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/8.0.15": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.15",
+          "Microsoft.AspNetCore.Components.Forms": "8.0.15",
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "Microsoft.JSInterop": "8.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Connections.Abstractions/8.0.11": {
+        "dependencies": {
+          "Microsoft.Extensions.Features": "8.0.11"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Client/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Common": "8.0.11",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Common/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.11"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/8.0.15": {
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "8.0.11",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "8.0.11"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.11",
+          "Microsoft.AspNetCore.SignalR.Protocols.Json": "8.0.11",
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "Microsoft.Extensions.Logging": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Common/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.11",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Common.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Protocols.Json/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "8.0.11"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/8.0.11": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.11",
+          "Microsoft.Extensions.Caching.Memory": "8.0.1",
+          "Microsoft.Extensions.Logging": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.dll": {
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52104"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/8.0.11": {
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "8.0.11.0",
+            "fileVersion": "8.0.1124.52104"
+          }
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/8.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Caching.Memory.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/8.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyModel/8.0.2": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
+            "assemblyVersion": "8.0.0.2",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "Microsoft.Extensions.Features/8.0.11": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Features.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging/8.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/8.0.3": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1325.6609"
+          }
+        }
+      },
+      "Microsoft.Extensions.ObjectPool/8.0.10": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.ObjectPool.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46804"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/8.0.2": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.224.6711"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Abstractions/8.3.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.51204"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.JsonWebTokens/8.3.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "8.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.51204"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Logging/8.3.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Abstractions": "8.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Logging.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.51204"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Tokens/8.3.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Logging": "8.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Tokens.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.51204"
+          }
+        }
+      },
+      "Microsoft.JSInterop/8.0.15": {
+        "runtime": {
+          "lib/net8.0/Microsoft.JSInterop.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+      "Microsoft.Win32.SystemEvents/8.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "Npgsql/8.0.6": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3"
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.dll": {
+            "assemblyVersion": "8.0.6.0",
+            "fileVersion": "8.0.6.0"
+          }
+        }
+      },
+      "ProtectedBrowserStorage.NETStandard/1.1.2": {
+        "dependencies": {
+          "Blazored.LocalStorage": "2.1.6",
+          "Blazored.SessionStorage": "1.0.12"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ProtectedLocalStore.dll": {
+            "assemblyVersion": "1.1.2.0",
+            "fileVersion": "1.1.2.0"
+          }
+        }
+      },
+      "RBush.Signed/4.0.0": {
+        "runtime": {
+          "lib/net8.0/RBush.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "SixLabors.Fonts/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/SixLabors.Fonts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Buttons/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Buttons.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Calendars/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Lists": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Calendars.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Cards/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Cards.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Core/30.2.6": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "8.0.15",
+          "Syncfusion.Licensing": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Core.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Data/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Data.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.DataForm/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.DataForm.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Diagram/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Diagram.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.DropDowns/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Notifications": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.DropDowns.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Gantt/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Grid": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Layouts": "30.2.6",
+          "Syncfusion.Blazor.Lists": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.RichTextEditor": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6",
+          "Syncfusion.Blazor.TreeGrid": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Gantt.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Grid/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6",
+          "Syncfusion.ExcelExport.Net.Core": "30.2.6",
+          "Syncfusion.PdfExport.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Grids.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.InPlaceEditor/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.InPlaceEditor.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Inputs/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6",
+          "Syncfusion.Blazor.SplitButtons": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Inputs.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Kanban/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Kanban.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Layouts/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Layouts.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.LinearGauge/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.PdfExport.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.LinearGauge.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Lists/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Lists.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Navigations/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Lists": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Navigations.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Notifications/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Notifications.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Popups/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Popups.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.ProgressBar/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.ProgressBar.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.QueryBuilder/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.SplitButtons": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.QueryBuilder.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Ribbon/30.2.6": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.SplitButtons": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Ribbon.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.RichTextEditor/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.SplitButtons": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.RichTextEditor.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Schedule/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6",
+          "Syncfusion.ExcelExport.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Schedule.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Spinner/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Spinner.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.SplitButtons/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.SplitButtons.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Spreadsheet/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Buttons": "30.2.6",
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Inputs": "30.2.6",
+          "Syncfusion.Blazor.Lists": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Ribbon": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6",
+          "Syncfusion.Blazor.SplitButtons": "30.2.6",
+          "Syncfusion.XlsIO.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Spreadsheet.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.Themes/30.2.6": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.Themes.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.TreeGrid/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.Grid": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.Blazor.Popups": "30.2.6",
+          "Syncfusion.Blazor.Spinner": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.TreeGrid.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Blazor.WordProcessor/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Blazor.Calendars": "30.2.6",
+          "Syncfusion.Blazor.Core": "30.2.6",
+          "Syncfusion.Blazor.Data": "30.2.6",
+          "Syncfusion.Blazor.DropDowns": "30.2.6",
+          "Syncfusion.Blazor.Navigations": "30.2.6",
+          "Syncfusion.WordProcessor.AspNet.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.Blazor.DocumentEditor.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Compression.Net.Core/30.2.6": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.Compression.Portable.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.DocIO.Net.Core/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Compression.Net.Core": "30.2.6",
+          "Syncfusion.Licensing": "30.2.6",
+          "Syncfusion.OfficeChart.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.DocIO.Portable.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.ExcelExport.Net.Core/30.2.6": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.ExcelExport.Net.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.Licensing/30.2.6": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.OfficeChart.Net.Core/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Compression.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.OfficeChart.Portable.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.PdfExport.Net.Core/30.2.6": {
+        "runtime": {
+          "lib/net8.0/Syncfusion.PdfExport.Net.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.WordProcessor.AspNet.Core/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Compression.Net.Core": "30.2.6",
+          "Syncfusion.DocIO.Net.Core": "30.2.6",
+          "Syncfusion.OfficeChart.Net.Core": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.WordProcessor.AspNet.Core.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "Syncfusion.XlsIO.Net.Core/30.2.6": {
+        "dependencies": {
+          "Syncfusion.Compression.Net.Core": "30.2.6",
+          "Syncfusion.Licensing": "30.2.6"
+        },
+        "runtime": {
+          "lib/net8.0/Syncfusion.XlsIO.Portable.dll": {
+            "assemblyVersion": "30.2.6.0",
+            "fileVersion": "30.2.6.0"
+          }
+        }
+      },
+      "System.CodeDom/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        }
+      },
+      "System.Configuration.ConfigurationManager/8.0.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "8.0.1",
+          "System.Security.Cryptography.ProtectedData": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Data.OleDb/8.0.1": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "8.0.1",
+          "System.Diagnostics.PerformanceCounter": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/System.Data.OleDb.dll": {
+            "assemblyVersion": "8.0.0.1",
+            "fileVersion": "8.0.1024.46610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Data.OleDb.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.1",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/8.0.1": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          },
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Diagnostics.PerformanceCounter/8.0.1": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Drawing.Common/8.0.15": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16501"
+          }
+        }
+      },
+      "System.IdentityModel.Tokens.Jwt/8.3.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.JsonWebTokens": "8.3.0",
+          "Microsoft.IdentityModel.Tokens": "8.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.51204"
+          }
+        }
+      },
+      "System.IO.Packaging/8.0.1": {
+        "runtime": {
+          "lib/net8.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Linq.Dynamic.Core/1.6.0.1": {
+        "runtime": {
+          "lib/net8.0/System.Linq.Dynamic.Core.dll": {
+            "assemblyVersion": "1.6.0.1",
+            "fileVersion": "1.6.0.1"
+          }
+        }
+      },
+      "System.Security.Cryptography.Pkcs/8.0.1": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.Pkcs.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/8.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "System.Security.Cryptography.Xml/8.0.2": {
+        "dependencies": {
+          "System.Security.Cryptography.Pkcs": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.Xml.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.ServiceModel.Http/8.1.2": {
+        "dependencies": {
+          "System.ServiceModel.Primitives": "8.1.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.ServiceModel.Http.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          }
+        },
+        "resources": {
+          "lib/net8.0/cs/System.ServiceModel.Http.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net8.0/de/System.ServiceModel.Http.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/es/System.ServiceModel.Http.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net8.0/fr/System.ServiceModel.Http.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/it/System.ServiceModel.Http.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net8.0/ja/System.ServiceModel.Http.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net8.0/ko/System.ServiceModel.Http.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net8.0/pl/System.ServiceModel.Http.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net8.0/pt-BR/System.ServiceModel.Http.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net8.0/ru/System.ServiceModel.Http.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net8.0/tr/System.ServiceModel.Http.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net8.0/zh-Hans/System.ServiceModel.Http.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net8.0/zh-Hant/System.ServiceModel.Http.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "System.ServiceModel.NetFramingBase/8.1.2": {
+        "dependencies": {
+          "System.ServiceModel.Primitives": "8.1.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.ServiceModel.NetFramingBase.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          }
+        },
+        "resources": {
+          "lib/net8.0/cs/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net8.0/de/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/es/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net8.0/fr/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/it/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net8.0/ja/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net8.0/ko/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net8.0/pl/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net8.0/pt-BR/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net8.0/ru/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net8.0/tr/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net8.0/zh-Hans/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net8.0/zh-Hant/System.ServiceModel.NetFramingBase.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "System.ServiceModel.NetTcp/8.1.2": {
+        "dependencies": {
+          "System.ServiceModel.NetFramingBase": "8.1.2",
+          "System.ServiceModel.Primitives": "8.1.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.ServiceModel.NetTcp.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          }
+        },
+        "resources": {
+          "lib/net8.0/cs/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net8.0/de/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/es/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net8.0/fr/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/it/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net8.0/ja/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net8.0/ko/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net8.0/pl/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net8.0/pt-BR/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net8.0/ru/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net8.0/tr/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net8.0/zh-Hans/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net8.0/zh-Hant/System.ServiceModel.NetTcp.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "System.ServiceModel.Primitives/8.1.2": {
+        "dependencies": {
+          "Microsoft.Extensions.ObjectPool": "8.0.10",
+          "System.Security.Cryptography.Xml": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.ServiceModel.Duplex.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          },
+          "lib/net8.0/System.ServiceModel.Primitives.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          },
+          "lib/net8.0/System.ServiceModel.Security.dll": {
+            "assemblyVersion": "8.1.2.0",
+            "fileVersion": "8.100.225.15402"
+          },
+          "lib/net8.0/System.ServiceModel.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "8.100.225.15402"
+          }
+        },
+        "resources": {
+          "lib/net8.0/cs/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net8.0/de/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/es/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net8.0/fr/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/it/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net8.0/ja/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net8.0/ko/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net8.0/pl/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net8.0/pt-BR/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net8.0/ru/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net8.0/tr/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net8.0/zh-Hans/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net8.0/zh-Hant/System.ServiceModel.Primitives.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Domain/1.0.0": {
+        "dependencies": {
+          "Blazored.SessionStorage": "1.0.12",
+          "DevExpress.AspNetCore.Reporting": "25.1.3",
+          "DevExpress.Blazor": "25.1.3",
+          "DevExpress.Blazor.de": "25.1.3",
+          "DevExpress.DataAccess": "25.1.3",
+          "Microsoft.AspNetCore.Components.Authorization": "8.0.11",
+          "Microsoft.EntityFrameworkCore": "8.0.11",
+          "Newtonsoft.Json": "13.0.3",
+          "Npgsql": "8.0.6",
+          "ProtectedBrowserStorage.NETStandard": "1.1.2",
+          "System.IdentityModel.Tokens.Jwt": "8.3.0",
+          "System.Linq.Dynamic.Core": "1.6.0.1"
+        },
+        "runtime": {
+          "Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TasShared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blazored.LocalStorage/2.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eTZmwBVJWUdZ0DRI0pTKhtPZHoVfKP+8PDQRR+gStT6ss3IIJ0hhZ+9AtuKxJ/XmE/6fHUkl8U+9niRLsjBoCA==",
+      "path": "blazored.localstorage/2.1.6",
+      "hashPath": "blazored.localstorage.2.1.6.nupkg.sha512"
+    },
+    "Blazored.SessionStorage/1.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-46Ecq7Ek5vjCHjuf9Yia6bIcsgF3gQUYzTvCshoXUj1E3Xg2VD+42PAtWwYEf8yedFZUNdTlaFazjwc5zPHEGw==",
+      "path": "blazored.sessionstorage/1.0.12",
+      "hashPath": "blazored.sessionstorage.1.0.12.nupkg.sha512"
+    },
+    "ClosedXML/0.105.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U0hAdnYyPvF7TqHMFloxrS7pmozab79tFFF4c/bgPtqeelUs7ILpUd3r3c7C0a/DXsUZb3k1n4Pf7Q2LMyMQOg==",
+      "path": "closedxml/0.105.0",
+      "hashPath": "closedxml.0.105.0.nupkg.sha512"
+    },
+    "ClosedXML.Parser/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ngTqjYreDYNytG1W5d3ewHsw0ukmmrgV7EKnS4/40rXoYZGt07jrBvo+N+GxT49rcageUMUiprV0jYT4nwVBHQ==",
+      "path": "closedxml.parser/2.0.0",
+      "hashPath": "closedxml.parser.2.0.0.nupkg.sha512"
+    },
+    "DeepCloner/0.10.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-z8ASd9bjXkVjcnIrwUKrxb/bPi/gvG5NX3nv7MHK/5QrlYwbK7N5ZTDNaYXQ5qunaUCMGN0UHdgkNARIEBTEyA==",
+      "path": "deepcloner/0.10.4",
+      "hashPath": "deepcloner.0.10.4.nupkg.sha512"
+    },
+    "DevExpress.AspNetCore.Common/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gBumvu13Jk9a2xDoYvx4i2c7ZvykIgu5CkkA8thQPqcL+4fd/Jfw1c5L9LpUfgahJakLERgAmFPKtSVJwPNjhw==",
+      "path": "devexpress.aspnetcore.common/25.1.3",
+      "hashPath": "devexpress.aspnetcore.common.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.AspNetCore.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UjMH5UZ/anbTvgAOdmtzl7OGwbWsGDpX9ZV936vqmeCRdbjv0dibskRu0dlmXU6LfHygT7fUdXJU73A0HWriJg==",
+      "path": "devexpress.aspnetcore.core/25.1.3",
+      "hashPath": "devexpress.aspnetcore.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.AspNetCore.Reporting/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GuyrHDkkXzQOFWrj9BCeFZJoWWFpvWfSUFOQFnQaiGdAhaQnIEo2mypxeuLlBPLo0bkDkOcuHaTcCY+Ki4o7Kg==",
+      "path": "devexpress.aspnetcore.reporting/25.1.3",
+      "hashPath": "devexpress.aspnetcore.reporting.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Blazor/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jfYciBx7EJhp8vxqsM49TCRwfJ7QdAlQd1lnIwrW6C96TgVJ2v8u2ecql7xlJqWSGzm0icqgf4AB+CJfCiLLXQ==",
+      "path": "devexpress.blazor/25.1.3",
+      "hashPath": "devexpress.blazor.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Blazor.de/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QxWKSqOWPTusLmJ1qLj/qpgJizDsCtdJQIMR0ZiRajVYgpEX+zbv2COFTvL7i6ZZskNNBuptGQAQs2l61pTFRw==",
+      "path": "devexpress.blazor.de/25.1.3",
+      "hashPath": "devexpress.blazor.de.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Blazor.Reporting.JSBasedControls/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9dN+IGzMW7TZ0+exd8N//y7oZhw4K8JjQj5ZYkoWyB9GrSteKsgKVjC6dkxpO6b95hqeKcGzOqYr6xjkJtITFQ==",
+      "path": "devexpress.blazor.reporting.jsbasedcontrols/25.1.3",
+      "hashPath": "devexpress.blazor.reporting.jsbasedcontrols.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Blazor.Reporting.JSBasedControls.Common/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tu0woDn7O6Zxhm37YhyNiyuOkctDvoPjlREzYezkCId35elM+vSeWm35ya+JH1igxYVsapoFtIuqYKYBGBsGDw==",
+      "path": "devexpress.blazor.reporting.jsbasedcontrols.common/25.1.3",
+      "hashPath": "devexpress.blazor.reporting.jsbasedcontrols.common.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Blazor.Resources/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DLwNHXeMEr3GHAnmF6taeF+ZDkY940gU1bYjAMmNKDuH6WMGEFT/uKoCjpvaUmeWPYC38Kea5Osdr5aGfX8VdA==",
+      "path": "devexpress.blazor.resources/25.1.3",
+      "hashPath": "devexpress.blazor.resources.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Charts/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4UJvYD+3UexoaSCdTdfJBFkVT8gBeYRTJaFHQQSsUjpYWQF203jRAbj4eWY3cQYQCs4M3a5THTDH4NSNEbV+Kg==",
+      "path": "devexpress.charts/25.1.3",
+      "hashPath": "devexpress.charts.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Charts.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+3xrRgQmhXIcZGop1EFvARI2cKGCppxiqRyKQh1LhvdE7pDTc8elb6P6h1cWX6yvFLSgIYu12EhKb1f6K7G0Hg==",
+      "path": "devexpress.charts.core/25.1.3",
+      "hashPath": "devexpress.charts.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.CodeParser/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ee2pY4Um0R6HqNLdyDIg6Y9Jg6B1TlGvogvRhaiNp8csicDQE0gzdnHzgHr03ax/P3CsjkZzDdP6mUhV3Pq0pw==",
+      "path": "devexpress.codeparser/25.1.3",
+      "hashPath": "devexpress.codeparser.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Data/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zqXiuRty9D64USkIFKFQek+wF3Ie70xmLrabt2VDG8kDx1788x3lU8XadWnoTviSAVdt83AcyAZGc77eQAf1eg==",
+      "path": "devexpress.data/25.1.3",
+      "hashPath": "devexpress.data.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Data.de/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QN27hx7ytQObCf8b0XfT6U0ru9Obr4OITmkGnUTRScgwnIlWSlqhvn4vFVzs1AtLVAFhZWzG6gxaHCFuklOUoQ==",
+      "path": "devexpress.data.de/25.1.3",
+      "hashPath": "devexpress.data.de.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.DataAccess/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YEPGVLePtRj4YvaZvvhFxGf3k+34gsNjbfig8y0Z7k5JoslOLBxL1w/OBwl0JNDkoBJT7Y/MoL1saY05rk+fvg==",
+      "path": "devexpress.dataaccess/25.1.3",
+      "hashPath": "devexpress.dataaccess.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.DataVisualization.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-enUoOnhpLJTkLXComJR1Q9/MRmHGoInJIrnp+EpXncbkgbBH5e8BZjwthwAt0MoatNSKVlo/ipMraUqCIV835w==",
+      "path": "devexpress.datavisualization.core/25.1.3",
+      "hashPath": "devexpress.datavisualization.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Drawing/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r9HLuVHH+w0OvwZiLDAtdV2d7yTe9kqU1RGBq0L62/lZ3CTGKqHe3YOXwpzVAhhbynU2JrzbbwFzU3k7vkPpWA==",
+      "path": "devexpress.drawing/25.1.3",
+      "hashPath": "devexpress.drawing.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Gauges.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sL3CiMl9CMC5PIZKs2A51549pJBc47U9sjfY+NSDr6YtXx4jer+9it8At+h+EbLgdYbe+8htVILxVsG9viy6uA==",
+      "path": "devexpress.gauges.core/25.1.3",
+      "hashPath": "devexpress.gauges.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Office.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VJlyx3C6QQ/7NLviIzdSykN/te9H9ci+JJWSAX7LfvWTNap16eGOzjSS8M0Jtb7FkenyHw6VpwoL9tqTUBFrcw==",
+      "path": "devexpress.office.core/25.1.3",
+      "hashPath": "devexpress.office.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Pdf.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g0ZV84uzyXLM0WmO+dpGNSF6CgW39oBOUn+snBAvhY8IUsOiF/6ixY1CFZXFO02fqz6LxiT1WVBH+GM7Ly1EAw==",
+      "path": "devexpress.pdf.core/25.1.3",
+      "hashPath": "devexpress.pdf.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Pdf.Core.de/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zn3S090QlRlzgT1MnFGR6rxrPgZjnNnEQNs+tcLZt6/zNIWBbTle94MX2aSrKaSngHDjpAe1cn7Ywn86YDzGHA==",
+      "path": "devexpress.pdf.core.de/25.1.3",
+      "hashPath": "devexpress.pdf.core.de.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Pdf.Drawing/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uLUUPTp5mpDDWNC/uWXKFtx4ncRIxp4yR/6FujsBPocVQkLOqmhw1DlmEc6T3p005UouQqg5FY/Vxsssmohyyg==",
+      "path": "devexpress.pdf.drawing/25.1.3",
+      "hashPath": "devexpress.pdf.drawing.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.PivotGrid.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y+8hLpODt6+HiiKY6PKaUYwKo2YnA61zs4UjneSys9bIOM+7PRr58HlcoLmz/SJgXwgClXBbPHT2Wl3msaEJ4Q==",
+      "path": "devexpress.pivotgrid.core/25.1.3",
+      "hashPath": "devexpress.pivotgrid.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Printing.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I2aXPYz+v2vZvZr0rMOWzG+CWkMJp9fAEAkXtiUxSqtdTZ73Q/g4Stxj+ra2vhZGMF4yxjlCT5ejQzzsoJMw6g==",
+      "path": "devexpress.printing.core/25.1.3",
+      "hashPath": "devexpress.printing.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Printing.Core.de/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v5J6VpQFAvLDgJU8vX9jcvSw4She+6d3hLECKXSuZbSKMEvJykJ1m108OPVogY6TVOnzd6hP/ts2pcRZm0VyCw==",
+      "path": "devexpress.printing.core.de/25.1.3",
+      "hashPath": "devexpress.printing.core.de.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Reporting.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0LJoqGeBmjI3JTU6yUMOtRyOFswnsNKq44mHcegsIYXyoJMPKcBaWqSo3U41zhDLQx73KQvzTMfAPkEK84+OMQ==",
+      "path": "devexpress.reporting.core/25.1.3",
+      "hashPath": "devexpress.reporting.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.RichEdit.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TTiCFfMMa+i4ouaE5IOUNScYIbZPj34yKUY1kuofCChgD1wYSD1kyyBvowONslf0iK5vwKkcT0TyRrAhVTSIGQ==",
+      "path": "devexpress.richedit.core/25.1.3",
+      "hashPath": "devexpress.richedit.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.RichEdit.Export/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GjfoFEK5nhbkuZ3XU94QrcsiuOwYGVYsRjfpTu9nGU5Ailpjg0cSDV4CMXlsGDd6H9Rhfzz2tValrnipXPETVg==",
+      "path": "devexpress.richedit.export/25.1.3",
+      "hashPath": "devexpress.richedit.export.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Sparkline.Core/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XclXEX4UssJRE+Q7GTw4Fjo37n7W2LHbhHqcXC4zPjY7hB1U8gn9e9Z30J6SCVnyn8JHc8RQil2i8nWJQrw98Q==",
+      "path": "devexpress.sparkline.core/25.1.3",
+      "hashPath": "devexpress.sparkline.core.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Web.Reporting.Common/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rHlOISRmpz+6BasMZQ338hGsOk0r7OjQ83dcMqSEbxpo4D5eA7z8iaqZ0WZV/xETa0qo6PtrxTZiTVOFfmQUgQ==",
+      "path": "devexpress.web.reporting.common/25.1.3",
+      "hashPath": "devexpress.web.reporting.common.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Web.Reporting.Common.Services/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0ZSAaohIwSn8ortc/5GJ13TIrLFBRwIWM7wxsy1YZUNeoq1owpIiYmtlrHbkl6alJed19oE4N7AbQWQbQAxGEw==",
+      "path": "devexpress.web.reporting.common.services/25.1.3",
+      "hashPath": "devexpress.web.reporting.common.services.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Web.Resources/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-APfN0ZyeFkEMIsFMldTKJMAur5Rs4AfwwSJsS8uoirUcEUCsyJi6EIyHW+9EinVQ71qOr16GkMXHLmvMP2mBAQ==",
+      "path": "devexpress.web.resources/25.1.3",
+      "hashPath": "devexpress.web.resources.25.1.3.nupkg.sha512"
+    },
+    "DevExpress.Xpo/25.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-58+/07WZMmbDTbaTEI60+UsDKynHVVPV/FY4ancWpwQCTwF5UOUZxPLn3HBQ+QhdSsKDdtPBGzjAxpN5yJFQBg==",
+      "path": "devexpress.xpo/25.1.3",
+      "hashPath": "devexpress.xpo.25.1.3.nupkg.sha512"
+    },
+    "DevExtreme.AspNet.Data/5.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cxDBKbBLt80sCnsBDHZjLNu6mmhDDFj2oyAdUpUQzaxndvMittkUPj63lFKIBtv2E+issteiO1F1UztZ5Boh6w==",
+      "path": "devextreme.aspnet.data/5.1.0",
+      "hashPath": "devextreme.aspnet.data.5.1.0.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JogRPJNiE6kKvbuCqVRX691pPWeGMqdQgjrUwRYkdpfkMmtElfqAgcRR73geYj7OtBeEpstldZXXzJw27LUI9w==",
+      "path": "documentformat.openxml/3.3.0",
+      "hashPath": "documentformat.openxml.3.3.0.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml.Framework/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R5CLzEoeyr7XDB7g3NTxRobcU19agaxVAhGZm+fZUShJGiU4bw8oUgnA2BNFepigJckfFMayOBMAbV3kDXNInA==",
+      "path": "documentformat.openxml.framework/3.3.0",
+      "hashPath": "documentformat.openxml.framework.3.3.0.nupkg.sha512"
+    },
+    "ExcelNumberFormat/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R3BVHPs9O+RkExbZYTGT0+9HLbi8ZrNij1Yziyw6znd3J7P3uoIR07uwTLGOogtz1p6+0sna66eBoXu7tBiVQA==",
+      "path": "excelnumberformat/1.1.0",
+      "hashPath": "excelnumberformat.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authorization/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AIpppyCOYv0hJjmYqytMSVohAV8THV6sTk7VoM6rHo1Jq0D1fOfkRi9lnmEz20nfKt50wX2OlciEQop3JlMC6A==",
+      "path": "microsoft.aspnetcore.authorization/8.0.15",
+      "hashPath": "microsoft.aspnetcore.authorization.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eQIgPU1oTkqR8hWvDjyZFGBBtgPY4bYl4a/WN7g0txmoww+fbE1nZ4D+5MeSbZu1kfHWX/Ruog/pMF9zUX6D7g==",
+      "path": "microsoft.aspnetcore.components/8.0.15",
+      "hashPath": "microsoft.aspnetcore.components.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Authorization/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K1OES99Yj+nMg6ulpXOY+iAK/0RUXEMtdjVzM26IixYKaXFwcKHzMljgv/sZoU3TgQNgp4FD4f38JrUZXUvEgA==",
+      "path": "microsoft.aspnetcore.components.authorization/8.0.11",
+      "hashPath": "microsoft.aspnetcore.components.authorization.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Forms/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-579O5c3u0FXnOAjk6JNzcy+/+qazMbedAeOy1vT1B6CBYovG8iGJhyUukqCbHcNQq3/lqxBTyB9rFzlH5zOttA==",
+      "path": "microsoft.aspnetcore.components.forms/8.0.15",
+      "hashPath": "microsoft.aspnetcore.components.forms.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Web/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ttRxlR+yM0sNi+Ecw0ze26l2IcBIF2L+YNQGs4v159v+Ge51yn8bwehnlzs9MY5y3Xamvek4l71uZfk1oouYSA==",
+      "path": "microsoft.aspnetcore.components.web/8.0.15",
+      "hashPath": "microsoft.aspnetcore.components.web.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Connections.Abstractions/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3AdZ+1eTsHgdsLS3n64yBTCDZumuN0zpTKNyIy7VTKJpiYgMVYa3XafOJ521oxdo/B3Ww5C0vUNzPCiY5tX3Qw==",
+      "path": "microsoft.aspnetcore.connections.abstractions/8.0.11",
+      "hashPath": "microsoft.aspnetcore.connections.abstractions.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Connections.Client/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xZYK9qmJ/Zm10FId7hzDaI+2j+g4O+b5SLeCEET40MtDXxiu6+0PsBePBOiu90yNeWAWLbjnEGrzBxsZ6pY4SQ==",
+      "path": "microsoft.aspnetcore.http.connections.client/8.0.11",
+      "hashPath": "microsoft.aspnetcore.http.connections.client.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Connections.Common/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zbC/b3eOSli86NVRMbsW4xkan6jiRTHz67ET4yOCihNIrFJRQAzhh4EHH/CrZp+AffVQ6gwokQEhZpjihmESGg==",
+      "path": "microsoft.aspnetcore.http.connections.common/8.0.11",
+      "hashPath": "microsoft.aspnetcore.http.connections.common.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eKlqQasjNZD0B3thB+nX7kkpG/RiZlXObmjX+JurWycnssGp1q9iZjKn2SqKA45Pouw+529aQUYYP2/QCE5xIQ==",
+      "path": "microsoft.aspnetcore.metadata/8.0.15",
+      "hashPath": "microsoft.aspnetcore.metadata.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Client/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dvt8ys1cjCr6QcjquoxvGfTvgiJHVa9HjX7GFSbr1axhQMMHWj0k6HLBvr/t9De+EriJZQGeALJNavWTwF8aHA==",
+      "path": "microsoft.aspnetcore.signalr.client/8.0.11",
+      "hashPath": "microsoft.aspnetcore.signalr.client.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Client.Core/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ISNuLuJRKfowJ39YXdFv3LT+K2vAf4sqIbGWpFE0Tom1tr2EZaPijZKHLjpyTf7J9eWRUkRZEr05ZHuIhhvKjg==",
+      "path": "microsoft.aspnetcore.signalr.client.core/8.0.11",
+      "hashPath": "microsoft.aspnetcore.signalr.client.core.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Common/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qUI0lN8Q0loKMF0e+46/yoYE3nRAhAzJyx6Els9aIkZJ8kjhLVvlAW/0E99donhbe5+quyyE4gVqYmx8wAP5qQ==",
+      "path": "microsoft.aspnetcore.signalr.common/8.0.11",
+      "hashPath": "microsoft.aspnetcore.signalr.common.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Protocols.Json/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ac6xrk6KSlgh5eI3gSfUgaEgv0gEjyr4kB5DkJ43rpQb1K0TBmuUKyXxVr8CG6ywHy0rD1iLti3PGp1fhJMygw==",
+      "path": "microsoft.aspnetcore.signalr.protocols.json/8.0.11",
+      "hashPath": "microsoft.aspnetcore.signalr.protocols.json.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-stbjWBTtpQ1HtqXMFyKnXFTr76PvaOHI2b2h85JqBi3eZr00nspvR/a90Zwh8CQ4rVawqLiTG0+0yZQWaav+sQ==",
+      "path": "microsoft.entityframeworkcore/8.0.11",
+      "hashPath": "microsoft.entityframeworkcore.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-++zY0Ea724ku1jptWJmF7jm3I4IXTexfT4qi1ETcSFFF7qj+qm6rRgN7mTuKkwIETuXk0ikfzudryRjUGrrNKQ==",
+      "path": "microsoft.entityframeworkcore.abstractions/8.0.11",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.Memory/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HFDnhYLccngrzyGgHkjEDU5FMLn4MpOsr5ElgsBMC4yx6lJh4jeWO7fHS8+TXPq+dgxCmUa/Trl8svObmwW4QA==",
+      "path": "microsoft.extensions.caching.memory/8.0.1",
+      "hashPath": "microsoft.extensions.caching.memory.8.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BmANAnR5Xd4Oqw7yQ75xOAYODybZQRzdeNucg7kS5wWKd2PNnMdYtJ2Vciy0QLylRmv42DGl5+AFL9izA6F1Rw==",
+      "path": "microsoft.extensions.dependencyinjection/8.0.1",
+      "hashPath": "microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3iE7UF7MQkCv1cxzCahz+Y/guQbTqieyxyaWKhrRO91itI9cOKO76OHeQDahqG4MmW5umr3CcCvGmK92lWNlbg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.2",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyModel/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mUBDZZRgZrSyFOsJ2qJJ9fXfqd/kXJwf3AiDoqLD9m6TjY5OO/vLNOb9fb4juC0487eq4hcGN/M2Rh/CKS7QYw==",
+      "path": "microsoft.extensions.dependencymodel/8.0.2",
+      "hashPath": "microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Features/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xL0WcA9bRu49QSUmGZEYY5dslR/x52fl+XY9GWOP2h5ibOJY7hF8Tz/raXVP+GPJ2S2piNPlfL4GkJK794PjFA==",
+      "path": "microsoft.extensions.features/8.0.11",
+      "hashPath": "microsoft.extensions.features.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4x+pzsQEbqxhNf1QYRr5TDkLP9UsLT3A6MdRKDDEgrW7h1ljiEPgTNhKYUhNCCAaVpQECVQ+onA91PTPnIp6Lw==",
+      "path": "microsoft.extensions.logging/8.0.1",
+      "hashPath": "microsoft.extensions.logging.8.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/8.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dL0QGToTxggRLMYY4ZYX5AMwBb+byQBd/5dMiZE07Nv73o6I5Are3C7eQTh7K2+A4ct0PVISSr7TZANbiNb2yQ==",
+      "path": "microsoft.extensions.logging.abstractions/8.0.3",
+      "hashPath": "microsoft.extensions.logging.abstractions.8.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ObjectPool/8.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u7gAG7JgxF8VSJUGPSudAcPxOt+ymJKQCSxNRxiuKV+klCQbHljQR75SilpedCTfhPWDhtUwIJpnDVtspr9nMg==",
+      "path": "microsoft.extensions.objectpool/8.0.10",
+      "hashPath": "microsoft.extensions.objectpool.8.0.10.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dWGKvhFybsaZpGmzkGCbNNwBD1rVlWzrZKANLW/CcbFJpCEceMCGzT7zZwHOGBCbwM0SzBuceMj5HN1LKV1QqA==",
+      "path": "microsoft.extensions.options/8.0.2",
+      "hashPath": "microsoft.extensions.options.8.0.2.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.Abstractions/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jNin7yvWZu+K3U24q+6kD+LmGSRfbkHl9Px8hN1XrGwq6ZHgKGi/zuTm5m08G27fwqKfVXIWuIcUeq4Y1VQUOg==",
+      "path": "microsoft.identitymodel.abstractions/8.3.0",
+      "hashPath": "microsoft.identitymodel.abstractions.8.3.0.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.JsonWebTokens/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4SVXLT8sDG7CrHiszEBrsDYi+aDW0W9d+fuWUGdZPBdan56aM6fGXJDjbI0TVGEDjJhXbACQd8F/BnC7a+m2RQ==",
+      "path": "microsoft.identitymodel.jsonwebtokens/8.3.0",
+      "hashPath": "microsoft.identitymodel.jsonwebtokens.8.3.0.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.Logging/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4w4pSIGHhCCLTHqtVNR2Cc/zbDIUWIBHTZCu/9ZHm2SVwrXY3RJMcZ7EFGiKqmKZMQZJzA0bpwCZ6R8Yb7i5VQ==",
+      "path": "microsoft.identitymodel.logging/8.3.0",
+      "hashPath": "microsoft.identitymodel.logging.8.3.0.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.Tokens/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yGzqmk+kInH50zeSEH/L1/J0G4/yqTQNq4YmdzOhpE7s/86tz37NS2YbbY2ievbyGjmeBI1mq26QH+yBR6AK3Q==",
+      "path": "microsoft.identitymodel.tokens/8.3.0",
+      "hashPath": "microsoft.identitymodel.tokens.8.3.0.nupkg.sha512"
+    },
+    "Microsoft.JSInterop/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JQjYabj1o3M5rUp/GM8uVlLpgc9tgxZea+89IkvGl8AcY7Tfwn0Q5qltVa9rfm3mzCsr2ecVCKzWMSMYiXS0Kg==",
+      "path": "microsoft.jsinterop/8.0.15",
+      "hashPath": "microsoft.jsinterop.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9opKRyOKMCi2xJ7Bj7kxtZ1r9vbzosMvRrdEhVhDz8j8MoBGgB+WmC94yH839NPH+BclAjtQ/pyagvi/8gDLkw==",
+      "path": "microsoft.win32.systemevents/8.0.0",
+      "hashPath": "microsoft.win32.systemevents.8.0.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "Npgsql/8.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KaS6CY5kY2Sd0P00MSeFcOI3t2DiQ4UWG8AuRpVOUeDWITOKfoEEG91DP3cmT6aerixPkjwKgXxnpDxIkDpO6g==",
+      "path": "npgsql/8.0.6",
+      "hashPath": "npgsql.8.0.6.nupkg.sha512"
+    },
+    "ProtectedBrowserStorage.NETStandard/1.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dHZHC2wylPJErR146skePnvmlSb/SpQPz7l3kTkRioGh1Z2MLZ4lAxrhxXZoQECy3rrWPEp4yDcB+6J1MTrwtw==",
+      "path": "protectedbrowserstorage.netstandard/1.1.2",
+      "hashPath": "protectedbrowserstorage.netstandard.1.1.2.nupkg.sha512"
+    },
+    "RBush.Signed/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aP5KQxL5RnFNGW1f0euYVBfCatkLw5iEzMRJcXKq8LWWP4Cp3+qoSq1tDDL2vvJ2rM0ychmVMa2VaEKLS6uX4w==",
+      "path": "rbush.signed/4.0.0",
+      "hashPath": "rbush.signed.4.0.0.nupkg.sha512"
+    },
+    "SixLabors.Fonts/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LFQsCZlV0xlUyXAOMUo5kkSl+8zAQXXbbdwWchtk0B4o7zotZhQsQOcJUELGHdfPfm/xDAsz6hONAuV25bJaAg==",
+      "path": "sixlabors.fonts/1.0.0",
+      "hashPath": "sixlabors.fonts.1.0.0.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Buttons/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LeOr+knXKdQeDASyaX97ApHVLA1ozDhiiURBXqez/nt8hKxlzdawgFQliJVBavxDjv+3g5CVNgM3T6yn+dgEYw==",
+      "path": "syncfusion.blazor.buttons/30.2.6",
+      "hashPath": "syncfusion.blazor.buttons.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Calendars/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NLIC/rHWaShmzqx+EbUyjjsg0Yy8kWUzKm4Gt/NGRKgd1Lj4xXaVFsjt9DBisttxUTkw4KJDY4Fbgxbg0Fz3Jw==",
+      "path": "syncfusion.blazor.calendars/30.2.6",
+      "hashPath": "syncfusion.blazor.calendars.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Cards/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dCAv6/m3PP0/ftOURHC5sTKT7kDux2p7yawjUdL7r+sxZyiTgntqAe6nI6FaG13QGvDs0b+rE4yqr2LesP0weA==",
+      "path": "syncfusion.blazor.cards/30.2.6",
+      "hashPath": "syncfusion.blazor.cards.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uvDzpC/gJvzSw4bsFNjgFdZYhMWlDcbWhL4JcYDGNug33KDZKVFp8Pqeafiu/uMSfMkW2gXuiIKgySfFzXVnFA==",
+      "path": "syncfusion.blazor.core/30.2.6",
+      "hashPath": "syncfusion.blazor.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Data/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XoqpHjcbeUjRFKGI7iMATLjHugVDAxB8ZrCvxjeXUBJ4lnkUGInjlg+Z9lOwD+PSPEAAJhu3t+meqovCdJgvaA==",
+      "path": "syncfusion.blazor.data/30.2.6",
+      "hashPath": "syncfusion.blazor.data.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.DataForm/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1tbseuv/KFs1HX18g5We/KrSNPYFCkDEV0KrtXRRxmkJfzqIph3bxUc0N+/1tvj9beTNMqnvg02NoWg3aRsaMw==",
+      "path": "syncfusion.blazor.dataform/30.2.6",
+      "hashPath": "syncfusion.blazor.dataform.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Diagram/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mbrTu7qbYrWNrXPbHhQ8fHFQdioXDPIKkbx+JcTG5oywdwMsCJkvUl5ugmZLLmeXcx5tUohffaWu3YKUzk6Klw==",
+      "path": "syncfusion.blazor.diagram/30.2.6",
+      "hashPath": "syncfusion.blazor.diagram.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.DropDowns/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uafEIgHXeeQMcKNh5/FokY15nRttTLbpjvLnRXGNC2kTJP0p/ySZ+Gd9cnugPSqUHwd8+rJ7yDdM8orAPuA7zw==",
+      "path": "syncfusion.blazor.dropdowns/30.2.6",
+      "hashPath": "syncfusion.blazor.dropdowns.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Gantt/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Yythu/cmTEFQJJd/bSRTK8kXJJ9OBHClTU56zB4JOMDu1ItsA5DlQobxUsuLqEu0eLRV0AcwTqxHvOSRWFtDNA==",
+      "path": "syncfusion.blazor.gantt/30.2.6",
+      "hashPath": "syncfusion.blazor.gantt.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Grid/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/d+T8OJ39GcA56IuZu2NsA3UbppNDJu4mayPpXdJQElu3kw5S46h0C0U8k8f0hfL1cV7FVeBdCKEkKATjuwnMw==",
+      "path": "syncfusion.blazor.grid/30.2.6",
+      "hashPath": "syncfusion.blazor.grid.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.InPlaceEditor/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6JhfeW8G3+dBvyq5WRnVuidAr1NHuWkllbRN1X91RkZdo7+bRsHMdyV0/6Uu0uwLCr4/3vT4ZYj6z4kf0/5P3Q==",
+      "path": "syncfusion.blazor.inplaceeditor/30.2.6",
+      "hashPath": "syncfusion.blazor.inplaceeditor.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Inputs/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-z29YaFnJEMGHYnddhoQ4IJ/JvXYmZEzva7nR3c/r5BPiItqKu0HwneIj8Drs4BE+UVhD4THfyorNlZMrW8YG4Q==",
+      "path": "syncfusion.blazor.inputs/30.2.6",
+      "hashPath": "syncfusion.blazor.inputs.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Kanban/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UjdSdMUoZ6gJp7UGm6RnBO/z9YdCWhMYbkuAdkB/5Ajgcj4QeovR1NsElYtTZq0CO6pNgQ1cWQgQPZLABmrxtg==",
+      "path": "syncfusion.blazor.kanban/30.2.6",
+      "hashPath": "syncfusion.blazor.kanban.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Layouts/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X4rXetP7rbYz3NxkWKHb5yVVjk4zsa4O3B/GbRt82EKLPFd5pvY9f5sc7R8RoCoHtsv3osFDp0rCNewFAbpx/w==",
+      "path": "syncfusion.blazor.layouts/30.2.6",
+      "hashPath": "syncfusion.blazor.layouts.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.LinearGauge/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-du3Z7S8A2R+d02MR/brUC49z8ymhs08LVs21f6zxmWc2dXyVn+dI+sDKPoPgjct2bpqQHADdvSQ+Z52g3S09NQ==",
+      "path": "syncfusion.blazor.lineargauge/30.2.6",
+      "hashPath": "syncfusion.blazor.lineargauge.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Lists/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s+2c/Gx5eUcURizLg/dy3lMwkThLbHlSrJsWKuNKeR5hdBwlrximlPV4JoHr/J6odtEe+GGI/e1Tv4Ol5Hey8g==",
+      "path": "syncfusion.blazor.lists/30.2.6",
+      "hashPath": "syncfusion.blazor.lists.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Navigations/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hR1caC3kfyn9Lx6My3OiL1IEme7HVkx54cdxtgP9p2uIu3aHmfBDt5cEiYxRr+HXgXDbufhpUSBGpGw8wHU4tg==",
+      "path": "syncfusion.blazor.navigations/30.2.6",
+      "hashPath": "syncfusion.blazor.navigations.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Notifications/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xGrUl6zyEH5TR3UFbJHkm7Nor9LxqYDrxrGYjBQJiNifZfjbITTQAX9v9nM/UVE0TsQ0zMJ0JcllhfWycXy5jw==",
+      "path": "syncfusion.blazor.notifications/30.2.6",
+      "hashPath": "syncfusion.blazor.notifications.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Popups/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XsbUbNzgPu27R1wSKwX5MyXsUnNB+id0Gs4xBYe322f6AI1JSY5ciDxlvYPZHbrDzT6D25Rdfjm5UYeRP9Tjdg==",
+      "path": "syncfusion.blazor.popups/30.2.6",
+      "hashPath": "syncfusion.blazor.popups.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.ProgressBar/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v1JUyupDeJlX0UkC6jxm2rBNZFesxJWv1rlSsY1CbhOjoefWIoVPOMSToBko++ugmGzSvzdcSl8zifDpwrTVrg==",
+      "path": "syncfusion.blazor.progressbar/30.2.6",
+      "hashPath": "syncfusion.blazor.progressbar.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.QueryBuilder/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M+GKQ+crEm/xt5K9ZpS3yNIytzIAFR4/GeLRASg4JvjkrsV/UhW8KK/6HAoeWgqO87qUlZVSE33MTvEu/rDV2w==",
+      "path": "syncfusion.blazor.querybuilder/30.2.6",
+      "hashPath": "syncfusion.blazor.querybuilder.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Ribbon/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lrNf9DlWDrIOMH/sHAuEulIqEzQdSw5o/1puO4K3A4qgmMgokKuB8ZSJyISy0WJJnenoafV810l0rf4vTgtwMg==",
+      "path": "syncfusion.blazor.ribbon/30.2.6",
+      "hashPath": "syncfusion.blazor.ribbon.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.RichTextEditor/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-trE21AlrfYgaJFltOaPSBy/TgD28k0h5R8iGa/ZEoKipKHVt6+ir0Gqj1DKiUHgBh1AHWAxsyeCUs9zdEmG5rA==",
+      "path": "syncfusion.blazor.richtexteditor/30.2.6",
+      "hashPath": "syncfusion.blazor.richtexteditor.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Schedule/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i4Re/KPT+QFPppa3iLa+82SmA2Hag84jkzC4eLd79BohMofiqd4yxunJL8YfJdrdvxSkFvKo8TxnHYfpkc6UUw==",
+      "path": "syncfusion.blazor.schedule/30.2.6",
+      "hashPath": "syncfusion.blazor.schedule.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Spinner/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lgoXtQMcPSrBpionTll/g3FYus5aTcCtZGHi+Xu5qKHj3hUzTv+2nOt7VZ2CimNsBlDf4HHtypmq1OKCB1Ip5w==",
+      "path": "syncfusion.blazor.spinner/30.2.6",
+      "hashPath": "syncfusion.blazor.spinner.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.SplitButtons/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZF69tv2aCILRdgD/W0Y96Cpltg9k5suirrFJmZDGOsevzFIPl9LyPmDJ7DdlUUDw40bJ5lH3uap+mky2A1A91g==",
+      "path": "syncfusion.blazor.splitbuttons/30.2.6",
+      "hashPath": "syncfusion.blazor.splitbuttons.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Spreadsheet/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XBn1fFl9vaL8hbHi5yliIrZindC/JZKTodqvEb20ZHeOZmOop0RyXuRlUK6dgMMmGrdwobA8AgTTP0X+XlyXgA==",
+      "path": "syncfusion.blazor.spreadsheet/30.2.6",
+      "hashPath": "syncfusion.blazor.spreadsheet.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.Themes/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i20FguYsmf7Ez70CtxSVwRfo3DoaBKDehTTH7XtNBqaPSz1bpcPnTzYsgeQ9OXysTFmq5uYJU7gejMkhs6uyAg==",
+      "path": "syncfusion.blazor.themes/30.2.6",
+      "hashPath": "syncfusion.blazor.themes.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.TreeGrid/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HhVJDK1NUvWp7Qr8l7rRlQpWZakvc6JVMasbITJKYrLYUlBfP1EijCj2xFNWzAHSJDNLMfbcAujM77uiPt7EEg==",
+      "path": "syncfusion.blazor.treegrid/30.2.6",
+      "hashPath": "syncfusion.blazor.treegrid.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Blazor.WordProcessor/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dvh3r7du12VAVGLsR2i3agA9ykwxGzWX5iwnnfwr+fIk/gEOpNqiCsBFRE73Yl0LNHNzRVm7b9Y8X4VOm0T5aA==",
+      "path": "syncfusion.blazor.wordprocessor/30.2.6",
+      "hashPath": "syncfusion.blazor.wordprocessor.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Compression.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iCQr6721As1u8dNNiWxaihPi4tfVQOd97LYSk+MYelq332xKBkSvak3ftYrSMkbTiolDmz9lYSd8Efmifh3hpQ==",
+      "path": "syncfusion.compression.net.core/30.2.6",
+      "hashPath": "syncfusion.compression.net.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.DocIO.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JpOXHdlTYJfUokNo9HmEfXcXM2TKfTkWNecHSKck24jOzVRq/g7B0WWoC3SCklBOOZJuVCufzWIn3yL6dWoS4Q==",
+      "path": "syncfusion.docio.net.core/30.2.6",
+      "hashPath": "syncfusion.docio.net.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.ExcelExport.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-flrcoE274bnlsVJf+t/N5eNl4JnW8/9zDbDylABvypOVwMhubLvlLzK+uVrSzqhfLKKVuGE4A5DOhVFwPReBgw==",
+      "path": "syncfusion.excelexport.net.core/30.2.6",
+      "hashPath": "syncfusion.excelexport.net.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rTT7l3ki5aTW4/pzs5BJPBRcQ+vax/Iy6j+VsOlXJrBZCoqvpQJ/s0MIIYWzN3OqMayORXwcbv645vgQNwPbag==",
+      "path": "syncfusion.licensing/30.2.6",
+      "hashPath": "syncfusion.licensing.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.OfficeChart.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/SGHQEDa7pBdX9D3Wdr+S0ih1lSNNsb6tFhJFYT3pmDd5V6TL/IqNv9L6WojTtm5wiyigjBvsYk3hjgJjykrTA==",
+      "path": "syncfusion.officechart.net.core/30.2.6",
+      "hashPath": "syncfusion.officechart.net.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.PdfExport.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CoXL6abAdZBmL6fDku2mQO1ZIJ87aS8ZLqwlTzYn/3LFrT/lfoPpwn0+dtcY3jtITiVbPEchDmbubP4OHObgkg==",
+      "path": "syncfusion.pdfexport.net.core/30.2.6",
+      "hashPath": "syncfusion.pdfexport.net.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.WordProcessor.AspNet.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-seTGo5sx4j7xZUrrZz1lKyKSnkPaJztC2muscuDuhOZjjbslQkg68zvJDT43XD8fzZ5rBqaYvr0LbgYD7M8LSg==",
+      "path": "syncfusion.wordprocessor.aspnet.core/30.2.6",
+      "hashPath": "syncfusion.wordprocessor.aspnet.core.30.2.6.nupkg.sha512"
+    },
+    "Syncfusion.XlsIO.Net.Core/30.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JxisbD4GMCzeoX3ceZQ812v9giPNtdY1nI8+wSqZ37dDVQANtRUoI57Sq4ZLCI9sbVgyKGeOuVsL4LRYgyAisg==",
+      "path": "syncfusion.xlsio.net.core/30.2.6",
+      "hashPath": "syncfusion.xlsio.net.core.30.2.6.nupkg.sha512"
+    },
+    "System.CodeDom/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2sCCb7doXEwtYAbqzbF/8UAeDRMNmPaQbU2q50Psg1J9KzumyVVCgKQY8s53WIPTufNT0DpSe9QRvVjOzfDWBA==",
+      "path": "system.codedom/4.4.0",
+      "hashPath": "system.codedom.4.4.0.nupkg.sha512"
+    },
+    "System.Configuration.ConfigurationManager/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gPYFPDyohW2gXNhdQRSjtmeS6FymL2crg4Sral1wtvEJ7DUqFCDWDVbbLobASbzxfic8U1hQEdC7hmg9LHncMw==",
+      "path": "system.configuration.configurationmanager/8.0.1",
+      "hashPath": "system.configuration.configurationmanager.8.0.1.nupkg.sha512"
+    },
+    "System.Data.OleDb/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RO+/y2ggU5956uQDRXdjA1e2l5yJ4rTWNX76eZ+3sgtYGqGapCe2kQCyiUci+/y6Fyb21Irp4RQEdfrIiuYrxQ==",
+      "path": "system.data.oledb/8.0.1",
+      "hashPath": "system.data.oledb.8.0.1.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n1ZP7NM2Gkn/MgD8+eOT5MulMj6wfeQMNS2Pizvq5GHCZfjlFMXV2irQlQmJhwA2VABC57M0auudO89Iu2uRLg==",
+      "path": "system.diagnostics.eventlog/8.0.1",
+      "hashPath": "system.diagnostics.eventlog.8.0.1.nupkg.sha512"
+    },
+    "System.Diagnostics.PerformanceCounter/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9RfEDiEjlUADeThs8IPdDVTXSnPRSqjfgTQJALpmGFPKC0k2mbdufOXnb/9JZ4I0TkmxOfy3VTJxrHOJSs8cXg==",
+      "path": "system.diagnostics.performancecounter/8.0.1",
+      "hashPath": "system.diagnostics.performancecounter.8.0.1.nupkg.sha512"
+    },
+    "System.Drawing.Common/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qe9ADU4LlSDEluFw6UCvnhUX43iu1rfIi4u3cpQ37DjFDbwyWGRrDM5gypYj1IQuAVRnMHqOyFbCjtCvijN2cA==",
+      "path": "system.drawing.common/8.0.15",
+      "hashPath": "system.drawing.common.8.0.15.nupkg.sha512"
+    },
+    "System.IdentityModel.Tokens.Jwt/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9GESpDG0Zb17HD5mBW/uEWi2yz/uKPmCthX2UhyLnk42moGH2FpMgXA2Y4l2Qc7P75eXSUTA6wb/c9D9GSVkzw==",
+      "path": "system.identitymodel.tokens.jwt/8.3.0",
+      "hashPath": "system.identitymodel.tokens.jwt.8.3.0.nupkg.sha512"
+    },
+    "System.IO.Packaging/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KYkIOAvPexQOLDxPO2g0BVoWInnQhPpkFzRqvNrNrMhVT6kqhVr0zEb6KCHlptLFukxnZrjuMVAnxK7pOGUYrw==",
+      "path": "system.io.packaging/8.0.1",
+      "hashPath": "system.io.packaging.8.0.1.nupkg.sha512"
+    },
+    "System.Linq.Dynamic.Core/1.6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u1ome4HL3OS5lq2QbxIAmHv+i5uewSf2hqosGr8O5FjkseqSx4Fmt1Pn+8fjyex7/rQOOYrXk+iTkxxEgSc9yA==",
+      "path": "system.linq.dynamic.core/1.6.0.1",
+      "hashPath": "system.linq.dynamic.core.1.6.0.1.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Pkcs/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CoCRHFym33aUSf/NtWSVSZa99dkd0Hm7OCZUxORBjRB16LNhIEOf8THPqzIYlvKM0nNDAPTRBa1FxEECrgaxxA==",
+      "path": "system.security.cryptography.pkcs/8.0.1",
+      "hashPath": "system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+TUFINV2q2ifyXauQXRwy4CiBhqvDEDZeVJU7qfxya4aRYOKzVBpN+4acx25VcPB9ywUN6C0n8drWl110PhZEg==",
+      "path": "system.security.cryptography.protecteddata/8.0.0",
+      "hashPath": "system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Xml/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aDM/wm0ZGEZ6ZYJLzgqjp2FZdHbDHh6/OmpGfb7AdZ105zYmPn/83JRU2xLIbwgoNz9U1SLUTJN0v5th3qmvjA==",
+      "path": "system.security.cryptography.xml/8.0.2",
+      "hashPath": "system.security.cryptography.xml.8.0.2.nupkg.sha512"
+    },
+    "System.ServiceModel.Http/8.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2HoneRUCHB8kKQcuAladR16mIHuyi5f9DrrNnTjkaICv5X7YuwoI7GSrp9GTkRSxC4ddNcjMdwE01Rm0sPgoMw==",
+      "path": "system.servicemodel.http/8.1.2",
+      "hashPath": "system.servicemodel.http.8.1.2.nupkg.sha512"
+    },
+    "System.ServiceModel.NetFramingBase/8.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XDNsiI4Lrv4scb10salZNbUDJNYj3Qm39KeN9uulKXbgcxF/fNC+hCrLDAhNz/rIqxOeRB/JCfQ4A/Ha0hFAWg==",
+      "path": "system.servicemodel.netframingbase/8.1.2",
+      "hashPath": "system.servicemodel.netframingbase.8.1.2.nupkg.sha512"
+    },
+    "System.ServiceModel.NetTcp/8.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+H4KpATeOPxGfl8JlMpv+a7h6ZIItIhHXJRr+0/KKAP49TjHXybaNwFrUbpasAMVE+D+8M96GxRevzcqvahfAQ==",
+      "path": "system.servicemodel.nettcp/8.1.2",
+      "hashPath": "system.servicemodel.nettcp.8.1.2.nupkg.sha512"
+    },
+    "System.ServiceModel.Primitives/8.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xlJ07FAUSDjPL/GhvVY1/KVPWn2ce056X4nHPwqAa5rkNLiNN5rqh6VcgMUoF6J7ckwhkVJ1vVx/K/47nyyR9g==",
+      "path": "system.servicemodel.primitives/8.1.2",
+      "hashPath": "system.servicemodel.primitives.8.1.2.nupkg.sha512"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

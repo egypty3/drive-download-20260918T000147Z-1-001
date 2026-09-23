@@ -1,0 +1,85 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/obj/Debug/net8.0/scopedcss/projectbundle/TasShared.bundle.scp.css",
+      "PackagePath": "staticwebassets/TasShared.ozlbugoqnp.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/background.png",
+      "PackagePath": "staticwebassets/background.png"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/FONT-LICENSE",
+      "PackagePath": "staticwebassets/css/open-iconic"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/ICON-LICENSE",
+      "PackagePath": "staticwebassets/css/open-iconic"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/README.md",
+      "PackagePath": "staticwebassets/css/open-iconic/README.md"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/open-iconic/font/css/open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/fonts/open-iconic.eot",
+      "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.eot"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/fonts/open-iconic.otf",
+      "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.otf"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/fonts/open-iconic.svg",
+      "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.svg"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf",
+      "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.ttf"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/css/open-iconic/font/fonts/open-iconic.woff",
+      "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.woff"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/login-background.png",
+      "PackagePath": "staticwebassets/login-background.png"
+    },
+    {
+      "Id": "/Users/tarekmostafa/Hatem Hazaa Drafts/drive-download-20260918T000147Z-1-001/TasShared/wwwroot/scripts/lodash.min.js",
+      "PackagePath": "staticwebassets/scripts/lodash.min.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.TasShared.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.TasShared.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.TasShared.props",
+      "PackagePath": "build\\TasShared.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TasShared.props",
+      "PackagePath": "buildMultiTargeting\\TasShared.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TasShared.props",
+      "PackagePath": "buildTransitive\\TasShared.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
