@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090e17"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 20px; font-weight: 800; fill: #f8fafc; }
+    .card-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 14px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .card-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11px; fill: #94a3b8; text-anchor: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect width="960" height="360" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" class="title">المطابقة الثلاثية الذكية وحماية هامش الربح (3-Way Matching &amp; Margin Shield)</text>
+  <text x="480" y="62" text-anchor="middle" style="font-family: sans-serif; font-size: 12px; fill: #64748b;">حماية أرباح الشركة ومنع الفوترة بالخسارة عند الاستعانة بمقاولي الوقود والتموين والمعدات</text>
+
+  <!-- 3 Input Cards -->
+  <!-- Document 1: Purchase Authorization -->
+  <g transform="translate(40, 95)" filter="url(#shadow)">
+    <rect width="200" height="130" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="100" y="35" font-size="24" text-anchor="middle">📋</text>
+    <text x="100" y="68" class="card-title">1. تفويض الشراء المسبق</text>
+    <text x="100" y="88" class="card-sub">Purchase Authorization</text>
+    <text x="100" y="112" style="font-size: 10px; fill: #cbd5e1; text-anchor: middle;">سقف السعر والكمية المعتمد</text>
+  </g>
+
+  <!-- Document 2: Ramp Delivery Log -->
+  <g transform="translate(265, 95)" filter="url(#shadow)">
+    <rect width="200" height="130" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="100" y="35" font-size="24" text-anchor="middle">⛽</text>
+    <text x="100" y="68" class="card-title">2. سجل استلام المهبط</text>
+    <text x="100" y="88" class="card-sub">Ramp Delivery Log</text>
+    <text x="100" y="112" style="font-size: 10px; fill: #cbd5e1; text-anchor: middle;">الكمية المستلمة فعلياً بالمهبط</text>
+  </g>
+
+  <!-- Document 3: Vendor Invoice -->
+  <g transform="translate(490, 95)" filter="url(#shadow)">
+    <rect width="200" height="130" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+    <text x="100" y="35" font-size="24" text-anchor="middle">🧾</text>
+    <text x="100" y="68" class="card-title">3. فاتورة مقاول الباطن</text>
+    <text x="100" y="88" class="card-sub">Vendor Invoice</text>
+    <text x="100" y="112" style="font-size: 10px; fill: #cbd5e1; text-anchor: middle;">المطالبة المالية من المورد</text>
+  </g>
+
+  <!-- Lines converging to Engine -->
+  <path d="M 140 225 L 140 260 L 710 260" stroke="#38bdf8" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+  <path d="M 365 225 L 365 260" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <path d="M 590 225 L 590 260 L 710 260" stroke="#ec4899" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+
+  <!-- Decision / Match Engine -->
+  <g transform="translate(710, 85)" filter="url(#shadow)">
+    <rect width="210" height="235" rx="12" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+    <text x="105" y="30" font-size="20" text-anchor="middle">🛡️</text>
+    <text x="105" y="55" class="card-title" style="fill: #22d3ee; font-size: 15px;">نواة التدقيق الذكية</text>
+    <text x="105" y="73" class="card-sub">3-Way Match Engine</text>
+
+    <!-- Branch Pass -->
+    <rect x="15" y="90" width="180" height="58" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="105" y="112" style="font-size: 12px; font-weight: 700; fill: #34d399; text-anchor: middle;">✅ مطابقة تامة</text>
+    <text x="105" y="132" style="font-size: 10.5px; fill: #a7f3d0; text-anchor: middle;">اعتماد وصرف الهامش (+5% عمولة)</text>
+
+    <!-- Branch Alert -->
+    <rect x="15" y="158" width="180" height="58" rx="8" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
+    <text x="105" y="180" style="font-size: 12px; font-weight: 700; fill: #fda4af; text-anchor: middle;">⚠️ اختلاف بالسعر أو الكمية</text>
+    <text x="105" y="200" style="font-size: 10.5px; fill: #fecdd3; text-anchor: middle;">تنبيه فوري بهامش ربح سالب!</text>
+  </g>
+</svg>

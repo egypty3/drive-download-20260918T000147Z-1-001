@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090e17"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 20px; font-weight: 800; fill: #f8fafc; }
+    .col-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 15px; font-weight: 700; text-anchor: middle; }
+    .pill-main { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .pill-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11px; fill: #94a3b8; }
+  </style>
+
+  <!-- Background -->
+  <rect width="960" height="440" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" class="title">ربط عمليات المهبط اللحظية بساعة الفوترة (Apron Turnaround Alignment)</text>
+  <text x="480" y="62" text-anchor="middle" style="font-family: sans-serif; font-size: 12px; fill: #64748b;">تحويل كل حدث على أرض المطار إلى بند فوترة فوري معتمد يمنع تسرب الإيرادات</text>
+
+  <!-- ================= COLUMN 1: ARRIVAL ================= -->
+  <g transform="translate(30, 85)" filter="url(#shadow)">
+    <rect width="270" height="325" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="135" y="30" class="col-title" style="fill: #38bdf8;">1. معالم الوصول (Arrival)</text>
+    
+    <!-- Item 1 -->
+    <g transform="translate(15, 50)">
+      <rect width="240" height="65" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="25" y="38" font-size="22">🛬</text>
+      <text x="65" y="28" class="pill-main">الهبوط (Touchdown)</text>
+      <text x="65" y="48" class="pill-sub">احتساب رسوم حركة المهبط</text>
+    </g>
+
+    <!-- Item 2 -->
+    <g transform="translate(15, 130)">
+      <rect width="240" height="65" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="25" y="38" font-size="22">⏹</text>
+      <text x="65" y="28" class="pill-main">وضع الأوتاد (Chocks-On)</text>
+      <text x="65" y="48" class="pill-sub" style="fill: #38bdf8;">بدء عداد وقت المكوث الأرضي</text>
+    </g>
+
+    <!-- Item 3 -->
+    <g transform="translate(15, 210)">
+      <rect width="240" height="65" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="25" y="38" font-size="22">🚪</text>
+      <text x="65" y="28" class="pill-main">فتح الأبواب (Doors Open)</text>
+      <text x="65" y="48" class="pill-sub">بدء نزول الركاب والطاقم</text>
+    </g>
+  </g>
+
+  <!-- ================= COLUMN 2: CONCURRENT SERVICING ================= -->
+  <g transform="translate(320, 85)" filter="url(#shadow)">
+    <rect width="320" height="325" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="160" y="30" class="col-title" style="fill: #f59e0b;">2. خدمات المهبط التزامنية (Apron Servicing)</text>
+    
+    <!-- Service 1 -->
+    <g transform="translate(15, 48)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">⚡</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">كهرباء أرضية GPU (عداد بالساعة)</text>
+    </g>
+
+    <!-- Service 2 -->
+    <g transform="translate(15, 92)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">🪜</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">سلالم الركاب المتحركة / الخرطوم</text>
+    </g>
+
+    <!-- Service 3 -->
+    <g transform="translate(15, 136)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">🧳</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">تفريغ وشحن الحقائب والبضائع</text>
+    </g>
+
+    <!-- Service 4 -->
+    <g transform="translate(15, 180)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">💧</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">تزويد المياه النقية وخدمة الصرف</text>
+    </g>
+
+    <!-- Service 5 -->
+    <g transform="translate(15, 224)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">⛽</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">تنسيق تموين الوقود وإطفاء الطوارئ</text>
+    </g>
+
+    <!-- Service 6 -->
+    <g transform="translate(15, 268)">
+      <rect width="290" height="38" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="20" y="24" font-size="16">🧹</text>
+      <text x="48" y="24" class="pill-main" style="font-size: 12px;">تنظيف المقصورة والتعقيم السريع</text>
+    </g>
+  </g>
+
+  <!-- ================= COLUMN 3: DEPARTURE ================= -->
+  <g transform="translate(660, 85)" filter="url(#shadow)">
+    <rect width="270" height="325" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="135" y="30" class="col-title" style="fill: #10b981;">3. معالم المغادرة (Departure)</text>
+    
+    <!-- Item 1 -->
+    <g transform="translate(15, 50)">
+      <rect width="240" height="65" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="25" y="38" font-size="22">🔒</text>
+      <text x="65" y="28" class="pill-main">إغلاق الأبواب (Doors Closed)</text>
+      <text x="65" y="48" class="pill-sub">اكتمال صعود الركاب والأمتعة</text>
+    </g>
+
+    <!-- Item 2 -->
+    <g transform="translate(15, 130)">
+      <rect width="240" height="65" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="25" y="38" font-size="22">🚜</text>
+      <text x="65" y="28" class="pill-main">سحب الطائرة (Pushback)</text>
+      <text x="65" y="48" class="pill-sub" style="fill: #10b981;">إزالة الأوتاد وقفل وقت المكوث</text>
+    </g>
+
+    <!-- Item 3 -->
+    <g transform="translate(15, 210)">
+      <rect width="240" height="85" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.8"/>
+      <text x="25" y="48" font-size="24">✍️</text>
+      <text x="65" y="32" class="pill-main" style="fill: #34d399;">توقيع الكابتن إلكترونياً</text>
+      <text x="65" y="52" class="pill-sub" style="fill: #a7f3d0;">Captain Electronic Sign-Off</text>
+      <text x="65" y="72" class="pill-sub" style="fill: #6ee7b7; font-weight: 700;">اعتماد قاطع يمنع أي نزاع لاحق</text>
+    </g>
+  </g>
+</svg>

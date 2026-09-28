@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090e17"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadowSm" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 20px; font-weight: 800; fill: #f8fafc; }
+    .box-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 13.5px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .box-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11px; fill: #94a3b8; text-anchor: middle; }
+    .operator { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 22px; font-weight: 800; fill: #38bdf8; text-anchor: middle; }
+    .step-badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 10px; font-weight: 800; fill: #38bdf8; text-anchor: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect width="960" height="320" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" class="title">محرك التسعير وقواعد الاحتساب الديناميكي (Dynamic Pricing Engine)</text>
+  <text x="480" y="62" text-anchor="middle" style="font-family: sans-serif; font-size: 12px; fill: #64748b;">كيف تتحول بنود العقد وظروف المهبط إلى فاتورة دقيقة خالية من النزاعات</text>
+
+  <!-- Step 1: Base Rate -->
+  <g transform="translate(25, 95)" filter="url(#shadowSm)">
+    <rect width="125" height="150" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="25" y="12" width="75" height="20" rx="4" fill="#0c4a6e"/>
+    <text x="62.5" y="26" class="step-badge">خطوة 1</text>
+    <text x="62.5" y="65" class="box-title">السعر الأساسي</text>
+    <text x="62.5" y="82" class="box-sub">Base Rate</text>
+    <text x="62.5" y="115" style="font-size: 11px; fill: #cbd5e1; text-anchor: middle;">حزمة المناولة القياسية</text>
+    <text x="62.5" y="132" style="font-size: 10px; fill: #64748b; text-anchor: middle;">حسب نوع الرحلة</text>
+  </g>
+
+  <!-- Operator + -->
+  <text x="165" y="175" class="operator">+</text>
+
+  <!-- Step 2: MTOW Weight Scale -->
+  <g transform="translate(180, 95)" filter="url(#shadowSm)">
+    <rect width="125" height="150" rx="10" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+    <rect x="25" y="12" width="75" height="20" rx="4" fill="#312e81"/>
+    <text x="62.5" y="26" class="step-badge" style="fill: #a5b4fc;">خطوة 2</text>
+    <text x="62.5" y="65" class="box-title">معامل الوزن</text>
+    <text x="62.5" y="82" class="box-sub">MTOW Scale</text>
+    <text x="62.5" y="115" style="font-size: 11px; fill: #cbd5e1; text-anchor: middle;">تدرج وزن الطائرة</text>
+    <text x="62.5" y="132" style="font-size: 10px; fill: #64748b; text-anchor: middle;">لكل طن إقلاع</text>
+  </g>
+
+  <!-- Operator + -->
+  <text x="320" y="175" class="operator">+</text>
+
+  <!-- Step 3: Ground Time & Tolerance -->
+  <g transform="translate(335, 95)" filter="url(#shadowSm)">
+    <rect width="125" height="150" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="25" y="12" width="75" height="20" rx="4" fill="#78350f"/>
+    <text x="62.5" y="26" class="step-badge" style="fill: #fcd34d;">خطوة 3</text>
+    <text x="62.5" y="65" class="box-title">وقت المكوث</text>
+    <text x="62.5" y="82" class="box-sub">Ground Time</text>
+    <text x="62.5" y="115" style="font-size: 11px; fill: #cbd5e1; text-anchor: middle;">فترة السماح المجانية</text>
+    <text x="62.5" y="132" style="font-size: 10px; fill: #64748b; text-anchor: middle;">مقابل الساعات الإضافية</text>
+  </g>
+
+  <!-- Operator + -->
+  <text x="475" y="175" class="operator">+</text>
+
+  <!-- Step 4: Surcharges -->
+  <g transform="translate(490, 95)" filter="url(#shadowSm)">
+    <rect width="125" height="150" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+    <rect x="25" y="12" width="75" height="20" rx="4" fill="#831843"/>
+    <text x="62.5" y="26" class="step-badge" style="fill: #f472b6;">خطوة 4</text>
+    <text x="62.5" y="65" class="box-title">الرسوم الإضافية</text>
+    <text x="62.5" y="82" class="box-sub">Surcharges</text>
+    <text x="62.5" y="115" style="font-size: 11px; fill: #cbd5e1; text-anchor: middle;">رسوم العمل الليلي</text>
+    <text x="62.5" y="132" style="font-size: 10px; fill: #64748b; text-anchor: middle;">والعطلات الرسمية</text>
+  </g>
+
+  <!-- Operator + -->
+  <text x="630" y="175" class="operator">+</text>
+
+  <!-- Step 5: Partner Spread & Markup -->
+  <g transform="translate(645, 95)" filter="url(#shadowSm)">
+    <rect width="125" height="150" rx="10" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="25" y="12" width="75" height="20" rx="4" fill="#164e63"/>
+    <text x="62.5" y="26" class="step-badge" style="fill: #67e8f9;">خطوة 5</text>
+    <text x="62.5" y="65" class="box-title">هامش الموردين</text>
+    <text x="62.5" y="82" class="box-sub">Partner Markup</text>
+    <text x="62.5" y="115" style="font-size: 11px; fill: #cbd5e1; text-anchor: middle;">تكلفة الوقود والمعدات</text>
+    <text x="62.5" y="132" style="font-size: 10px; fill: #64748b; text-anchor: middle;">+ عمولة الإدارة 5%</text>
+  </g>
+
+  <!-- Operator = -->
+  <text x="785" y="175" class="operator" style="fill: #10b981;">=</text>
+
+  <!-- Step 6: Verified Final Total -->
+  <g transform="translate(800, 85)" filter="url(#shadowSm)">
+    <rect width="135" height="170" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="2.5"/>
+    <rect x="25" y="12" width="85" height="22" rx="4" fill="#047857"/>
+    <text x="67.5" y="27" class="step-badge" style="fill: #a7f3d0; font-size: 11px;">النتيجة المعتمدة</text>
+    <text x="67.5" y="70" class="box-title" style="font-size: 15px; fill: #34d399;">الإجمالي النهائي</text>
+    <text x="67.5" y="90" class="box-sub" style="fill: #a7f3d0;">Verified Total</text>
+    <text x="67.5" y="122" style="font-size: 11px; fill: #ecfdf5; text-anchor: middle;">فاتورة مدققة آلياً</text>
+    <text x="67.5" y="142" style="font-size: 10px; fill: #6ee7b7; text-anchor: middle;">تطبيق الحد الأدنى</text>
+    <text x="67.5" y="157" style="font-size: 9.5px; fill: #a7f3d0; text-anchor: middle;">+ ضرائب الطيران المدني</text>
+  </g>
+
+  <!-- Footer hint -->
+  <text x="480" y="295" text-anchor="middle" style="font-family: sans-serif; font-size: 11.5px; fill: #94a3b8;">
+    💡 المعادلة الرياضية المحمية: [السعر الأساسي] + [غرامة مكوث GPU] + [رسوم ليلي] + [تكلفة مورد + 5%] + [الضرائب] = الفاتورة النهائية
+  </text>
+</svg>

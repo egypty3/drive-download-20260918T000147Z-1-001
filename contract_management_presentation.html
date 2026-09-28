@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ground Handling Contract Management & Turnaround Billing — Executive Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090e17;
+      --bg-secondary: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --bg-card-hover: rgba(51, 65, 85, 0.85);
+      --border-color: rgba(148, 163, 184, 0.15);
+      --border-highlight: rgba(56, 189, 248, 0.35);
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.15;
+    }
+    .glow-1 {
+      top: -150px;
+      left: -150px;
+      background: radial-gradient(circle, var(--accent-blue), var(--accent-indigo));
+    }
+    .glow-2 {
+      bottom: -150px;
+      right: -150px;
+      background: radial-gradient(circle, var(--accent-cyan), var(--accent-emerald));
+    }
+
+    /* Header & Progress Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      background: rgba(9, 14, 23, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.5px;
+    }
+    .brand-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+    }
+
+    .slide-counter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+    }
+
+    .progress-bar-container {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 50;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-indigo));
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Deck Viewport */
+    .deck-container {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 60px);
+      margin-top: 60px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 36px 64px 80px;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.98) translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.4s;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Typography & Headers */
+    .slide-header {
+      margin-bottom: 24px;
+    }
+    .slide-tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-blue);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-blue);
+      box-shadow: 0 0 8px var(--accent-blue);
+    }
+    .slide-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+    .slide-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.25s, transform 0.25s, background-color 0.25s;
+    }
+    .card:hover {
+      border-color: var(--border-highlight);
+      background-color: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+    }
+    .card-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-primary { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-warning { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-success { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-danger  { background: rgba(244, 63, 94, 0.15);  color: var(--accent-rose);   border: 1px solid rgba(244, 63, 94, 0.3); }
+
+    /* Lists inside cards */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .feature-list li {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      position: relative;
+      padding-left: 20px;
+    }
+    .feature-list li strong {
+      color: var(--text-main);
+    }
+    .feature-list li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      top: -1px;
+      font-size: 18px;
+      color: var(--accent-blue);
+    }
+    .feature-list.warning li::before { color: var(--accent-amber); }
+    .feature-list.success li::before { color: var(--accent-emerald); }
+
+    /* Executive Callout / Quote */
+    .callout {
+      margin-top: 20px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.08));
+      border-left: 4px solid var(--accent-blue);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .callout-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    /* Process Flow Visualization */
+    .process-timeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 16px 0 24px;
+      position: relative;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 24px;
+      right: 24px;
+      height: 2px;
+      background: var(--border-color);
+      z-index: 1;
+    }
+    .step-node {
+      position: relative;
+      z-index: 2;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: center;
+      flex: 1;
+      transition: all 0.25s ease;
+    }
+    .step-node:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .step-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .step-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .step-desc {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* Tables */
+    .data-table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      flex: 1;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+    .data-table th {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 14px 18px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Turnaround Sequence Tree */
+    .turnaround-tree {
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      gap: 16px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      flex: 1;
+    }
+    .tree-col-center {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0 16px;
+      border-left: 1px dashed var(--border-color);
+      border-right: 1px dashed var(--border-color);
+    }
+    .milestone-pill {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-main);
+    }
+    .pill-icon {
+      color: var(--accent-blue);
+      font-size: 16px;
+    }
+
+    /* Bottom Control Dock */
+    .controls-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(16px);
+      padding: 8px 16px;
+      border-radius: 40px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+      z-index: 60;
+    }
+
+    .btn-nav {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+    .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      transform: scale(1.08);
+    }
+    .btn-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .dock-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 8px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .dot.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    /* Overview Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 7, 13, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1200px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .overview-thumb {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+    .overview-thumb:hover, .overview-thumb.active {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-3px);
+    }
+    .thumb-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+    .thumb-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 6px;
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border-highlight);
+      backdrop-filter: blur(16px);
+      z-index: 55;
+      padding: 20px 48px;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    }
+    .notes-drawer.open {
+      transform: translateY(0);
+    }
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .notes-tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+    }
+    .notes-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        overflow: visible;
+        height: auto;
+        background: #fff;
+        color: #000;
+      }
+      header, .controls-dock, .ambient-glow, .notes-drawer, .modal-overlay, .progress-bar-container {
+        display: none !important;
+      }
+      .deck-container {
+        margin: 0;
+        height: auto;
+        overflow: visible;
+      }
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always;
+        height: 100vh;
+        padding: 40px !important;
+        border-bottom: 1px solid #ccc;
+      }
+      .card {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+      }
+      .slide-title, .card-title, strong, .step-label {
+        color: #0f172a !important;
+      }
+      .feature-list li, .slide-subtitle, .data-table td {
+        color: #334155 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient lighting effects -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Header Bar -->
+  <header>
+    <div class="brand">
+      <span class="brand-badge">AVIATION EXECUTIVE BRIEF</span>
+      <span class="brand-title">Ground Handling Contract & Turnaround Billing Architecture</span>
+    </div>
+    <div class="header-actions">
+      <span class="slide-counter" id="slideIndicator">01 / 10</span>
+      <button class="btn-icon" id="btnNotes" title="Toggle Speaker Notes [N]">
+        <span>📝</span> Notes
+      </button>
+      <button class="btn-icon" id="btnOverview" title="Slide Overview [O]">
+        <span>▦</span> Grid
+      </button>
+      <button class="btn-icon" id="btnFullscreen" title="Toggle Fullscreen [F]">
+        <span>⛶</span> Fullscreen
+      </button>
+    </div>
+  </header>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Main Slide Deck Container -->
+  <main class="deck-container" id="deckContainer">
+
+    <!-- SLIDE 1: Executive Overview -->
+    <section class="slide active" data-index="1">
+      <div class="slide-header">
+        <div class="slide-tag">Strategic Foundations</div>
+        <h1 class="slide-title">Executive Overview: The Business of Ground Handling Contracts</h1>
+        <p class="slide-subtitle">Connecting commercial airline commitments with apron operations and financial revenue assurance.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Aviation Ecosystem</span>
+            Mission-Critical Operations
+          </div>
+          <ul class="feature-list">
+            <li><strong>High Operational Velocity:</strong> Ground handlers coordinate multi-departmental ramp teams, heavy equipment, and passenger services under tight flight schedules.</li>
+            <li><strong>Global Standardization:</strong> Agreements follow recognized international frameworks (such as IATA SGHA) with custom commercial annexes per airline.</li>
+            <li><strong>Airport Station Network:</strong> Services span international hubs and regional leisure airports, each with distinct local taxes and authority tariffs.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-warning">Commercial Reality</span>
+            Low Margins & High Exposure
+          </div>
+          <ul class="feature-list warning">
+            <li><strong>Tight Profit Margins:</strong> Operating margins typically sit between <strong>5% and 12%</strong>, leaving little room for billing inaccuracies.</li>
+            <li><strong>Service Leakage Risk:</strong> Unlogged ground power extensions, extra baggage tractors, or emergency stairs directly destroy profitability.</li>
+            <li><strong>Airline Audit Rigor:</strong> Airlines scrutinize turnaround invoices against contracted tolerance thresholds and dispute unsupported charges.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-success">Application Purpose</span>
+            The Central Contract Engine
+          </div>
+          <ul class="feature-list success">
+            <li><strong>Operational-Commercial Bridge:</strong> Converts real-world physical turnaround events into precise, contractual line items.</li>
+            <li><strong>Automated Billing Rules:</strong> Calculates applicable base rates, weight brackets, overtime surcharges, and partner markups.</li>
+            <li><strong>Revenue Protection:</strong> Prevents services from being provided on the tarmac without being invoiced.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <div>
+          <strong>Core Executive Takeaway:</strong> In commercial aviation ground handling, a contract is not a passive legal archive. It is an active calculation engine that transforms physical turnaround timestamps into protected, disputeless revenue.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Contract Master Setup -->
+    <section class="slide" data-index="2">
+      <div class="slide-header">
+        <div class="slide-tag">Commercial Governance</div>
+        <h1 class="slide-title">Contract Master Setup: Commercial Scope & Account Governance</h1>
+        <p class="slide-subtitle">Structuring the baseline commercial rules that govern airline customer relationships across airport stations.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Current System</span>
+            Current Setup Capabilities
+          </div>
+          <ul class="feature-list">
+            <li><strong>Carrier Profile & Term Validity:</strong> Records airline identities, valid date windows, credit terms, and payment allowances (e.g., 14-day credit).</li>
+            <li><strong>Station & Flight Scope:</strong> Defines authorized airport locations and classifies operations by flight type (Charter, Scheduled, Cargo, Technical stops).</li>
+            <li><strong>Aircraft Categorization:</strong> Configures baseline turnaround allowances distinguishing narrow-body from wide-body aircraft (e.g., 60 vs. 90 minutes).</li>
+            <li><strong>Mandatory Partner Flags:</strong> Captures equipment leasing conditions, fuel supplier mandates, and commercial broker commission scales.</li>
+          </ul>
+          <div style="margin-top: 16px; padding: 12px; background: rgba(245, 158, 11, 0.08); border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.2);">
+            <div style="font-size: 12px; font-weight: 700; color: var(--accent-amber); margin-bottom: 4px;">CURRENT LIMITATIONS</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Station additions require repetitive manual re-entry; contract revisions overwrite active terms with limited historical audit trails; expiry dates must be monitored manually.</p>
+          </div>
+        </div>
+
+        <div class="card" style="border-color: var(--border-highlight); background: linear-gradient(180deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));">
+          <div class="card-title">
+            <span class="card-badge badge-success">New Version</span>
+            Next-Gen Contract Lifecycle Management (CLM)
+          </div>
+          <ul class="feature-list success">
+            <li><strong>Digital Versioning & Audit Trail:</strong> Full historical version control preserving every seasonal amendment, rate indexation, and executive approval.</li>
+            <li><strong>Template-Based Contract Creation:</strong> Onboard new airline carriers in minutes by inheriting standard airport handling agreements with tailored overrides.</li>
+            <li><strong>Proactive Expiry & Renewal Alerts:</strong> Automated 90-, 60-, and 30-day notifications alerting commercial directors before contracts lapse.</li>
+            <li><strong>Multi-Tier Approval Matrix:</strong> Enforces commercial review workflows before custom discount levels or non-standard credit terms take effect.</li>
+          </ul>
+          <div style="margin-top: 16px; padding: 12px; background: rgba(16, 185, 129, 0.08); border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <div style="font-size: 12px; font-weight: 700; color: var(--accent-emerald); margin-bottom: 4px;">BUSINESS VALUE</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Eliminates unauthorized contractual commitments, accelerates contract rollout by 70%, and ensures complete legal audit readiness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Service Catalog & Industry Standards -->
+    <section class="slide" data-index="3">
+      <div class="slide-header">
+        <div class="slide-tag">Operational Standardization</div>
+        <h1 class="slide-title">Service Catalog: Aligning Handling Operations with Global Standards</h1>
+        <p class="slide-subtitle">Structuring apron and passenger services to eliminate commercial ambiguity with international carriers.</p>
+      </div>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Service Category</th>
+              <th>Operational Scope</th>
+              <th>Industry Standard Alignment</th>
+              <th>Charging Basis</th>
+              <th>System Status & Next-Gen Upgrade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Airfield & Ramp</strong></td>
+              <td>Aircraft landing, marshalling, wheel chocks, pushback</td>
+              <td>International SGHA Section 1 & 2</td>
+              <td>Per Flight Movement / Aircraft MTOW</td>
+              <td><span class="card-badge badge-primary">Current: Static List</span> ➔ <span class="card-badge badge-success">Next: Auto-Flight Sync</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ground Power & Air</strong></td>
+              <td>Ground Power Units (GPU), Air Start (ASU), Air Conditioning</td>
+              <td>International SGHA Section 3</td>
+              <td>Per Hour Connected / Half-hour increments</td>
+              <td><span class="card-badge badge-primary">Current: Manual Times</span> ➔ <span class="card-badge badge-success">Next: Digital Apron Timestamps</span></td>
+            </tr>
+            <tr>
+              <td><strong>Passenger Boarding</strong></td>
+              <td>Passenger mobile stairs, jet bridges, apron buses</td>
+              <td>International SGHA Section 3</td>
+              <td>Per Aircraft Door / Per Stand / Pax Count</td>
+              <td><span class="card-badge badge-warning">Current: Repetitive Rows</span> ➔ <span class="card-badge badge-success">Next: Smart Mutex Rules (Stairs vs Tube)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cabin & Utility</strong></td>
+              <td>Potable water supply, lavatory waste servicing, transit cleaning</td>
+              <td>International SGHA Section 3</td>
+              <td>Per Service Action / Per Tank Flushed</td>
+              <td><span class="card-badge badge-primary">Current: Post-Flight Logs</span> ➔ <span class="card-badge badge-success">Next: Real-Time Mobile Delivery Log</span></td>
+            </tr>
+            <tr>
+              <td><strong>Fueling Coordination</strong></td>
+              <td>Refueling hookup safety, fire cart standby deployment</td>
+              <td>International SGHA Section 3</td>
+              <td>Per Turnaround Event / Supplier Spread</td>
+              <td><span class="card-badge badge-warning">Current: Manual Cost Check</span> ➔ <span class="card-badge badge-success">Next: 3-Way Subcontractor Reconcile</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="card" style="padding: 16px 20px;">
+          <div style="font-weight: 600; font-size: 14px; color: var(--text-main); margin-bottom: 6px;">Current Operational Pain Point</div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Navigating hundreds of unbundled individual service rows creates cognitive fatigue for commercial teams, increasing the risk of billing omission.</p>
+        </div>
+        <div class="card" style="padding: 16px 20px; border-color: var(--accent-emerald);">
+          <div style="font-weight: 600; font-size: 14px; color: var(--accent-emerald); margin-bottom: 6px;">Next-Gen Enhancement: Visual Package Builder</div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">One-click turnaround bundling (e.g., "Full Charter Turnaround" vs. "Technical Stop") with automated exclusion logic that prevents contradictory service charges.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Dynamic Pricing Logic -->
+    <section class="slide" data-index="4">
+      <div class="slide-header">
+        <div class="slide-tag">Revenue Assurance</div>
+        <h1 class="slide-title">Dynamic Pricing Logic: Surcharges, Tolerances & Rate Engines</h1>
+        <p class="slide-subtitle">How multi-variable operational conditions translate into precise, defendable customer invoices.</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="step-node">
+          <div class="step-num">Step 1</div>
+          <div class="step-label">Base Rate</div>
+          <div class="step-desc">Contracted standard handling fee</div>
+        </div>
+        <div class="step-node">
+          <div class="step-num">Step 2</div>
+          <div class="step-label">Weight Scale</div>
+          <div class="step-desc">Aircraft MTOW tonnage adjustment</div>
+        </div>
+        <div class="step-node">
+          <div class="step-num">Step 3</div>
+          <div class="step-label">Ground Time</div>
+          <div class="step-desc">Free time threshold vs. overtime</div>
+        </div>
+        <div class="step-node">
+          <div class="step-num">Step 4</div>
+          <div class="step-label">Surcharges</div>
+          <div class="step-desc">Night, weekend, holiday premiums</div>
+        </div>
+        <div class="step-node">
+          <div class="step-num">Step 5</div>
+          <div class="step-label">Partner Spread</div>
+          <div class="step-desc">Vendor cost + disbursement fee</div>
+        </div>
+        <div class="step-node" style="border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1);">
+          <div class="step-num" style="color: var(--accent-emerald);">Final</div>
+          <div class="step-label">Verified Total</div>
+          <div class="step-desc">Audited billable amount</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Current Execution</span>
+            Multi-Layered Rule Framework
+          </div>
+          <ul class="feature-list">
+            <li><strong>Minimum Revenue Guarantees:</strong> Establishes floor prices ensuring low-load flights still cover baseline turnaround costs.</li>
+            <li><strong>Time Tolerance Gradients:</strong> Computes standard included ground windows (e.g., first 2 hours free) and triggers rounded half-hour penalties thereafter.</li>
+            <li><strong>Airport Authority Disclosures:</strong> Applies mandatory civil aviation pass-through fees and administrative handling percentages.</li>
+            <li><strong>Opaque Calculation Outcomes:</strong> Finance teams cannot easily see the exact arithmetic behind the final invoice number.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-success">New Version</span>
+            Transparent Financial Modeling
+          </div>
+          <ul class="feature-list success">
+            <li><strong>Formula Inspector:</strong> One-click interactive transparency showing the exact equation behind every charge: <em>[Base] + [Overtime GPU] + [5% Fee] = Total</em>.</li>
+            <li><strong>Live Central Bank Exchange Feeds:</strong> Locks currency exchange rates on the exact flight operation date, eliminating FX loss.</li>
+            <li><strong>Automated Volume Rebates:</strong> Automatically checks cumulative monthly flight counts and applies tiered commercial discounts when milestones are reached.</li>
+            <li><strong>"What-If" Rate Simulator:</strong> Allows commercial managers to test proposed airline rate cards against historical flight data to preview margin impact.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Operational Turnaround Alignment -->
+    <section class="slide" data-index="5">
+      <div class="slide-header">
+        <div class="slide-tag">Operational Execution</div>
+        <h1 class="slide-title">Operational Alignment: Connecting the Ramp to Real Revenue</h1>
+        <p class="slide-subtitle">Capturing physical turnaround milestones to ensure zero unbilled equipment or crew time.</p>
+      </div>
+
+      <div class="turnaround-tree">
+        <div>
+          <div class="card-title" style="font-size: 14px; margin-bottom: 12px; color: var(--accent-blue);">
+            ARRIVAL MILESTONES
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="milestone-pill">
+              <span class="pill-icon">🛬</span>
+              <div>
+                <strong>Touchdown</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Triggers airfield movement fee</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">⏹</span>
+              <div>
+                <strong>Chocks On</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Turnaround clock commences</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">🚪</span>
+              <div>
+                <strong>Doors Open</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Disembarkation & ramp access</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-title" style="font-size: 14px; margin-bottom: 12px; text-align: center; color: var(--accent-cyan);">
+            CONCURRENT APRON SERVICING (BILLABLE EVENTS)
+          </div>
+          <div class="tree-col-center">
+            <div class="milestone-pill">
+              <span class="pill-icon">⚡</span>
+              <div>
+                <strong>Ground Power On/Off</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Hourly billable timer</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">🪜</span>
+              <div>
+                <strong>Passenger Stairs / Tube</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Boarding gear delivery</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">🧳</span>
+              <div>
+                <strong>Cargo / Baggage Unload</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Tractor & belt loader usage</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">💧</span>
+              <div>
+                <strong>Potable Water & Lavatory</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Service tank servicing</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">⛽</span>
+              <div>
+                <strong>Aircraft Refueling</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Supplier coordination & safety</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">🧹</span>
+              <div>
+                <strong>Interior Cabin Cleaning</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Transit sanitation service</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-title" style="font-size: 14px; margin-bottom: 12px; color: var(--accent-indigo);">
+            DEPARTURE MILESTONES
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="milestone-pill">
+              <span class="pill-icon">🔒</span>
+              <div>
+                <strong>Doors Closed</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Final boarding complete</div>
+              </div>
+            </div>
+            <div class="milestone-pill">
+              <span class="pill-icon">🚜</span>
+              <div>
+                <strong>Pushback & Chocks Off</strong>
+                <div style="font-size: 11px; color: var(--text-dim);">Total ground time calculated</div>
+              </div>
+            </div>
+            <div class="milestone-pill" style="border-color: var(--accent-emerald);">
+              <span class="pill-icon">🛫</span>
+              <div>
+                <strong>Airborne Departure</strong>
+                <div style="font-size: 11px; color: var(--accent-emerald);">Final billing locked</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="card" style="padding: 14px 18px;">
+          <strong style="color: var(--accent-amber); font-size: 13px;">Current Gap: Paper Delays</strong>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Milestones are logged on paper clipboards by ramp crews and manually transcribed hours later, leading to missed billing and dispute exposure.</p>
+        </div>
+        <div class="card" style="padding: 14px 18px; border-color: var(--accent-emerald);">
+          <strong style="color: var(--accent-emerald); font-size: 13px;">New Version: Live Apron Execution App</strong>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Apron supervisors record timestamps via tablets at the aircraft side; airline flight captains electronically sign turnaround summaries before departure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Subcontractor & Vendor Margin Management -->
+    <section class="slide" data-index="6">
+      <div class="slide-header">
+        <div class="slide-tag">Cost & Margin Protection</div>
+        <h1 class="slide-title">Subcontractor Management: Safeguarding Third-Party Margins</h1>
+        <p class="slide-subtitle">Managing specialized vendors to prevent margin erosion across into-plane services.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Commercial Role</span>
+            The Handling Spread Model
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Handlers frequently subcontract fuel hydrants, heavy cargo main-deck loaders, and catering. Profitability relies strictly on the positive spread between customer revenue and vendor expense.
+          </p>
+          <div style="padding: 14px; background: rgba(15, 23, 42, 0.8); border-radius: 8px; border: 1px solid var(--border-color); font-size: 13px; line-height: 1.7;">
+            <div>Airline Invoiced: <strong>$1,200.00</strong></div>
+            <div>Vendor Baseline Cost: <strong>-$980.00</strong></div>
+            <div>Management Markup (5%): <strong>+$60.00</strong></div>
+            <div style="border-top: 1px solid var(--border-color); margin-top: 6px; padding-top: 6px; color: var(--accent-emerald); font-weight: 700;">
+              Net Handler Profit: $280.00
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-warning">Operational Vulnerability</span>
+            Silent Margin Leakage
+          </div>
+          <ul class="feature-list warning">
+            <li><strong>Manual Invoice Matching:</strong> Checking third-party supplier bills against flight turnaround sheets is conducted manually weeks after flight completion.</li>
+            <li><strong>Unannounced Cost Increases:</strong> If a vendor silently raises airport surcharges, handling margins can turn negative without immediate detection.</li>
+            <li><strong>Disputed Disbursements:</strong> Inability to provide proof of third-party delivery leads airlines to withhold payment on disbursement fees.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-success">New Version</span>
+            Automated Margin Shield
+          </div>
+          <ul class="feature-list success">
+            <li><strong>Automated 3-Way Matching:</strong> Instantly cross-checks the <em>Purchase Authorization</em> ➔ <em>Ramp Delivery Log</em> ➔ <em>Vendor Invoice</em>.</li>
+            <li><strong>Negative Margin Alert:</strong> Real-time system warning halts quote submission if customer pricing falls below vendor cost thresholds.</li>
+            <li><strong>Vendor Performance Scorecards:</strong> Tracks third-party on-time arrival, equipment reliability, and service quality against agreed SLAs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout" style="border-left-color: var(--accent-cyan);">
+        <span class="callout-icon">🛡️</span>
+        <div>
+          <strong>Executive Value:</strong> By shifting from reactive monthly invoice auditing to real-time pre-flight margin validation, ground handlers recover an estimated 2% to 4% in previously leaked third-party disbursements.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Quotations, Work Orders & Proforma Invoicing -->
+    <section class="slide" data-index="7">
+      <div class="slide-header">
+        <div class="slide-tag">Commercial Frontline</div>
+        <h1 class="slide-title">Quotations, Work Orders & Proforma Invoicing: The Commercial Pipeline</h1>
+        <p class="slide-subtitle">Streamlining ad-hoc charter requests, operational handovers, and final settlement documents.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Stage 1: Pre-Flight</span>
+            Price Quotation & Proforma
+          </div>
+          <ul class="feature-list">
+            <li><strong>Upfront Price Certainty:</strong> Essential for non-scheduled charters and cash-basis airline operations requiring advance cost clearance.</li>
+            <li><strong>Legal & Regulatory Clauses:</strong> Embeds liability disclaimers, local civil aviation taxes, and bank settlement instructions.</li>
+            <li><strong>Credit Verification:</strong> Automatically checks the carrier's approved payment terms before dispatch authorization.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Stage 2: Operations</span>
+            Apron Turnaround Work Order
+          </div>
+          <ul class="feature-list">
+            <li><strong>Direct Ramp Instructions:</strong> Translates commercial agreements into an actionable service checklist for ground handling supervisors.</li>
+            <li><strong>Pre-Approved Tolerances:</strong> Explicitly states contracted equipment limits (e.g., maximum 2 hours GPU; 1 set of passenger stairs).</li>
+            <li><strong>Special Handling Directives:</strong> Highlights VIP protocols, hazardous cargo stowage, or priority baggage offloading rules.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Stage 3: Settlement</span>
+            Verified Final Tax Invoice
+          </div>
+          <ul class="feature-list">
+            <li><strong>Post-Departure Reconciliation:</strong> Replaces estimated pre-flight quotes with verified operational turnaround actuals.</li>
+            <li><strong>Deviation Disclosure:</strong> Highlights additional services requested by airline flight crew on the ramp with timestamped proof.</li>
+            <li><strong>Immediate Accounting Posting:</strong> Transmits approved invoice records to corporate ERP and accounting platforms.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="card" style="padding: 16px 20px;">
+          <div style="font-weight: 600; font-size: 13.5px; color: var(--accent-amber); margin-bottom: 4px;">CURRENT LIMITATIONS</div>
+          <p style="font-size: 13px; color: var(--text-muted);">Quotations and work orders are rendered as static documents; internal approvals circulate via offline email threads; revisions require manual document regeneration.</p>
+        </div>
+        <div class="card" style="padding: 16px 20px; border-color: var(--accent-emerald);">
+          <div style="font-weight: 600; font-size: 13.5px; color: var(--accent-emerald); margin-bottom: 4px;">NEW VERSION ENHANCEMENTS</div>
+          <p style="font-size: 13px; color: var(--text-muted);">Interactive digital quotes with one-click airline acceptance links, automated quote-to-work-order conversion, and side-by-side variance analysis showing <em>Quoted vs. Delivered</em>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Current End-to-End Workflow & Bottlenecks -->
+    <section class="slide" data-index="8">
+      <div class="slide-header">
+        <div class="slide-tag">Operational Diagnostic</div>
+        <h1 class="slide-title">The Current End-to-End Workflow & Operational Bottlenecks</h1>
+        <p class="slide-subtitle">Tracing the turnaround lifecycle to identify where friction, delay, and financial leakage occur.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-blue);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 1: Contract Setup & Tariff Maintenance</div>
+            <span class="card-badge badge-warning">Risk: High Manual Effort</span>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Commercial staff manually record airline rate sheets, aircraft weight matrices, and airport rules. Overwriting previous seasonal rules without version history creates audit vulnerability.</p>
+        </div>
+
+        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-indigo);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 2: Pre-Flight Commercial Preparation</div>
+            <span class="card-badge badge-warning">Risk: Delayed Response</span>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Commercial teams manually issue quotes and proformas for incoming charter flights. Disconnection from real-time airport slot feeds causes delays in quoting ad-hoc flights.</p>
+        </div>
+
+        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-amber);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 3: Apron Execution & Service Delivery</div>
+            <span class="card-badge badge-danger">Risk: Unbilled Ramp Services</span>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Ramp crews deliver 20+ operations under extreme time pressure. Services are noted on paper clipboards; ad-hoc captain requests often go unrecorded and never reach finance.</p>
+        </div>
+
+        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-rose);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 4: Post-Flight Audit & Final Invoicing</div>
+              <span class="card-badge badge-danger">Risk: 3 to 7 Day Invoicing Delay</span>
+            </div>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Billing specialists manually cross-reference paper tally sheets against contract rules. The resulting time lag delays invoice issuance, slows cash collection, and invites airline payment disputes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Gap Analysis -->
+    <section class="slide" data-index="9">
+      <div class="slide-header">
+        <div class="slide-tag">Platform Comparison</div>
+        <h1 class="slide-title">Gap Analysis: Current Capabilities vs. Next-Generation Vision</h1>
+        <p class="slide-subtitle">A direct side-by-side comparison across key operational, commercial, and financial dimensions.</p>
+      </div>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Operational Dimension</th>
+              <th>Current Application Capability</th>
+              <th>Next-Generation Platform</th>
+              <th>Tangible Business Benefit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>User Interface & Usability</strong></td>
+              <td>Dense data-entry grids requiring extensive operational training.</td>
+              <td>Role-tailored, responsive web interface with intuitive guided wizards.</td>
+              <td><strong>60% reduction</strong> in staff training time and data-entry errors.</td>
+            </tr>
+            <tr>
+              <td><strong>Apron Operations Linkage</strong></td>
+              <td>Batch manual entry hours or days after flight departure.</td>
+              <td>Real-time mobile tablet execution with live apron milestone capture.</td>
+              <td><strong>Zero unbilled services;</strong> immediate operational visibility.</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing Engine Visibility</strong></td>
+              <td>Rigid rule tables with opaque calculation outputs.</td>
+              <td>Interactive calculation visualizer with dynamic "What-If" contract simulation.</td>
+              <td>Instant pre-agreement validation of airline contract profitability.</td>
+            </tr>
+            <tr>
+              <td><strong>Customer Collaboration</strong></td>
+              <td>Static documents shared back and forth via email threads.</td>
+              <td>Self-service airline customer portal for digital quote acceptance and invoice access.</td>
+              <td><strong>300% faster</strong> quote turnaround for ad-hoc charter flights.</td>
+            </tr>
+            <tr>
+              <td><strong>Subcontractor Oversight</strong></td>
+              <td>Basic cost fields with manual post-payment invoice reconciliation.</td>
+              <td>Automated 3-way matching with proactive negative margin warnings.</td>
+              <td><strong>100% margin protection</strong> on third-party services.</td>
+            </tr>
+            <tr>
+              <td><strong>Business Intelligence</strong></td>
+              <td>Static pre-formatted tabular summary printouts.</td>
+              <td>Live executive KPI dashboards: Yield per turnaround, on-time SLA metrics.</td>
+              <td>Data-driven commercial negotiations and executive decision support.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Roadmap, ROI & Transformation Vision -->
+    <section class="slide" data-index="10">
+      <div class="slide-header">
+        <div class="slide-tag">Strategic Execution</div>
+        <h1 class="slide-title">Strategic Roadmap, Financial ROI & Future Transformation</h1>
+        <p class="slide-subtitle">A phased modernization approach delivering rapid payback, protected cash flow, and market leadership.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="border-top: 4px solid var(--accent-blue);">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Phase 1 (Months 1–3)</span>
+            Commercial Foundation
+          </div>
+          <ul class="feature-list">
+            <li>Modern, intuitive contract management and lifecycle versioning.</li>
+            <li>Interactive pricing engine with transparent formula breakdowns.</li>
+            <li>Digital quotation and proforma generator with automated legal terms.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--accent-cyan);">
+          <div class="card-title">
+            <span class="card-badge badge-primary">Phase 2 (Months 4–6)</span>
+            Ramp Operations Integration
+          </div>
+          <ul class="feature-list">
+            <li>Handheld mobile application for apron turnaround supervisors.</li>
+            <li>Live timestamp capture for Ground Power, stairs, and utility services.</li>
+            <li>Digital flight captain electronic sign-off directly beside the aircraft.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--accent-emerald);">
+          <div class="card-title">
+            <span class="card-badge badge-success">Phase 3 (Months 7–9)</span>
+            Intelligence & Ecosystem
+          </div>
+          <ul class="feature-list success">
+            <li>Self-service airline customer portal for approvals and dispute resolution.</li>
+            <li>Automated 3-way subcontractor reconciliation and margin guardrails.</li>
+            <li>Executive analytics dashboard tracking turnaround yields and SLA adherence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(16, 185, 129, 0.1)); border-color: var(--accent-emerald);">
+        <div class="card-title" style="color: var(--accent-emerald); font-size: 16px;">
+          <span>📈</span> Measurable Financial & Operational Returns (ROI)
+        </div>
+        <div class="grid-4" style="margin-top: 8px;">
+          <div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--accent-emerald);">+3% to +5%</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Top-Line Revenue Recovery via live capture of unbilled ramp services.</div>
+          </div>
+          <div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--accent-cyan);">80% Slashed</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Billing Disputes eliminated through timestamped proof and captain e-signatures.</div>
+          </div>
+          <div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--accent-blue);">Minutes vs Days</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Invoice cycle time reduction, dramatically shortening Days Sales Outstanding (DSO).</div>
+          </div>
+          <div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--accent-indigo);">100% Guarded</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Subcontractor profit margins protected by proactive negative-margin alerts.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Floating Navigation Dock -->
+  <nav class="controls-dock" aria-label="Slide Navigation Controls">
+    <button class="btn-nav" id="btnPrev" title="Previous Slide [Left Arrow / Page Up]">◀</button>
+    <div class="dock-dots" id="dockDots"></div>
+    <button class="btn-nav" id="btnNext" title="Next Slide [Right Arrow / Space / Page Down]">▶</button>
+  </nav>
+
+  <!-- Speaker Notes Drawer -->
+  <aside class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <span class="notes-tag">Presenter Briefing & Strategic Talking Points</span>
+      <button class="btn-icon" id="btnCloseNotes" style="padding: 2px 8px; font-size: 11px;">Close ✕</button>
+    </div>
+    <div class="notes-body" id="notesContent">
+      Loading presentation notes...
+    </div>
+  </aside>
+
+  <!-- Slide Grid Overview Modal -->
+  <div class="modal-overlay" id="overviewModal">
+    <div class="overview-grid" id="overviewGrid"></div>
+  </div>
+
+  <script>
+    // Speaker notes mapped to each slide
+    const slideNotes = {
+      1: "Emphasize to executive stakeholders that ground handling is fundamentally a margin-preservation business. Highlight that every unbilled service or unrecorded 30 minutes of auxiliary power directly reduces the handler's profit spread.",
+      2: "Explain the importance of contract governance. Without version control, commercial teams frequently dispute whether a seasonal fuel increase or passenger bus charge was formally authorized.",
+      3: "Walk through international standard alignment. International airlines expect clear correspondence with IATA ground handling sections. Emphasize how smart bundling replaces messy itemized spreadsheets.",
+      4: "Demystify pricing complexity. Ground handling pricing cannot be a simple flat fee because aircraft weight, ground time, and night-time operations vary dramatically. Stress the value of transparent formula breakdowns.",
+      5: "Show the direct operational connection. Ground handling revenue is won or lost on the tarmac. Point out how a paper-driven workflow creates immediate billing leakage.",
+      6: "Focus on third-party subcontractor protection. Remind executives that handlers often operate as principal contractors paying third-party fuelers and catering vendors; without automated matching, handlers absorb vendor cost spikes.",
+      7: "Clarify the commercial pipeline. Show how an initial charter quotation directly authorizes ramp execution via the turnaround work order, which seamlessly converts into the verified tax invoice upon wheels-up.",
+      8: "Present the operational diagnostic honestly. Walk through the four key bottlenecks: manual contract entry, disconnected flight data, paper ramp logs, and delayed invoice issuance.",
+      9: "Use this comparative matrix for decision-makers. Point out that the proposed modernization is not a cosmetic update, but an operational transformation connecting frontline staff with financial systems.",
+      10: "Close with the strategic investment return. Reiterate the financial impact: 3% to 5% top-line revenue recovery, 80% reduction in customer invoice disputes, and faster cash collection."
+    };
+
+    // State
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    // DOM Elements
+    const slideIndicator = document.getElementById('slideIndicator');
+    const progressBar = document.getElementById('progressBar');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const dockDots = document.getElementById('dockDots');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+    const btnNotes = document.getElementById('btnNotes');
+    const btnCloseNotes = document.getElementById('btnCloseNotes');
+    const overviewModal = document.getElementById('overviewModal');
+    const overviewGrid = document.getElementById('overviewGrid');
+    const btnOverview = document.getElementById('btnOverview');
+    const btnFullscreen = document.getElementById('btnFullscreen');
+
+    // Initialize Navigation Dots & Overview Thumbnails
+    function initNavigation() {
+      dockDots.innerHTML = '';
+      overviewGrid.innerHTML = '';
+
+      slides.forEach((slide, index) => {
+        // Dot
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.title = `Go to Slide ${index + 1}`;
+        dot.addEventListener('click', () => goToSlide(index));
+        dockDots.appendChild(dot);
+
+        // Overview Thumbnail
+        const titleText = slide.querySelector('.slide-title').innerText;
+        const tagText = slide.querySelector('.slide-tag').innerText;
+        const thumb = document.createElement('div');
+        thumb.className = `overview-thumb ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `
+          <div>
+            <div class="thumb-num">SLIDE ${String(index + 1).padStart(2, '0')} • ${tagText}</div>
+            <div class="thumb-title">${titleText}</div>
+          </div>
+          <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">Click to view slide</div>
+        `;
+        thumb.addEventListener('click', () => {
+          goToSlide(index);
+          closeOverview();
+        });
+        overviewGrid.appendChild(thumb);
+      });
+
+      updateSlide(0);
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+
+      slides[currentIndex].classList.remove('active');
+      currentIndex = index;
+      slides[currentIndex].classList.add('active');
+
+      updateSlide(currentIndex);
+    }
+
+    // Update Indicators, Progress, Buttons & Notes
+    function updateSlide(index) {
+      const slideNum = index + 1;
+      slideIndicator.textContent = `${String(slideNum).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      
+      const progressPercent = ((slideNum) / totalSlides) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      btnPrev.disabled = index === 0;
+      btnNext.disabled = index === totalSlides - 1;
+
+      // Update Dots
+      const dots = dockDots.querySelectorAll('.dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+      // Update Overview Active State
+      const thumbs = overviewGrid.querySelectorAll('.overview-thumb');
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+      });
+
+      // Update Speaker Notes
+      notesContent.innerHTML = slideNotes[slideNum] || "No additional notes for this slide.";
+    }
+
+    // Handlers
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) goToSlide(currentIndex - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    function toggleOverview() {
+      overviewModal.classList.toggle('active');
+    }
+
+    function closeOverview() {
+      overviewModal.classList.remove('active');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn("Fullscreen request error:", err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Event Listeners
+    btnNext.addEventListener('click', nextSlide);
+    btnPrev.addEventListener('click', prevSlide);
+    btnNotes.addEventListener('click', toggleNotes);
+    btnCloseNotes.addEventListener('click', () => notesDrawer.classList.remove('open'));
+    btnOverview.addEventListener('click', toggleOverview);
+    overviewModal.addEventListener('click', (e) => {
+      if (e.target === overviewModal) closeOverview();
+    });
+    btnFullscreen.addEventListener('click', toggleFullscreen);
+
+    // Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+      if (overviewModal.classList.contains('active')) {
+        if (e.key === 'Escape') closeOverview();
+        return;
+      }
+
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+        case 'PageDown':
+        case ' ': // Spacebar
+          e.preventDefault();
+          nextSlide();
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+        case 'PageUp':
+          e.preventDefault();
+          prevSlide();
+          break;
+        case 'Home':
+          e.preventDefault();
+          goToSlide(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goToSlide(totalSlides - 1);
+          break;
+        case 'n':
+        case 'N':
+          toggleNotes();
+          break;
+        case 'o':
+        case 'O':
+        case 'g':
+        case 'G':
+          toggleOverview();
+          break;
+        case 'f':
+        case 'F':
+          toggleFullscreen();
+          break;
+        case 'Escape':
+          if (notesDrawer.classList.contains('open')) {
+            notesDrawer.classList.remove('open');
+          }
+          break;
+      }
+    });
+
+    // Touch Swipe Support for Mobile/Tablets
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) > 60) {
+        if (swipeDistance < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }
+
+    // Initialize
+    initNavigation();
+  </script>
+</body>
+</html>
