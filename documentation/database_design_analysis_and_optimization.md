@@ -124,81 +124,189 @@
 
 ### 2.1 تدفق البيانات في الوضع الراهن (Legacy Anti-Pattern Flow)
 
-```mermaid
-flowchart TD
-    subgraph Legacy["⚠️ الوضع الراهن: جداول مسطحة وقوائم نصوص مفصولة بفواصل (Anti-Pattern)"]
-        direction TB
-        C1["Com_ContractSetup<br>• Airports: CAI,HRG,SSH (nvarchar 500)<br>• Airlines: MS,FZ,TK (nvarchar 500)<br>• FlightTypes (nvarchar 500)"]
-        W1["Opr_WorkOrder<br>• Contracts: 1,4,12 (nvarchar 50)<br>• GroundRange: 60,90,120 (nvarchar 10)"]
-        S1["Opr_WorkOrderServices (God Table - 77 Columns)<br>• Ramp Timestamps + Quantities<br>• AR Overrides & Billing Deductions<br>• AP Supplier Costs & Disbursements"]
-        P1["Com_PriceList (40,286 Rows)<br>• Flattened duplicate contract & customer names"]
-        
-        C1 -.->|"NO FK (Text Search LIKE %CAI%)"| W1
-        W1 -.->|"NO FK (Composite Line Join)"| S1
-        C1 -.->|"Batch Dump"| P1
-    end
+<div style="background: #0d0811; border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 14px; overflow: hidden; margin: 24px 0; box-shadow: 0 12px 35px rgba(0,0,0,0.6);" dir="rtl">
+  <div style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(30, 41, 59, 0.95)); padding: 14px 20px; border-bottom: 2px solid rgba(244, 63, 94, 0.4); display: flex; align-items: center; justify-content: space-between;">
+    <span style="color: #fb7185; font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+      ⚠️ مسار تدفق البيانات في الوضع الراهن: جداول مسطحة وهشاشة علائقية (Legacy Anti-Pattern Flow)
+    </span>
+    <span style="background: rgba(244, 63, 94, 0.2); color: #fb7185; font-size: 11.5px; padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(244, 63, 94, 0.4); font-weight: 700;">
+      0 Foreign Keys
+    </span>
+  </div>
 
-    style Legacy fill:#1e1e2d,stroke:#f43f5e,stroke-width:2px,color:#ffffff
-    style C1 fill:#2a1b24,stroke:#f43f5e,color:#ffffff
-    style W1 fill:#2a1b24,stroke:#f43f5e,color:#ffffff
-    style S1 fill:#3b1822,stroke:#ef4444,stroke-width:2px,color:#ffffff
-    style P1 fill:#2a1b24,stroke:#f43f5e,color:#ffffff
-```
+  <div style="padding: 22px; display: flex; flex-direction: column; gap: 16px;">
+    <!-- Step 1: Com_ContractSetup -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #fb7185; font-weight: 700; font-size: 14px;">1️⃣ جدول إعداد العقود: <code>Com_ContractSetup</code></span>
+        <span style="background: rgba(244, 63, 94, 0.15); color: #fb7185; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">خرق 1NF (نصوص مفصولة بفواصل)</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Airports</code>: تخزين <code>CAI,HRG,SSH</code> كنص مدمج (NVARCHAR 500)</div>
+        <div>• <code>Airlines</code>: تخزين <code>MS,FZ,TK</code> كنص مدمج (NVARCHAR 500)</div>
+        <div>• <code>FlightTypes</code>: تخزين أنواع الرحلات كنص مدمج (NVARCHAR 500)</div>
+      </div>
+    </div>
+
+    <!-- Connector 1 -->
+    <div style="text-align: center; color: #f43f5e; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(244, 63, 94, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px dashed rgba(244, 63, 94, 0.4);">
+        ❌ انعدام المفتاح الأجنبي (No FK) — بحث نصي بطيء ومكلف: <code>WHERE Airports LIKE %CAI%</code>
+      </span>
+      <span>⬇️</span>
+    </div>
+
+    <!-- Step 2: Opr_WorkOrder -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #fb7185; font-weight: 700; font-size: 14px;">2️⃣ أمر تشغيل المهبط: <code>Opr_WorkOrder</code></span>
+        <span style="background: rgba(244, 63, 94, 0.15); color: #fb7185; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">انعدام التحقق المرجعي</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Contracts</code>: تخزين أرقام العقود كنص <code>1,4,12</code> (NVARCHAR 50)</div>
+        <div>• <code>GroundRange</code>: تخزين نطاق أوقات المكوث كنص <code>60,90,120</code></div>
+      </div>
+    </div>
+
+    <!-- Connector 2 -->
+    <div style="text-align: center; color: #f43f5e; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(244, 63, 94, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px dashed rgba(244, 63, 94, 0.4);">
+        ❌ ربط مركب غير محمي (Composite Line Join بلا قيود تكاملية)
+      </span>
+      <span>⬇️</span>
+    </div>
+
+    <!-- Step 3: Opr_WorkOrderServices (God Table) -->
+    <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 10px; padding: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #fb7185; font-weight: 700; font-size: 14px;">3️⃣ الجدول العملاق: <code>Opr_WorkOrderServices</code> (God Table - 77 عموداً)</span>
+        <span style="background: rgba(244, 63, 94, 0.25); color: #fb7185; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 700;">🚨 تداخل 3 وظائف محاسبية</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <strong>أحداث المهبط:</strong> توقيتات تشغيل المعدات، تفريغ المياه، توقيع الكابتن</div>
+        <div>• <strong>فوترة العميل (AR):</strong> تعديلات المحاسب، مبالغ الخصومات، أسباب الإلغاء</div>
+        <div>• <strong>مستحقات المورد (AP):</strong> مبالغ وتكاليف مقاولي الباطن والعمولات</div>
+      </div>
+    </div>
+
+    <!-- Connector 3 -->
+    <div style="text-align: center; color: #f43f5e; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(244, 63, 94, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px dashed rgba(244, 63, 94, 0.4);">
+        📉 تفريغ مسطح جماعي (Batch Dump) دون أدنى تجريد
+      </span>
+      <span>⬇️</span>
+    </div>
+
+    <!-- Step 4: Com_PriceList -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #fb7185; font-weight: 700; font-size: 14px;">4️⃣ قائمة الأسعار المسطحة: <code>Com_PriceList</code></span>
+        <span style="background: rgba(244, 63, 94, 0.15); color: #fb7185; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">40,286 سطراً متكرراً</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• تكرار نصوص العقود وأسماء العملاء وشروط الطائرات في أكثر من 40 ألف سطر</div>
+        <div>• هدر في مساحة التخزين وعجز في تحديث نصوص العقود (Update Anomaly)</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ### 2.2 تدفق النطاقات في الهدف المحسّن (Target Domain-Driven Flow)
 
-```mermaid
-flowchart TD
-    subgraph Target["✨ التصميم المحسّن: فصل النطاقات والتطبيع الكامل 3NF مع حائط صد الهامش"]
-        direction TB
-        
-        subgraph Domain1["1. Master Domain"]
-            M_Airports["Opr_Airports (CHAR 3)"]
-            M_Airlines["Opr_Airlines (CHAR 3)"]
-            M_Models["Opr_AircraftModels (MTOW)"]
-        end
+<div style="background: #061118; border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; overflow: hidden; margin: 24px 0; box-shadow: 0 12px 35px rgba(0,0,0,0.6);" dir="rtl">
+  <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(30, 41, 59, 0.95)); padding: 14px 20px; border-bottom: 2px solid rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: space-between;">
+    <span style="color: #34d399; font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+      ✨ المسار المعماري المستهدف: تدفق النطاقات المستقلة والتطبيع الكامل 3NF (Target Domain-Driven Flow)
+    </span>
+    <span style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 11.5px; padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.4); font-weight: 700;">
+      100% FK Secured
+    </span>
+  </div>
 
-        subgraph Domain2["2. Commercial & CLM"]
-            C_Master["Com_Contracts (Headers)"]
-            J_Airports["Com_ContractAirports (M:N)"]
-            J_Airlines["Com_ContractAirlines (M:N)"]
-            C_Services["Com_ContractServices (Rates & Rules)"]
-        end
+  <div style="padding: 22px; display: flex; flex-direction: column; gap: 16px;">
+    <!-- Domain 1: Master Aviation -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #38bdf8; font-weight: 700; font-size: 14px;">1️⃣ نطاق بيانات الطيران المرجعية (Master Aviation Domain)</span>
+        <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">Single Source of Truth</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Opr_Airports</code>: بيانات المطارات برمز IATA صلب (CHAR 3) معتمد دولياً</div>
+        <div>• <code>Opr_Airlines</code>: بيانات شركات الطيران ورموز الإيكاو والعملة الافتراضية</div>
+        <div>• <code>Opr_AircraftModels</code>: أوزان الإقلاع القصوى (MTOW) ومحددات نوع الطائرة</div>
+      </div>
+    </div>
 
-        subgraph Domain3["3. Apron Operations"]
-            O_WO["Opr_TurnaroundWorkOrders"]
-            O_Exec["Opr_TurnaroundServiceExecutions (Ramp Facts)"]
-            O_Sign["Captain Sign-off (Digital Hash)"]
-        end
+    <!-- Connector 1 -->
+    <div style="text-align: center; color: #34d399; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(16, 185, 129, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
+        🔗 قيود تكامل مرجعي صلبة (Foreign Key Constraints مع منع الحذف العشوائي)
+      </span>
+      <span>⬇️</span>
+    </div>
 
-        subgraph Domain4["4. Finance & Margin Shield"]
-            B_Inv["Bil_CustomerInvoices (AR)"]
-            B_Bill["Bil_VendorBills (AP)"]
-            B_Recon["Bil_ServiceReconciliations<br>🛡️ Negative Margin Shield (Profit >= 0)"]
-        end
+    <!-- Domain 2: Commercial & CLM -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(34, 197, 94, 0.35); border-radius: 10px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #4ade80; font-weight: 700; font-size: 14px;">2️⃣ نطاق العقود والاتفاقيات والأسعار (Commercial & CLM Domain)</span>
+        <span style="background: rgba(34, 197, 94, 0.15); color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">تطبيع 3NF وجداول ربط M:N</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Com_Contracts</code>: رأس العقد، تواريخ السريان، العملة، والعمولة المعتمدة</div>
+        <div>• <code>Com_ContractAirports</code> & <code>Com_ContractAirlines</code>: جداول ربط متعدد-إلى-متعدد</div>
+        <div>• <code>Com_ContractServices</code>: تعرفة الخدمات، البدلات الليلية، وأسعار الوقت الإضافي</div>
+      </div>
+    </div>
 
-        M_Airports === J_Airports
-        M_Airlines === J_Airlines
-        C_Master --- J_Airports
-        C_Master --- J_Airlines
-        C_Master === C_Services
-        
-        C_Master ==> O_WO
-        O_WO === O_Exec
-        O_Exec === O_Sign
+    <!-- Connector 2 -->
+    <div style="text-align: center; color: #34d399; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(16, 185, 129, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
+        📋 توليد أمر التشغيل التلقائي استناداً إلى شروط العقد وبنود الطائرة
+      </span>
+      <span>⬇️</span>
+    </div>
 
-        O_Exec ==> B_Inv
-        O_Exec ==> B_Bill
-        B_Inv === B_Recon
-        B_Bill === B_Recon
-    end
+    <!-- Domain 3: Apron Operations -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #fcd34d; font-weight: 700; font-size: 14px;">3️⃣ نطاق تشغيل المهبط الميداني (Apron Ramp Operations)</span>
+        <span style="background: rgba(245, 158, 11, 0.15); color: #fcd34d; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">حقيقة ميدانية معزولة عن التعديل المالي</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Opr_TurnaroundWorkOrders</code>: رقم الرحلة، طراز الطائرة، ومحطة الخدمة</div>
+        <div>• <code>Opr_TurnaroundServiceExecutions</code>: توثيق دقيق لبدء وانتهاء الخدمة وقراءات العدادات</div>
+        <div>• <code>Captain Sign-off</code>: التوقيع الرقمي المشفر للكابتن (SHA-256 Hash) كمرجع قانوني غير قابل للتعديل</div>
+      </div>
+    </div>
 
-    style Target fill:#0b1329,stroke:#10b981,stroke-width:2px,color:#ffffff
-    style Domain1 fill:#172554,stroke:#3b82f6,color:#ffffff
-    style Domain2 fill:#14532d,stroke:#22c55e,color:#ffffff
-    style Domain3 fill:#451a03,stroke:#f59e0b,color:#ffffff
-    style Domain4 fill:#311042,stroke:#a855f7,color:#ffffff
-```
+    <!-- Connector 3 -->
+    <div style="text-align: center; color: #34d399; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⬇️</span>
+      <span style="background: rgba(16, 185, 129, 0.12); padding: 4px 14px; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.3);">
+        🛡️ المطابقة الثلاثية الفورية (3-Way Matching Engine) واحتساب التكاليف
+      </span>
+      <span>⬇️</span>
+    </div>
+
+    <!-- Domain 4: Finance & Margin Shield -->
+    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="color: #c084fc; font-weight: 700; font-size: 14px;">4️⃣ نطاق الفوترة وحائط صد الهامش السالب (Finance & Margin Shield Domain)</span>
+        <span style="background: rgba(168, 85, 247, 0.15); color: #c084fc; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">ضمان الربحية ومنع التسرب</span>
+      </div>
+      <div style="color: #cbd5e1; font-size: 13px; line-height: 1.7;">
+        <div>• <code>Bil_CustomerInvoices</code> & <code>Bil_CustomerInvoiceLines</code>: فوترة العميل بدقة بناءً على خدمات المهبط</div>
+        <div>• <code>Bil_VendorBills</code>: تسجيل مطالبات الموردين وربطها بنفس الرحلة الميدانية</div>
+        <div>• <code>Bil_ServiceReconciliations</code>: محرك حائط صد الهامش السالب (Negative Margin Shield) مع قيد SQL ملزم: <code style="color: #34d399;">Profit &gt;= 0</code></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
@@ -490,41 +598,106 @@ flowchart TD
 
 ### 5.1 كود العلاقات الكيانية التفصيلي (Mermaid Relational Specification)
 
-```mermaid
-erDiagram
-    AR_Customers ||--o{ Com_Contracts : "signs"
-    Opr_Airports ||--o{ Opr_AirportTerminals : "houses"
-    Opr_Airlines ||--o{ Opr_AircraftRegistrations : "owns"
-    Opr_AircraftModels ||--o{ Opr_AircraftRegistrations : "specifies"
-
-    Com_Contracts ||--o{ Com_ContractAirports : "authorized at"
-    Opr_Airports ||--o{ Com_ContractAirports : "included in"
-
-    Com_Contracts ||--o{ Com_ContractAirlines : "covers"
-    Opr_Airlines ||--o{ Com_ContractAirlines : "beneficiary"
-
-    Com_Contracts ||--o{ Com_ContractServices : "prices"
-    Com_Services ||--o{ Com_ContractServices : "cataloged as"
-    AP_Suppliers ||--o{ Com_ContractServices : "subcontracted to"
-
-    Com_Contracts ||--o{ Opr_TurnaroundWorkOrders : "governs"
-    Opr_Airports ||--o{ Opr_TurnaroundWorkOrders : "handled at"
-    Opr_AircraftRegistrations ||--o{ Opr_TurnaroundWorkOrders : "performed on"
-
-    Opr_TurnaroundWorkOrders ||--o{ Opr_TurnaroundServiceExecutions : "logs ramp events"
-    Com_Services ||--o{ Opr_TurnaroundServiceExecutions : "service delivered"
-
-    Opr_TurnaroundWorkOrders ||--o{ Bil_CustomerInvoices : "billed via"
-    Bil_CustomerInvoices ||--o{ Bil_CustomerInvoiceLines : "itemized in"
-    Opr_TurnaroundServiceExecutions ||--o{ Bil_CustomerInvoiceLines : "derived from"
-
-    AP_Suppliers ||--o{ Bil_VendorBills : "invoices TAS via"
-    Bil_VendorBills ||--o{ Bil_VendorBillLines : "itemized vendor cost"
-    Opr_TurnaroundServiceExecutions ||--o{ Bil_VendorBillLines : "matched to"
-
-    Bil_CustomerInvoiceLines ||--|| Bil_ServiceReconciliations : "checked against"
-    Bil_VendorBillLines ||--|| Bil_ServiceReconciliations : "cost basis"
-```
+<div style="background: #0b111e; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; overflow: hidden; margin: 24px 0; box-shadow: 0 12px 35px rgba(0,0,0,0.55);" dir="rtl">
+  <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); padding: 14px 20px; border-bottom: 2px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: space-between;">
+    <span style="color: #38bdf8; font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+      🧬 جدول مواصفات العلاقات والمفاتيح المرجعية (Relational Key Specification Matrix)
+    </span>
+    <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-size: 12px; padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.35); font-weight: 700;">
+      15+ قيود Foreign Keys
+    </span>
+  </div>
+  <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 13px; font-family: inherit;">
+    <thead>
+      <tr style="background: rgba(15, 23, 42, 0.85); color: #94a3b8; border-bottom: 1px solid rgba(148, 163, 184, 0.15);">
+        <th style="padding: 12px 16px; width: 22%;">الجدول الأصل (Parent Table)</th>
+        <th style="padding: 12px 16px; width: 14%; text-align: center;">العلاقة (Cardinality)</th>
+        <th style="padding: 12px 16px; width: 22%;">الجدول التابع (Child Table)</th>
+        <th style="padding: 12px 16px; width: 22%;">حقل المفتاح الأجنبي (FK Column)</th>
+        <th style="padding: 12px 16px; width: 20%;">الأثر الرقابي وقيد الحذف</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>AR_Customers</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_Contracts</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">CustomerID</code></td>
+        <td style="padding: 12px 16px; color: #34d399;">منع حذف العميل إذا كانت له عقود</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Com_Contracts</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_ContractAirports</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">ContractID</code></td>
+        <td style="padding: 12px 16px; color: #cbd5e1;">حذف تابع تلقائي (CASCADE)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Opr_Airports</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_ContractAirports</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">AirportID</code></td>
+        <td style="padding: 12px 16px; color: #34d399;">حظر حذف المطار المرتبط بعقد نشط</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Com_Contracts</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_ContractAirlines</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">ContractID</code></td>
+        <td style="padding: 12px 16px; color: #cbd5e1;">حذف تابع تلقائي (CASCADE)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Opr_Airlines</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_ContractAirlines</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">AirlineID</code></td>
+        <td style="padding: 12px 16px; color: #34d399;">حظر حذف خط الطيران المرتبط بعقد</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Com_Contracts</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Com_ContractServices</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">ContractID</code></td>
+        <td style="padding: 12px 16px; color: #cbd5e1;">تعرفة الخدمات الخاصة بالعقد</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Com_Contracts</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Opr_TurnaroundWorkOrders</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">ContractID</code></td>
+        <td style="padding: 12px 16px; color: #34d399;">حظر الفوترة والتشغيل خارج العقد</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Opr_TurnaroundWorkOrders</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Opr_TurnaroundServiceExecutions</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">WorkOrderID</code></td>
+        <td style="padding: 12px 16px; color: #cbd5e1;">توثيق استهلاك خدمات المهبط للرحلة</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Opr_TurnaroundWorkOrders</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Bil_CustomerInvoices</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #38bdf8;">WorkOrderID</code></td>
+        <td style="padding: 12px 16px; color: #34d399;">ربط كل فاتورة بأمر تشغيل الرحلة</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Bil_CustomerInvoiceLines</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #10b981; font-weight: 700;">1 : 1</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Bil_ServiceReconciliations</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #10b981;">InvoiceLineID</code></td>
+        <td style="padding: 12px 16px; color: #10b981; font-weight: 700;">حائط صد الهامش السالب للسطر المفوتر</td>
+      </tr>
+      <tr style="background: rgba(30, 41, 59, 0.25);">
+        <td style="padding: 12px 16px; font-weight: 700; color: #f8fafc;"><code>Bil_VendorBillLines</code></td>
+        <td style="padding: 12px 16px; text-align: center; color: #10b981; font-weight: 700;">1 : 1</td>
+        <td style="padding: 12px 16px; color: #f8fafc;"><code>Bil_ServiceReconciliations</code></td>
+        <td style="padding: 12px 16px;"><code style="color: #10b981;">VendorBillLineID</code></td>
+        <td style="padding: 12px 16px; color: #10b981; font-weight: 700;">أساس التكلفة المباشرة للمطابقة الثلاثية</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ---
 
