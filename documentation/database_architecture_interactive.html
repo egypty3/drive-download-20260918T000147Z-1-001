@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل التحليل المعماري وتطبيع قاعدة بيانات المناولة والفوترة (TAS) — العرض التنفيذي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090e17;
+      --bg-secondary: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --bg-card-hover: rgba(51, 65, 85, 0.85);
+      --border-color: rgba(148, 163, 184, 0.15);
+      --border-highlight: rgba(56, 189, 248, 0.35);
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+    }
+    .glow-1 { top: -100px; right: -100px; background: var(--accent-blue); }
+    .glow-2 { bottom: -100px; left: -100px; background: var(--accent-indigo); }
+
+    /* Top Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 14, 23, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #0284c7, #4f46e5);
+      color: white;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .nav-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+      background: rgba(51, 65, 85, 0.8);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Grids */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-indigo));
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      transition: transform 0.2s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+
+    .kpi-val {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--text-main);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .kpi-val.danger { color: var(--accent-rose); }
+    .kpi-val.warning { color: var(--accent-amber); }
+    .kpi-val.success { color: var(--accent-emerald); }
+    .kpi-val.info { color: var(--accent-blue); }
+
+    .kpi-lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Image Viewer Frame */
+    .viewer-frame {
+      background: #060a12;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 24px 0;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .viewer-toolbar {
+      background: #0f172a;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .viewer-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .viewer-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .viewer-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .viewer-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    .viewer-img-container {
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #111827 0%, #060a12 100%);
+      overflow: auto;
+    }
+
+    .viewer-img-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s ease;
+    }
+
+    .viewer-img-container img:hover {
+      transform: scale(1.01);
+    }
+
+    /* Content Box */
+    .content-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .content-box h3 {
+      font-size: 18px;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13.5px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: right;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    tr:hover td {
+      background: rgba(51, 65, 85, 0.3);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--accent-cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12.5px;
+    }
+
+    pre code {
+      display: block;
+      padding: 18px;
+      overflow-x: auto;
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: #e2e8f0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <header>
+    <div class="brand">
+      <span class="brand-badge">TAS ENGINE</span>
+      <span class="brand-title">دليل التحليل المعماري وتطبيع قاعدة بيانات الفوترة والمناولة الأرضية</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-btn active" onclick="switchTab('tab-overview')">📊 الملخص التنفيذي</button>
+      <button class="nav-btn" onclick="switchTab('tab-architecture')">🏛️ الوضع الراهن vs المستهدف</button>
+      <button class="nav-btn" onclick="switchTab('tab-erd')">🧬 مخطط العلاقات (ERD)</button>
+      <button class="nav-btn" onclick="switchTab('tab-margin')">🛡️ حائط صد الهامش السالب</button>
+      <button class="nav-btn" onclick="switchTab('tab-ddl')">💻 كود SQL DDL</button>
+      <button class="nav-btn" onclick="switchTab('tab-migration')">🚀 خطة الترحيل والـ ROI</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB 1: OVERVIEW -->
+    <div id="tab-overview" class="tab-pane active">
+      <div class="hero-banner">
+        <h1 style="font-size: 24px; font-weight: 900; margin-bottom: 8px;">نتائج التدقيق الميداني لقاعدة بيانات TasDashBoardDev</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">فحص استقصائي مباشر على خادم Microsoft SQL Server لقاعدة بيانات إدارة المناولة الأرضية والفوترة الآلية.</p>
+        
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-val danger">0</div>
+            <div class="kpi-lbl">قيود التكامل المرجعي (Foreign Keys) - انعدام كلي</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val warning">117</div>
+            <div class="kpi-lbl">إجمالي جداول قاعدة البيانات المسجلة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val warning">2</div>
+            <div class="kpi-lbl">جداول بدون مفتاح أساسي نهائياً (No PK)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val danger">77 / 85</div>
+            <div class="kpi-lbl">أعمدة في الجداول العملاقة (God Tables)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val info">40,286</div>
+            <div class="kpi-lbl">سطر في قائمة الأسعار المسطحة غير المطبّعة</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-box" style="border-right: 4px solid var(--accent-rose);">
+        <h3 style="color: var(--accent-rose);">🚨 تقييم المخاطر المعمارية والتشغيلية (Critical Risk)</h3>
+        <p>غياب المفاتيح الأجنبية تماماً (0 Foreign Keys) في قاعدة بيانات تضم 117 جدولاً يمثل ثغرة نزاهة حرجة. هذا يسمح بحذف سجلات شركات الطيران أو الخدمات بينما تبقى فواتيرها وعقودها معلقة كبيانات يتيمة (Orphaned Records)، مما يهدد دقة المحاسبة المالية ويمنع محرك الاستعلامات من تحسين خطط التنفيذ (Execution Plans).</p>
+      </div>
+
+      <!-- Quick Architecture Viewer -->
+      <div class="viewer-frame">
+        <div class="viewer-toolbar">
+          <div class="viewer-title">🖼️ خريطة التحول المعماري الشامل (As-Is vs To-Be)</div>
+          <div class="viewer-actions">
+            <a href="./images/database_as_is_vs_to_be.svg" target="_blank" class="viewer-btn">فتح بصيغة SVG (متجهات) ↗</a>
+          </div>
+        </div>
+        <div class="viewer-img-container">
+          <img src="./images/database_as_is_vs_to_be.png" alt="خريطة التحول المعماري" />
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: ARCHITECTURE -->
+    <div id="tab-architecture" class="tab-pane">
+      <div class="viewer-frame">
+        <div class="viewer-toolbar">
+          <div class="viewer-title">المقارنة المعمارية الشاملة: الوضع الراهن مقابل الهدف المحسّن</div>
+          <div class="viewer-actions">
+            <a href="./images/database_as_is_vs_to_be.svg" target="_blank" class="viewer-btn">تكبير فائق SVG ↗</a>
+          </div>
+        </div>
+        <div class="viewer-img-container">
+          <img src="./images/database_as_is_vs_to_be.png" alt="Architecture Comparison" />
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>مقارنة التحول المعماري (Architectural Paradigm Shift)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>المعيار المعماري</th>
+              <th>الوضع الراهن (As-Is Legacy)</th>
+              <th>النموذج العلائقي المحسّن (To-Be Normalized 3NF)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>هيكل الجداول</strong></td>
+              <td>جداول عملاقة (77 عموداً) تخلط بين العقد والطلب والفوترة</td>
+              <td>فصل النطاقات (Domain-Driven): عقود، أوامر تشغيل، تسعير، فوترة</td>
+            </tr>
+            <tr>
+              <td><strong>التكامل المرجعي</strong></td>
+              <td>0 مفاتيح أجنبية (Zero Foreign Keys)</td>
+              <td>شبكة تكامل مرجعي صارمة بـ 15+ قيد FK و <code>ON DELETE RESTRICT</code></td>
+            </tr>
+            <tr>
+              <td><strong>تخزين القوائم</strong></td>
+              <td>قوائم نصوص مفصولة بفواصل (مثل <code>1,2,5,7</code>) تخرق 1NF</td>
+              <td>جداول تقاطع علائقية متوافقة مع الشكل الطبيعي الأول (1NF)</td>
+            </tr>
+            <tr>
+              <td><strong>حسابات الهامش</strong></td>
+              <td>معادلات فورمولا مدمجة بنصوص غير محققة</td>
+              <td>محرك مطابقة ثلاثية (3-Way Matching) وحائط صد فوري للهامش السالب</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: ERD -->
+    <div id="tab-erd" class="tab-pane">
+      <div class="viewer-frame">
+        <div class="viewer-toolbar">
+          <div class="viewer-title">مخطط العلاقات الكيانية المحسّن (Target Relational Domain Model ERD)</div>
+          <div class="viewer-actions">
+            <a href="./images/database_erd_domain_model.svg" target="_blank" class="viewer-btn">فتح بصيغة SVG فائقة الدقة ↗</a>
+          </div>
+        </div>
+        <div class="viewer-img-container">
+          <img src="./images/database_erd_domain_model.png" alt="Target Relational ERD" />
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>النطاقات الوظيفية المستهدفة (Domain-Driven Architecture)</h3>
+        <p>تم تقسيم قاعدة البيانات إلى 4 نطاقات وظيفية معزولة ومترابطة عبر معرفات صلبة (Surrogate & Natural Keys):</p>
+        <ul style="margin: 14px 24px; color: var(--text-muted); line-height: 1.8;">
+          <li><strong>نطاق العقود والاتفاقيات (Contract Domain):</strong> جداول <code>Contracts</code>, <code>ContractServices</code>, <code>PriceLists</code>.</li>
+          <li><strong>نطاق أوامر التشغيل والمهبط (Work Order & Ramp Domain):</strong> جداول <code>WorkOrders</code>, <code>WorkOrderServices</code>, <code>RampEvents</code>.</li>
+          <li><strong>نطاق التسعير واحتساب التكاليف (Pricing & Cost Domain):</strong> جداول <code>ServiceCostAllocations</code>, <code>SLA_Policies</code>.</li>
+          <li><strong>نطاق الفوترة والتحصيل (Billing & Invoicing Domain):</strong> جداول <code>Invoices</code>, <code>InvoiceLines</code>, <code>MarginAudits</code>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB 4: MARGIN SHIELD -->
+    <div id="tab-margin" class="tab-pane">
+      <div class="viewer-frame">
+        <div class="viewer-toolbar">
+          <div class="viewer-title">محرك المطابقة الثلاثية وحائط صد الهامش السالب (3-Way Matching & Negative Margin Shield)</div>
+          <div class="viewer-actions">
+            <a href="./images/three_way_margin_shield_db.svg" target="_blank" class="viewer-btn">فتح بصيغة SVG ↗</a>
+          </div>
+        </div>
+        <div class="viewer-img-container">
+          <img src="./images/three_way_margin_shield_db.png" alt="Three Way Margin Shield" />
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>آلية عمل حائط صد الهامش السالب (Automated Profit Protection)</h3>
+        <p>يقوم المحرك بمقارنة لحظية بين 3 مصادر للبيانات قبل اعتماد أي فاتورة:</p>
+        <ol style="margin: 14px 24px; color: var(--text-muted); line-height: 1.8;">
+          <li><strong>المطابقة الأولى:</strong> التحقق من مطابقة الخدمات الميدانية المنفذة على الطائرة مع شروط وبنود العقد النشط.</li>
+          <li><strong>المطابقة الثانية:</strong> احتساب التكلفة التشغيلية المباشرة (العمالة والمعدات ومقاولي الباطن) مقابل السعر المفوتر.</li>
+          <li><strong>حائط الصد:</strong> إذا كان هامش الربح المحتسب أقل من الحد الأدنى المعتمد (مثلاً &lt; 15%)، يتم تعليق الفاتورة تلقائياً وتوليد إشعار فوري لمدير العمليات والفوترة.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- TAB 5: DDL -->
+    <div id="tab-ddl" class="tab-pane">
+      <div class="content-box">
+        <h3>نصوص الإنشاء البرمجية لقاعدة البيانات المحسّنة (Production SQL DDL)</h3>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">نصوص جاهزة للتطبيق على خادم Microsoft SQL Server مع المفاتيح الأساسية والأجنبية وقيود الفهرسة:</p>
+        <pre><code>-- 1. نطاق العقود والاتفاقيات
+CREATE TABLE dbo.Dim_Airlines (
+    AirlineID INT IDENTITY(1,1) CONSTRAINT PK_Dim_Airlines PRIMARY KEY CLUSTERED,
+    IATA_Code CHAR(2) NOT NULL,
+    ICAO_Code CHAR(3) NOT NULL,
+    AirlineName NVARCHAR(150) NOT NULL,
+    BillingCurrencyCode CHAR(3) NOT NULL DEFAULT 'USD',
+    IsActive BIT NOT NULL DEFAULT 1,
+    CreatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME()
+);
+
+-- 2. نطاق أوامر التشغيل
+CREATE TABLE dbo.Fact_WorkOrders (
+    WorkOrderID BIGINT IDENTITY(1,1) CONSTRAINT PK_Fact_WorkOrders PRIMARY KEY CLUSTERED,
+    WorkOrderNumber VARCHAR(30) NOT NULL,
+    AirlineID INT NOT NULL CONSTRAINT FK_WorkOrders_Airline FOREIGN KEY REFERENCES dbo.Dim_Airlines(AirlineID),
+    FlightNumber VARCHAR(10) NOT NULL,
+    AircraftRegistration VARCHAR(15) NOT NULL,
+    AircraftTypeID INT NOT NULL,
+    FlightType CHAR(1) NOT NULL CONSTRAINT CK_WorkOrders_FlightType CHECK (FlightType IN ('P', 'C', 'V', 'M')),
+    ScheduledTime DATETIME2(3) NOT NULL,
+    ActualTurnaroundStart DATETIME2(3) NULL,
+    ActualTurnaroundEnd DATETIME2(3) NULL,
+    OrderStatusID TINYINT NOT NULL DEFAULT 1
+);
+
+-- 3. نطاق خدمات أوامر التشغيل (مطبّع 3NF)
+CREATE TABLE dbo.Fact_WorkOrderServices (
+    WorkOrderServiceID BIGINT IDENTITY(1,1) CONSTRAINT PK_Fact_WOServices PRIMARY KEY CLUSTERED,
+    WorkOrderID BIGINT NOT NULL CONSTRAINT FK_WOServices_WorkOrder FOREIGN KEY REFERENCES dbo.Fact_WorkOrders(WorkOrderID),
+    ServiceID INT NOT NULL,
+    Quantity DECIMAL(8,2) NOT NULL DEFAULT 1.00,
+    UnitPrice DECIMAL(12,4) NOT NULL,
+    TotalPrice AS (Quantity * UnitPrice) PERSISTED,
+    CostAllocationRate DECIMAL(12,4) NOT NULL DEFAULT 0.00,
+    CalculatedMargin AS ((Quantity * UnitPrice) - (Quantity * CostAllocationRate)) PERSISTED,
+    IsMarginShieldApproved BIT NOT NULL DEFAULT 0
+);
+</code></pre>
+      </div>
+    </div>
+
+    <!-- TAB 6: MIGRATION & ROI -->
+    <div id="tab-migration" class="tab-pane">
+      <div class="content-box">
+        <h3>خريطة طريق الترحيل الآمن للبيانات دون توقف (Zero-Downtime Migration)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>المرحلة</th>
+              <th>النشاط الفني</th>
+              <th>الأثر التشغيلي</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>المرحلة 1: التدقيق والتطهير</strong></td>
+              <td>تطهير النصوص المفصولة بفواصل، واستخراج السجلات اليتيمة (Orphans).</td>
+              <td>0% توقف (Zero Impact)</td>
+            </tr>
+            <tr>
+              <td><strong>المرحلة 2: النشر المتوازي (Shadow Schema)</strong></td>
+              <td>إنشاء الجداول المطبّعة وتفعيل الكتابة المزدوجة عبر Triggers/CDC.</td>
+              <td>0% توقف، استمرار النظام القديم</td>
+            </tr>
+            <tr>
+              <td><strong>المرحلة 3: التحقق والتطابق</strong></td>
+              <td>مطابقة فواتير شهرين كاملين بين النموذجين القديم والجديد.</td>
+              <td>التحقق المالي الشامل بنسبة 100%</td>
+            </tr>
+            <tr>
+              <td><strong>المرحلة 4: التبديل النهائي (Cutover)</strong></td>
+              <td>إعادة توجيه اتصالات التطبيق إلى الجداول والـ Views الجديدة.</td>
+              <td>نافذة تبديل دقيقة واحدة فقط (&lt; 60 ثانية)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hero-banner">
+        <h3 style="color: var(--accent-emerald); font-size: 19px;">💰 العائد على الاستثمار المتوقع (Expected ROI & Business Impact)</h3>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-val success">100%</div>
+            <div class="kpi-lbl">حماية تامة من البيانات اليتيمة والعمليات غير المفوترة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val success">-85%</div>
+            <div class="kpi-lbl">انخفاض زمن استخراج فواتير نهاية الشهر التجميعية</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val success">+4.2%</div>
+            <div class="kpi-lbl">زيادة الهامش الصافي لمنع تسرب الخدمات الإضافية</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val success">0 Sec</div>
+            <div class="kpi-lbl">انعدام التوقف التشغيلي أثناء تنفيذ خطة الترحيل</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+      
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+      
+      const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070c14"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    
+    <!-- Domain Header Gradients -->
+    <linearGradient id="blueDomain" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="greenDomain" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="amberDomain" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="purpleDomain" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Table Card Background -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+
+    <marker id="circleEnd" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+      <circle cx="5" cy="5" r="3" fill="#64748b"/>
+    </marker>
+    <marker id="arrowRel" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <style>
+    .erd-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 23px; font-weight: 800; fill: #f8fafc; }
+    .erd-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 13px; fill: #94a3b8; }
+    .domain-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 14px; font-weight: 800; fill: #ffffff; letter-spacing: 0.5px; }
+    .tbl-header { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .col-pk { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; font-weight: 700; fill: #fbbf24; }
+    .col-fk { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; font-weight: 700; fill: #38bdf8; }
+    .col-reg { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; fill: #cbd5e1; }
+    .col-type { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 10px; fill: #64748b; }
+    .rel-line { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .rel-line-strong { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .card-border { stroke: #334155; stroke-width: 1.2; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="960" rx="18" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Banner -->
+  <rect x="30" y="20" width="1140" height="65" rx="12" fill="#0f172a" stroke="#1e293b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="600" y="47" text-anchor="middle" class="erd-title">مخطط العلاقات الكيانية لقاعدة البيانات المحسّنة (Target Relational ERD - 3NF)</text>
+  <text x="600" y="69" text-anchor="middle" class="erd-sub">Enterprise Domain Entities, Complete Foreign Keys &amp; 3-Way Reconciliation Relations</text>
+
+  <!-- ========================================================================= -->
+  <!-- DOMAIN 1: MASTER AVIATION & FLEET (Top Left) -->
+  <!-- ========================================================================= -->
+  <rect x="30" y="100" width="560" height="235" rx="12" fill="#0c172e" fill-opacity="0.6" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="42" y="110" width="220" height="24" rx="6" fill="url(#blueDomain)"/>
+  <text x="152" y="126" text-anchor="middle" class="domain-title">1. Master Aviation &amp; Fleet Domain</text>
+
+  <!-- Table: Opr_Airports -->
+  <g transform="translate(45, 145)" filter="url(#shadow)">
+    <rect width="245" height="175" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="245" height="26" rx="8" fill="#1e3a8a"/>
+    <text x="10" y="18" class="tbl-header">Opr_Airports</text>
+    <text x="10" y="46" class="col-pk">🔑 AirportID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="66" class="col-reg">AirportCode <tspan class="col-type">CHAR(3) [UQ]</tspan></text>
+    <text x="10" y="86" class="col-reg">ICAOCode <tspan class="col-type">CHAR(4)</tspan></text>
+    <text x="10" y="106" class="col-reg">CountryCode <tspan class="col-type">CHAR(2)</tspan></text>
+    <text x="10" y="126" class="col-reg">TurnaroundNarrow <tspan class="col-type">INT (min)</tspan></text>
+    <text x="10" y="146" class="col-reg">TurnaroundWide <tspan class="col-type">INT (min)</tspan></text>
+    <text x="10" y="164" class="col-reg">IsActive <tspan class="col-type">BIT</tspan></text>
+  </g>
+
+  <!-- Table: Opr_AircraftRegistrations -->
+  <g transform="translate(325, 145)" filter="url(#shadow)">
+    <rect width="250" height="175" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="250" height="26" rx="8" fill="#1e3a8a"/>
+    <text x="10" y="18" class="tbl-header">Opr_AircraftRegistrations</text>
+    <text x="10" y="46" class="col-pk">🔑 RegistrationID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="66" class="col-reg">RegistrationNo <tspan class="col-type">VARCHAR(20) [UQ]</tspan></text>
+    <text x="10" y="86" class="col-fk">🔗 AirlineID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="106" class="col-fk">🔗 ModelID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="126" class="col-reg">CertifiedMTOWKg <tspan class="col-type">DEC(10,2)</tspan></text>
+    <text x="10" y="146" class="col-reg">Model: BodyType <tspan class="col-type">CHAR(1) [N/W]</tspan></text>
+    <text x="10" y="164" class="col-reg">IsActive <tspan class="col-type">BIT</tspan></text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DOMAIN 2: COMMERCIAL & CLM CONTRACT ENGINE (Top Right) -->
+  <!-- ========================================================================= -->
+  <rect x="610" y="100" width="560" height="235" rx="12" fill="#08231c" fill-opacity="0.6" stroke="#059669" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="622" y="110" width="220" height="24" rx="6" fill="url(#greenDomain)"/>
+  <text x="732" y="126" text-anchor="middle" class="domain-title">2. Commercial &amp; CLM Domain</text>
+
+  <!-- Table: AR_Customers -->
+  <g transform="translate(625, 145)" filter="url(#shadow)">
+    <rect width="240" height="175" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="240" height="26" rx="8" fill="#064e3b"/>
+    <text x="10" y="18" class="tbl-header">AR_Customers</text>
+    <text x="10" y="46" class="col-pk">🔑 CustomerID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="66" class="col-reg">CustomerCode <tspan class="col-type">VARCHAR(20) [UQ]</tspan></text>
+    <text x="10" y="86" class="col-reg">CustomerName <tspan class="col-type">NVARCHAR(150)</tspan></text>
+    <text x="10" y="106" class="col-reg">BillingCurrency <tspan class="col-type">CHAR(3)</tspan></text>
+    <text x="10" y="126" class="col-reg">PaymentTerm <tspan class="col-type">VARCHAR(20)</tspan></text>
+    <text x="10" y="146" class="col-reg">CreditLimit <tspan class="col-type">DECIMAL(18,2)</tspan></text>
+    <text x="10" y="164" class="col-reg">CreditBlock <tspan class="col-type">DECIMAL(18,2)</tspan></text>
+  </g>
+
+  <!-- Table: Com_Contracts -->
+  <g transform="translate(895, 145)" filter="url(#shadow)">
+    <rect width="260" height="175" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="260" height="26" rx="8" fill="#064e3b"/>
+    <text x="10" y="18" class="tbl-header">Com_Contracts</text>
+    <text x="10" y="46" class="col-pk">🔑 ContractID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="66" class="col-reg">ContractNumber <tspan class="col-type">VARCHAR(30)</tspan></text>
+    <text x="10" y="86" class="col-fk">🔗 CustomerID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="106" class="col-reg">EffectiveFrom / ValidTo <tspan class="col-type">DATE</tspan></text>
+    <text x="10" y="126" class="col-reg">FreeGroundTime <tspan class="col-type">INT (min)</tspan></text>
+    <text x="10" y="146" class="col-reg">MinimumTurnaroundFee <tspan class="col-type">DEC</tspan></text>
+    <text x="10" y="164" class="col-reg">DisbursementMarkup% <tspan class="col-type">5.0%</tspan></text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DOMAIN 3: JUNCTION TABLES & SERVICE CATALOG (Middle Tier) -->
+  <!-- ========================================================================= -->
+  
+  <!-- Table: Com_ContractAirports (Junction 1NF) -->
+  <g transform="translate(45, 360)" filter="url(#shadow)">
+    <rect width="245" height="120" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="245" height="24" rx="8" fill="#047857"/>
+    <text x="10" y="17" class="tbl-header">Com_ContractAirports (1NF)</text>
+    <text x="10" y="46" class="col-pk">🔑🔗 ContractID <tspan class="col-type">INT (PK, FK)</tspan></text>
+    <text x="10" y="68" class="col-pk">🔑🔗 AirportID <tspan class="col-type">INT (PK, FK)</tspan></text>
+    <text x="10" y="90" class="col-reg">IsAuthorized <tspan class="col-type">BIT</tspan></text>
+    <text x="10" y="110" font-size="10" fill="#34d399">✓ تفكيك القوائم النصية CAI,HRG</text>
+  </g>
+
+  <!-- Table: Com_Services (Master Catalog) -->
+  <g transform="translate(325, 360)" filter="url(#shadow)">
+    <rect width="250" height="145" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="250" height="24" rx="8" fill="#0f766e"/>
+    <text x="10" y="17" class="tbl-header">Com_Services (IATA SGHA)</text>
+    <text x="10" y="46" class="col-pk">🔑 ServiceID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="68" class="col-reg">ServiceCode <tspan class="col-type">VARCHAR(30) [UQ]</tspan></text>
+    <text x="10" y="88" class="col-reg">IATASGHACode <tspan class="col-type">VARCHAR(20)</tspan></text>
+    <text x="10" y="108" class="col-reg">Category <tspan class="col-type">RAMP / ENERGY</tspan></text>
+    <text x="10" y="128" class="col-reg">StandardUOM <tspan class="col-type">HOUR / TURN / UNIT</tspan></text>
+  </g>
+
+  <!-- Table: Com_ContractServices (Pricing Rules) -->
+  <g transform="translate(625, 360)" filter="url(#shadow)">
+    <rect width="260" height="155" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="260" height="24" rx="8" fill="#047857"/>
+    <text x="10" y="17" class="tbl-header">Com_ContractServices (Rules)</text>
+    <text x="10" y="44" class="col-pk">🔑 ContractServiceID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="64" class="col-fk">🔗 ContractID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="84" class="col-fk">🔗 ServiceID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="104" class="col-reg">StandardRate <tspan class="col-type">DEC(18,4)</tspan></text>
+    <text x="10" y="124" class="col-reg">SupplierBaseRate <tspan class="col-type">DEC(18,4)</tspan></text>
+    <text x="10" y="144" class="col-reg">OvertimeRate / Surcharge <tspan class="col-type">DEC</tspan></text>
+  </g>
+
+  <!-- Table: AP_Suppliers -->
+  <g transform="translate(915, 360)" filter="url(#shadow)">
+    <rect width="240" height="135" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="240" height="24" rx="8" fill="#581c87"/>
+    <text x="10" y="17" class="tbl-header">AP_Suppliers</text>
+    <text x="10" y="44" class="col-pk">🔑 SupplierID <tspan class="col-type">INT (PK)</tspan></text>
+    <text x="10" y="64" class="col-reg">SupplierCode <tspan class="col-type">VARCHAR(20) [UQ]</tspan></text>
+    <text x="10" y="84" class="col-reg">SupplierType <tspan class="col-type">FUEL/CATERING/EQ</tspan></text>
+    <text x="10" y="104" class="col-reg">CurrencyCode <tspan class="col-type">CHAR(3)</tspan></text>
+    <text x="10" y="124" class="col-reg">PaymentTerms <tspan class="col-type">VARCHAR(20)</tspan></text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DOMAIN 4: OPERATIONS & APRON EXECUTION (Middle-Bottom Left) -->
+  <!-- ========================================================================= -->
+  <rect x="30" y="535" width="560" height="395" rx="12" fill="#2d1607" fill-opacity="0.55" stroke="#d97706" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="42" y="545" width="220" height="24" rx="6" fill="url(#amberDomain)"/>
+  <text x="152" y="561" text-anchor="middle" class="domain-title">3. Turnaround Operations Domain</text>
+
+  <!-- Table: Opr_TurnaroundWorkOrders -->
+  <g transform="translate(45, 580)" filter="url(#shadow)">
+    <rect width="245" height="205" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="245" height="26" rx="8" fill="#78350f"/>
+    <text x="10" y="18" class="tbl-header">Opr_TurnaroundWorkOrders</text>
+    <text x="10" y="44" class="col-pk">🔑 WorkOrderID <tspan class="col-type">BIGINT (PK)</tspan></text>
+    <text x="10" y="64" class="col-reg">WorkOrderNo <tspan class="col-type">VARCHAR(30) [UQ]</tspan></text>
+    <text x="10" y="84" class="col-fk">🔗 ContractID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="104" class="col-fk">🔗 AirportID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="124" class="col-fk">🔗 RegistrationID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="144" class="col-reg">ChocksOn / OffUtc <tspan class="col-type">DATETIME2(3)</tspan></text>
+    <text x="10" y="164" class="col-reg">ActualMTOWKg <tspan class="col-type">DECIMAL(10,2)</tspan></text>
+    <text x="10" y="184" class="col-reg">CaptainSignatureHash <tspan class="col-type">SHA-256</tspan></text>
+    <text x="10" y="200" font-size="10.5" fill="#fcd34d">✓ توثيق الاعتماد الرقمي للكابتن</text>
+  </g>
+
+  <!-- Table: Opr_TurnaroundServiceExecutions (Decoupled 3NF Ramp Facts) -->
+  <g transform="translate(325, 580)" filter="url(#shadow)">
+    <rect width="250" height="205" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="250" height="26" rx="8" fill="#92400e"/>
+    <text x="10" y="18" class="tbl-header">Opr_TurnaroundServiceExecutions</text>
+    <text x="10" y="44" class="col-pk">🔑 ServiceExecutionID <tspan class="col-type">BIGINT (PK)</tspan></text>
+    <text x="10" y="64" class="col-fk">🔗 WorkOrderID <tspan class="col-type">BIGINT (FK)</tspan></text>
+    <text x="10" y="84" class="col-fk">🔗 ServiceID <tspan class="col-type">INT (FK)</tspan></text>
+    <text x="10" y="104" class="col-fk">🔗 SupplierID <tspan class="col-type">INT (FK, Null)</tspan></text>
+    <text x="10" y="124" class="col-reg">DeliveredQuantity <tspan class="col-type">DEC(10,3)</tspan></text>
+    <text x="10" y="144" class="col-reg">StartTimeUtc / EndTime <tspan class="col-type">DT2(3)</tspan></text>
+    <text x="10" y="164" class="col-reg">MeterStart / MeterEnd <tspan class="col-type">DEC(12,2)</tspan></text>
+    <text x="10" y="184" class="col-reg">CaptainConfirmed <tspan class="col-type">BIT</tspan></text>
+    <text x="10" y="200" font-size="10.5" fill="#fcd34d">✓ فصل سجل المهبط عن الفوترة</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DOMAIN 5: BILLING & 3-WAY RECONCILIATION MARGIN SHIELD (Bottom Right) -->
+  <!-- ========================================================================= -->
+  <rect x="610" y="535" width="560" height="395" rx="12" fill="#240e36" fill-opacity="0.6" stroke="#9333ea" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="622" y="545" width="240" height="24" rx="6" fill="url(#purpleDomain)"/>
+  <text x="742" y="561" text-anchor="middle" class="domain-title">4. Billing &amp; Margin Shield Domain</text>
+
+  <!-- Table: Bil_CustomerInvoiceLines -->
+  <g transform="translate(625, 580)" filter="url(#shadow)">
+    <rect width="240" height="150" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="240" height="24" rx="8" fill="#4c1d95"/>
+    <text x="10" y="17" class="tbl-header">Bil_CustomerInvoiceLines (AR)</text>
+    <text x="10" y="44" class="col-pk">🔑 InvoiceLineID <tspan class="col-type">BIGINT (PK)</tspan></text>
+    <text x="10" y="64" class="col-fk">🔗 InvoiceID <tspan class="col-type">BIGINT (FK)</tspan></text>
+    <text x="10" y="84" class="col-fk">🔗 ServiceExecutionID <tspan class="col-type">BIGINT(FK)</tspan></text>
+    <text x="10" y="104" class="col-reg">BilledQuantity <tspan class="col-type">DEC(10,3)</tspan></text>
+    <text x="10" y="124" class="col-reg">UnitPrice <tspan class="col-type">DEC(18,4)</tspan></text>
+    <text x="10" y="142" class="col-reg">ExtendedAmount <tspan class="col-type">PERSISTED</tspan></text>
+  </g>
+
+  <!-- Table: Bil_VendorBillLines -->
+  <g transform="translate(915, 580)" filter="url(#shadow)">
+    <rect width="240" height="150" rx="8" fill="url(#cardBg)" class="card-border"/>
+    <rect width="240" height="24" rx="8" fill="#4c1d95"/>
+    <text x="10" y="17" class="tbl-header">Bil_VendorBillLines (AP)</text>
+    <text x="10" y="44" class="col-pk">🔑 VendorBillLineID <tspan class="col-type">BIGINT (PK)</tspan></text>
+    <text x="10" y="64" class="col-fk">🔗 VendorBillID <tspan class="col-type">BIGINT (FK)</tspan></text>
+    <text x="10" y="84" class="col-fk">🔗 ServiceExecutionID <tspan class="col-type">BIGINT(FK)</tspan></text>
+    <text x="10" y="104" class="col-reg">DeliveredQuantity <tspan class="col-type">DEC(10,3)</tspan></text>
+    <text x="10" y="124" class="col-reg">UnitCost <tspan class="col-type">DEC(18,4)</tspan></text>
+    <text x="10" y="142" class="col-reg">ExtendedCost <tspan class="col-type">PERSISTED</tspan></text>
+  </g>
+
+  <!-- Table: Bil_ServiceReconciliations (The Revenue Guard Shield) -->
+  <g transform="translate(625, 755)" filter="url(#shadow)">
+    <rect width="530" height="155" rx="10" fill="#1b0829" stroke="#c084fc" stroke-width="2"/>
+    <rect width="530" height="26" rx="10" fill="url(#purpleDomain)"/>
+    <text x="14" y="18" class="tbl-header">🛡️ Bil_ServiceReconciliations (3-Way Matching Engine &amp; Negative Margin Shield)</text>
+    <text x="14" y="46" class="col-pk">🔑 ReconciliationID <tspan class="col-type">BIGINT (PK)</tspan></text>
+    <text x="14" y="66" class="col-fk">🔗 WorkOrderID <tspan class="col-type">BIGINT (FK)</tspan> | 🔗 ServiceExecutionID <tspan class="col-type">BIGINT (FK, UQ)</tspan></text>
+    <text x="14" y="86" class="col-fk">🔗 InvoiceLineID <tspan class="col-type">BIGINT (AR)</tspan> | 🔗 VendorBillLineID <tspan class="col-type">BIGINT (AP)</tspan></text>
+    <text x="14" y="106" class="col-reg">CustomerRevenue: <tspan class="col-type">$1,200.00</tspan> | VendorCost: <tspan class="col-type">$980.00</tspan> | Markup(5%): <tspan class="col-type">+$60.00</tspan></text>
+    <text x="14" y="126" class="col-reg">NetProfitMargin: <tspan class="col-type">$280.00</tspan> | MarginShieldPassed: <tspan font-weight="bold" fill="#4ade80">TRUE (1)</tspan></text>
+    <rect x="14" y="134" width="502" height="16" rx="4" fill="#3b0764"/>
+    <text x="20" y="146" font-size="10.5" font-family="'SF Mono', Consolas, monospace" font-weight="bold" fill="#f472b6">
+      CONSTRAINT CK_MarginShield CHECK (CustomerRevenue &gt;= VendorCost - DisbursementCommission)
+    </text>
+  </g>
+
+  <!-- Connective Arrows & Relations -->
+  <!-- Airports to ContractAirports -->
+  <path d="M 160 320 L 160 360" class="rel-line-strong"/>
+  <!-- Contracts to ContractAirports -->
+  <path d="M 895 240 L 290 410" class="rel-line"/>
+  <!-- WorkOrder to ServiceExecutions -->
+  <path d="M 290 680 L 325 680" class="rel-line-strong" marker-end="url(#arrowRel)"/>
+  <!-- ServiceExecution to InvoiceLine -->
+  <path d="M 575 660 L 625 660" class="rel-line-strong" marker-end="url(#arrowRel)"/>
+  <!-- ServiceExecution to VendorBillLine -->
+  <path d="M 575 720 L 915 670" class="rel-line-strong" marker-end="url(#arrowRel)"/>
+  <!-- InvoiceLine & VendorBillLine to Reconciliation -->
+  <path d="M 740 730 L 740 755" class="rel-line-strong" marker-end="url(#arrowRel)"/>
+  <path d="M 1030 730 L 1030 755" class="rel-line-strong" marker-end="url(#arrowRel)"/>
+</svg>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>دليل دورة حياة العقود في نظام إدارة المناولة الأرضية والفوترة (TAS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 12mm 14mm 12mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8.5pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      direction: rtl;
+      text-align: right;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 9.5pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 0;
+    }
+
+    /* Document Header Banner */
+    .doc-header-banner {
+      background: linear-gradient(135deg, #090e17, #0f172a);
+      color: #ffffff;
+      padding: 22px 26px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #1e293b;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    .badge-top {
+      display: inline-block;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .main-title {
+      font-family: 'Cairo', sans-serif;
+      font-size: 19pt;
+      font-weight: 900;
+      color: #f8fafc;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .sub-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      color: #94a3b8;
+      font-weight: 500;
+      margin-bottom: 14px;
+      direction: ltr;
+      text-align: right;
+    }
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding-top: 10px;
+      font-size: 8pt;
+      color: #cbd5e1;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Headings */
+    h1 {
+      display: none; /* Already rendered in banner */
+    }
+    h2 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      color: #0369a1;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+      break-after: avoid;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    h4 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-right: 20px;
+      margin-bottom: 10px;
+    }
+    li {
+      margin-bottom: 5px;
+      color: #334155;
+    }
+
+    strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* Code and Technical Identifiers */
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 8pt;
+      background: #f1f5f9;
+      color: #0369a1;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      direction: ltr;
+      display: inline-block;
+      unicode-bidi: embed;
+    }
+
+    pre {
+      background: #090e17;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow-x: auto;
+      direction: ltr;
+      text-align: left;
+    }
+    pre code {
+      background: transparent;
+      border: none;
+      color: #38bdf8;
+      font-size: 8pt;
+      line-height: 1.4;
+      padding: 0;
+      display: block;
+      white-space: pre;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 8pt;
+      page-break-inside: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    tr {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 7px 9px;
+      font-weight: 700;
+      font-size: 8pt;
+      text-align: right;
+      border: 1px solid #334155;
+      line-height: 1.35;
+    }
+    td {
+      padding: 6px 8px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+    td code {
+      font-size: 7.5pt;
+      white-space: normal;
+      word-break: break-all;
+    }
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Diagram & Figure Containers */
+    .diagram-figure {
+      margin: 16px 0;
+      text-align: center;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 10px;
+      background: #090e17;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .diagram-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 6px;
+    }
+    .diagram-caption {
+      font-family: 'Cairo', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 18px 0;
+    }
+
+    /* Footer Note */
+    .doc-footer {
+      border-top: 2px solid #e2e8f0;
+      margin-top: 24px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #64748b;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover Header Banner -->
+  <div class="doc-header-banner">
+    <div class="badge-top">Ground Handling Operations &amp; Turnaround Billing Architecture</div>
+    <div class="main-title">دليل دورة حياة العقود في نظام إدارة المناولة الأرضية والفوترة (TAS)</div>
+    <div class="sub-title">End-to-End Contract Governance, Dynamic Pricing &amp; Turnaround Billing Reference Guide</div>
+    <div class="meta-row">
+      <div class="meta-item"><span>🏢</span> <strong>الجهة:</strong> قطاع الطيران والمناولة الأرضية</div>
+      <div class="meta-item"><span>📋</span> <strong>النظام:</strong> TAS Turnaround Billing Engine</div>
+      <div class="meta-item"><span>🔖</span> <strong>الإصدار:</strong> Ver 2.4 (Enterprise Edition)</div>
+      <div class="meta-item"><span>📅</span> <strong>التاريخ:</strong> سبتمبر 2026</div>
+    </div>
+  </div>
+
+  <!-- Main Content Body -->
+  <div class="content-body">
+    <h1>دليل دورة حياة العقود في نظام إدارة المناولة الأرضية والفوترة (TAS)</h1>
+<h2>Ground Handling Contract Management &amp; Turnaround Billing Lifecycle Guide</h2>
+<hr>
+<h2>📌 مقدمة عامة (Executive Overview)</h2>
+<p>في أنظمة المناولة الأرضية لشركات الطيران (<strong>Aviation Ground Handling</strong>)، لا يُمثّل العقد مجرد وثيقة قانونية أرشيفية، بل هو <strong>محرك حسابي وتشغيلي تفاعلي (Active Calculation Engine)</strong> يربط بين:</p>
+<ol>
+<li><strong>الالتزامات التجارية المسبقة</strong> مع شركات الطيران.</li>
+<li><strong>العمليات الميدانية على أرض المهبط (Apron / Ramp Operations)</strong> بكل تفاصيلها اللحظية.</li>
+<li><strong>الفوترة الدقيقة وضمان الإيرادات (Revenue Assurance)</strong> لحماية هوامش الربح التشغيلية من أي تسرب للخدمات (<strong>Service Leakage</strong>).</li>
+</ol>
+<hr>
+<h2>🗺️ المخطط العام الشامل: دورة حياة العقد من البداية للنهاية</h2>
+
+      <figure class="diagram-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NjAgOTIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA5MGUxNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjE3MmEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImNhcmRHcmFkMSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxZTI5M2IiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYxNzJhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJibHVlR2xvdyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzhiZGY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzYzNjZmMSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iaW5kaWdvR2xvdyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjODE4Y2Y4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2MwODRmYyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYW1iZXJHbG93IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmNTllMGIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmJiZjI0Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJlbWVyYWxkR2xvdyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMTBiOTgxIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzM0ZDM5OSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icm9zZUdsb3ciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0M2Y1ZSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYjcxODUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii01JSIgeT0iLTUlIiB3aWR0aD0iMTEwJSIgaGVpZ2h0PSIxMTAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjYiIHN0ZERldmlhdGlvbj0iOCIgZmxvb2QtY29sb3I9IiMwMDAwMDAiIGZsb29kLW9wYWNpdHk9IjAuNDUiLz4KICAgIDwvZmlsdGVyPgogICAgPG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNiIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgICA8cGF0aCBkPSJNIDAgMSBMIDEwIDUgTCAwIDkgeiIgZmlsbD0iIzY0NzQ4YiIvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyIGlkPSJhcnJvd0JsdWUiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNiIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgICA8cGF0aCBkPSJNIDAgMSBMIDEwIDUgTCAwIDkgeiIgZmlsbD0iIzM4YmRmOCIvPgogICAgPC9tYXJrZXI+CiAgPC9kZWZzPgoKICA8c3R5bGU+CiAgICAudGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDI0cHg7IGZvbnQtd2VpZ2h0OiA4MDA7IGZpbGw6ICNmOGZhZmM7IH0KICAgIC5zdWJ0aXRsZSB7IGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICJTZWdvZSBVSSIsIFJvYm90bywgIkNhaXJvIiwgIlRhaG9tYSIsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTNweDsgZmlsbDogIzk0YTNiODsgfQogICAgLmNhcmQtdGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE3cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZpbGw6ICNmOGZhZmM7IH0KICAgIC5iYWRnZS10ZXh0IHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMXB4OyBmb250LXdlaWdodDogODAwOyBmaWxsOiAjZmZmZmZmOyBsZXR0ZXItc3BhY2luZzogMC41cHg7IH0KICAgIC5pdGVtLXRleHQgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEzLjVweDsgZmlsbDogI2NiZDVlMTsgfQogICAgLml0ZW0tYnVsbGV0IHsgZm9udC1zaXplOiAxNHB4OyB9CiAgPC9zdHlsZT4KCiAgPCEtLSBDYW52YXMgQmFja2dyb3VuZCAtLT4KICA8cmVjdCB3aWR0aD0iOTYwIiBoZWlnaHQ9IjkyMCIgcng9IjE2IiBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0iIzFlMjkzYiIgc3Ryb2tlLXdpZHRoPSIyIi8+CgogIDwhLS0gSGVhZGVyIFNlY3Rpb24gLS0+CiAgPHJlY3QgeD0iMzAiIHk9IjI0IiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjcwIiByeD0iMTIiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0iIzFmMjkzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI0ODAiIHk9IjUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUiPtiv2YjYsdipINit2YrYp9ipINin2YTYudmC2YjYryDZgdmKINmG2LjYp9mFINil2K/Yp9ix2Kkg2KfZhNmF2YbYp9mI2YTYqSDZiNin2YTZgdmI2KrYsdipIChUQVMpPC90ZXh0PgogIDx0ZXh0IHg9IjQ4MCIgeT0iNzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzdWJ0aXRsZSI+RW5kLXRvLUVuZCBHcm91bmQgSGFuZGxpbmcgQ29udHJhY3QgTGlmZWN5Y2xlICZhbXA7IFR1cm5hcm91bmQgQmlsbGluZyBFbmdpbmU8L3RleHQ+CgogIDwhLS0gPT09PT09PT09PT09PT09PT09PT0gQ0FSRCAxID09PT09PT09PT09PT09PT09PT09IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwLCAxMTUpIiBmaWx0ZXI9InVybCgjc2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iODgwIiBoZWlnaHQ9IjEyMCIgcng9IjE0IiBmaWxsPSJ1cmwoI2NhcmRHcmFkMSkiIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDwhLS0gU3RhZ2UgQmFkZ2UgLS0+CiAgICA8cmVjdCB4PSI3MzAiIHk9IjE2IiB3aWR0aD0iMTMwIiBoZWlnaHQ9IjI4IiByeD0iNiIgZmlsbD0idXJsKCNibHVlR2xvdykiLz4KICAgIDx0ZXh0IHg9Ijc5NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJiYWRnZS10ZXh0Ij7Yp9mE2YXYsdit2YTYqSAwMTwvdGV4dD4KICAgIDwhLS0gQ2FyZCBUaXRsZSAtLT4KICAgIDx0ZXh0IHg9IjcxNSIgeT0iMzYiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJjYXJkLXRpdGxlIj7Yp9mE2KrYo9iz2YrYsyDZiNin2YTYrdmI2YPZhdipINin2YTYqtis2KfYsdmK2KkgKE1hc3RlciBTZXR1cCAmYW1wOyBHb3Zlcm5hbmNlKTwvdGV4dD4KICAgIDwhLS0gQnVsbGV0cyAtLT4KICAgIDx0ZXh0IHg9Ijg1MCIgeT0iNjgiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJpdGVtLXRleHQiPjx0c3BhbiBmaWxsPSIjMzhiZGY4Ij7il488L3RzcGFuPiDYqti52LHZitmBINin2YTZhtin2YLZhCDYp9mE2KzZiNmK2Iwg2KfZhNi52YXZhNipINin2YTZhdi52KrZhdiv2KnYjCDZiNin2YTYqtiz2YfZitmE2KfYqiDYp9mE2KfYptiq2YXYp9mG2YrYqSAoMTQg2KPZiCAzMCDZitmI2YXYp9mLINij2Ygg2K/Zgdi5INmG2YLYr9mKINmF2LPYqNmCKS48L3RleHQ+CiAgICA8dGV4dCB4PSI4NTAiIHk9IjkzIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0iaXRlbS10ZXh0Ij48dHNwYW4gZmlsbD0iIzM4YmRmOCI+4pePPC90c3Bhbj4g2KrYrdiv2YrYryDYp9mE2YXYt9in2LHYp9iqINmI2KfZhNmF2K3Yt9in2KrYjCDYt9ix2KfYstin2Kog2YjYo9mI2LLYp9mGINin2YTYt9in2KbYsdin2KogKE1UT1cp2Iwg2YjZgdmH2LHYsyDYrtiv2YXYp9iqINij2YrYp9iq2KcgKElBVEEgU0dIQSkuPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBDb25uZWN0aW5nIEFycm93IDEgLT4gMiAtLT4KICA8cGF0aCBkPSJNIDQ4MCAyMzUgTCA0ODAgMjY1IiBzdHJva2U9IiMzOGJkZjgiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtZGFzaGFycmF5PSI0IDQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3dCbHVlKSIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09PT09IENBUkQgMiA9PT09PT09PT09PT09PT09PT09PSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MCwgMjc1KSIgZmlsdGVyPSJ1cmwoI3NoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9Ijg4MCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNCIgZmlsbD0idXJsKCNjYXJkR3JhZDEpIiBzdHJva2U9IiM4MThjZjgiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8IS0tIFN0YWdlIEJhZGdlIC0tPgogICAgPHJlY3QgeD0iNzMwIiB5PSIxNiIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIyOCIgcng9IjYiIGZpbGw9InVybCgjaW5kaWdvR2xvdykiLz4KICAgIDx0ZXh0IHg9Ijc5NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJiYWRnZS10ZXh0Ij7Yp9mE2YXYsdit2YTYqSAwMjwvdGV4dD4KICAgIDwhLS0gQ2FyZCBUaXRsZSAtLT4KICAgIDx0ZXh0IHg9IjcxNSIgeT0iMzYiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJjYXJkLXRpdGxlIj7Yp9mE2YXYs9in2LEg2KfZhNiq2KzYp9ix2Yog2YjYqtis2YfZitiyINin2YTYsdit2YTYqSAoUHJlLUZsaWdodCBDb21tZXJjaWFsKTwvdGV4dD4KICAgIDwhLS0gQnVsbGV0cyAtLT4KICAgIDx0ZXh0IHg9Ijg1MCIgeT0iNjgiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJpdGVtLXRleHQiPjx0c3BhbiBmaWxsPSIjODE4Y2Y4Ij7il488L3RzcGFuPiDYp9iz2KrZgtio2KfZhCDYt9mE2Kgg2KfZhNix2K3ZhNipINmI2KfYrdiq2LPYp9ioINin2YTYqti52LHZgdipINii2YTZitin2Ysg2LnYqNixINmF2K3YsdmDINin2YTYqtiz2LnZitixIChEeW5hbWljIFJhdGUgRW5naW5lKS48L3RleHQ+CiAgICA8dGV4dCB4PSI4NTAiIHk9IjkzIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0iaXRlbS10ZXh0Ij48dHNwYW4gZmlsbD0iIzgxOGNmOCI+4pePPC90c3Bhbj4g2KXYtdiv2KfYsSDYudix2LYg2KfZhNiz2LnYsSAoUXVvdGF0aW9uKdiMINin2YTZgdin2KrZiNix2Kkg2KfZhNmF2KjYr9im2YrYqSAoUHJvZm9ybWEp2Iwg2YjYqtmI2YTZitivINij2YXYsSDYp9mE2LnZhdmEIChXb3JrIE9yZGVyKS48L3RleHQ+CiAgPC9nPgoKICA8IS0tIENvbm5lY3RpbmcgQXJyb3cgMiAtPiAzIC0tPgogIDxwYXRoIGQ9Ik0gNDgwIDM5NSBMIDQ4MCA0MjUiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PT09PSBDQVJEIDMgPT09PT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAsIDQzNSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSI4ODAiIGhlaWdodD0iMTIwIiByeD0iMTQiIGZpbGw9InVybCgjY2FyZEdyYWQxKSIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgPCEtLSBTdGFnZSBCYWRnZSAtLT4KICAgIDxyZWN0IHg9IjczMCIgeT0iMTYiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjgiIHJ4PSI2IiBmaWxsPSJ1cmwoI2FtYmVyR2xvdykiLz4KICAgIDx0ZXh0IHg9Ijc5NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJiYWRnZS10ZXh0Ij7Yp9mE2YXYsdit2YTYqSAwMzwvdGV4dD4KICAgIDwhLS0gQ2FyZCBUaXRsZSAtLT4KICAgIDx0ZXh0IHg9IjcxNSIgeT0iMzYiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJjYXJkLXRpdGxlIj7Yp9mE2KrZhtmB2YrYsCDYp9mE2YXZitiv2KfZhtmKINi52YTZiSDYo9ix2LYg2KfZhNmF2YfYqNi3IChBcHJvbiBPcGVyYXRpb25zKTwvdGV4dD4KICAgIDwhLS0gQnVsbGV0cyAtLT4KICAgIDx0ZXh0IHg9Ijg1MCIgeT0iNjgiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJpdGVtLXRleHQiPjx0c3BhbiBmaWxsPSIjZjU5ZTBiIj7il488L3RzcGFuPiDZh9io2YjYtyDYp9mE2LfYp9im2LHYqSDZiNmI2LbYuSDYp9mE2KPZiNiq2KfYryAoQ2hvY2tzLU9uKSDZhNio2K/YoSDYudiv2KfYryDZiNmC2Kog2KfZhNmF2YPZiNirINmI2LPYp9i52KfYqiDYp9mE2YPZh9ix2KjYp9ihINin2YTYo9ix2LbZitipIChHUFUpLjwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg1MCIgeT0iOTMiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJpdGVtLXRleHQiPjx0c3BhbiBmaWxsPSIjZjU5ZTBiIj7il488L3RzcGFuPiDYqtmC2K/ZitmFINin2YTYs9mE2KfZhNmF2Iwg2KfZhNmF2YrYp9mH2Iwg2KfZhNi12LHZgdiMINin2YTZiNmC2YjYr9iMINmI2KXYqtmF2KfZhSDYp9mE2KrZiNmC2YrYuSDYp9mE2KXZhNmD2KrYsdmI2YbZiiDYp9mE2YHZiNix2Yog2YTZg9in2KjYqtmGINin2YTYt9in2KbYsdipLjwvdGV4dD4KICA8L2c+CgogIDwhLS0gQ29ubmVjdGluZyBBcnJvdyAzIC0+IDQgLS0+CiAgPHBhdGggZD0iTSA0ODAgNTU1IEwgNDgwIDU4NSIgc3Ryb2tlPSIjMTBiOTgxIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09PT09IENBUkQgNCA9PT09PT09PT09PT09PT09PT09PSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MCwgNTk1KSIgZmlsdGVyPSJ1cmwoI3NoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9Ijg4MCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNCIgZmlsbD0idXJsKCNjYXJkR3JhZDEpIiBzdHJva2U9IiMxMGI5ODEiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8IS0tIFN0YWdlIEJhZGdlIC0tPgogICAgPHJlY3QgeD0iNzMwIiB5PSIxNiIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIyOCIgcng9IjYiIGZpbGw9InVybCgjZW1lcmFsZEdsb3cpIi8+CiAgICA8dGV4dCB4PSI3OTUiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0iYmFkZ2UtdGV4dCI+2KfZhNmF2LHYrdmE2KkgMDQ8L3RleHQ+CiAgICA8IS0tIENhcmQgVGl0bGUgLS0+CiAgICA8dGV4dCB4PSI3MTUiIHk9IjM2IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0iY2FyZC10aXRsZSI+2KfZhNmF2LfYp9io2YLYqSDYp9mE2KvZhNin2KvZitipINmI2KfZhNmB2YjYqtix2Kkg2KfZhNmG2YfYp9im2YrYqSAoMy1XYXkgTWF0Y2ggJmFtcDsgSW52b2ljaW5nKTwvdGV4dD4KICAgIDwhLS0gQnVsbGV0cyAtLT4KICAgIDx0ZXh0IHg9Ijg1MCIgeT0iNjgiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJpdGVtLXRleHQiPjx0c3BhbiBmaWxsPSIjMTBiOTgxIj7il488L3RzcGFuPiDYp9mE2YXYt9in2KjZgtipINin2YTYq9mE2KfYq9mK2Kkg2KfZhNiw2YPZitipOiDYqtmB2YjZiti2INin2YTYtNix2KfYoSArINiz2KzZhCDYp9mE2YXZh9io2LcgKyDZgdin2KrZiNix2Kkg2YXZgtin2YjZhCDYp9mE2KjYp9i32YYg2YTYrdmF2KfZitipINin2YTZh9in2YXYtCDYp9mE2LHYqNit2YouPC90ZXh0PgogICAgPHRleHQgeD0iODUwIiB5PSI5MyIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9Iml0ZW0tdGV4dCI+PHRzcGFuIGZpbGw9IiMxMGI5ODEiPuKXjzwvdHNwYW4+INin2K3Yqtiz2KfYqCDYutix2KfZhdin2Kog2KfZhNmF2YPZiNirINin2YTYpdi22KfZgdmKINmI2KfZhNix2LPZiNmF2Iwg2YjYpdi12K/Yp9ixINin2YTZgdin2KrZiNix2Kkg2KfZhNi22LHZitio2YrYqSDZiNiq2LHYrdmK2YTZh9inINmE2YAgKEFSKS48L3RleHQ+CiAgPC9nPgoKICA8IS0tIENvbm5lY3RpbmcgQXJyb3cgNCAtPiA1IC0tPgogIDxwYXRoIGQ9Ik0gNDgwIDcxNSBMIDQ4MCA3NDUiIHN0cm9rZT0iI2Y0M2Y1ZSIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PT09PSBDQVJEIDUgPT09PT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAsIDc1NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSI4ODAiIGhlaWdodD0iMTIwIiByeD0iMTQiIGZpbGw9InVybCgjY2FyZEdyYWQxKSIgc3Ryb2tlPSIjZjQzZjVlIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgPCEtLSBTdGFnZSBCYWRnZSAtLT4KICAgIDxyZWN0IHg9IjczMCIgeT0iMTYiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjgiIHJ4PSI2IiBmaWxsPSJ1cmwoI3Jvc2VHbG93KSIvPgogICAgPHRleHQgeD0iNzk1IiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImJhZGdlLXRleHQiPtin2YTZhdix2K3ZhNipIDA1PC90ZXh0PgogICAgPCEtLSBDYXJkIFRpdGxlIC0tPgogICAgPHRleHQgeD0iNzE1IiB5PSIzNiIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9ImNhcmQtdGl0bGUiPtin2YTYsdmC2KfYqNip2Iwg2K7YtdmI2YXYp9iqINin2YTYrdis2YXYjCDZiNiq2KzYr9mK2K8g2KfZhNi52YLYryAoQXVkaXQgJmFtcDsgUmVuZXdhbCk8L3RleHQ+CiAgICA8IS0tIEJ1bGxldHMgLS0+CiAgICA8dGV4dCB4PSI4NTAiIHk9IjY4IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0iaXRlbS10ZXh0Ij48dHNwYW4gZmlsbD0iI2Y0M2Y1ZSI+4pePPC90c3Bhbj4g2KrYt9io2YrZgiDYrti12YjZhdin2Kog2KfZhNit2KzZhSDYp9mE2KrYsdin2YPZhdmK2KkgKFZvbHVtZSBSZWJhdGVzKSDYudmG2K8g2KjZhNmI2Log2LnYr9ivINmF2LnZitmGINmF2YYg2KfZhNix2K3ZhNin2Kog2KfZhNi02YfYsdmK2KkuPC90ZXh0PgogICAgPHRleHQgeD0iODUwIiB5PSI5MyIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9Iml0ZW0tdGV4dCI+PHRzcGFuIGZpbGw9IiNmNDNmNWUiPuKXjzwvdHNwYW4+INiq2YbYqNmK2YfYp9iqINin2LPYqtio2KfZgtmK2Kkg2YLYqNmEINin2YbYqtmH2KfYoSDYp9mE2LnZgtivINio2YAgKDkwLzYwLzMwINmK2YjZhdin2YspINmE2K/Ysdin2LPYqSDZiNiq2KzYr9mK2K8g2KfZhNij2LPYudin2LEg2KjYpdi12K/Yp9ixINis2K/ZitivLjwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=" alt="مخطط دورة حياة العقد الشامل" class="diagram-img" />
+        <figcaption class="diagram-caption">مخطط دورة حياة العقد الشامل</figcaption>
+      </figure>
+    
+<hr>
+<h2>👥 مخطط تفاعل أطراف المنظومة مع دورة حياة العقد (Actors Interaction Workflow Matrix)</h2>
+<p>يوضح المخطط التالي كيفية تفاعل الفاعلين الأساسيين (من الإدارة التجارية، وشركة الطيران، وفريق مبيعات العمليات، ومشرف المهبط، وكابتن الطائرة، ومقاولي الباطن، وإدارة الحسابات والفوترة) وتبادل الوثائق الرقمية والرموز التشغيلية عبر مراحل العقد:</p>
+
+      <figure class="diagram-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjIwIDg0MCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgPGRlZnM+CiAgICA8IS0tIEJhY2tncm91bmQgR3JhZGllbnQgLS0+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImNhbnZhc0JnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA3MGMxNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjE3MmEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CgogICAgPCEtLSBBY3RvciBIZWFkZXIgR3JhZGllbnRzIC0tPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkQ29tbWVyY2lhbCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzhiZGY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAyODRjNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZEFpcmxpbmUiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzgxOGNmOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2MzY2ZjEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRTYWxlcyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4OTFiMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZFJhbXAiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1OWUwYiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRDYXB0YWluIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMGI5ODEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDU5NjY5Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkVmVuZG9yIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNlYzQ4OTkiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZGIyNzc3Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkRmluYW5jZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzkzMzNlYSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KCiAgICA8IS0tIEdsb3cgJiBTaGFkb3cgRmlsdGVycyAtLT4KICAgIDxmaWx0ZXIgaWQ9Im5vZGVTaGFkb3ciIHg9Ii0xMCUiIHk9Ii0xMCUiIHdpZHRoPSIxMjAlIiBoZWlnaHQ9IjEyMCUiPgogICAgICA8ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iNCIgc3RkRGV2aWF0aW9uPSI2IiBmbG9vZC1jb2xvcj0iIzAwMDAwMCIgZmxvb2Qtb3BhY2l0eT0iMC41NSIvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJiYWRnZVNoYWRvdyIgeD0iLTEwJSIgeT0iLTEwJSIgd2lkdGg9IjEyMCUiIGhlaWdodD0iMTIwJSI+CiAgICAgIDxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIyIiBzdGREZXZpYXRpb249IjMiIGZsb29kLWNvbG9yPSIjMDAwMDAwIiBmbG9vZC1vcGFjaXR5PSIwLjQiLz4KICAgIDwvZmlsdGVyPgoKICAgIDwhLS0gTWFya2VycyAtLT4KICAgIDxtYXJrZXIgaWQ9ImFycm93U2t5IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjYiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj4KICAgICAgPHBhdGggZD0iTSAwIDEgTCAxMCA1IEwgMCA5IHoiIGZpbGw9IiMzOGJkZjgiLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlciBpZD0iYXJyb3dJbmRpZ28iIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNiIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgICA8cGF0aCBkPSJNIDAgMSBMIDEwIDUgTCAwIDkgeiIgZmlsbD0iIzgxOGNmOCIvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyIGlkPSJhcnJvd0FtYmVyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjYiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj4KICAgICAgPHBhdGggZD0iTSAwIDEgTCAxMCA1IEwgMCA5IHoiIGZpbGw9IiNmNTllMGIiLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlciBpZD0iYXJyb3dFbWVyYWxkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjYiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj4KICAgICAgPHBhdGggZD0iTSAwIDEgTCAxMCA1IEwgMCA5IHoiIGZpbGw9IiMxMGI5ODEiLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlciBpZD0iYXJyb3dQdXJwbGUiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNiIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgICA8cGF0aCBkPSJNIDAgMSBMIDEwIDUgTCAwIDkgeiIgZmlsbD0iI2E4NTVmNyIvPgogICAgPC9tYXJrZXI+CiAgPC9kZWZzPgoKICA8c3R5bGU+CiAgICAudGl0bGUtbWFpbiB7IGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICJTZWdvZSBVSSIsIFJvYm90bywgIkNhaXJvIiwgIlRhaG9tYSIsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMjJweDsgZm9udC13ZWlnaHQ6IDgwMDsgZmlsbDogI2Y4ZmFmYzsgfQogICAgLnRpdGxlLXN1YiB7IGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICJTZWdvZSBVSSIsIFJvYm90bywgIkNhaXJvIiwgIlRhaG9tYSIsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJweDsgZmlsbDogIzk0YTNiODsgfQogICAgLmFjdG9yLW5hbWUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEzcHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZpbGw6ICNmZmZmZmY7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICAgIC5hY3Rvci1yb2xlIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjY2JkNWUxOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyB9CiAgICAuc3RlcC1ib3gtdGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExLjVweDsgZm9udC13ZWlnaHQ6IDcwMDsgZmlsbDogI2YxZjVmOTsgdGV4dC1hbmNob3I6IG1pZGRsZTsgfQogICAgLnN0ZXAtYm94LWRlc2MgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDkuNXB4OyBmaWxsOiAjOTRhM2I4OyB0ZXh0LWFuY2hvcjogbWlkZGxlOyB9CiAgICAuc3RlcC1ib3gtZG9jIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiA5cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGxldHRlci1zcGFjaW5nOiAwLjJweDsgdGV4dC1hbmNob3I6IG1pZGRsZTsgfQogICAgLnBoYXNlLXRhZyB7IGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICJTZWdvZSBVSSIsIFJvYm90bywgIkNhaXJvIiwgIlRhaG9tYSIsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFweDsgZm9udC13ZWlnaHQ6IDgwMDsgZmlsbDogIzY0NzQ4YjsgbGV0dGVyLXNwYWNpbmc6IDAuOHB4OyB9CiAgPC9zdHlsZT4KCiAgPCEtLSBDYW52YXMgT3V0ZXIgQm9yZGVyIC0tPgogIDxyZWN0IHdpZHRoPSIxMjIwIiBoZWlnaHQ9Ijg0MCIgcng9IjE2IiBmaWxsPSJ1cmwoI2NhbnZhc0JnKSIgc3Ryb2tlPSIjMWUyOTNiIiBzdHJva2Utd2lkdGg9IjIiLz4KCiAgPCEtLSBUb3AgVGl0bGUgSGVhZGVyIC0tPgogIDxyZWN0IHg9IjI1IiB5PSIxOCIgd2lkdGg9IjExNzAiIGhlaWdodD0iNjQiIHJ4PSIxMCIgZmlsbD0iIzExMTgyNyIgc3Ryb2tlPSIjMWYyOTM3IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjYxMCIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZS1tYWluIj7Zhdiu2LfYtyDYqtmB2KfYudmEINij2LfYsdin2YEg2KfZhNmF2YbYuNmI2YXYqSDZhdi5INiv2YjYsdipINit2YrYp9ipINin2YTYudmC2K8g2YjYp9mE2YHZiNiq2LHYqTwvdGV4dD4KICA8dGV4dCB4PSI2MTAiIHk9IjY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUtc3ViIj5Dcm9zcy1GdW5jdGlvbmFsIEFjdG9ycyBJbnRlcmFjdGlvbiAmYW1wOyBEb2N1bWVudCBIYW5kb2ZmIEFjcm9zcyBUdXJuYXJvdW5kIEJpbGxpbmcgTGlmZWN5Y2xlPC90ZXh0PgoKICA8IS0tID09PT09PT09PT09PT09PT09PT09IEFDVE9SIFNXSU1MQU5FIEhFQURFUlMgKENPTFVNTlMpID09PT09PT09PT09PT09PT09PT09IC0tPgogIDwhLS0gQ29sIDE6IENvbW1lcmNpYWwgLyBMZWdhbCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMCwgOTUpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSI1MiIgcng9IjgiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9InVybCgjZ3JhZENvbW1lcmNpYWwpIi8+CiAgICA8dGV4dCB4PSI3NSIgeT0iMjQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfj5vvuI88L3RleHQ+CiAgICA8dGV4dCB4PSI3NSIgeT0iMzgiIGNsYXNzPSJhY3Rvci1uYW1lIj7Yp9mE2KXYr9in2LHYqSDYp9mE2KrYrNin2LHZitipPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjQ4IiBjbGFzcz0iYWN0b3Itcm9sZSI+Q29tbWVyY2lhbCAmYW1wOyBMZWdhbDwvdGV4dD4KICA8L2c+CgogIDwhLS0gQ29sIDI6IEFpcmxpbmUgQ3VzdG9tZXIgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTk1LCA5NSkiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUyIiByeD0iOCIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjODE4Y2Y4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0idXJsKCNncmFkQWlybGluZSkiLz4KICAgIDx0ZXh0IHg9Ijc1IiB5PSIyNCIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4pyI77iPPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjM4IiBjbGFzcz0iYWN0b3ItbmFtZSI+2LTYsdmD2Kkg2KfZhNi32YrYsdin2YY8L3RleHQ+CiAgICA8dGV4dCB4PSI3NSIgeT0iNDgiIGNsYXNzPSJhY3Rvci1yb2xlIj5BaXJsaW5lIERpc3BhdGNoIC8gT0NDPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBDb2wgMzogU2FsZXMgLyBEaXNwYXRjaCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjAsIDk1KSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiMwNmI2ZDQiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ1cmwoI2dyYWRTYWxlcykiLz4KICAgIDx0ZXh0IHg9Ijc1IiB5PSIyNCIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+SvDwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc1IiB5PSIzOCIgY2xhc3M9ImFjdG9yLW5hbWUiPtmF2KjZiti52KfYqiDYp9mE2YXZhtin2YjZhNipPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjQ4IiBjbGFzcz0iYWN0b3Itcm9sZSI+Q29tbWVyY2lhbCBPcGVyYXRpb25zPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBDb2wgNDogUmFtcCBTdXBlcnZpc29yIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUyNSwgOTUpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSI1MiIgcng9IjgiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9InVybCgjZ3JhZFJhbXApIi8+CiAgICA8dGV4dCB4PSI3NSIgeT0iMjQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfpro8L3RleHQ+CiAgICA8dGV4dCB4PSI3NSIgeT0iMzgiIGNsYXNzPSJhY3Rvci1uYW1lIj7Zhdi02LHZgSDYp9mE2YXZh9io2Lc8L3RleHQ+CiAgICA8dGV4dCB4PSI3NSIgeT0iNDgiIGNsYXNzPSJhY3Rvci1yb2xlIj5BcHJvbiBSYW1wIExlYWQ8L3RleHQ+CiAgPC9nPgoKICA8IS0tIENvbCA1OiBBaXJjcmFmdCBDYXB0YWluIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY5MCwgOTUpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSI1MiIgcng9IjgiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxNDAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9InVybCgjZ3JhZENhcHRhaW4pIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iMjQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfp5HigI3inIjvuI88L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iMzgiIGNsYXNzPSJhY3Rvci1uYW1lIj7Zg9in2KjYqtmGINin2YTYt9in2KbYsdipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjQ4IiBjbGFzcz0iYWN0b3Itcm9sZSI+RmxpZ2h0IENhcHRhaW4gLyBDcmV3PC90ZXh0PgogIDwvZz4KCiAgPCEtLSBDb2wgNjogU3ViY29udHJhY3RvciAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NDUsIDk1KSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxNDUiIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiNlYzQ4OTkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTQ1IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ1cmwoI2dyYWRWZW5kb3IpIi8+CiAgICA8dGV4dCB4PSI3MiIgeT0iMjQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKbvTwvdGV4dD4KICAgIDx0ZXh0IHg9IjcyIiB5PSIzOCIgY2xhc3M9ImFjdG9yLW5hbWUiPtmF2YLYp9mI2YTZiCDYp9mE2KjYp9i32YY8L3RleHQ+CiAgICA8dGV4dCB4PSI3MiIgeT0iNDgiIGNsYXNzPSJhY3Rvci1yb2xlIj5WZW5kb3JzIChGdWVsL0NhdGVyaW5nKTwvdGV4dD4KICA8L2c+CgogIDwhLS0gQ29sIDc6IEJpbGxpbmcgJiBGaW5hbmNlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMDUsIDk1KSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiNhODU1ZjciIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ1cmwoI2dyYWRGaW5hbmNlKSIvPgogICAgPHRleHQgeD0iNzUiIHk9IjI0IiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5OKPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjM4IiBjbGFzcz0iYWN0b3ItbmFtZSI+2KfZhNit2LPYp9io2KfYqiDZiNin2YTZgdmI2KrYsdipPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjQ4IiBjbGFzcz0iYWN0b3Itcm9sZSI+RmluYW5jZSAmYW1wOyBBUiBBdWRpdDwvdGV4dD4KICA8L2c+CgogIDwhLS0gVmVydGljYWwgU3dpbWxhbmUgR3VpZGUgTGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwNSIgeTE9IjE1NSIgeDI9IjEwNSIgeTI9IjgwNSIgc3Ryb2tlPSIjMWUyOTNiIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgogIDxsaW5lIHgxPSIyNzAiIHkxPSIxNTUiIHgyPSIyNzAiIHkyPSI4MDUiIHN0cm9rZT0iIzFlMjkzYiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz4KICA8bGluZSB4MT0iNDM1IiB5MT0iMTU1IiB4Mj0iNDM1IiB5Mj0iODA1IiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgPGxpbmUgeDE9IjYwMCIgeTE9IjE1NSIgeDI9IjYwMCIgeTI9IjgwNSIgc3Ryb2tlPSIjMWUyOTNiIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgogIDxsaW5lIHgxPSI3NjAiIHkxPSIxNTUiIHgyPSI3NjAiIHkyPSI4MDUiIHN0cm9rZT0iIzFlMjkzYiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz4KICA8bGluZSB4MT0iOTE3IiB5MT0iMTU1IiB4Mj0iOTE3IiB5Mj0iODA1IiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgPGxpbmUgeDE9IjEwODAiIHkxPSIxNTUiIHgyPSIxMDgwIiB5Mj0iODA1IiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CgogIDwhLS0gPT09PT09PT09PT09PT09PT09PT0gUEhBU0UgMTogTUFTVEVSIFNFVFVQICYgR09WRVJOQU5DRSA9PT09PT09PT09PT09PT09PT09PSAtLT4KICA8cmVjdCB4PSIyNSIgeT0iMTY1IiB3aWR0aD0iMTE3MCIgaGVpZ2h0PSIxMDAiIHJ4PSIxMCIgZmlsbD0icmdiYSgxNSwgMjMsIDQyLCAwLjQ1KSIgc3Ryb2tlPSJyZ2JhKDU2LCAxODksIDI0OCwgMC4yKSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjE4MyIgY2xhc3M9InBoYXNlLXRhZyI+UEhBU0UgMTogQ09NTUVSQ0lBTCBHT1ZFUk5BTkNFICZhbXA7IE1BU1RFUiBTRVRVUCAo2KfZhNiq2KPYs9mK2LMg2YjYp9mE2K3ZiNmD2YXYqSk8L3RleHQ+CgogIDwhLS0gU3RlcCAxLjE6IENvbW1lcmNpYWwgU2V0dXAgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzUsIDE5MikiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjY1IiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjMzhiZGY4IiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPHRleHQgeD0iNzAiIHk9IjE4IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtiq2KPYs9mK2LMg2KfZhNi52YLYryDZiNin2YTYqti52LHZgdipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjMyIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KrYs9is2YrZhCDYo9mI2LLYp9mGIE1UT1cg2YjYp9mE2LnZhdmE2Kk8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7YtNix2YjYtyDYp9mE2KfYptiq2YXYp9mGINmI2KjYp9mC2KfYqiDYp9mE2K7Yr9mF2KfYqjwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjUwIiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjEyIiByeD0iMyIgZmlsbD0icmdiYSg1NiwgMTg5LCAyNDgsIDAuMTUpIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iNTkiIGNsYXNzPSJzdGVwLWJveC1kb2MiIGZpbGw9IiMzOGJkZjgiPvCfk4QgQ29udHJhY3QgTWFzdGVyPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBBcnJvdyBmcm9tIENvbW1lcmNpYWwgU2V0dXAgdG8gQWlybGluZSBDdXN0b21lciAtLT4KICA8cGF0aCBkPSJNIDE3NSAyMjUgTCAxOTUgMjI1IiBzdHJva2U9IiMzOGJkZjgiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvd1NreSkiIGZpbGw9Im5vbmUiLz4KCiAgPCEtLSBTdGVwIDEuMjogQWlybGluZSBBcHByb3ZhbCAmIEFjdGl2YXRpb24gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLCAxOTIpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSI2NSIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzgxOGNmOCIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSIxOCIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7Yp9i52KrZhdin2K8g2LTYsdmI2Lcg2KfZhNiu2K/ZhdipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjMyIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KrZiNmC2YrYuSDYp9iq2YHYp9mC2YrYqSBJQVRBIFNHSEE8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7ZiNiq2K3Yr9mK2K8g2YXZhNit2YIg2KfZhNij2LPYudin2LEgQW5uZXg8L3RleHQ+CiAgICA8cmVjdCB4PSI4IiB5PSI1MCIgd2lkdGg9IjEyNCIgaGVpZ2h0PSIxMiIgcng9IjMiIGZpbGw9InJnYmEoMTI5LCAxNDAsIDI0OCwgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1OSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iIzgxOGNmOCI+8J+TnCBTR0hBIE1hc3RlciBBbm5leDwvdGV4dD4KICA8L2c+CgogIDwhLS0gU3RlcCAxLjM6IEFjdGl2ZSBSdWxlIEluIEVuZ2luZSAoU3RvcmVkIGluIFRBUykgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzY1LCAxOTIpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSI2NSIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzA2YjZkNCIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSIxOCIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7YqtmB2LnZitmEINmF2K3YsdmDINin2YTYp9it2KrYs9in2Kg8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iMzIiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7YqNix2YXYrNipINmC2YjYp9i52K8g2KfZhNiz2YXYp9itINin2YTYstmF2YbZijwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSI0NCIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtmI2KfZhNit2K8g2KfZhNij2K/ZhtmJINmE2YTYpdmK2LHYp9iv2KfYqjwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjUwIiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjEyIiByeD0iMyIgZmlsbD0icmdiYSg2LCAxODIsIDIxMiwgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1OSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iIzA2YjZkNCI+4pqZ77iPIFJhdGUgRW5naW5lIEFjdGl2ZTwvdGV4dD4KICA8L2c+CgogIDwhLS0gPT09PT09PT09PT09PT09PT09PT0gUEhBU0UgMjogUFJFLUZMSUdIVCBDT01NRVJDSUFMIFBJUEVMSU5FID09PT09PT09PT09PT09PT09PT09IC0tPgogIDxyZWN0IHg9IjI1IiB5PSIyODAiIHdpZHRoPSIxMTcwIiBoZWlnaHQ9IjEyNSIgcng9IjEwIiBmaWxsPSJyZ2JhKDE1LCAyMywgNDIsIDAuNDUpIiBzdHJva2U9InJnYmEoOTksIDEwMiwgMjQxLCAwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMjk4IiBjbGFzcz0icGhhc2UtdGFnIj5QSEFTRSAyOiBQUkUtRkxJR0hUIFFVT1RBVElPTiAmYW1wOyBXT1JLIE9SREVSICjYp9mE2YXYs9in2LEg2KfZhNiq2KzYp9ix2Yog2YjYo9mF2LEg2KfZhNiq2LTYutmK2YQpPC90ZXh0PgoKICA8IS0tIFN0ZXAgMi4xOiBGbGlnaHQgUmVxdWVzdCBmcm9tIEFpcmxpbmUgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLCAzMTApIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSI3NSIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzgxOGNmOCIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSIxOCIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7Yt9mE2Kgg2LHYrdmE2Kkg2LnYp9ix2LbYqS/Zhdis2K/ZiNmE2Kk8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iMzIiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7Ypdix2LPYp9mEINiq2YHYp9i12YrZhCDYp9mE2LfYsdin2LIg2YjYp9mE2LHZg9in2Kg8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7ZiNmF2YjYp9i52YrYryDYp9mE2YfYqNmI2Lcg2KfZhNmF2YLYqtix2K3YqTwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjU2IiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0icmdiYSgxMjksIDE0MCwgMjQ4LCAwLjE1KSIvPgogICAgPHRleHQgeD0iNzAiIHk9IjY3IiBjbGFzcz0ic3RlcC1ib3gtZG9jIiBmaWxsPSIjODE4Y2Y4Ij7wn5OpIEZsaWdodCBTY2hlZHVsZSAvIFJlcTwvdGV4dD4KICA8L2c+CgogIDwhLS0gQXJyb3cgQWlybGluZSB0byBDb21tZXJjaWFsIFNhbGVzIC0tPgogIDxwYXRoIGQ9Ik0gMzQwIDM0NSBMIDM2NSAzNDUiIHN0cm9rZT0iIzgxOGNmOCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93SW5kaWdvKSIgZmlsbD0ibm9uZSIvPgoKICA8IS0tIFN0ZXAgMi4yOiBQcmljaW5nIEVuZ2luZSAmIFF1b3RhdGlvbiBHZW5lcmF0aW9uIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM2NSwgMzEwKSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxNDAiIGhlaWdodD0iNzUiIHJ4PSI2IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiMwNmI2ZDQiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iMTgiIGNsYXNzPSJzdGVwLWJveC10aXRsZSI+2LnYsdi2INin2YTYs9i52LEg2YjYp9mE2YXYqNiv2KbZitipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjMyIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KfYrdiq2LPYp9ioINii2YTZiiDZhNix2LPZiNmFIE1UT1c8L3RleHQ+CiAgICA8dGV4dCB4PSI3MCIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7ZiNmB2K3YtSDYtNix2YjYtyDYp9mE2LPYr9in2K8g2KfZhNmF2LPYqNmCPC90ZXh0PgogICAgPHJlY3QgeD0iOCIgeT0iNTYiIHdpZHRoPSIxMjQiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSJyZ2JhKDYsIDE4MiwgMjEyLCAwLjE1KSIvPgogICAgPHRleHQgeD0iNzAiIHk9IjY3IiBjbGFzcz0ic3RlcC1ib3gtZG9jIiBmaWxsPSIjMDZiNmQ0Ij7wn6e+IFF1b3RhdGlvbiAmYW1wOyBQcm9mb3JtYTwvdGV4dD4KICA8L2c+CgogIDwhLS0gQXJyb3cgbG9vcCBiYWNrIHRvIEFpcmxpbmUgZm9yIFByb2Zvcm1hIHBheW1lbnQvYXBwcm92YWwgLS0+CiAgPHBhdGggZD0iTSAzOTAgMzEwIEMgMzkwIDI5NSwgMzEwIDI5NSwgMzEwIDMxMCIgc3Ryb2tlPSIjMDZiNmQ0IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMyAzIiBmaWxsPSJub25lIi8+CgogIDwhLS0gQXJyb3cgU2FsZXMgdG8gUmFtcCBTdXBlcnZpc29yOiBUdXJuYXJvdW5kIFdvcmsgT3JkZXIgLS0+CiAgPHBhdGggZD0iTSA1MDUgMzQ1IEwgNTMwIDM0NSIgc3Ryb2tlPSIjMDZiNmQ0IiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3dTa3kpIiBmaWxsPSJub25lIi8+CgogIDwhLS0gU3RlcCAyLjM6IFdvcmsgT3JkZXIgRGlzcGF0Y2hlZCB0byBBcHJvbiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MzAsIDMxMCkiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9Ijc1IiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPHRleHQgeD0iNzAiIHk9IjE4IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtij2YXYsSDYqti02LrZitmEINin2YTZhdmH2KjYtzwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSIzMiIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtit2K/ZiNivINin2YTYt9in2YLYqSDYp9mE2YXYrNin2YbZitipIChHUFUgMmgpPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjQ0IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2YjYqti52YTZitmF2KfYqiDYp9mE2LHZg9in2Kgg2YjYp9mE2YXYudiv2KfYqjwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjU2IiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0icmdiYSgyNDUsIDE1OCwgMTEsIDAuMTUpIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iNjciIGNsYXNzPSJzdGVwLWJveC1kb2MiIGZpbGw9IiNmNTllMGIiPvCfk4sgVHVybmFyb3VuZCBXb3JrIE9yZGVyPC90ZXh0PgogIDwvZz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PT09PSBQSEFTRSAzOiBQSFlTSUNBTCBBUFJPTiBFWEVDVVRJT04gPT09PT09PT09PT09PT09PT09PT0gLS0+CiAgPHJlY3QgeD0iMjUiIHk9IjQyMCIgd2lkdGg9IjExNzAiIGhlaWdodD0iMTQ1IiByeD0iMTAiIGZpbGw9InJnYmEoMTUsIDIzLCA0MiwgMC40NSkiIHN0cm9rZT0icmdiYSgyNDUsIDE1OCwgMTEsIDAuMikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSI0MzgiIGNsYXNzPSJwaGFzZS10YWciPlBIQVNFIDM6IEFQUk9OIE9QRVJBVElPTlMgJmFtcDsgQ0FQVEFJTiBTSUdOLU9GRiAo2KfZhNiq2YbZgdmK2LAg2KfZhNmF2YrYr9in2YbZiiDZiNin2LnYqtmF2KfYryDYp9mE2YPYp9io2KrZhik8L3RleHQ+CgogIDwhLS0gU3RlcCAzLjE6IFJhbXAgQ3JldyBEZWxpdmVyeSAmIFRpbWVzdGFtcGluZyAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MzAsIDQ1MCkiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9Ijk1IiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPHRleHQgeD0iNzAiIHk9IjE4IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtiq2LPYrNmK2YQg2KPYrdiv2KfYqyDYp9mE2K/ZiNix2KfZhjwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSIzMiIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtmH2KjZiNi3INmI2YjYtti5INij2YjYqtin2K8gQ2hvY2tzPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjQ0IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2LnYr9in2K8g2YPZh9ix2KjYp9ihIEdQVSDYqNin2YTYr9mC2YrZgtipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjU2IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KrZgdix2YrYuiDYtdix2YEg2YjZhdmK2KfZhyDZiNmG2LjYp9mB2Kk8L3RleHQ+CiAgICA8cmVjdCB4PSI4IiB5PSI3NCIgd2lkdGg9IjEyNCIgaGVpZ2h0PSIxNCIgcng9IjMiIGZpbGw9InJnYmEoMjQ1LCAxNTgsIDExLCAwLjE1KSIvPgogICAgPHRleHQgeD0iNzAiIHk9Ijg1IiBjbGFzcz0ic3RlcC1ib3gtZG9jIiBmaWxsPSIjZjU5ZTBiIj7ij7HvuI8gTGl2ZSBBcHJvbiBUaW1lc3RhbXBzPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBBcnJvdyBSYW1wIFN1cGVydmlzb3IgdG8gQWlyY3JhZnQgQ2FwdGFpbjogRWxlY3Ryb25pYyBTaWduLU9mZiBSZXF1ZXN0IC0tPgogIDxwYXRoIGQ9Ik0gNjcwIDQ5NyBMIDY5NSA0OTciIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93RW1lcmFsZCkiIGZpbGw9Im5vbmUiLz4KCiAgPCEtLSBTdGVwIDMuMjogQ2FwdGFpbiBMaXZlIFZlcmlmaWNhdGlvbiAmIFNpZ24tT2ZmIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY5NSwgNDUwKSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxMzUiIGhlaWdodD0iOTUiIHJ4PSI2IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiMxMGI5ODEiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSI2NyIgeT0iMTgiIGNsYXNzPSJzdGVwLWJveC10aXRsZSI+2YXYsdin2KzYudipINmI2KfYudiq2YXYp9ivINin2YTZg9in2KjYqtmGPC90ZXh0PgogICAgPHRleHQgeD0iNjciIHk9IjMyIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KrYo9mD2YrYryDYs9in2LnYp9iqIEdQVSDZiNin2YTYrtiv2YXYp9iqPC90ZXh0PgogICAgPHRleHQgeD0iNjciIHk9IjQ0IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KfZhNil2LbYp9mB2YrYqSDZiNin2YTYqtmI2YLZiti5INin2YTYpdmE2YPYqtix2YjZhtmKPC90ZXh0PgogICAgPHRleHQgeD0iNjciIHk9IjU2IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2LnZhNmJINis2YfYp9iyINin2YTYqtin2KjZhNiqINio2KfZhNmF2YfYqNi3PC90ZXh0PgogICAgPHJlY3QgeD0iOCIgeT0iNzQiIHdpZHRoPSIxMTkiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSJyZ2JhKDE2OCwgODUsIDEyOSwgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjY3IiB5PSI4NSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iIzEwYjk4MSI+4pyN77iPIENhcHRhaW4gRS1TaWduYXR1cmU8L3RleHQ+CiAgPC9nPgoKICA8IS0tIFN1YmNvbnRyYWN0b3IgaW50ZXJhY3Rpb246IEZ1ZWxpbmcgLyBDYXRlcmluZyAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NTAsIDQ1MCkiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9Ijk1IiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjZWM0ODk5IiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPHRleHQgeD0iNjciIHk9IjE4IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtiq2LLZiNmK2K8g2KfZhNmI2YLZiNivINmI2KfZhNiu2K/Zhdin2Ko8L3RleHQ+CiAgICA8dGV4dCB4PSI2NyIgeT0iMzIiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7YttiuINin2YTZiNmC2YjYryDZiNiq2KPZhdmK2YYg2KfZhNil2LfZgdin2KE8L3RleHQ+CiAgICA8dGV4dCB4PSI2NyIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7ZiNiq2LPZhNmK2YUg2YLYs9mK2YXYqSDYp9mE2KfYs9iq2YTYp9mFPC90ZXh0PgogICAgPHRleHQgeD0iNjciIHk9IjU2IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KfZhNmF2YjZgti52Kkg2YXZhiDYp9mE2LfYp9mC2YUg2YTZhNmF2YfYqNi3PC90ZXh0PgogICAgPHJlY3QgeD0iOCIgeT0iNzQiIHdpZHRoPSIxMTkiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSJyZ2JhKDIzNiwgNzIsIDE1MywgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjY3IiB5PSI4NSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iI2VjNDg5OSI+4pu9IEZ1ZWwgRGVsaXZlcnkgVm91Y2hlcjwvdGV4dD4KICA8L2c+CgogIDwhLS0gQmlkaXJlY3Rpb25hbCBjb25uZWN0aW9uIGJldHdlZW4gU3ViY29udHJhY3RvciBhbmQgUmFtcCBTdXBlcnZpc29yIC0tPgogIDxwYXRoIGQ9Ik0gODUwIDUxNSBMIDY3MCA1MTUiIHN0cm9rZT0iI2VjNDg5OSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjMgMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvd0FtYmVyKSIgZmlsbD0ibm9uZSIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09PT09IFBIQVNFIDQ6IDMtV0FZIE1BVENISU5HICYgVEFYIElOVk9JQ0lORyA9PT09PT09PT09PT09PT09PT09PSAtLT4KICA8cmVjdCB4PSIyNSIgeT0iNTgwIiB3aWR0aD0iMTE3MCIgaGVpZ2h0PSIxMzAiIHJ4PSIxMCIgZmlsbD0icmdiYSgxNSwgMjMsIDQyLCAwLjQ1KSIgc3Ryb2tlPSJyZ2JhKDE2OCwgODUsIDI0NywgMC4yKSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjU5OCIgY2xhc3M9InBoYXNlLXRhZyI+UEhBU0UgNDogMy1XQVkgTUFUQ0hJTkcgJmFtcDsgRklOQUwgQklMTElORyAo2KfZhNmF2LfYp9io2YLYqSDYp9mE2KvZhNin2KvZitipINmI2KfZhNmB2YjYqtix2Kkg2KfZhNmG2YfYp9im2YrYqSk8L3RleHQ+CgogIDwhLS0gQXJyb3cgZnJvbSBDYXB0YWluIFNpZ24tT2ZmICYgUmFtcCBMb2cgdG8gRmluYW5jZSAtLT4KICA8cGF0aCBkPSJNIDc2MiA1NDUgTCA3NjIgNjQ1IEwgMTAwNSA2NDUiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSIzIDMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3dQdXJwbGUpIiBmaWxsPSJub25lIi8+CgogIDwhLS0gQXJyb3cgZnJvbSBTdWJjb250cmFjdG9yIEludm9pY2UgdG8gRmluYW5jZSAtLT4KICA8cGF0aCBkPSJNIDkxNyA2OTAgTCA5MTcgNjY1IEwgMTAwNSA2NjUiIHN0cm9rZT0iI2VjNDg5OSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSIzIDMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3dQdXJwbGUpIiBmaWxsPSJub25lIi8+CgogIDwhLS0gU3RlcCA0LjE6IFZlbmRvciBTdWJtaXRzIEludm9pY2UgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODUwLCA2MTUpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjEzNSIgaGVpZ2h0PSI3NSIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2VjNDg5OSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgIDx0ZXh0IHg9IjY3IiB5PSIxOCIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7Ypdix2LPYp9mEINmF2LfYp9mE2KjYqSDYp9mE2YXZiNix2K88L3RleHQ+CiAgICA8dGV4dCB4PSI2NyIgeT0iMzIiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7Zgdin2KrZiNix2Kkg2KfZhNmI2YLZiNivINmI2KfZhNmF2LnYr9in2Ko8L3RleHQ+CiAgICA8dGV4dCB4PSI2NyIgeT0iNDQiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7ZiNmB2YIg2KfZhNiz2LnYsSDZiNin2YTYudmF2YTYqSDYp9mE2YXYudiq2YXYr9ipPC90ZXh0PgogICAgPHJlY3QgeD0iOCIgeT0iNTYiIHdpZHRoPSIxMTkiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSJyZ2JhKDIzNiwgNzIsIDE1MywgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjY3IiB5PSI2NyIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iI2VjNDg5OSI+8J+nviBWZW5kb3IgSW52b2ljZSBCaWxsPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBTdGVwIDQuMjogRmluYW5jZSAzLVdheSBSZWNvbmNpbGUgJiBNYXJnaW4gU2hpZWxkIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMDUsIDYwNSkiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9Ijk1IiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjYTg1NWY3IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHRleHQgeD0iNzUiIHk9IjE4IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtin2YTZhdi32KfYqNmC2Kkg2YjYrdmF2KfZitipINin2YTZh9in2YXYtDwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc1IiB5PSIzMiIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtmF2LfYp9io2YLYqSDYqtiw2YPYsdipINin2YTZhdmH2KjYtyDZiNin2YTZhdmI2LHYrzwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc1IiB5PSI0NCIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtin2K3Yqtiz2KfYqCDYudmF2YjZhNipINin2YTYpdiv2KfYsdipIDUlPC90ZXh0PgogICAgPHRleHQgeD0iNzUiIHk9IjU2IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2YXZhti5INin2YTZgdmI2KrYsdipINio2KfZhNiu2LPYp9ix2Kkg2KLZhNmK2KfZizwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9Ijc0IiB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0icmdiYSgxNjgsIDg1LCAyNDcsIDAuMikiLz4KICAgIDx0ZXh0IHg9Ijc1IiB5PSI4NSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iI2MwODRmYyI+8J+boe+4jyBNYXJnaW4gU2hpZWxkIFBhc3NlZDwvdGV4dD4KICA8L2c+CgogIDwhLS0gU3RlcCA0LjM6IEZpbmFsIFRheCBJbnZvaWNlIEdlbmVyYXRlZCAtLT4KICA8IS0tIExpbmUgY29ubmVjdGluZyBGaW5hbmNlIHRvIEZpbmFsIEludm9pY2Ugc2VudCB0byBBaXJsaW5lIC0tPgogIDxwYXRoIGQ9Ik0gMTA4MCA3MDAgTCAxMDgwIDcyMCBMIDI3MCA3MjAgTCAyNzAgNjkwIiBzdHJva2U9IiNhODU1ZjciIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvd0luZGlnbykiIGZpbGw9Im5vbmUiLz4KCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLCA2MTUpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSI3NSIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSIxOCIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7Yp9iz2KrZhNin2YUg2KfZhNmB2KfYqtmI2LHYqSDYp9mE2YbZh9in2KbZitipPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjMyIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2YHYp9iq2YjYsdipINi22LHZitio2YrYqSDZhdiv2LnZiNmF2Kkg2KjYqtmI2YLZiti5PC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjQ0IiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KfZhNmD2KfYqNiq2YYg2YjYs9in2LnYp9iqINin2YTYt9in2YLYqSDYp9mE2YXYr9mC2YLYqTwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjU2IiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0icmdiYSgxNiwgMTg1LCAxMjksIDAuMikiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSI2NyIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iIzEwYjk4MSI+8J+TkSBGaW5hbCBUYXggSW52b2ljZTwvdGV4dD4KICA8L2c+CgogIDwhLS0gPT09PT09PT09PT09PT09PT09PT0gUEhBU0UgNTogQVVESVQsIFJFQkFURVMgJiBSRU5FV0FMID09PT09PT09PT09PT09PT09PT09IC0tPgogIDxyZWN0IHg9IjI1IiB5PSI3MjUiIHdpZHRoPSIxMTcwIiBoZWlnaHQ9Ijk1IiByeD0iMTAiIGZpbGw9InJnYmEoMTUsIDIzLCA0MiwgMC40NSkiIHN0cm9rZT0icmdiYSgxNiwgMTg1LCAxMjksIDAuMikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSI3NDMiIGNsYXNzPSJwaGFzZS10YWciPlBIQVNFIDU6IFZPTFVNRSBSRUJBVEVTLCBBVURJVCAmYW1wOyBDT05UUkFDVCBSRU5FV0FMICjYp9mE2LHZgtin2KjYqSDZiNiu2LXZhSDYp9mE2K3YrNmFINmI2KfZhNiq2KzYr9mK2K8pPC90ZXh0PgoKICA8IS0tIFN0ZXAgNS4xOiBWb2x1bWUgQ291bnQgQ2hlY2tlZCBpbiBUQVMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzUsIDc1MikiIGZpbHRlcj0idXJsKCNub2RlU2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjMzhiZGY4IiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPHRleHQgeD0iNzAiIHk9IjE2IiBjbGFzcz0ic3RlcC1ib3gtdGl0bGUiPtix2LXYryDYrdis2YUg2KfZhNix2K3ZhNin2Kog2YjYp9mE2LHYqNit2YrYqTwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSIzMCIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtiq2LfYqNmK2YIg2K7YtdmFINin2YTYrdis2YUg2KfZhNiq2LHYp9mD2YXZijwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSI0MiIgY2xhc3M9InN0ZXAtYm94LWRlc2MiPtiq2YbYqNmK2YfYp9iqINin2YTYqtis2K/ZitivIDkwLzYwLzMwINmK2YjZhTwvdGV4dD4KICAgIDxyZWN0IHg9IjgiIHk9IjQ1IiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjEyIiByeD0iMyIgZmlsbD0icmdiYSg1NiwgMTg5LCAyNDgsIDAuMTUpIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iNTQiIGNsYXNzPSJzdGVwLWJveC1kb2MiIGZpbGw9IiMzOGJkZjgiPvCfk4ggUmViYXRlICZhbXA7IFJlbmV3YWw8L3RleHQ+CiAgPC9nPgoKICA8IS0tIFN0ZXAgNS4yOiBSZWJhdGUgTm90ZSB0byBBaXJsaW5lIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwMCwgNzUyKSIgZmlsdGVyPSJ1cmwoI25vZGVTaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIxNDAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiM4MThjZjgiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICA8dGV4dCB4PSI3MCIgeT0iMTYiIGNsYXNzPSJzdGVwLWJveC10aXRsZSI+2KXYtNi52KfYsSDYr9in2KbZhiDYqNiu2LXZhSDYp9mE2K3YrNmFPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjMwIiBjbGFzcz0ic3RlcC1ib3gtZGVzYyI+2KfYs9iq2K3Zgtin2YIg2K7YtdmFINin2YTYtNix2YrZgyDYp9mE2YXZhdmK2LI8L3RleHQ+CiAgICA8cmVjdCB4PSI4IiB5PSI0MiIgd2lkdGg9IjEyNCIgaGVpZ2h0PSIxMiIgcng9IjMiIGZpbGw9InJnYmEoMTI5LCAxNDAsIDI0OCwgMC4xNSkiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1MSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iIzgxOGNmOCI+8J+SjiBWb2x1bWUgUmViYXRlIE5vdGU8L3RleHQ+CiAgPC9nPgoKICA8IS0tIFN0ZXAgNS4zOiBFUlAgQVIgU2V0dGxlbWVudCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDA1LCA3NTIpIiBmaWx0ZXI9InVybCgjbm9kZVNoYWRvdykiPgogICAgPHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgIDx0ZXh0IHg9Ijc1IiB5PSIxNiIgY2xhc3M9InN0ZXAtYm94LXRpdGxlIj7Yp9mE2KrYsdit2YrZhCDZhNmG2LjYp9mFINin2YTZgCBFUlA8L3RleHQ+CiAgICA8dGV4dCB4PSI3NSIgeT0iMzAiIGNsYXNzPSJzdGVwLWJveC1kZXNjIj7Zhdiq2KfYqNi52Kkg2KfZhNiq2K3YtdmK2YQg2YjZgdiq2LHYqSDYp9mE2KfYptiq2YXYp9mGPC90ZXh0PgogICAgPHJlY3QgeD0iOCIgeT0iNDIiIHdpZHRoPSIxMzQiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSJyZ2JhKDE2OCwgODUsIDI0NywgMC4xNSkiLz4KICAgIDx0ZXh0IHg9Ijc1IiB5PSI1MSIgY2xhc3M9InN0ZXAtYm94LWRvYyIgZmlsbD0iI2MwODRmYyI+8J+Pm++4jyBFUlAgLyBHTCBJbnRlZ3JhdGVkPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="مخطط تفاعل أطراف المنظومة مع دورة حياة العقد" class="diagram-img" />
+        <figcaption class="diagram-caption">مخطط تفاعل أطراف المنظومة مع دورة حياة العقد</figcaption>
+      </figure>
+    
+<h3>مصفوفة أدوار الفاعلين والتسليم الرقمي بين المراحل (Cross-Functional RACI &amp; Interaction Matrix)</h3>
+<table>
+<thead>
+<tr>
+<th align="left">الفاعل / الطرف (Actor)</th>
+<th align="left">الواجهة البرمجية المعتمدة</th>
+<th align="left">المدخلات والمشغلات (Inputs &amp; Triggers)</th>
+<th align="left">العمليات البرمجية والتحقق (Business Rules)</th>
+<th align="left">المخرجات الرقمية المستلمة/المسلمة (Outputs &amp; Deliverables)</th>
+<th align="left">دوره في حماية الإيراد ومنع التسرب</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>🏛️ الإدارة التجارية والقانونية</strong><br><code>Commercial &amp; Legal</code></td>
+<td align="left">بوابة العقود والحوكمة (<code>CLM Web Portal</code>)</td>
+<td align="left">مسودة الاتفاقية، كشوف أوزان الأسطول (MTOW)، بنود IATA SGHA</td>
+<td align="left">تطبيق مصفوفة الاعتماد، تقييم شروط الائتمان (Pre-flight Cash vs Net-30)</td>
+<td align="left">ملف عقد رئيسي معتمد (<code>Contract Master</code>) + شروط الدفع والأسعار</td>
+<td align="left">منع تقديم أي خدمة تجارية بدون غطاء تعاقدي سارٍ وموثق.</td>
+</tr>
+<tr>
+<td align="left"><strong>✈️ شركة الطيران والمرحل الجوي</strong><br><code>Airline OCC &amp; Dispatch</code></td>
+<td align="left">بوابة العميل للخدمة الذاتية أو الربط الآلي (<code>Customer Portal / API</code>)</td>
+<td align="left">طلب رحلة مجدولة أو عارضة (طراز الطائرة، عدد الركاب، جدول الرحلات)</td>
+<td align="left">مراجعة واعتماد عروض الأسعار، سداد الفاتورة المبدئية للرحلات العارضة</td>
+<td align="left">أمر تأكيد الرحلة + موافقة عرض السعر (<code>Approved Quotation</code>)</td>
+<td align="left">الالتزام المالي المسبق قبل إقلاع الطائرة باتجاه محطة الوصول.</td>
+</tr>
+<tr>
+<td align="left"><strong>💼 إدارة المبيعات وتنسيق العمليات</strong><br><code>Commercial Sales &amp; Dispatch</code></td>
+<td align="left">محرك التسعير وإصدار أوامر العمل (<code>TAS Commercial Engine</code>)</td>
+<td align="left">إشعار طلب الرحلة المعتمد، بيانات المطار وتاريخ التشغيل</td>
+<td align="left">احتساب تسعير MTOW، هوامش الربح، وفحص سقف الائتمان للناقل</td>
+<td align="left">إصدار عرض السعر (<code>Quotation</code>)، الفاتورة المبدئية (<code>Proforma</code>)، وأمر تشغيل المهبط (<code>Work Order</code>)</td>
+<td align="left">تحويل بنود العقد إلى محددات تشغيل صارمة تمنع التجاوز بالمطار.</td>
+</tr>
+<tr>
+<td align="left"><strong>🦺 مشرف ساحة الطيران (المهبط)</strong><br><code>Apron Ramp Lead</code></td>
+<td align="left">تطبيق الأجهزة اللوحية الميدانية (<code>Ramp Mobile App</code>)</td>
+<td align="left">أمر التشغيل (<code>Work Order</code>) + إشعار وصول الطائرة وهبوطها</td>
+<td align="left">تسجيل التوقيتات بالدقيقة (Chocks, GPU, Water, Pushback) وتسجيل الخدمات الإضافية</td>
+<td align="left">كشف خدمات المهبط الإلكتروني (<code>Turnaround Service Sheet</code>)</td>
+<td align="left">القضاء التام على الخدمات غير المسجلة ومراقبة استهلاك الطاقة.</td>
+</tr>
+<tr>
+<td align="left"><strong>🧑‍✈️ كابتن الطائرة وطاقم الرحلة</strong><br><code>Flight Captain &amp; Crew</code></td>
+<td align="left">لوحة التوقيع الرقمي بالتابلت (<code>Captain Digital Pad</code>)</td>
+<td align="left">طلب خدمات إضافية على المهبط (ASU, تنظيف إضافي، ساعات تكييف إضافية)</td>
+<td align="left">تدقيق فترات تشغيل المعدات ومطابقتها مع الواقع الفعلي قبل الإقلاع</td>
+<td align="left">التوقيع الإلكتروني الحي (<code>Captain Electronic Sign-off</code>)</td>
+<td align="left">قطع الطريق تماماً على أي اعتراضات أو نزاعات مالية لاحقة بنسبة 80%.</td>
+</tr>
+<tr>
+<td align="left"><strong>⛽ مقاولو الباطن (الوقود والتموين)</strong><br><code>Subcontractors &amp; Vendors</code></td>
+<td align="left">نظام تسليم الإيصالات وبوابة الموردين (<code>Vendor Portal / Field Log</code>)</td>
+<td align="left">أمر تقديم الوقود / التموين المصاحب لأمر التشغيل</td>
+<td align="left">تزويد الطائرة، تسجيل قراءات العدادات، وتسليم إيصال الاستلام</td>
+<td align="left">قسيمة تسليم ميدانية موقعة (<code>Delivery Voucher</code>) + فاتورة المورد (<code>Vendor Bill</code>)</td>
+<td align="left">ضمان تسجيل التكلفة الفعلية فوراً وتفادي الارتفاعات المفاجئة للأسعار.</td>
+</tr>
+<tr>
+<td align="left"><strong>📊 مراجع الحسابات والفوترة والـ ERP</strong><br><code>Finance &amp; Revenue Assurance</code></td>
+<td align="left">محرك الفوترة والربط المالي (<code>Billing &amp; ERP Engine</code>)</td>
+<td align="left">كشف خدمات الكابتن + إيصالات الموردين + شروط العقد</td>
+<td align="left">المطابقة الثلاثية الذكية، فحص حائط صد الهامش السالب (Margin Shield 5%)</td>
+<td align="left">الفاتورة الضريبية النهائية (<code>Final Tax Invoice</code>) + ترحيل قيود المدينين للـ ERP</td>
+<td align="left">حماية هامش الربح ومنع الفوترة بالخسارة وتسريع دورة التحصيل DSO.</td>
+</tr>
+<tr>
+<td align="left"><strong>📈 الإدارة العليا وإدارة المحطة</strong><br><code>Executive &amp; Station Leadership</code></td>
+<td align="left">لوحة مؤشرات الأداء والتحليلات (<code>Executive Analytics Dashboard</code>)</td>
+<td align="left">بيانات الرحلات الشهرية المنفذة والإيرادات والتكاليف</td>
+<td align="left">تتبع الوصول لأسقف الحجم (<code>Volume Thresholds</code>)، وتحليل ربحية الدوران</td>
+<td align="left">إصدار إشعارات دائنة لخصم الحجم (<code>Volume Rebate</code>) + بدء مفاوضات التجديد</td>
+<td align="left">تعظيم القيمة الاستراتيجية للعملاء والتجديد الاستباقي قبل انتهاء العقود.</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>ملخص المسار التدفقي للمراحل الخمس (Lifecycle Phases Summary)</h3>
+<table>
+<thead>
+<tr>
+<th align="left">المرحلة</th>
+<th align="left">الهدف التشغيلي والتجاري</th>
+<th align="left">المسؤول</th>
+<th align="left">النتيجة الملموسة</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1. التأسيس والحوكمة التجارية</strong></td>
+<td align="left">تسجيل بيانات الناقل، أوزان الطائرات (MTOW)، وشروط الائتمان</td>
+<td align="left">الإدارة التجارية</td>
+<td align="left">ملف عقد رئيسي نشط ومعتمد (<code>Contract Master</code>)</td>
+</tr>
+<tr>
+<td align="left"><strong>2. المسار التجاري وتجهيز الرحلة</strong></td>
+<td align="left">احتساب التكاليف آلياً وإصدار عروض الأسعار والفاتورة المبدئية</td>
+<td align="left">إدارة المبيعات</td>
+<td align="left">أمر تشغيل معتمد للمهبط (<code>Turnaround Work Order</code>)</td>
+</tr>
+<tr>
+<td align="left"><strong>3. التنفيذ الميداني على المهبط</strong></td>
+<td align="left">تسجيل ساعات الـ GPU والخدمات الفعلية واعتماد الكابتن</td>
+<td align="left">مشرف المهبط والكابتن</td>
+<td align="left">كشف خدمات موقع إلكترونياً (<code>Captain Sign-off</code>)</td>
+</tr>
+<tr>
+<td align="left"><strong>4. المطابقة الثلاثية والفوترة</strong></td>
+<td align="left">مطابقة فواتير موردي الوقود والمعدات وحماية الهامش الربحي</td>
+<td align="left">الحسابات والتدقيق</td>
+<td align="left">فاتورة ضريبية نهائية مدققة (<code>Final Tax Invoice</code>)</td>
+</tr>
+<tr>
+<td align="left"><strong>5. الرقابة وتجديد العقد</strong></td>
+<td align="left">تطبيق خصومات الحجم وتحليل ربحية الدوران وتنبيهات التجديد</td>
+<td align="left">الإدارة العليا</td>
+<td align="left">إصدار ملحق موسمي أو تجديد العقد (<code>Renewal</code>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>📑 الشرح التفصيلي لمراحل دورة حياة العقد</h2>
+<hr>
+<h3>المرحلة 1: التأسيس والحوكمة التجارية (Master Setup &amp; Governance)</h3>
+<p>في هذه المرحلة، يتم تحويل الاتفاق التجاري المبرم بين المناول الأرضي وشركة الطيران إلى قواعد برمجية ملزمة:</p>
+<h4>1. ملف تعريف الناقل والائتمان (Carrier Profile &amp; Credit Terms)</h4>
+<ul>
+<li>تسجيل الرمز التجاري لشركة الطيران (<code>CustomerCode</code> و <code>AirlineCode</code>).</li>
+<li>تحديد شروط السداد (مثال: دفع نقدي مسبق للرحلات العارضة، أو ائتمان 14/30 يوماً للرحلات المجدولة المنتظمة).</li>
+<li>تحديد العملة التعاقدية (<code>CurrencyCode</code> مثل USD أو EUR أو التوطين بالعملة المحلية).</li>
+</ul>
+<h4>2. نطاق المحطات والمطارات (Stations &amp; Airports Scope)</h4>
+<ul>
+<li>ربط العقد بالمطارات المعتمدة (<code>AirportCode</code> / <code>AirportGroupCode</code>) كالقاهرة، الغردقة، شرم الشيخ، وغيرها.</li>
+<li>تصنيف حركة الطيران المصرح بها:<ul>
+<li><strong>Scheduled</strong>: رحلات تجارية مجدولة.</li>
+<li><strong>Charter</strong>: رحلات سياحية / عارضة غير منتظمة.</li>
+<li><strong>Cargo</strong>: رحلات شحن بضائع بحتة.</li>
+<li><strong>Technical Stop</strong>: هبوط فني للتزود بالوقود فقط دون تبديل ركاب.</li>
+</ul>
+</li>
+</ul>
+<h4>3. مصفوفة أوزان الطائرات وهيكلها (Aircraft MTOW &amp; Body Categories)</h4>
+<ul>
+<li>ربط طراز الطائرة (<code>ModelCode</code>) بوزن الإقلاع الأقصى (<strong>MTOW</strong> - Maximum Take-Off Weight)، وهو الأساس المعتمد دولياً في تسعير المناولة.</li>
+<li>تصنيف البدن (<code>BodyTypeCode</code>):<ul>
+<li><strong>Narrow-body (بدن ضيق)</strong>: مسموح بمدة مكوث أرضي قياسية (مثلاً 60 دقيقة).</li>
+<li><strong>Wide-body (بدن عريض)</strong>: مسموح بمدة مكوث أرضي قياسية (مثلاً 90 إلى 120 دقيقة).</li>
+</ul>
+</li>
+</ul>
+<h4>4. فهرس الخدمات الدولي (IATA SGHA Service Catalog)</h4>
+<p>هيكلة جميع الخدمات وفق معايير الاتحاد الدولي للنقل الجوي (IATA SGHA):</p>
+<ul>
+<li><strong>خدمات ساحة الطيران (Ramp Operations)</strong>: إرشاد الطائرة، وضع وسحب الأوتاد، الدفع للخلف (Pushback).</li>
+<li><strong>خدمات الطاقة والتكييف</strong>: تزويد الطائرة بالكهرباء الأرضية (<strong>GPU</strong>) أو بادئ تشغيل الهواء (<strong>ASU</strong>) وتحسب بنظام النصف ساعة أو الساعة.</li>
+<li><strong>خدمات الركاب والصعود</strong>: السلالم المتحركة (Passenger Stairs)، الخراطيم (Jet Bridges)، حافلات النقل.</li>
+<li><strong>خدمات المقصورة والمرافق</strong>: مياه الشرب النقية (Potable Water)، تفريغ ومعالجة الصرف (Lavatory Waste)، والنظافة السريعة للعبور (Transit Cleaning).</li>
+<li><strong>تنسيق الوقود والطرف الثالث</strong>: ربط مقاولي تزويد الوقود وسيارات إطفاء الطوارئ.</li>
+</ul>
+<h4>5. إدارة الإصدارات وتاريخ الصلاحية (Contract Versioning &amp; Validity)</h4>
+<ul>
+<li>تسجيل تاريخ البداية والنهاية.</li>
+<li>إمكانية تعديل الأسعار عبر ملحق موسمي (<strong>Seasonal Amendment</strong>) مع الاحتفاظ بالإصدارات السابقة في السجل التاريخي دون حذفها للتدقيق القانوني والمالي.</li>
+</ul>
+<hr>
+<h3>المرحلة 2: محرك التسعير وقواعد الاحتساب الديناميكي (Dynamic Rate Engine)</h3>
+<p>تعتمد الفوترة داخل النظام على محرك حسابات يمر بـ 6 خطوات رئيسية لحماية الهامش الربحي:</p>
+
+      <figure class="diagram-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NjAgMzIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA5MGUxNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjE3MmEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3dTbSIgeD0iLTEwJSIgeT0iLTEwJSIgd2lkdGg9IjEyMCUiIGhlaWdodD0iMTIwJSI+CiAgICAgIDxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSI0IiBzdGREZXZpYXRpb249IjUiIGZsb29kLWNvbG9yPSIjMDAwMDAwIiBmbG9vZC1vcGFjaXR5PSIwLjUiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPHN0eWxlPgogICAgLnRpdGxlIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAyMHB4OyBmb250LXdlaWdodDogODAwOyBmaWxsOiAjZjhmYWZjOyB9CiAgICAuYm94LXRpdGxlIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMy41cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZpbGw6ICNmZmZmZmY7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICAgIC5ib3gtc3ViIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMXB4OyBmaWxsOiAjOTRhM2I4OyB0ZXh0LWFuY2hvcjogbWlkZGxlOyB9CiAgICAub3BlcmF0b3IgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDIycHg7IGZvbnQtd2VpZ2h0OiA4MDA7IGZpbGw6ICMzOGJkZjg7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICAgIC5zdGVwLWJhZGdlIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMHB4OyBmb250LXdlaWdodDogODAwOyBmaWxsOiAjMzhiZGY4OyB0ZXh0LWFuY2hvcjogbWlkZGxlOyB9CiAgPC9zdHlsZT4KCiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI5NjAiIGhlaWdodD0iMzIwIiByeD0iMTYiIGZpbGw9InVybCgjYmdHcmFkKSIgc3Ryb2tlPSIjMWUyOTNiIiBzdHJva2Utd2lkdGg9IjIiLz4KCiAgPCEtLSBUaXRsZSAtLT4KICA8dGV4dCB4PSI0ODAiIHk9IjM4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUiPtmF2K3YsdmDINin2YTYqtiz2LnZitixINmI2YLZiNin2LnYryDYp9mE2KfYrdiq2LPYp9ioINin2YTYr9mK2YbYp9mF2YrZg9mKIChEeW5hbWljIFByaWNpbmcgRW5naW5lKTwvdGV4dD4KICA8dGV4dCB4PSI0ODAiIHk9IjYyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJweDsgZmlsbDogIzY0NzQ4YjsiPtmD2YrZgSDYqtiq2K3ZiNmEINio2YbZiNivINin2YTYudmC2K8g2YjYuNix2YjZgSDYp9mE2YXZh9io2Lcg2KXZhNmJINmB2KfYqtmI2LHYqSDYr9mC2YrZgtipINiu2KfZhNmK2Kkg2YXZhiDYp9mE2YbYstin2LnYp9iqPC90ZXh0PgoKICA8IS0tIFN0ZXAgMTogQmFzZSBSYXRlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1LCA5NSkiIGZpbHRlcj0idXJsKCNzaGFkb3dTbSkiPgogICAgPHJlY3Qgd2lkdGg9IjEyNSIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjMzhiZGY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHJlY3QgeD0iMjUiIHk9IjEyIiB3aWR0aD0iNzUiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjMGM0YTZlIi8+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSIyNiIgY2xhc3M9InN0ZXAtYmFkZ2UiPtiu2LfZiNipIDE8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSI2NSIgY2xhc3M9ImJveC10aXRsZSI+2KfZhNiz2LnYsSDYp9mE2KPYs9in2LPZijwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyLjUiIHk9IjgyIiBjbGFzcz0iYm94LXN1YiI+QmFzZSBSYXRlPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTE1IiBzdHlsZT0iZm9udC1zaXplOiAxMXB4OyBmaWxsOiAjY2JkNWUxOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2K3YstmF2Kkg2KfZhNmF2YbYp9mI2YTYqSDYp9mE2YLZitin2LPZitipPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTMyIiBzdHlsZT0iZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjNjQ3NDhiOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2K3Ys9ioINmG2YjYuSDYp9mE2LHYrdmE2Kk8L3RleHQ+CiAgPC9nPgoKICA8IS0tIE9wZXJhdG9yICsgLS0+CiAgPHRleHQgeD0iMTY1IiB5PSIxNzUiIGNsYXNzPSJvcGVyYXRvciI+KzwvdGV4dD4KCiAgPCEtLSBTdGVwIDI6IE1UT1cgV2VpZ2h0IFNjYWxlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE4MCwgOTUpIiBmaWx0ZXI9InVybCgjc2hhZG93U20pIj4KICAgIDxyZWN0IHdpZHRoPSIxMjUiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzgxOGNmOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjI1IiB5PSIxMiIgd2lkdGg9Ijc1IiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzMxMmU4MSIvPgogICAgPHRleHQgeD0iNjIuNSIgeT0iMjYiIGNsYXNzPSJzdGVwLWJhZGdlIiBzdHlsZT0iZmlsbDogI2E1YjRmYzsiPtiu2LfZiNipIDI8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSI2NSIgY2xhc3M9ImJveC10aXRsZSI+2YXYudin2YXZhCDYp9mE2YjYstmGPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iODIiIGNsYXNzPSJib3gtc3ViIj5NVE9XIFNjYWxlPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTE1IiBzdHlsZT0iZm9udC1zaXplOiAxMXB4OyBmaWxsOiAjY2JkNWUxOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2KrYr9ix2Kwg2YjYstmGINin2YTYt9in2KbYsdipPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTMyIiBzdHlsZT0iZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjNjQ3NDhiOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2YTZg9mEINi32YYg2KXZgtmE2KfYuTwvdGV4dD4KICA8L2c+CgogIDwhLS0gT3BlcmF0b3IgKyAtLT4KICA8dGV4dCB4PSIzMjAiIHk9IjE3NSIgY2xhc3M9Im9wZXJhdG9yIj4rPC90ZXh0PgoKICA8IS0tIFN0ZXAgMzogR3JvdW5kIFRpbWUgJiBUb2xlcmFuY2UgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzM1LCA5NSkiIGZpbHRlcj0idXJsKCNzaGFkb3dTbSkiPgogICAgPHJlY3Qgd2lkdGg9IjEyNSIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iIzFlMjkzYiIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHJlY3QgeD0iMjUiIHk9IjEyIiB3aWR0aD0iNzUiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjNzgzNTBmIi8+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSIyNiIgY2xhc3M9InN0ZXAtYmFkZ2UiIHN0eWxlPSJmaWxsOiAjZmNkMzRkOyI+2K7Yt9mI2KkgMzwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyLjUiIHk9IjY1IiBjbGFzcz0iYm94LXRpdGxlIj7ZiNmC2Kog2KfZhNmF2YPZiNirPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iODIiIGNsYXNzPSJib3gtc3ViIj5Hcm91bmQgVGltZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyLjUiIHk9IjExNSIgc3R5bGU9ImZvbnQtc2l6ZTogMTFweDsgZmlsbDogI2NiZDVlMTsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtmB2KrYsdipINin2YTYs9mF2KfYrSDYp9mE2YXYrNin2YbZitipPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTMyIiBzdHlsZT0iZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjNjQ3NDhiOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2YXZgtin2KjZhCDYp9mE2LPYp9i52KfYqiDYp9mE2KXYttin2YHZitipPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBPcGVyYXRvciArIC0tPgogIDx0ZXh0IHg9IjQ3NSIgeT0iMTc1IiBjbGFzcz0ib3BlcmF0b3IiPis8L3RleHQ+CgogIDwhLS0gU3RlcCA0OiBTdXJjaGFyZ2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5MCwgOTUpIiBmaWx0ZXI9InVybCgjc2hhZG93U20pIj4KICAgIDxyZWN0IHdpZHRoPSIxMjUiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2VjNDg5OSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjI1IiB5PSIxMiIgd2lkdGg9Ijc1IiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzgzMTg0MyIvPgogICAgPHRleHQgeD0iNjIuNSIgeT0iMjYiIGNsYXNzPSJzdGVwLWJhZGdlIiBzdHlsZT0iZmlsbDogI2Y0NzJiNjsiPtiu2LfZiNipIDQ8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSI2NSIgY2xhc3M9ImJveC10aXRsZSI+2KfZhNix2LPZiNmFINin2YTYpdi22KfZgdmK2Kk8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSI4MiIgY2xhc3M9ImJveC1zdWIiPlN1cmNoYXJnZXM8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSIxMTUiIHN0eWxlPSJmb250LXNpemU6IDExcHg7IGZpbGw6ICNjYmQ1ZTE7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij7Ysdiz2YjZhSDYp9mE2LnZhdmEINin2YTZhNmK2YTZijwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyLjUiIHk9IjEzMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTBweDsgZmlsbDogIzY0NzQ4YjsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtmI2KfZhNi52LfZhNin2Kog2KfZhNix2LPZhdmK2Kk8L3RleHQ+CiAgPC9nPgoKICA8IS0tIE9wZXJhdG9yICsgLS0+CiAgPHRleHQgeD0iNjMwIiB5PSIxNzUiIGNsYXNzPSJvcGVyYXRvciI+KzwvdGV4dD4KCiAgPCEtLSBTdGVwIDU6IFBhcnRuZXIgU3ByZWFkICYgTWFya3VwIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0NSwgOTUpIiBmaWx0ZXI9InVybCgjc2hhZG93U20pIj4KICAgIDxyZWN0IHdpZHRoPSIxMjUiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzA2YjZkNCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxyZWN0IHg9IjI1IiB5PSIxMiIgd2lkdGg9Ijc1IiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzE2NGU2MyIvPgogICAgPHRleHQgeD0iNjIuNSIgeT0iMjYiIGNsYXNzPSJzdGVwLWJhZGdlIiBzdHlsZT0iZmlsbDogIzY3ZThmOTsiPtiu2LfZiNipIDU8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSI2NSIgY2xhc3M9ImJveC10aXRsZSI+2YfYp9mF2LQg2KfZhNmF2YjYsdiv2YrZhjwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyLjUiIHk9IjgyIiBjbGFzcz0iYm94LXN1YiI+UGFydG5lciBNYXJrdXA8L3RleHQ+CiAgICA8dGV4dCB4PSI2Mi41IiB5PSIxMTUiIHN0eWxlPSJmb250LXNpemU6IDExcHg7IGZpbGw6ICNjYmQ1ZTE7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij7YqtmD2YTZgdipINin2YTZiNmC2YjYryDZiNin2YTZhdi52K/Yp9iqPC90ZXh0PgogICAgPHRleHQgeD0iNjIuNSIgeT0iMTMyIiBzdHlsZT0iZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjNjQ3NDhiOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+KyDYudmF2YjZhNipINin2YTYpdiv2KfYsdipIDUlPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBPcGVyYXRvciA9IC0tPgogIDx0ZXh0IHg9Ijc4NSIgeT0iMTc1IiBjbGFzcz0ib3BlcmF0b3IiIHN0eWxlPSJmaWxsOiAjMTBiOTgxOyI+PTwvdGV4dD4KCiAgPCEtLSBTdGVwIDY6IFZlcmlmaWVkIEZpbmFsIFRvdGFsIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgwMCwgODUpIiBmaWx0ZXI9InVybCgjc2hhZG93U20pIj4KICAgIDxyZWN0IHdpZHRoPSIxMzUiIGhlaWdodD0iMTcwIiByeD0iMTIiIGZpbGw9IiMwNjRlM2IiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICAgIDxyZWN0IHg9IjI1IiB5PSIxMiIgd2lkdGg9Ijg1IiBoZWlnaHQ9IjIyIiByeD0iNCIgZmlsbD0iIzA0Nzg1NyIvPgogICAgPHRleHQgeD0iNjcuNSIgeT0iMjciIGNsYXNzPSJzdGVwLWJhZGdlIiBzdHlsZT0iZmlsbDogI2E3ZjNkMDsgZm9udC1zaXplOiAxMXB4OyI+2KfZhNmG2KrZitis2Kkg2KfZhNmF2LnYqtmF2K/YqTwvdGV4dD4KICAgIDx0ZXh0IHg9IjY3LjUiIHk9IjcwIiBjbGFzcz0iYm94LXRpdGxlIiBzdHlsZT0iZm9udC1zaXplOiAxNXB4OyBmaWxsOiAjMzRkMzk5OyI+2KfZhNil2KzZhdin2YTZiiDYp9mE2YbZh9in2KbZijwvdGV4dD4KICAgIDx0ZXh0IHg9IjY3LjUiIHk9IjkwIiBjbGFzcz0iYm94LXN1YiIgc3R5bGU9ImZpbGw6ICNhN2YzZDA7Ij5WZXJpZmllZCBUb3RhbDwvdGV4dD4KICAgIDx0ZXh0IHg9IjY3LjUiIHk9IjEyMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTFweDsgZmlsbDogI2VjZmRmNTsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtmB2KfYqtmI2LHYqSDZhdiv2YLZgtipINii2YTZitin2Ys8L3RleHQ+CiAgICA8dGV4dCB4PSI2Ny41IiB5PSIxNDIiIHN0eWxlPSJmb250LXNpemU6IDEwcHg7IGZpbGw6ICM2ZWU3Yjc7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij7Yqti32KjZitmCINin2YTYrdivINin2YTYo9iv2YbZiTwvdGV4dD4KICAgIDx0ZXh0IHg9IjY3LjUiIHk9IjE1NyIgc3R5bGU9ImZvbnQtc2l6ZTogOS41cHg7IGZpbGw6ICNhN2YzZDA7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij4rINi22LHYp9im2Kgg2KfZhNi32YrYsdin2YYg2KfZhNmF2K/ZhtmKPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBGb290ZXIgaGludCAtLT4KICA8dGV4dCB4PSI0ODAiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtZmFtaWx5OiBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExLjVweDsgZmlsbDogIzk0YTNiODsiPgogICAg8J+SoSDYp9mE2YXYudin2K/ZhNipINin2YTYsdmK2KfYttmK2Kkg2KfZhNmF2K3ZhdmK2Kk6IFvYp9mE2LPYudixINin2YTYo9iz2KfYs9mKXSArIFvYutix2KfZhdipINmF2YPZiNirIEdQVV0gKyBb2LHYs9mI2YUg2YTZitmE2YpdICsgW9iq2YPZhNmB2Kkg2YXZiNix2K8gKyA1JV0gKyBb2KfZhNi22LHYp9im2KhdID0g2KfZhNmB2KfYqtmI2LHYqSDYp9mE2YbZh9in2KbZitipCiAgPC90ZXh0Pgo8L3N2Zz4K" alt="محرك التسعير وقواعد الاحتساب" class="diagram-img" />
+        <figcaption class="diagram-caption">محرك التسعير وقواعد الاحتساب</figcaption>
+      </figure>
+    
+<ul>
+<li><strong>السماح الزمني (Time Tolerance)</strong>: العقد يمنح وقتاً أرضياً مجانياً (مثلاً أول ساعتين مجاناً)، وفي حال تأخر إقلاع الطائرة يبدأ النظام في احتساب غرامات المكوث الإضافي تلقائياً مجزأة لكل نصف ساعة.</li>
+<li><strong>ضمان الحد الأدنى للإيراد (Minimum Price Guarantee)</strong>: قاعدة تضمن أن أي رحلة، حتى لو كانت بحمولة منخفضة، لا تقل إيراداتها عن رقم أدنى يغطي تكاليف تشغيل العمالة والمعدات.</li>
+<li><strong>الرسوم الإضافية (Surcharges)</strong>: رسوم العمل الليلي والعطلات الرسمية والأعياد.</li>
+</ul>
+<hr>
+<h3>المرحلة 3: المسار التجاري القبلي (From Quotation to Work Order)</h3>
+<pre><code>[ طلب الرحلة من العميل ]
+          │
+          ▼
+[ إنشاء عرض السعر (Quotation) ] ───► يشمل: الخدمات المطلوبة، الطراز، الركاب، والتسعير
+          │
+          ▼
+[ إصدار الفاتورة المبدئية (Proforma Invoice) ] ───► للرحلات العارضة للتحقق من السداد المسبق
+          │
+          ▼
+[ اعتماد العميل وتوليد أمر العمل (Work Order) ] ───► وثيقة رسمية تنزل لمهبط المطار
+</code></pre>
+<ol>
+<li><strong>عرض السعر (<code>Com_QuotationHeader / Com_QuotationDetails</code>)</strong>:
+تجميع بيانات الرحلة بالكامل، متضمنة عدد الركاب القادمين والمغادرين (<code>IPAXIn, IPAXOut, DPAXIn, DPAXOut</code>)، ونوع الحمولة (<code>LoadTypeCode</code>).</li>
+<li><strong>الفاتورة المبدئية (<code>Quotation Performa</code>)</strong>:
+تُلزم عملاء الرحلات غير المنتظمة بالتحويل البنكي المسبق قبل إعطاء تصريح الهبوط.</li>
+<li><strong>أمر العمل التشغيلي (<code>Turnaround Work Order</code>)</strong>:
+تحويل بنود العقد إلى قائمة مهام ملموسة لطاقم المهبط توضح بالتحديد:<ul>
+<li>المعدات المصرح باستخدامها وعدد الساعات المشمولة مجاناً (مثلاً: GPU لمدة ساعتين فقط؛ سلم ركاب واحد).</li>
+<li>التنبيهات الخاصة (شحنات خطرة، ركاب VIP، إلخ).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>المرحلة 4: التنفيذ الميداني على أرض المهبط (Apron Operations Alignment)</h3>
+<p>المرحلة التي تضمن عدم ضياع أي خدمة تقدم فعلياً على أرض الواقع:</p>
+
+      <figure class="diagram-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NjAgNDQwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA5MGUxNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjE3MmEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii01JSIgeT0iLTUlIiB3aWR0aD0iMTEwJSIgaGVpZ2h0PSIxMTAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iNiIgZmxvb2QtY29sb3I9IiMwMDAwMDAiIGZsb29kLW9wYWNpdHk9IjAuNCIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8c3R5bGU+CiAgICAudGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDIwcHg7IGZvbnQtd2VpZ2h0OiA4MDA7IGZpbGw6ICNmOGZhZmM7IH0KICAgIC5jb2wtdGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE1cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICAgIC5waWxsLW1haW4geyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEzcHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZpbGw6ICNmZmZmZmY7IH0KICAgIC5waWxsLXN1YiB7IGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICJTZWdvZSBVSSIsIFJvYm90bywgIkNhaXJvIiwgIlRhaG9tYSIsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFweDsgZmlsbDogIzk0YTNiODsgfQogIDwvc3R5bGU+CgogIDwhLS0gQmFja2dyb3VuZCAtLT4KICA8cmVjdCB3aWR0aD0iOTYwIiBoZWlnaHQ9IjQ0MCIgcng9IjE2IiBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0iIzFlMjkzYiIgc3Ryb2tlLXdpZHRoPSIyIi8+CgogIDwhLS0gVGl0bGUgLS0+CiAgPHRleHQgeD0iNDgwIiB5PSIzOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRpdGxlIj7Ysdio2Lcg2LnZhdmE2YrYp9iqINin2YTZhdmH2KjYtyDYp9mE2YTYrdi42YrYqSDYqNiz2KfYudipINin2YTZgdmI2KrYsdipIChBcHJvbiBUdXJuYXJvdW5kIEFsaWdubWVudCk8L3RleHQ+CiAgPHRleHQgeD0iNDgwIiB5PSI2MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtZmFtaWx5OiBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHg7IGZpbGw6ICM2NDc0OGI7Ij7Yqtit2YjZitmEINmD2YQg2K3Yr9irINi52YTZiSDYo9ix2LYg2KfZhNmF2LfYp9ixINil2YTZiSDYqNmG2K8g2YHZiNiq2LHYqSDZgdmI2LHZiiDZhdi52KrZhdivINmK2YXZhti5INiq2LPYsdioINin2YTYpdmK2LHYp9iv2KfYqjwvdGV4dD4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBDT0xVTU4gMTogQVJSSVZBTCA9PT09PT09PT09PT09PT09PSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMCwgODUpIiBmaWx0ZXI9InVybCgjc2hhZG93KSI+CiAgICA8cmVjdCB3aWR0aD0iMjcwIiBoZWlnaHQ9IjMyNSIgcng9IjEyIiBmaWxsPSIjMWUyOTNiIiBzdHJva2U9IiMzOGJkZjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSIxMzUiIHk9IjMwIiBjbGFzcz0iY29sLXRpdGxlIiBzdHlsZT0iZmlsbDogIzM4YmRmODsiPjEuINmF2LnYp9mE2YUg2KfZhNmI2LXZiNmEIChBcnJpdmFsKTwvdGV4dD4KICAgIAogICAgPCEtLSBJdGVtIDEgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNSwgNTApIj4KICAgICAgPHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSI2NSIgcng9IjgiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0iIzMzNDE1NSIvPgogICAgICA8dGV4dCB4PSIyNSIgeT0iMzgiIGZvbnQtc2l6ZT0iMjIiPvCfm6w8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjY1IiB5PSIyOCIgY2xhc3M9InBpbGwtbWFpbiI+2KfZhNmH2KjZiNi3IChUb3VjaGRvd24pPC90ZXh0PgogICAgICA8dGV4dCB4PSI2NSIgeT0iNDgiIGNsYXNzPSJwaWxsLXN1YiI+2KfYrdiq2LPYp9ioINix2LPZiNmFINit2LHZg9ipINin2YTZhdmH2KjYtzwvdGV4dD4KICAgIDwvZz4KCiAgICA8IS0tIEl0ZW0gMiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LCAxMzApIj4KICAgICAgPHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSI2NSIgcng9IjgiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgICAgPHRleHQgeD0iMjUiIHk9IjM4IiBmb250LXNpemU9IjIyIj7ij7k8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjY1IiB5PSIyOCIgY2xhc3M9InBpbGwtbWFpbiI+2YjYtti5INin2YTYo9mI2KrYp9ivIChDaG9ja3MtT24pPC90ZXh0PgogICAgICA8dGV4dCB4PSI2NSIgeT0iNDgiIGNsYXNzPSJwaWxsLXN1YiIgc3R5bGU9ImZpbGw6ICMzOGJkZjg7Ij7YqNiv2KEg2LnYr9in2K8g2YjZgtiqINin2YTZhdmD2YjYqyDYp9mE2KPYsdi22Yo8L3RleHQ+CiAgICA8L2c+CgogICAgPCEtLSBJdGVtIDMgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNSwgMjEwKSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iNjUiIHJ4PSI4IiBmaWxsPSIjMGYxNzJhIiBzdHJva2U9IiMzMzQxNTUiLz4KICAgICAgPHRleHQgeD0iMjUiIHk9IjM4IiBmb250LXNpemU9IjIyIj7wn5qqPC90ZXh0PgogICAgICA8dGV4dCB4PSI2NSIgeT0iMjgiIGNsYXNzPSJwaWxsLW1haW4iPtmB2KrYrSDYp9mE2KPYqNmI2KfYqCAoRG9vcnMgT3Blbik8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjY1IiB5PSI0OCIgY2xhc3M9InBpbGwtc3ViIj7YqNiv2KEg2YbYstmI2YQg2KfZhNix2YPYp9ioINmI2KfZhNi32KfZgtmFPC90ZXh0PgogICAgPC9nPgogIDwvZz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBDT0xVTU4gMjogQ09OQ1VSUkVOVCBTRVJWSUNJTkcgPT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIwLCA4NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMzI1IiByeD0iMTIiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjE2MCIgeT0iMzAiIGNsYXNzPSJjb2wtdGl0bGUiIHN0eWxlPSJmaWxsOiAjZjU5ZTBiOyI+Mi4g2K7Yr9mF2KfYqiDYp9mE2YXZh9io2Lcg2KfZhNiq2LLYp9mF2YbZitipIChBcHJvbiBTZXJ2aWNpbmcpPC90ZXh0PgogICAgCiAgICA8IS0tIFNlcnZpY2UgMSAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LCA0OCkiPgogICAgICA8cmVjdCB3aWR0aD0iMjkwIiBoZWlnaHQ9IjM4IiByeD0iNiIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1zaXplPSIxNiI+4pqhPC90ZXh0PgogICAgICA8dGV4dCB4PSI0OCIgeT0iMjQiIGNsYXNzPSJwaWxsLW1haW4iIHN0eWxlPSJmb250LXNpemU6IDEycHg7Ij7Zg9mH2LHYqNin2KEg2KPYsdi22YrYqSBHUFUgKNi52K/Yp9ivINio2KfZhNiz2KfYudipKTwvdGV4dD4KICAgIDwvZz4KCiAgICA8IS0tIFNlcnZpY2UgMiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LCA5MikiPgogICAgICA8cmVjdCB3aWR0aD0iMjkwIiBoZWlnaHQ9IjM4IiByeD0iNiIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1zaXplPSIxNiI+8J+qnDwvdGV4dD4KICAgICAgPHRleHQgeD0iNDgiIHk9IjI0IiBjbGFzcz0icGlsbC1tYWluIiBzdHlsZT0iZm9udC1zaXplOiAxMnB4OyI+2LPZhNin2YTZhSDYp9mE2LHZg9in2Kgg2KfZhNmF2KrYrdix2YPYqSAvINin2YTYrtix2LfZiNmFPC90ZXh0PgogICAgPC9nPgoKICAgIDwhLS0gU2VydmljZSAzIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUsIDEzNikiPgogICAgICA8cmVjdCB3aWR0aD0iMjkwIiBoZWlnaHQ9IjM4IiByeD0iNiIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1zaXplPSIxNiI+8J+nszwvdGV4dD4KICAgICAgPHRleHQgeD0iNDgiIHk9IjI0IiBjbGFzcz0icGlsbC1tYWluIiBzdHlsZT0iZm9udC1zaXplOiAxMnB4OyI+2KrZgdix2YrYuiDZiNi02K3ZhiDYp9mE2K3Zgtin2KbYqCDZiNin2YTYqNi22KfYpti5PC90ZXh0PgogICAgPC9nPgoKICAgIDwhLS0gU2VydmljZSA0IC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUsIDE4MCkiPgogICAgICA8cmVjdCB3aWR0aD0iMjkwIiBoZWlnaHQ9IjM4IiByeD0iNiIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1zaXplPSIxNiI+8J+SpzwvdGV4dD4KICAgICAgPHRleHQgeD0iNDgiIHk9IjI0IiBjbGFzcz0icGlsbC1tYWluIiBzdHlsZT0iZm9udC1zaXplOiAxMnB4OyI+2KrYstmI2YrYryDYp9mE2YXZitin2Ycg2KfZhNmG2YLZitipINmI2K7Yr9mF2Kkg2KfZhNi12LHZgTwvdGV4dD4KICAgIDwvZz4KCiAgICA8IS0tIFNlcnZpY2UgNSAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LCAyMjQpIj4KICAgICAgPHJlY3Qgd2lkdGg9IjI5MCIgaGVpZ2h0PSIzOCIgcng9IjYiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0iIzMzNDE1NSIvPgogICAgICA8dGV4dCB4PSIyMCIgeT0iMjQiIGZvbnQtc2l6ZT0iMTYiPuKbvTwvdGV4dD4KICAgICAgPHRleHQgeD0iNDgiIHk9IjI0IiBjbGFzcz0icGlsbC1tYWluIiBzdHlsZT0iZm9udC1zaXplOiAxMnB4OyI+2KrZhtiz2YrZgiDYqtmF2YjZitmGINin2YTZiNmC2YjYryDZiNil2LfZgdin2KEg2KfZhNi32YjYp9ix2KY8L3RleHQ+CiAgICA8L2c+CgogICAgPCEtLSBTZXJ2aWNlIDYgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNSwgMjY4KSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyOTAiIGhlaWdodD0iMzgiIHJ4PSI2IiBmaWxsPSIjMGYxNzJhIiBzdHJva2U9IiMzMzQxNTUiLz4KICAgICAgPHRleHQgeD0iMjAiIHk9IjI0IiBmb250LXNpemU9IjE2Ij7wn6e5PC90ZXh0PgogICAgICA8dGV4dCB4PSI0OCIgeT0iMjQiIGNsYXNzPSJwaWxsLW1haW4iIHN0eWxlPSJmb250LXNpemU6IDEycHg7Ij7YqtmG2LjZitmBINin2YTZhdmC2LXZiNix2Kkg2YjYp9mE2KrYudmC2YrZhSDYp9mE2LPYsdmK2Lk8L3RleHQ+CiAgICA8L2c+CiAgPC9nPgoKICA8IS0tID09PT09PT09PT09PT09PT09IENPTFVNTiAzOiBERVBBUlRVUkUgPT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjYwLCA4NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIyNzAiIGhlaWdodD0iMzI1IiByeD0iMTIiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjEzNSIgeT0iMzAiIGNsYXNzPSJjb2wtdGl0bGUiIHN0eWxlPSJmaWxsOiAjMTBiOTgxOyI+My4g2YXYudin2YTZhSDYp9mE2YXYutin2K/YsdipIChEZXBhcnR1cmUpPC90ZXh0PgogICAgCiAgICA8IS0tIEl0ZW0gMSAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1LCA1MCkiPgogICAgICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjY1IiByeD0iOCIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjI1IiB5PSIzOCIgZm9udC1zaXplPSIyMiI+8J+UkjwvdGV4dD4KICAgICAgPHRleHQgeD0iNjUiIHk9IjI4IiBjbGFzcz0icGlsbC1tYWluIj7Ypdi62YTYp9mCINin2YTYo9io2YjYp9ioIChEb29ycyBDbG9zZWQpPC90ZXh0PgogICAgICA8dGV4dCB4PSI2NSIgeT0iNDgiIGNsYXNzPSJwaWxsLXN1YiI+2KfZg9iq2YXYp9mEINi12LnZiNivINin2YTYsdmD2KfYqCDZiNin2YTYo9mF2KrYudipPC90ZXh0PgogICAgPC9nPgoKICAgIDwhLS0gSXRlbSAyIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUsIDEzMCkiPgogICAgICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjY1IiByeD0iOCIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjMzM0MTU1Ii8+CiAgICAgIDx0ZXh0IHg9IjI1IiB5PSIzOCIgZm9udC1zaXplPSIyMiI+8J+anDwvdGV4dD4KICAgICAgPHRleHQgeD0iNjUiIHk9IjI4IiBjbGFzcz0icGlsbC1tYWluIj7Ys9it2Kgg2KfZhNi32KfYptix2KkgKFB1c2hiYWNrKTwvdGV4dD4KICAgICAgPHRleHQgeD0iNjUiIHk9IjQ4IiBjbGFzcz0icGlsbC1zdWIiIHN0eWxlPSJmaWxsOiAjMTBiOTgxOyI+2KXYstin2YTYqSDYp9mE2KPZiNiq2KfYryDZiNmC2YHZhCDZiNmC2Kog2KfZhNmF2YPZiNirPC90ZXh0PgogICAgPC9nPgoKICAgIDwhLS0gSXRlbSAzIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUsIDIxMCkiPgogICAgICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9Ijg1IiByeD0iOCIgZmlsbD0iIzA2NGUzYiIgc3Ryb2tlPSIjMTBiOTgxIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgICA8dGV4dCB4PSIyNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiPuKcje+4jzwvdGV4dD4KICAgICAgPHRleHQgeD0iNjUiIHk9IjMyIiBjbGFzcz0icGlsbC1tYWluIiBzdHlsZT0iZmlsbDogIzM0ZDM5OTsiPtiq2YjZgtmK2Lkg2KfZhNmD2KfYqNiq2YYg2KXZhNmD2KrYsdmI2YbZitin2Ys8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjY1IiB5PSI1MiIgY2xhc3M9InBpbGwtc3ViIiBzdHlsZT0iZmlsbDogI2E3ZjNkMDsiPkNhcHRhaW4gRWxlY3Ryb25pYyBTaWduLU9mZjwvdGV4dD4KICAgICAgPHRleHQgeD0iNjUiIHk9IjcyIiBjbGFzcz0icGlsbC1zdWIiIHN0eWxlPSJmaWxsOiAjNmVlN2I3OyBmb250LXdlaWdodDogNzAwOyI+2KfYudiq2YXYp9ivINmC2KfYt9i5INmK2YXZhti5INij2Yog2YbYstin2Lkg2YTYp9it2YI8L3RleHQ+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" alt="ربط أحداث المهبط بساعة الفوترة" class="diagram-img" />
+        <figcaption class="diagram-caption">ربط أحداث المهبط بساعة الفوترة</figcaption>
+      </figure>
+    
+<ul>
+<li><strong>وحدات الطاقة الأرضية (<code>GPU</code>)</strong>: تُحسب بالدقيقة وتُسجل بساعات التشغيل من لحظة التوصيل إلى لحظة الفصل.</li>
+<li><strong>الخدمات الإضافية الميدانية (Ad-Hoc Services)</strong>: في حال طلب طاقم الطائرة خدمات طارئة (مثل تنظيف إضافي، عربة حقائب إضافية، أو وحدة تشغيل هواء ASU)، يتم تسجيلها فورياً في السجل الميداني.</li>
+<li><strong>التوقيع الإلكتروني للكابتن (<code>Captain Electronic Sign-Off</code>)</strong>:
+قبل سحب الأوتاد والإقلاع، يعتمد قائد الطائرة بياناً إلكترونياً بما استهلكته طائرته من خدمات وساعات طاقة ومياه وتنظيف، وهو ما يقطع الطريق تماماً على أي اعتراضات لاحقة من إدارة الحسابات في شركة الطيران.</li>
+</ul>
+<hr>
+<h3>المرحلة 5: إدارة مقاولي الباطن والمطابقة الثلاثية (Subcontractor &amp; Margin Protection)</h3>
+<p>تعتمد شركات المناولة الأرضية على مقاولين خارجيين لتوفير خدمات معينة (مثل الوقود، التموين، أو الرافعات الثقيلة). لحماية الهامش الربحي:</p>
+
+      <figure class="diagram-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NjAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA5MGUxNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjE3MmEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii01JSIgeT0iLTUlIiB3aWR0aD0iMTEwJSIgaGVpZ2h0PSIxMTAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iNiIgZmxvb2QtY29sb3I9IiMwMDAwMDAiIGZsb29kLW9wYWNpdHk9IjAuNCIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8c3R5bGU+CiAgICAudGl0bGUgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDIwcHg7IGZvbnQtd2VpZ2h0OiA4MDA7IGZpbGw6ICNmOGZhZmM7IH0KICAgIC5jYXJkLXRpdGxlIHsgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgIlNlZ29lIFVJIiwgUm9ib3RvLCAiQ2Fpcm8iLCAiVGFob21hIiwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBmb250LXdlaWdodDogNzAwOyBmaWxsOiAjZmZmZmZmOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyB9CiAgICAuY2FyZC1zdWIgeyBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgVUkiLCBSb2JvdG8sICJDYWlybyIsICJUYWhvbWEiLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExcHg7IGZpbGw6ICM5NGEzYjg7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICA8L3N0eWxlPgoKICA8IS0tIEJhY2tncm91bmQgLS0+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSIzNjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNiZ0dyYWQpIiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iMiIvPgoKICA8IS0tIFRpdGxlIC0tPgogIDx0ZXh0IHg9IjQ4MCIgeT0iMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+2KfZhNmF2LfYp9io2YLYqSDYp9mE2KvZhNin2KvZitipINin2YTYsNmD2YrYqSDZiNit2YXYp9mK2Kkg2YfYp9mF2LQg2KfZhNix2KjYrSAoMy1XYXkgTWF0Y2hpbmcgJmFtcDsgTWFyZ2luIFNoaWVsZCk8L3RleHQ+CiAgPHRleHQgeD0iNDgwIiB5PSI2MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtZmFtaWx5OiBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHg7IGZpbGw6ICM2NDc0OGI7Ij7YrdmF2KfZitipINij2LHYqNin2K0g2KfZhNi02LHZg9ipINmI2YXZhti5INin2YTZgdmI2KrYsdipINio2KfZhNiu2LPYp9ix2Kkg2LnZhtivINin2YTYp9iz2KrYudin2YbYqSDYqNmF2YLYp9mI2YTZiiDYp9mE2YjZgtmI2K8g2YjYp9mE2KrZhdmI2YrZhiDZiNin2YTZhdi52K/Yp9iqPC90ZXh0PgoKICA8IS0tIDMgSW5wdXQgQ2FyZHMgLS0+CiAgPCEtLSBEb2N1bWVudCAxOiBQdXJjaGFzZSBBdXRob3JpemF0aW9uIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwLCA5NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTMwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iMzUiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfk4s8L3RleHQ+CiAgICA8dGV4dCB4PSIxMDAiIHk9IjY4IiBjbGFzcz0iY2FyZC10aXRsZSI+MS4g2KrZgdmI2YrYtiDYp9mE2LTYsdin2KEg2KfZhNmF2LPYqNmCPC90ZXh0PgogICAgPHRleHQgeD0iMTAwIiB5PSI4OCIgY2xhc3M9ImNhcmQtc3ViIj5QdXJjaGFzZSBBdXRob3JpemF0aW9uPC90ZXh0PgogICAgPHRleHQgeD0iMTAwIiB5PSIxMTIiIHN0eWxlPSJmb250LXNpemU6IDEwcHg7IGZpbGw6ICNjYmQ1ZTE7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij7Ys9mC2YEg2KfZhNiz2LnYsSDZiNin2YTZg9mF2YrYqSDYp9mE2YXYudiq2YXYrzwvdGV4dD4KICA8L2c+CgogIDwhLS0gRG9jdW1lbnQgMjogUmFtcCBEZWxpdmVyeSBMb2cgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjY1LCA5NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTMwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iMzUiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKbvTwvdGV4dD4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iNjgiIGNsYXNzPSJjYXJkLXRpdGxlIj4yLiDYs9is2YQg2KfYs9iq2YTYp9mFINin2YTZhdmH2KjYtzwvdGV4dD4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iODgiIGNsYXNzPSJjYXJkLXN1YiI+UmFtcCBEZWxpdmVyeSBMb2c8L3RleHQ+CiAgICA8dGV4dCB4PSIxMDAiIHk9IjExMiIgc3R5bGU9ImZvbnQtc2l6ZTogMTBweDsgZmlsbDogI2NiZDVlMTsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtin2YTZg9mF2YrYqSDYp9mE2YXYs9iq2YTZhdipINmB2LnZhNmK2KfZiyDYqNin2YTZhdmH2KjYtzwvdGV4dD4KICA8L2c+CgogIDwhLS0gRG9jdW1lbnQgMzogVmVuZG9yIEludm9pY2UgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDkwLCA5NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTMwIiByeD0iMTAiIGZpbGw9IiMxZTI5M2IiIHN0cm9rZT0iI2VjNDg5OSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iMzUiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfp748L3RleHQ+CiAgICA8dGV4dCB4PSIxMDAiIHk9IjY4IiBjbGFzcz0iY2FyZC10aXRsZSI+My4g2YHYp9iq2YjYsdipINmF2YLYp9mI2YQg2KfZhNio2KfYt9mGPC90ZXh0PgogICAgPHRleHQgeD0iMTAwIiB5PSI4OCIgY2xhc3M9ImNhcmQtc3ViIj5WZW5kb3IgSW52b2ljZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjEwMCIgeT0iMTEyIiBzdHlsZT0iZm9udC1zaXplOiAxMHB4OyBmaWxsOiAjY2JkNWUxOyB0ZXh0LWFuY2hvcjogbWlkZGxlOyI+2KfZhNmF2LfYp9mE2KjYqSDYp9mE2YXYp9mE2YrYqSDZhdmGINin2YTZhdmI2LHYrzwvdGV4dD4KICA8L2c+CgogIDwhLS0gTGluZXMgY29udmVyZ2luZyB0byBFbmdpbmUgLS0+CiAgPHBhdGggZD0iTSAxNDAgMjI1IEwgMTQwIDI2MCBMIDcxMCAyNjAiIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtZGFzaGFycmF5PSIzIDMiLz4KICA8cGF0aCBkPSJNIDM2NSAyMjUgTCAzNjUgMjYwIiBzdHJva2U9IiNmNTllMGIiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0gNTkwIDIyNSBMIDU5MCAyNjAgTCA3MTAgMjYwIiBzdHJva2U9IiNlYzQ4OTkiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iMyAzIi8+CgogIDwhLS0gRGVjaXNpb24gLyBNYXRjaCBFbmdpbmUgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzEwLCA4NSkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgIDxyZWN0IHdpZHRoPSIyMTAiIGhlaWdodD0iMjM1IiByeD0iMTIiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0iIzA2YjZkNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8dGV4dCB4PSIxMDUiIHk9IjMwIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5uh77iPPC90ZXh0PgogICAgPHRleHQgeD0iMTA1IiB5PSI1NSIgY2xhc3M9ImNhcmQtdGl0bGUiIHN0eWxlPSJmaWxsOiAjMjJkM2VlOyBmb250LXNpemU6IDE1cHg7Ij7ZhtmI2KfYqSDYp9mE2KrYr9mC2YrZgiDYp9mE2LDZg9mK2Kk8L3RleHQ+CiAgICA8dGV4dCB4PSIxMDUiIHk9IjczIiBjbGFzcz0iY2FyZC1zdWIiPjMtV2F5IE1hdGNoIEVuZ2luZTwvdGV4dD4KCiAgICA8IS0tIEJyYW5jaCBQYXNzIC0tPgogICAgPHJlY3QgeD0iMTUiIHk9IjkwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjU4IiByeD0iOCIgZmlsbD0iIzA2NGUzYiIgc3Ryb2tlPSIjMTBiOTgxIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHRleHQgeD0iMTA1IiB5PSIxMTIiIHN0eWxlPSJmb250LXNpemU6IDEycHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZpbGw6ICMzNGQzOTk7IHRleHQtYW5jaG9yOiBtaWRkbGU7Ij7inIUg2YXYt9in2KjZgtipINiq2KfZhdipPC90ZXh0PgogICAgPHRleHQgeD0iMTA1IiB5PSIxMzIiIHN0eWxlPSJmb250LXNpemU6IDEwLjVweDsgZmlsbDogI2E3ZjNkMDsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtin2LnYqtmF2KfYryDZiNi12LHZgSDYp9mE2YfYp9mF2LQgKCs1JSDYudmF2YjZhNipKTwvdGV4dD4KCiAgICA8IS0tIEJyYW5jaCBBbGVydCAtLT4KICAgIDxyZWN0IHg9IjE1IiB5PSIxNTgiIHdpZHRoPSIxODAiIGhlaWdodD0iNTgiIHJ4PSI4IiBmaWxsPSIjODgxMzM3IiBzdHJva2U9IiNmNDNmNWUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSIxMDUiIHk9IjE4MCIgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDsgZm9udC13ZWlnaHQ6IDcwMDsgZmlsbDogI2ZkYTRhZjsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPuKaoO+4jyDYp9iu2KrZhNin2YEg2KjYp9mE2LPYudixINij2Ygg2KfZhNmD2YXZitipPC90ZXh0PgogICAgPHRleHQgeD0iMTA1IiB5PSIyMDAiIHN0eWxlPSJmb250LXNpemU6IDEwLjVweDsgZmlsbDogI2ZlY2RkMzsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPtiq2YbYqNmK2Ycg2YHZiNix2Yog2KjZh9in2YXYtCDYsdio2K0g2LPYp9mE2KghPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="المطابقة الثلاثية وحماية الهامش" class="diagram-img" />
+        <figcaption class="diagram-caption">المطابقة الثلاثية وحماية الهامش</figcaption>
+      </figure>
+    
+<ul>
+<li><strong>حائط صد الهامش السالب (<code>Negative Margin Alert</code>)</strong>:
+النظام يمنع إصدار الفاتورة أو قبول فاتورة المورد إذا كانت تكلفة المورد أعلى من السعر المتفق عليه مع شركة الطيران، مما يضمن أن نسبة الـ <strong>Disbursement Fee</strong> أو الـ <strong>Markup</strong> الخاصة بالشركة تظل مضمونة دائماً.</li>
+<li><strong>مثال عملي على حماية الهامش</strong>:<ul>
+<li>فاتورة الوقود المفوترة على شركة الطيران: <strong>$1,200.00</strong></li>
+<li>تكلفة المورد الأساسية: <strong>-$980.00</strong></li>
+<li>عمولة إدارة ومناولة (5% Disbursement Markup): <strong>+$60.00</strong></li>
+<li><strong>صافي ربح المناول الأرضي:</strong> <strong>$280.00</strong> (محمية ومضمونة).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>المرحلة 6: المراجعة المالية وإصدار الفاتورة الختامية (Final Tax Invoicing)</h3>
+<ol>
+<li><strong>احتساب الفروقات (<code>Variance Analysis</code>)</strong>:
+مقارنة ما تم تسعيره مبدئياً في عرض السعر بما استهلكه الكابتن فعلياً على أرض المهبط (مثال: طلب ساعة إضافية من الـ GPU أو سيارة تفريغ إضافية).</li>
+<li><strong>إصدار الفاتورة الضريبية النهائية (<code>Final Tax Invoice</code>)</strong>:
+تتضمن الأرقام الحسابية الشفافة:<ul>
+<li>السعر الأساسي للمناولة (Handling Base).</li>
+<li>رسوم المكوث الإضافي إن وجدت (Overtime Parking).</li>
+<li>رسوم الخدمات الإضافية الميدانية (Extra Services).</li>
+<li>رسوم الطرف الثالث ومصاريف الإدارة (Third-party &amp; Disbursement).</li>
+<li>رسوم سلطة الطيران المدني والضرائب الحكومية المطبقة (<code>AirportTax</code>).</li>
+</ul>
+</li>
+<li><strong>الترحيل إلى نظام المدينين (<code>Accounts Receivable - AR / ERP</code>)</strong>:
+ترحيل الفاتورة مباشرة إلى الحسابات لمتابعة السداد والتحصيل وفق مدة الائتمان المقررة في العقد.</li>
+</ol>
+<hr>
+<h3>المرحلة 7: الرقابة والتحليلات وتجديد العقد (Audit, Rebates &amp; Renewal)</h3>
+<pre><code>[ رصد عدد الرحلات المنفذة شهرياً ]
+               │
+               ▼
+[ هل تحققت أهداف الحجم؟ Volume Threshold ]
+        ├── نعم ──► تطبيق خصم الحجم تلقائياً (Volume Rebate)
+        └── لا  ──► استمرار التعرفة القياسية
+               │
+               ▼
+[ تحليل العائد والربحية لكل دوران طائرة Yield Analysis ]
+               │
+               ▼
+[ إرسال تنبيهات التجديد قبل انتهاء العقد بـ 90 / 60 / 30 يوماً ]
+               │
+               ▼
+[ مفاوضات التجديد وتحديث الأسعار وإصدار ملحق جديد للموسم ]
+</code></pre>
+<ul>
+<li><strong>خصومات الحجم التراكمية (<code>Volume Rebates</code>)</strong>:
+يقوم النظام آلياً برصد عدد الرحلات المنفذة شهرياً (<code>FlightCount</code>). وعند وصول الناقل إلى سقف معين محدد في العقد (مثال: أكثر من 40 رحلة شهرياً)، يُطبق خصم الحجم على الفواتير التالية أو في صورة إشعار دائن (Credit Note).</li>
+<li><strong>إشعارات التجديد الاستباقية</strong>:
+تنبيه مسؤولي الإدارة التجارية قبل انتهاء صلاحية العقد بوقت كافٍ (90، 60، 30 يوماً) لإعادة التفاوض وتعديل الأسعار وتجديد العقد بسلاسة.</li>
+</ul>
+<hr>
+<h2>🗃️ مصفوفة الوثائق والبيانات البرمجية لكل مرحلة</h2>
+<table>
+<thead>
+<tr>
+<th align="left">المرحلة</th>
+<th align="left">الوثيقة المرتبطة في النظام</th>
+<th align="left">الجداول والحقول البرمجية (Database &amp; Models)</th>
+<th align="left">المسؤول</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1. التأسيس</strong></td>
+<td align="left"><code>Contract Master File</code></td>
+<td align="left"><code>ContractID</code>, <code>CustomerCode</code>, <code>AirportCode</code>, <code>MTOW</code>, <code>StanderPrice</code></td>
+<td align="left">المدير التجاري / القانوني</td>
+</tr>
+<tr>
+<td align="left"><strong>2. قبل الرحلة</strong></td>
+<td align="left"><code>Price Quotation / Proforma</code></td>
+<td align="left"><code>Com_QuotationHeader</code>, <code>Com_QuotationDetails</code>, <code>MinimumPrice</code></td>
+<td align="left">مسؤول المبيعات التجارية</td>
+</tr>
+<tr>
+<td align="left"><strong>3. أمر التشغيل</strong></td>
+<td align="left"><code>Turnaround Work Order</code></td>
+<td align="left"><code>WorkOrderID</code>, <code>TimeInclude</code>, <code>LoadTypeCode</code>, <code>FlightTypeCode</code></td>
+<td align="left">منسق العمليات</td>
+</tr>
+<tr>
+<td align="left"><strong>4. المهبط</strong></td>
+<td align="left"><code>Turnaround Service Sheet</code></td>
+<td align="left"><code>GroundTime</code>, <code>LandingTime</code>, <code>ParkingTime</code>, <code>ServiceQuantity</code>, <code>Hours</code></td>
+<td align="left">مشرف المهبط + كابتن الطائرة</td>
+</tr>
+<tr>
+<td align="left"><strong>5. الموردين</strong></td>
+<td align="left"><code>Subcontractor Reconcile</code></td>
+<td align="left"><code>SupplierCode</code>, <code>SupplierPrice</code>, <code>SupplierCurrencyCode</code>, <code>Disbursement</code></td>
+<td align="left">مسؤول المشتريات / التدقيق</td>
+</tr>
+<tr>
+<td align="left"><strong>6. الفاتورة</strong></td>
+<td align="left"><code>Final Tax Invoice</code></td>
+<td align="left"><code>PriceTotal</code>, <code>AirportTax</code>, <code>DiscountPercentage</code>, <code>SureCharge</code></td>
+<td align="left">المحاسب المالي / الفوترة</td>
+</tr>
+<tr>
+<td align="left"><strong>7. التجديد</strong></td>
+<td align="left"><code>Contract Renewal / Rebate</code></td>
+<td align="left"><code>FlightCount</code>, <code>PackagePrice</code>, <code>ExpiryDate</code>, <code>VersionNumber</code></td>
+<td align="left">الإدارة التجارية العليا</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>💎 الفوائد التشغيلية والمالية لنظام العقود (Core Business Value)</h2>
+<ol>
+<li><strong>منع تسرب الإيرادات (Zero Service Leakage)</strong>: تحويل كل دقيقة تشغيل للمعدات وخدمات المهبط إلى بنود مالية مفوترة دون إهمال أي طلب ميداني.</li>
+<li><strong>حماية هوامش الربح مع الموردين (Margin Protection)</strong>: منع الفوترة بالخسارة عبر المطابقة الثلاثية الآلية بين عروض الأسعار وفواتير موردي الوقود والمعدات.</li>
+<li><strong>تقليص نزاعات شركات الطيران بنسبة 80%</strong>: بفضل التوقيع الإلكتروني الفوري لقائد الطائرة والشفافية التامة في عرض معادلات الاحتساب.</li>
+<li><strong>تسريع التحصيل المالي (Reduced DSO)</strong>: إصدار الفواتير فور مغادرة الطائرة بدلاً من استغراق أسابيع في تدقيق المستندات الورقية.</li>
+</ol>
+<hr>
+<p><em>تم إعداد وتوثيق هذا الدليل للرجوع إليه كمرجع رئيسي لدورة حياة العقود في نظام TAS.</em></p>
+
+  </div>
+
+  <!-- Document Footer -->
+  <div class="doc-footer">
+    <div>TAS Aviation Solutions — وثيقة مرجعية لحوكمة العقود والمناولة الأرضية</div>
+    <div>مرجع التوثيق الداخلي الرسمي</div>
+  </div>
+
+</body>
+</html>

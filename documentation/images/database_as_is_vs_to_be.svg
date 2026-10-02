@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 820" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090e17"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="legacyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c131d"/>
+      <stop offset="100%" stop-color="#140d17"/>
+    </linearGradient>
+    <linearGradient id="targetBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#091d1e"/>
+      <stop offset="100%" stop-color="#0b1726"/>
+    </linearGradient>
+    <linearGradient id="roseGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+  </defs>
+
+  <style>
+    .main-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 24px; font-weight: 800; fill: #f8fafc; }
+    .main-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 13px; fill: #94a3b8; }
+    .col-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 18px; font-weight: 700; }
+    .badge-txt { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11px; font-weight: 800; fill: #ffffff; letter-spacing: 0.5px; }
+    .box-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 14.5px; font-weight: 700; fill: #f8fafc; }
+    .box-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 12px; fill: #cbd5e1; }
+    .code-chip { font-family: "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 11px; fill: #38bdf8; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1080" height="820" rx="18" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Banner -->
+  <rect x="30" y="22" width="1020" height="74" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="540" y="52" text-anchor="middle" class="main-title">المقارنة المعمارية لقاعدة البيانات: الوضع الراهن مقابل الهدف المحسّن</text>
+  <text x="540" y="77" text-anchor="middle" class="main-sub">TAS Database Architecture Transformation: Legacy Anti-Patterns vs. Optimized 3NF Domain Model</text>
+
+  <!-- ======================== LEFT COLUMN: LEGACY AS-IS ======================== -->
+  <g transform="translate(30, 115)" filter="url(#shadow)">
+    <!-- Column Card Background -->
+    <rect width="490" height="675" rx="16" fill="url(#legacyBg)" stroke="#f43f5e" stroke-opacity="0.35" stroke-width="1.5"/>
+    
+    <!-- Header Badge -->
+    <rect x="20" y="18" width="135" height="26" rx="6" fill="url(#roseGlow)"/>
+    <text x="87" y="35" text-anchor="middle" class="badge-txt">⚠️ الوضع الراهن (AS-IS)</text>
+    <text x="168" y="36" class="col-title" fill="#fca5a5">TasDashBoardDev (Legacy)</text>
+    
+    <!-- Metric Pill -->
+    <rect x="20" y="54" width="450" height="38" rx="8" fill="#2d121c" stroke="#e11d48" stroke-opacity="0.3"/>
+    <text x="35" y="78" font-size="12.5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" fill="#fda4af">
+      🚨 0 Foreign Keys | 2 Tables No PK | 23 Empty Tables | 40K Flat Rows
+    </text>
+
+    <!-- Flaw Card 1 -->
+    <g transform="translate(20, 106)">
+      <rect width="450" height="96" rx="10" fill="#20111a" stroke="#881337" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#f43f5e"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">1</text>
+      <text x="44" y="28" class="box-title">انتهاك 1NF: سلاسل نصية مفصولة بفواصل (Delimited Lists)</text>
+      <text x="44" y="52" class="box-desc">• Com_ContractSetup.Airports: <tspan class="code-chip">'CAI,HRG,SSH'</tspan> (500 chars)</text>
+      <text x="44" y="70" class="box-desc">• Com_ContractSetup.Airlines: <tspan class="code-chip">'MS,FZ,TK'</tspan> (500 chars)</text>
+      <text x="44" y="87" class="box-desc">• استعلامات بطيئة عبر Table Scans: <tspan class="code-chip">WHERE Airports LIKE '%CAI%'</tspan></text>
+    </g>
+
+    <!-- Flaw Card 2 -->
+    <g transform="translate(20, 216)">
+      <rect width="450" height="96" rx="10" fill="#20111a" stroke="#881337" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#f43f5e"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">2</text>
+      <text x="44" y="28" class="box-title">انتهاك 1NF: أعمدة مرقمة متكررة (Repeating Groups)</text>
+      <text x="44" y="52" class="box-desc">• AR_Customers: AccountCode1, AccountCode2 ... AccountCode6</text>
+      <text x="44" y="70" class="box-desc">• AP_Supplierpliers: SupplierConv01..09, Tax01..03</text>
+      <text x="44" y="87" class="box-desc">• يمنع التوسع ويلزم تعديل Schema لإضافة أي حساب إضافي</text>
+    </g>
+
+    <!-- Flaw Card 3 -->
+    <g transform="translate(20, 326)">
+      <rect width="450" height="106" rx="10" fill="#260f1c" stroke="#9f1239" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#f43f5e"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">3</text>
+      <text x="44" y="28" class="box-title">انتهاك 3NF: جدول مهبط عملاق (God Table - 77 Cols)</text>
+      <text x="44" y="52" class="box-desc">• Opr_WorkOrderServices يخلط 3 وظائف منفصلة في سطر واحد:</text>
+      <text x="56" y="70" class="box-desc">1) تشغيل المهبط (Ramp) 2) فوترة العميل (AR) 3) مستحقات المورد (AP)</text>
+      <text x="44" y="90" font-size="11.5" fill="#fca5a5">• تعديل مراجع الفوترة يغير بيانات سجل المهبط الميداني الأصلي!</text>
+    </g>
+
+    <!-- Flaw Card 4 -->
+    <g transform="translate(20, 446)">
+      <rect width="450" height="96" rx="10" fill="#20111a" stroke="#881337" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#f43f5e"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">4</text>
+      <text x="44" y="28" class="box-title">انتهاك 2NF: تكرار غير مطبع في الأسعار (40,286 سطراً)</text>
+      <text x="44" y="52" class="box-desc">• Com_PriceList يكرر نصوص العقود والعملاء في 40 ألف سجل</text>
+      <text x="44" y="70" class="box-desc">• Com_StanderPrice يدمج اسم الخدمة مع كود التسعير</text>
+      <text x="44" y="87" class="box-desc">• يسبب شذوذ التعديل (Update Anomaly) وتضخم حجم التخزين</text>
+    </g>
+
+    <!-- Flaw Card 5 -->
+    <g transform="translate(20, 556)">
+      <rect width="450" height="100" rx="10" fill="#20111a" stroke="#881337" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#f43f5e"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">5</text>
+      <text x="44" y="28" class="box-title">فوضى الأنواع، أخطاء إملائية، وغياب الرقابة العلائقية</text>
+      <text x="44" y="50" class="box-desc">• تخزين أسعار كنص <tspan class="code-chip">PackagePrice nvarchar(20)</tspan></text>
+      <text x="44" y="68" class="box-desc">• أخطاء: <tspan class="code-chip">AP_Supplierpliers</tspan>, <tspan class="code-chip">StanderPrice</tspan>, <tspan class="code-chip">SureCharge</tspan></text>
+      <text x="44" y="86" class="box-desc">• سقف الائتمان <tspan class="code-chip">decimal(18,0)</tspan> يفقد السنتات والكسور تماماً</text>
+    </g>
+  </g>
+
+  <!-- ======================== RIGHT COLUMN: TARGET TO-BE ======================== -->
+  <g transform="translate(560, 115)" filter="url(#shadow)">
+    <!-- Column Card Background -->
+    <rect width="490" height="675" rx="16" fill="url(#targetBg)" stroke="#10b981" stroke-opacity="0.35" stroke-width="1.5"/>
+    
+    <!-- Header Badge -->
+    <rect x="20" y="18" width="135" height="26" rx="6" fill="url(#emeraldGlow)"/>
+    <text x="87" y="35" text-anchor="middle" class="badge-txt">✨ الهدف المحسّن (TO-BE)</text>
+    <text x="168" y="36" class="col-title" fill="#a7f3d0">3NF Domain-Driven Model</text>
+    
+    <!-- Metric Pill -->
+    <rect x="20" y="54" width="450" height="38" rx="8" fill="#063229" stroke="#059669" stroke-opacity="0.4"/>
+    <text x="35" y="78" font-size="12.5" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" fill="#6ee7b7">
+      🛡️ 100% FK Integrity | 3NF/BCNF Compliant | 3-Way Margin Shield
+    </text>
+
+    <!-- Solution Card 1 -->
+    <g transform="translate(20, 106)">
+      <rect width="450" height="96" rx="10" fill="#082320" stroke="#047857" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#10b981"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">✓</text>
+      <text x="44" y="28" class="box-title">جداول ربط وسيطة ذرية (1NF Junction Tables)</text>
+      <text x="44" y="52" class="box-desc">• <tspan class="code-chip">Com_ContractAirports</tspan> (ContractID, AirportID)</text>
+      <text x="44" y="70" class="box-desc">• <tspan class="code-chip">Com_ContractAirlines</tspan> (ContractID, AirlineID)</text>
+      <text x="44" y="87" class="box-desc">• استعلامات فورية بالـ Index Seeks دون أي Table Scans</text>
+    </g>
+
+    <!-- Solution Card 2 -->
+    <g transform="translate(20, 216)">
+      <rect width="450" height="96" rx="10" fill="#082320" stroke="#047857" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#10b981"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">✓</text>
+      <text x="44" y="28" class="box-title">نمذجة علاقات متعددة مرنة (Dynamic Relationships)</text>
+      <text x="44" y="52" class="box-desc">• تحويل الهواتف والحسابات إلى جداول أبناء (Parent-Child)</text>
+      <text x="44" y="70" class="box-desc">• إضافة عدد لا نهائي من الحسابات دون تعديل الـ Schema</text>
+      <text x="44" y="87" class="box-desc">• جدول عناوين وبنوك موحد يمنع التكرار الجغرافي والمالي</text>
+    </g>
+
+    <!-- Solution Card 3 -->
+    <g transform="translate(20, 326)">
+      <rect width="450" height="106" rx="10" fill="#082924" stroke="#059669" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#10b981"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">✓</text>
+      <text x="44" y="28" class="box-title">فصل المسؤوليات وفك جدول المهبط (Decoupled 3NF)</text>
+      <text x="44" y="52" class="box-desc">1) <tspan class="code-chip">Opr_TurnaroundServiceExecutions</tspan>: حقائق تشغيل المهبط</text>
+      <text x="44" y="70" class="box-desc">2) <tspan class="code-chip">Bil_CustomerInvoiceLines</tspan>: بنود فوترة شركة الطيران</text>
+      <text x="44" y="88" class="box-desc">3) <tspan class="code-chip">Bil_VendorBillLines</tspan>: بنود استحقاق موردي الباطن</text>
+    </g>
+
+    <!-- Solution Card 4 -->
+    <g transform="translate(20, 446)">
+      <rect width="450" height="96" rx="10" fill="#082320" stroke="#047857" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#10b981"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">✓</text>
+      <text x="44" y="28" class="box-title">حائط صد الهامش السالب (3-Way Margin Shield)</text>
+      <text x="44" y="52" class="box-desc">• جدول مطابقة ثلاثية يربط: الخدمة + تكلفة المورد + سعر العميل</text>
+      <text x="44" y="72" class="box-desc">• قيد برمجي صارم: <tspan class="code-chip">CHECK (Revenue &gt;= Cost - Markup)</tspan></text>
+      <text x="44" y="89" class="box-desc">• يمنع إصدار أي فاتورة بالخسارة ويحمي عمولة الـ 5% تلقائياً</text>
+    </g>
+
+    <!-- Solution Card 5 -->
+    <g transform="translate(20, 556)">
+      <rect width="450" height="100" rx="10" fill="#082320" stroke="#047857" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="10" fill="#10b981"/>
+      <text x="24" y="28" text-anchor="middle" font-weight="900" font-size="11" fill="#fff">✓</text>
+      <text x="44" y="28" class="box-title">أنظمة قياسية وتكامل مرجعي 100% مع فهارس مغطاة</text>
+      <text x="44" y="50" class="box-desc">• توحيد أنواع الرموز: IATA <tspan class="code-chip">CHAR(3)</tspan>, ICAO <tspan class="code-chip">CHAR(4)</tspan></text>
+      <text x="44" y="68" class="box-desc">• مبالغ بدقة <tspan class="code-chip">DECIMAL(18,2)</tspan> ومعدلات <tspan class="code-chip">DECIMAL(18,4)</tspan></text>
+      <text x="44" y="86" class="box-desc">• فهارس مغطاة (Covering Indexes) تخفض زمن الاستعلام لـ 5ms</text>
+    </g>
+  </g>
+
+  <!-- Central Transformation Indicator -->
+  <g transform="translate(516, 420)">
+    <circle cx="24" cy="24" r="22" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M 16 24 L 32 24 M 26 18 L 32 24 L 26 30" stroke="#38bdf8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

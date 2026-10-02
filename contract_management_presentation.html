@@ -458,9 +458,345 @@
       font-size: 12.5px;
       color: var(--text-main);
     }
-    .pill-icon {
+    /* Actor Interaction & Swimlane Matrix Styles */
+    .actor-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .actor-pill-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .actor-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+      transform: translateY(-1px);
+    }
+    .actor-pill-btn.active {
+      background: var(--accent-blue);
+      color: #090e17;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+    }
+    .actor-pill-btn .actor-count {
+      font-size: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    .swimlane-matrix-layout {
+      display: grid;
+      grid-template-columns: 1.9fr 1.1fr;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .swimlane-board {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .swimlane-board::-webkit-scrollbar {
+      width: 5px;
+    }
+    .swimlane-board::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .swimlane-phase-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .swimlane-phase-row:hover {
+      border-color: var(--border-highlight);
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .swimlane-phase-row.highlight {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.08);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+    }
+    .swimlane-phase-row.dimmed {
+      opacity: 0.35;
+    }
+
+    .phase-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid rgba(148, 163, 184, 0.1);
+      padding-right: 10px;
+    }
+    .phase-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       color: var(--accent-blue);
-      font-size: 16px;
+    }
+    .phase-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+
+    .interaction-nodes-track {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .actor-node-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border-color);
+      font-size: 11.5px;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .actor-node-pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .actor-node-pill.active-actor {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.16);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+      transform: translateY(-1px);
+    }
+    .actor-node-pill.dimmed {
+      opacity: 0.3;
+    }
+
+    .node-actor-icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+    .node-actor-role {
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--text-main);
+    }
+    .node-actor-action {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .node-flow-arrow {
+      color: var(--text-dim);
+      font-size: 12px;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .doc-token {
+      font-family: 'Outfit', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    /* Actor Intelligence HUD Card */
+    .actor-hud-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      overflow-y: auto;
+      backdrop-filter: blur(12px);
+    }
+    .hud-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .hud-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+      border: 1px solid var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .hud-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .hud-badge {
+      font-size: 11px;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .hud-section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hud-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-cyan);
+    }
+    .hud-value-box {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .hud-value-box strong {
+      color: var(--text-main);
+    }
+
+    /* Apron Handshake Diagram (Slide 5) */
+    .apron-handshake-diagram {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.7));
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 18px 24px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+    .handshake-actor-card {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .handshake-actor-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    .handshake-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent-blue);
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Commercial Pipeline Graphic (Slide 7) */
+    .commercial-pipeline-graphic {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.65));
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto 1.3fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Bottlenecks Diagnostic Pipeline (Slide 9) */
+    .bottleneck-diagnostic-pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .diagnostic-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .diagnostic-step-card:hover {
+      transform: translateY(-2px);
+    }
+    .hazard-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-rose);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .hazard-badge.warning {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent-amber);
+      border-color: rgba(245, 158, 11, 0.3);
     }
 
     /* Bottom Control Dock */
@@ -680,7 +1016,7 @@
       <span class="brand-title">Ground Handling Contract & Turnaround Billing Architecture</span>
     </div>
     <div class="header-actions">
-      <span class="slide-counter" id="slideIndicator">01 / 10</span>
+      <span class="slide-counter" id="slideIndicator">01 / 11</span>
       <button class="btn-icon" id="btnNotes" title="Toggle Speaker Notes [N]">
         <span>📝</span> Notes
       </button>
@@ -1058,6 +1394,55 @@
         </div>
       </div>
 
+      <!-- Frontline Apron Actors Handshake Interaction Graphic -->
+      <div class="apron-handshake-diagram">
+        <div class="handshake-actor-card" style="border-left: 3px solid var(--accent-amber);">
+          <div style="font-size: 22px; margin-bottom: 4px;">🦺</div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">Ramp Supervisor</div>
+          <div style="font-size: 11px; color: var(--accent-amber); font-weight: 600;">Handheld Mobile App</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Logs live GPU ON/OFF, water/lavatory meters &amp; extra ad-hoc requests</div>
+        </div>
+
+        <div class="handshake-connector">
+          <span>Fuel Vouchers &amp; Delivery Slips</span>
+          <span style="font-size: 18px;">⟵ ➔</span>
+          <span class="doc-token" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.3);">Meter Ticket</span>
+        </div>
+
+        <div class="handshake-actor-card" style="border-left: 3px solid var(--accent-rose);">
+          <div style="font-size: 22px; margin-bottom: 4px;">⛽</div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">Subcontractors</div>
+          <div style="font-size: 11px; color: var(--accent-rose); font-weight: 600;">Fuel, Catering &amp; Loader</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Pumps fuel, delivers service &amp; hands signed physical receipt</div>
+        </div>
+
+        <div class="handshake-connector">
+          <span>Service Summary Review</span>
+          <span style="font-size: 18px;">⟵ ➔</span>
+          <span class="doc-token" style="color: var(--accent-emerald); border-color: rgba(16,185,129,0.3);">E-Signature</span>
+        </div>
+
+        <div class="handshake-actor-card" style="border-left: 3px solid var(--accent-emerald);">
+          <div style="font-size: 22px; margin-bottom: 4px;">🧑‍✈️</div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">Aircraft Captain</div>
+          <div style="font-size: 11px; color: var(--accent-emerald); font-weight: 600;">Stand Sign-Off Pad</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Inspects runtimes &amp; signs digitally before chocks-off</div>
+        </div>
+
+        <div class="handshake-connector">
+          <span>Instant Sync</span>
+          <span style="font-size: 18px;">➔</span>
+          <span class="doc-token" style="color: var(--accent-cyan); border-color: rgba(6,182,212,0.3);">TAS Cloud</span>
+        </div>
+
+        <div class="handshake-actor-card" style="border-left: 3px solid var(--accent-cyan); background: rgba(6,182,212,0.08);">
+          <div style="font-size: 22px; margin-bottom: 4px;">⚡</div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--accent-cyan);">TAS Billing Engine</div>
+          <div style="font-size: 11px; color: var(--text-dim); font-weight: 600;">Automated Revenue Lock</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Zero unbilled items; ready for 3-way reconciliation</div>
+        </div>
+      </div>
+
       <div class="grid-2" style="margin-top: 16px;">
         <div class="card" style="padding: 14px 18px;">
           <strong style="color: var(--accent-amber); font-size: 13px;">Current Gap: Paper Delays</strong>
@@ -1176,6 +1561,58 @@
         </div>
       </div>
 
+      <!-- 3-Party Commercial Pipeline Graphic -->
+      <div class="commercial-pipeline-graphic">
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(129, 140, 248, 0.3); border-radius: 8px; padding: 12px 14px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">✈️</span>
+            <div>
+              <div style="font-weight: 700; font-size: 12.5px; color: var(--text-main);">Airline Customer</div>
+              <div style="font-size: 10px; color: var(--accent-indigo); font-weight: 600;">Flight Operations / OCC</div>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4;">Submits flight schedule, aircraft MTOW tonnage, and passenger forecast.</div>
+          <div style="margin-top: 8px;"><span class="doc-token" style="color: var(--accent-indigo);">Flight Schedule / Request</span></div>
+        </div>
+
+        <div style="text-align: center; color: var(--accent-cyan); font-weight: 700; font-size: 13px;">
+          <span>➔</span>
+          <div style="font-size: 10px; color: var(--text-dim); margin-top: 2px;">Intake</div>
+        </div>
+
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(6, 182, 212, 0.35); border-radius: 8px; padding: 12px 14px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">💼</span>
+            <div>
+              <div style="font-weight: 700; font-size: 12.5px; color: var(--text-main);">Commercial Sales Engine</div>
+              <div style="font-size: 10px; color: var(--accent-cyan); font-weight: 600;">Dynamic Pricing &amp; Credit Check</div>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4;">Applies base contract rates, tolerances &amp; evaluates cash vs. credit terms.</div>
+          <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="doc-token" style="color: var(--accent-cyan);">Quotation</span>
+            <span class="doc-token" style="color: var(--accent-amber);">Proforma Invoice</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; color: var(--accent-amber); font-weight: 700; font-size: 13px;">
+          <span>➔</span>
+          <div style="font-size: 10px; color: var(--text-dim); margin-top: 2px;">Dispatch</div>
+        </div>
+
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 12px 14px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">🦺</span>
+            <div>
+              <div style="font-weight: 700; font-size: 12.5px; color: var(--text-main);">Ramp Operations Lead</div>
+              <div style="font-size: 10px; color: var(--accent-amber); font-weight: 600;">Apron Supervisor Tablet</div>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4;">Receives actionable checklist with equipment limits (GPU 2h, 1 stair).</div>
+          <div style="margin-top: 8px;"><span class="doc-token" style="color: var(--accent-amber);">Turnaround Work Order</span></div>
+        </div>
+      </div>
+
       <div class="grid-2" style="margin-top: 20px;">
         <div class="card" style="padding: 16px 20px;">
           <div style="font-weight: 600; font-size: 13.5px; color: var(--accent-amber); margin-bottom: 4px;">CURRENT LIMITATIONS</div>
@@ -1188,53 +1625,361 @@
       </div>
     </section>
 
-    <!-- SLIDE 8: Current End-to-End Workflow & Bottlenecks -->
+    <!-- SLIDE 8: Actors & Roles Interaction Workflow -->
     <section class="slide" data-index="8">
       <div class="slide-header">
-        <div class="slide-tag">Operational Diagnostic</div>
-        <h1 class="slide-title">The Current End-to-End Workflow & Operational Bottlenecks</h1>
-        <p class="slide-subtitle">Tracing the turnaround lifecycle to identify where friction, delay, and financial leakage occur.</p>
+        <div class="slide-tag">Cross-Functional Collaboration</div>
+        <h1 class="slide-title">Actors &amp; Roles Interaction: The Turnaround Contract Workflow</h1>
+        <p class="slide-subtitle">Mapping responsibilities, operational handoffs, and document exchanges from Commercial setup to Wheels-up invoicing.</p>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
-        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-blue);">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 1: Contract Setup & Tariff Maintenance</div>
-            <span class="card-badge badge-warning">Risk: High Manual Effort</span>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Commercial staff manually record airline rate sheets, aircraft weight matrices, and airport rules. Overwriting previous seasonal rules without version history creates audit vulnerability.</p>
-        </div>
+      <!-- Actor Filter Bar -->
+      <div class="actor-filter-bar" id="actorFilterBar">
+        <button class="actor-pill-btn active" data-actor="all">
+          <span>⭐</span> All Roles <span class="actor-count">7</span>
+        </button>
+        <button class="actor-pill-btn" data-actor="commercial">
+          <span>🏛️</span> Commercial &amp; Legal
+        </button>
+        <button class="actor-pill-btn" data-actor="airline">
+          <span>✈️</span> Airline Customer (OCC)
+        </button>
+        <button class="actor-pill-btn" data-actor="sales">
+          <span>💼</span> Commercial Operations
+        </button>
+        <button class="actor-pill-btn" data-actor="ramp">
+          <span>🦺</span> Ramp Supervisor
+        </button>
+        <button class="actor-pill-btn" data-actor="captain">
+          <span>🧑‍✈️</span> Aircraft Captain
+        </button>
+        <button class="actor-pill-btn" data-actor="vendor">
+          <span>⛽</span> Subcontractors
+        </button>
+        <button class="actor-pill-btn" data-actor="finance">
+          <span>📊</span> Finance &amp; ERP
+        </button>
+      </div>
 
-        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-indigo);">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 2: Pre-Flight Commercial Preparation</div>
-            <span class="card-badge badge-warning">Risk: Delayed Response</span>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Commercial teams manually issue quotes and proformas for incoming charter flights. Disconnection from real-time airport slot feeds causes delays in quoting ad-hoc flights.</p>
-        </div>
-
-        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-amber);">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 3: Apron Execution & Service Delivery</div>
-            <span class="card-badge badge-danger">Risk: Unbilled Ramp Services</span>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Ramp crews deliver 20+ operations under extreme time pressure. Services are noted on paper clipboards; ad-hoc captain requests often go unrecorded and never reach finance.</p>
-        </div>
-
-        <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--accent-rose);">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div style="font-weight: 600; font-size: 14px; color: var(--text-main);">Phase 4: Post-Flight Audit & Final Invoicing</div>
-              <span class="card-badge badge-danger">Risk: 3 to 7 Day Invoicing Delay</span>
+      <!-- Interactive Swimlane Matrix + HUD Inspector -->
+      <div class="swimlane-matrix-layout">
+        <!-- Left: Interactive Swimlane Board -->
+        <div class="swimlane-board" id="swimlaneBoard">
+          
+          <!-- Phase 1: Commercial Governance -->
+          <div class="swimlane-phase-row" data-phase="1" data-actors="commercial,airline">
+            <div class="phase-meta">
+              <span class="phase-badge">Phase 01</span>
+              <span class="phase-title">Master Setup &amp; Governance</span>
+            </div>
+            <div class="interaction-nodes-track">
+              <div class="actor-node-pill" data-actor="commercial">
+                <span class="node-actor-icon">🏛️</span>
+                <div>
+                  <div class="node-actor-role">Commercial Director</div>
+                  <div class="node-actor-action">Defines MTOW scales &amp; SGHA rules</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-blue);">Contract Master</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="airline">
+                <span class="node-actor-icon">✈️</span>
+                <div>
+                  <div class="node-actor-role">Airline Carrier</div>
+                  <div class="node-actor-action">Approves Annex B &amp; credit terms</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-indigo);">SGHA Annex</span>
+              </div>
             </div>
           </div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Billing specialists manually cross-reference paper tally sheets against contract rules. The resulting time lag delays invoice issuance, slows cash collection, and invites airline payment disputes.</p>
+
+          <!-- Phase 2: Commercial Pre-Flight Pipeline -->
+          <div class="swimlane-phase-row" data-phase="2" data-actors="airline,sales,ramp">
+            <div class="phase-meta">
+              <span class="phase-badge">Phase 02</span>
+              <span class="phase-title">Pre-Flight &amp; Work Order</span>
+            </div>
+            <div class="interaction-nodes-track">
+              <div class="actor-node-pill" data-actor="airline">
+                <span class="node-actor-icon">✈️</span>
+                <div>
+                  <div class="node-actor-role">Airline OCC</div>
+                  <div class="node-actor-action">Requests flight slot &amp; PAX forecast</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-indigo);">Flight Schedule</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="sales">
+                <span class="node-actor-icon">💼</span>
+                <div>
+                  <div class="node-actor-role">Sales Coordinator</div>
+                  <div class="node-actor-action">Runs Dynamic Pricing Engine</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-cyan);">Quotation / Proforma</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="ramp">
+                <span class="node-actor-icon">🦺</span>
+                <div>
+                  <div class="node-actor-role">Ramp Supervisor</div>
+                  <div class="node-actor-action">Receives equipment tolerances</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-amber);">Apron Work Order</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3: Apron Execution & Sign-off -->
+          <div class="swimlane-phase-row" data-phase="3" data-actors="ramp,vendor,captain">
+            <div class="phase-meta">
+              <span class="phase-badge">Phase 03</span>
+              <span class="phase-title">Apron Turnaround &amp; Delivery</span>
+            </div>
+            <div class="interaction-nodes-track">
+              <div class="actor-node-pill" data-actor="ramp">
+                <span class="node-actor-icon">🦺</span>
+                <div>
+                  <div class="node-actor-role">Ramp Supervisor</div>
+                  <div class="node-actor-action">Timestamps GPU &amp; milestones</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-amber);">Apron Timestamps</span>
+              </div>
+              <span class="node-flow-arrow">⟵➔</span>
+              <div class="actor-node-pill" data-actor="vendor">
+                <span class="node-actor-icon">⛽</span>
+                <div>
+                  <div class="node-actor-role">Fuel / Catering Vendor</div>
+                  <div class="node-actor-action">Pumps fuel &amp; hands voucher</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-rose);">Delivery Voucher</span>
+              </div>
+              <span class="node-flow-arrow">⟵➔</span>
+              <div class="actor-node-pill" data-actor="captain">
+                <span class="node-actor-icon">🧑‍✈️</span>
+                <div>
+                  <div class="node-actor-role">Aircraft Captain</div>
+                  <div class="node-actor-action">Reviews runtimes &amp; signs on tablet</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-emerald);">Captain E-Signature</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 4: 3-Way Reconcile & Invoicing -->
+          <div class="swimlane-phase-row" data-phase="4" data-actors="vendor,finance,airline">
+            <div class="phase-meta">
+              <span class="phase-badge">Phase 04</span>
+              <span class="phase-title">Reconciliation &amp; Billing</span>
+            </div>
+            <div class="interaction-nodes-track">
+              <div class="actor-node-pill" data-actor="vendor">
+                <span class="node-actor-icon">⛽</span>
+                <div>
+                  <div class="node-actor-role">Subcontractor</div>
+                  <div class="node-actor-action">Submits supplier invoice</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-rose);">Supplier Bill</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="finance">
+                <span class="node-actor-icon">📊</span>
+                <div>
+                  <div class="node-actor-role">Finance Specialist</div>
+                  <div class="node-actor-action">3-Way Match &amp; Margin Shield</div>
+                </div>
+                <span class="doc-token" style="color: #a855f7;">Margin Guardrail</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="airline">
+                <span class="node-actor-icon">✈️</span>
+                <div>
+                  <div class="node-actor-role">Airline Finance</div>
+                  <div class="node-actor-action">Receives audited final invoice</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-emerald);">Final Tax Invoice</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 5: Yield Analysis & Renewal -->
+          <div class="swimlane-phase-row" data-phase="5" data-actors="commercial,airline,finance">
+            <div class="phase-meta">
+              <span class="phase-badge">Phase 05</span>
+              <span class="phase-title">Rebates &amp; Contract Renewal</span>
+            </div>
+            <div class="interaction-nodes-track">
+              <div class="actor-node-pill" data-actor="commercial">
+                <span class="node-actor-icon">🏛️</span>
+                <div>
+                  <div class="node-actor-role">Commercial Team</div>
+                  <div class="node-actor-action">Monitors flight volume count</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-blue);">Volume Threshold</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="airline">
+                <span class="node-actor-icon">✈️</span>
+                <div>
+                  <div class="node-actor-role">Airline Customer</div>
+                  <div class="node-actor-action">Receives volume rebate credit note</div>
+                </div>
+                <span class="doc-token" style="color: var(--accent-indigo);">Rebate Note</span>
+              </div>
+              <span class="node-flow-arrow">➔</span>
+              <div class="actor-node-pill" data-actor="finance">
+                <span class="node-actor-icon">📊</span>
+                <div>
+                  <div class="node-actor-role">Corporate ERP</div>
+                  <div class="node-actor-action">Posts settlement &amp; triggers renewal</div>
+                </div>
+                <span class="doc-token" style="color: #a855f7;">GL AR Post</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Dynamic Actor Intelligence HUD Card -->
+        <div class="actor-hud-card" id="actorHudCard">
+          <div class="hud-header">
+            <div class="hud-avatar" id="hudAvatar">⭐</div>
+            <div>
+              <div class="hud-title" id="hudTitle">Turnaround Ecosystem Actors</div>
+              <div class="hud-badge" id="hudBadge">Multi-Departmental Collaborative Engine</div>
+            </div>
+          </div>
+
+          <div class="hud-section">
+            <div class="hud-label">Operating System Channel</div>
+            <div class="hud-value-box" id="hudChannel">
+              Unified TAS Platform (Web CLM + Frontline Handheld App + Cockpit Pad + ERP Sync)
+            </div>
+          </div>
+
+          <div class="hud-section">
+            <div class="hud-label">Core Turnaround Responsibilities</div>
+            <div class="hud-value-box" id="hudTasks">
+              Click any actor above to inspect their precise role, document handoffs, input triggers, and anti-leakage defense mechanisms.
+            </div>
+          </div>
+
+          <div class="hud-section">
+            <div class="hud-label">Input Triggers &amp; Deliverables</div>
+            <div class="hud-value-box" id="hudTokens">
+              <strong>Tokens Exchanged:</strong> Contract Master ➔ Quotation ➔ Work Order ➔ Service Sheet ➔ Captain Sign-off ➔ 3-Way Match ➔ Tax Invoice.
+            </div>
+          </div>
+
+          <div class="hud-section">
+            <div class="hud-label">Margin &amp; Revenue Protection Role</div>
+            <div class="hud-value-box" id="hudImpact" style="border-left: 3px solid var(--accent-emerald);">
+              Ensures zero unbilled ramp time, guarantees third-party disbursement markups, and eliminates 80% of customer invoice disputes.
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 9: Gap Analysis -->
+    <!-- SLIDE 9: Current End-to-End Workflow & Bottlenecks -->
     <section class="slide" data-index="9">
+      <div class="slide-header">
+        <div class="slide-tag">Operational Diagnostic</div>
+        <h1 class="slide-title">The Current End-to-End Workflow &amp; Operational Bottlenecks</h1>
+        <p class="slide-subtitle">Tracing the turnaround lifecycle to identify where friction, delay, and financial leakage occur.</p>
+      </div>
+
+      <!-- Visual Operational Bottleneck Diagnostic Pipeline -->
+      <div class="bottleneck-diagnostic-pipeline">
+        <div class="diagnostic-step-card" style="border-top: 3px solid var(--accent-blue);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">1. Contract Setup</div>
+            <span style="font-size: 16px;">🏛️</span>
+          </div>
+          <div class="hazard-badge warning">
+            <span>⚠️</span> Manual Re-entry
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+            Seasonal amendments overwrite active terms without historical audit trails.
+          </div>
+        </div>
+
+        <div class="diagnostic-step-card" style="border-top: 3px solid var(--accent-indigo);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">2. Commercial Quote</div>
+            <span style="font-size: 16px;">💼</span>
+          </div>
+          <div class="hazard-badge warning">
+            <span>⚠️</span> Delayed Quotes
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+            Manual email coordination and disconnected flight slot feeds slow ad-hoc responses.
+          </div>
+        </div>
+
+        <div class="diagnostic-step-card" style="border-top: 3px solid var(--accent-amber);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">3. Apron Delivery</div>
+            <span style="font-size: 16px;">🦺</span>
+          </div>
+          <div class="hazard-badge">
+            <span>🚨</span> 3–5% Leakage
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+            Paper clipboards allow extra GPU runtime and ad-hoc captain requests to go unbilled.
+          </div>
+        </div>
+
+        <div class="diagnostic-step-card" style="border-top: 3px solid var(--accent-rose);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 13px; color: var(--text-main);">4. Final Invoicing</div>
+            <span style="font-size: 16px;">📊</span>
+          </div>
+          <div class="hazard-badge">
+            <span>🚨</span> 3–7 Days Delay
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+            Manual matching of paper tally sheets delays invoice issuance and invites disputes.
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+        <div class="card" style="padding: 14px 18px; border-left: 4px solid var(--accent-blue);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 13.5px; color: var(--text-main);">Phase 1: Contract Setup &amp; Tariff Maintenance</div>
+            <span class="card-badge badge-warning">Risk: High Manual Effort</span>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Commercial staff manually record airline rate sheets, aircraft weight matrices, and airport rules. Overwriting previous seasonal rules without version history creates audit vulnerability.</p>
+        </div>
+
+        <div class="card" style="padding: 14px 18px; border-left: 4px solid var(--accent-indigo);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 13.5px; color: var(--text-main);">Phase 2: Pre-Flight Commercial Preparation</div>
+            <span class="card-badge badge-warning">Risk: Delayed Response</span>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Commercial teams manually issue quotes and proformas for incoming charter flights. Disconnection from real-time airport slot feeds causes delays in quoting ad-hoc flights.</p>
+        </div>
+
+        <div class="card" style="padding: 14px 18px; border-left: 4px solid var(--accent-amber);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 13.5px; color: var(--text-main);">Phase 3: Apron Execution &amp; Service Delivery</div>
+            <span class="card-badge badge-danger">Risk: Unbilled Ramp Services</span>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Ramp crews deliver 20+ operations under extreme time pressure. Services are noted on paper clipboards; ad-hoc captain requests often go unrecorded and never reach finance.</p>
+        </div>
+
+        <div class="card" style="padding: 14px 18px; border-left: 4px solid var(--accent-rose);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; font-size: 13.5px; color: var(--text-main);">Phase 4: Post-Flight Audit &amp; Final Invoicing</div>
+            <span class="card-badge badge-danger">Risk: 3 to 7 Day Invoicing Delay</span>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Billing specialists manually cross-reference paper tally sheets against contract rules. The resulting time lag delays invoice issuance, slows cash collection, and invites airline payment disputes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Gap Analysis -->
+    <section class="slide" data-index="10">
       <div class="slide-header">
         <div class="slide-tag">Platform Comparison</div>
         <h1 class="slide-title">Gap Analysis: Current Capabilities vs. Next-Generation Vision</h1>
@@ -1293,8 +2038,8 @@
       </div>
     </section>
 
-    <!-- SLIDE 10: Roadmap, ROI & Transformation Vision -->
-    <section class="slide" data-index="10">
+    <!-- SLIDE 11: Roadmap, ROI & Transformation Vision -->
+    <section class="slide" data-index="11">
       <div class="slide-header">
         <div class="slide-tag">Strategic Execution</div>
         <h1 class="slide-title">Strategic Roadmap, Financial ROI & Future Transformation</h1>
@@ -1396,13 +2141,163 @@
       2: "Explain the importance of contract governance. Without version control, commercial teams frequently dispute whether a seasonal fuel increase or passenger bus charge was formally authorized.",
       3: "Walk through international standard alignment. International airlines expect clear correspondence with IATA ground handling sections. Emphasize how smart bundling replaces messy itemized spreadsheets.",
       4: "Demystify pricing complexity. Ground handling pricing cannot be a simple flat fee because aircraft weight, ground time, and night-time operations vary dramatically. Stress the value of transparent formula breakdowns.",
-      5: "Show the direct operational connection. Ground handling revenue is won or lost on the tarmac. Point out how a paper-driven workflow creates immediate billing leakage.",
+      5: "Show the direct operational connection. Point out the frontline handshake between the Apron Supervisor, Subcontractors, and Aircraft Captain at the parking stand that locks billing before departure.",
       6: "Focus on third-party subcontractor protection. Remind executives that handlers often operate as principal contractors paying third-party fuelers and catering vendors; without automated matching, handlers absorb vendor cost spikes.",
       7: "Clarify the commercial pipeline. Show how an initial charter quotation directly authorizes ramp execution via the turnaround work order, which seamlessly converts into the verified tax invoice upon wheels-up.",
-      8: "Present the operational diagnostic honestly. Walk through the four key bottlenecks: manual contract entry, disconnected flight data, paper ramp logs, and delayed invoice issuance.",
-      9: "Use this comparative matrix for decision-makers. Point out that the proposed modernization is not a cosmetic update, but an operational transformation connecting frontline staff with financial systems.",
-      10: "Close with the strategic investment return. Reiterate the financial impact: 3% to 5% top-line revenue recovery, 80% reduction in customer invoice disputes, and faster cash collection."
+      8: "Walk executive stakeholders through the cross-functional actor interaction matrix. Show how every department—from Commercial Setup and Airline Dispatch to the Ramp Supervisor, Flight Captain, Subcontractors, and Finance—collaborates through digital tokens and automated handoffs to guarantee zero service leakage.",
+      9: "Present the operational diagnostic honestly. Walk through the four key bottlenecks: manual contract entry, disconnected flight data, paper ramp logs, and delayed invoice issuance.",
+      10: "Use this comparative matrix for decision-makers. Point out that the proposed modernization is not a cosmetic update, but an operational transformation connecting frontline staff with financial systems.",
+      11: "Close with the strategic investment return. Reiterate the financial impact: 3% to 5% top-line revenue recovery, 80% reduction in customer invoice disputes, and faster cash collection."
     };
+
+    // Actor Intelligence Data for Slide 8
+    const actorProfiles = {
+      all: {
+        avatar: "⭐",
+        title: "Turnaround Ecosystem Actors",
+        badge: "Multi-Departmental Collaborative Engine",
+        channel: "Unified TAS Platform (Web CLM + Frontline Handheld App + Cockpit Pad + ERP Sync)",
+        tasks: "Click any actor above to inspect their precise role, document handoffs, input triggers, and anti-leakage defense mechanisms.",
+        tokens: "<strong>Tokens Exchanged:</strong> Contract Master ➔ Quotation ➔ Work Order ➔ Service Sheet ➔ Captain Sign-off ➔ 3-Way Match ➔ Tax Invoice.",
+        impact: "Ensures zero unbilled ramp time, guarantees third-party disbursement markups, and eliminates 80% of customer invoice disputes."
+      },
+      commercial: {
+        avatar: "🏛️",
+        title: "Commercial & Legal Directorate",
+        badge: "Governance & Contract Authority",
+        channel: "TAS Contract Lifecycle Management (CLM) Web Portal",
+        tasks: "• Registers Airline Master Profiles, MTOW price tiers, and credit terms (Pre-flight cash vs Net-30).<br>• Structures IATA SGHA standardized service catalogs and seasonal amendment riders.<br>• Tracks monthly volume rebate thresholds (FlightCount) and proactive 90/60/30-day renewal alerts.",
+        tokens: "<strong>Inputs:</strong> Airline commercial agreements, civil aviation station tariffs.<br><strong>Outputs:</strong> Contract Master File, Approved Tariff Schedule, Volume Rebate Credit Notes.",
+        impact: "Guarantees no flight turnaround operates without valid contractual rate coverage and automated credit clearance."
+      },
+      airline: {
+        avatar: "✈️",
+        title: "Airline Customer & OCC Dispatch",
+        badge: "Commercial Client & Flight Operations",
+        channel: "Airline Self-Service Web Portal & Direct B2B API",
+        tasks: "• Dispatches flight schedules, aircraft registrations, and passenger forecasts (IPAX/DPAX).<br>• Reviews, validates, and approves charter quotations with one-click authorization.<br>• Executes pre-flight payments for cash carriers or accesses real-time final invoices.",
+        tokens: "<strong>Inputs:</strong> Operational flight schedule, quotation documents.<br><strong>Outputs:</strong> Charter Flight Request, Proforma wire settlement, Approved Quote acceptance.",
+        impact: "Secures upfront financial commitment for ad-hoc charter flights before aircraft dispatch."
+      },
+      sales: {
+        avatar: "💼",
+        title: "Commercial Operations & Dispatch",
+        badge: "Commercial Pipeline Coordinator",
+        channel: "TAS Commercial Execution Engine",
+        tasks: "• Executes Dynamic Pricing Engine factoring MTOW scales, day/night surcharges, and free time allowances.<br>• Generates Com_QuotationHeader and Quotation Performa documents within minutes.<br>• Automatically compiles and transmits Turnaround Work Orders to the apron handling team.",
+        tokens: "<strong>Inputs:</strong> Airline schedule request, active contract tariff rules.<br><strong>Outputs:</strong> Official Quotation, Proforma Invoice, Apron Turnaround Work Order.",
+        impact: "Transforms commercial contract clauses into enforceable ramp instructions with strict equipment limits."
+      },
+      ramp: {
+        avatar: "🦺",
+        title: "Apron Ramp Operations Supervisor",
+        badge: "Frontline Ground Handling Lead",
+        channel: "Rugged Mobile Apron Tablet (Offline-Capable)",
+        tasks: "• Executes Turnaround Work Orders directly at the aircraft parking stand.<br>• Timestamps Ground Power Unit (GPU) ON/OFF, stairs, potable water, and lavatory servicing.<br>• Records ad-hoc flight crew requests and coordinates with fueling/catering contractors.",
+        tokens: "<strong>Inputs:</strong> Dispatched Turnaround Work Order, flight touchdown ETA.<br><strong>Outputs:</strong> Turnaround Service Sheet with minute-by-minute equipment timestamps.",
+        impact: "Completely eliminates unbilled services and equipment overtime on the ramp, recovering 3% to 5% top-line revenue."
+      },
+      captain: {
+        avatar: "🧑‍✈️",
+        title: "Aircraft Flight Captain & Flight Crew",
+        badge: "In-Flight Operational Authority",
+        channel: "Cockpit Stand Digital E-Signature Screen",
+        tasks: "• Requests on-the-spot ad-hoc ramp services (ASU air-start, cabin cleaning, GPU extension).<br>• Reviews summary of delivered ground handling services and equipment runtimes.<br>• Digitally signs turnaround completion before doors close and pushback authorization.",
+        tokens: "<strong>Inputs:</strong> Frontline mobile Turnaround Service Sheet.<br><strong>Outputs:</strong> Captain Electronic Sign-off with immutable timestamp & signature vector.",
+        impact: "Slashes customer billing disputes by 80% through verified, non-repudiable captain sign-off at the aircraft."
+      },
+      vendor: {
+        avatar: "⛽",
+        title: "Subcontractors & Third-Party Partners",
+        badge: "Specialized Service Providers (Fuel, Catering, Loaders)",
+        channel: "Vendor Portal / Signed Physical Delivery Receipts",
+        tasks: "• Supplies into-plane aviation kerosene, in-flight catering, or heavy cargo deck loaders.<br>• Issues physical delivery receipt / fuel meter slip to the ramp supervisor.<br>• Submits supplier invoice billing to the ground handler's finance department.",
+        tokens: "<strong>Inputs:</strong> Turnaround Work Order dispatch instruction.<br><strong>Outputs:</strong> Fuel / Service Delivery Voucher, Subcontractor Invoice Claim.",
+        impact: "Ensures third-party delivery costs are captured immediately to prevent vendor rate shock."
+      },
+      finance: {
+        avatar: "📊",
+        title: "Billing, Finance & Revenue Assurance",
+        badge: "Financial Clearance & ERP Integration",
+        channel: "TAS Billing Engine & Corporate ERP (SAP / Oracle / Dynamics)",
+        tasks: "• Executes automated 3-Way Matching: Purchase Auth ➔ Ramp Delivery Voucher ➔ Vendor Bill.<br>• Enforces Margin Guardrails (Negative Margin Alert) ensuring 5% disbursement markup.<br>• Generates Final Tax Invoice upon wheels-up and synchronizes GL AR entries to corporate ERP.",
+        tokens: "<strong>Inputs:</strong> Captain-signed Service Sheet, Vendor Invoices, Contract Master.<br><strong>Outputs:</strong> 3-Way Match Verification, Final Tax Invoice, ERP Accounts Receivable Journal.",
+        impact: "Guarantees 100% margin protection on subcontracted services and slashes DSO invoice cycle time from weeks to minutes."
+      }
+    };
+
+    function initActorFilter() {
+      const filterBar = document.getElementById('actorFilterBar');
+      if (!filterBar) return;
+
+      const buttons = filterBar.querySelectorAll('.actor-pill-btn');
+      const rows = document.querySelectorAll('.swimlane-phase-row');
+      const hudAvatar = document.getElementById('hudAvatar');
+      const hudTitle = document.getElementById('hudTitle');
+      const hudBadge = document.getElementById('hudBadge');
+      const hudChannel = document.getElementById('hudChannel');
+      const hudTasks = document.getElementById('hudTasks');
+      const hudTokens = document.getElementById('hudTokens');
+      const hudImpact = document.getElementById('hudImpact');
+
+      function selectActor(actorKey) {
+        buttons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.actor === actorKey);
+        });
+
+        // Filter rows and node pills
+        rows.forEach(row => {
+          const actors = row.dataset.actors ? row.dataset.actors.split(',') : [];
+          if (actorKey === 'all') {
+            row.classList.remove('dimmed', 'highlight');
+          } else if (actors.includes(actorKey)) {
+            row.classList.remove('dimmed');
+            row.classList.add('highlight');
+          } else {
+            row.classList.remove('highlight');
+            row.classList.add('dimmed');
+          }
+        });
+
+        const pills = document.querySelectorAll('.actor-node-pill');
+        pills.forEach(pill => {
+          if (actorKey === 'all') {
+            pill.classList.remove('dimmed', 'active-actor');
+          } else if (pill.dataset.actor === actorKey) {
+            pill.classList.remove('dimmed');
+            pill.classList.add('active-actor');
+          } else {
+            pill.classList.remove('active-actor');
+            pill.classList.add('dimmed');
+          }
+        });
+
+        // Update HUD Card
+        const profile = actorProfiles[actorKey] || actorProfiles.all;
+        hudAvatar.textContent = profile.avatar;
+        hudTitle.textContent = profile.title;
+        hudBadge.textContent = profile.badge;
+        hudChannel.innerHTML = profile.channel;
+        hudTasks.innerHTML = profile.tasks;
+        hudTokens.innerHTML = profile.tokens;
+        hudImpact.innerHTML = profile.impact;
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectActor(btn.dataset.actor);
+        });
+      });
+
+      // Also allow clicking node pills directly in the swimlane
+      document.querySelectorAll('.actor-node-pill').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const actor = pill.dataset.actor;
+          if (actor) selectActor(actor);
+        });
+      });
+    }
 
     // State
     const slides = Array.from(document.querySelectorAll('.slide'));
@@ -1618,6 +2513,7 @@
 
     // Initialize
     initNavigation();
+    initActorFilter();
   </script>
 </body>
 </html>

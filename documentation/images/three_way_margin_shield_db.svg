@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="shieldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <style>
+    .shield-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 22px; font-weight: 800; fill: #f8fafc; }
+    .shield-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 13px; fill: #94a3b8; }
+    .card-head { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; }
+    .prop-lbl { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; fill: #94a3b8; }
+    .prop-val { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 12px; font-weight: 700; fill: #f8fafc; }
+    .money-pos { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 13px; font-weight: 800; fill: #34d399; }
+    .money-neg { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 13px; font-weight: 800; fill: #f87171; }
+    .code-box { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; fill: #38bdf8; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="660" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Banner -->
+  <rect x="30" y="20" width="940" height="66" rx="12" fill="#0f172a" stroke="#1e293b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="500" y="46" text-anchor="middle" class="shield-title">محرك المطابقة الثلاثية وحائط صد الهامش السالب في قاعدة البيانات</text>
+  <text x="500" y="68" text-anchor="middle" class="shield-sub">Database-Enforced Three-Way Matching &amp; Automatic Profit Protection Engine</text>
+
+  <!-- ==================== STEP 1: RAMP EXECUTION FACT ==================== -->
+  <g transform="translate(30, 110)" filter="url(#shadow)">
+    <rect width="280" height="420" rx="14" fill="url(#cardGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect width="280" height="34" rx="14" fill="url(#amberGlow)"/>
+    <text x="140" y="22" text-anchor="middle" class="card-head">1. حقائق المهبط الميداني</text>
+    <text x="140" y="52" text-anchor="middle" font-size="11.5" font-family="'Segoe UI', sans-serif" font-weight="bold" fill="#fcd34d">Opr_TurnaroundServiceExecutions</text>
+
+    <!-- Content fields -->
+    <g transform="translate(18, 70)">
+      <text x="0" y="0" class="prop-lbl">SERVICE IDENTIFIER:</text>
+      <text x="0" y="18" class="prop-val">GPU 90kVA - Power Supply</text>
+
+      <text x="0" y="48" class="prop-lbl">DELIVERED QUANTITY:</text>
+      <text x="0" y="66" class="prop-val">2.0 Hours (120 Mins)</text>
+
+      <text x="0" y="96" class="prop-lbl">METER READINGS:</text>
+      <text x="0" y="114" class="prop-val">14,210.5 kWh → 14,345.0 kWh</text>
+
+      <text x="0" y="144" class="prop-lbl">SUBCONTRACTOR VENDOR:</text>
+      <text x="0" y="162" class="prop-val">EAC Equipment &amp; Fuel Ltd</text>
+
+      <text x="0" y="192" class="prop-lbl">CAPTAIN VERIFICATION:</text>
+      <rect x="0" y="202" width="244" height="44" rx="6" fill="#1c1917" stroke="#78350f"/>
+      <text x="10" y="220" font-size="11" font-family="'SF Mono', monospace" fill="#34d399">✓ SIGNED ON APRON PAD</text>
+      <text x="10" y="236" font-size="9.5" font-family="'SF Mono', monospace" fill="#a8a29e">Hash: 8f4b1...e90a (Verified)</text>
+
+      <text x="0" y="274" class="prop-lbl">SINGLE SOURCE OF TRUTH:</text>
+      <text x="0" y="292" font-size="11" font-family="'Segoe UI', sans-serif" fill="#fef3c7">مستند إلكتروني حي غير قابل للتلاعب يمنع 80% من النزاعات المالية لاحقاً.</text>
+    </g>
+  </g>
+
+  <!-- Arrow from Step 1 to Step 2 Top (Vendor) -->
+  <path d="M 310 240 Q 345 240, 360 200" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrow from Step 1 to Step 2 Bottom (Customer) -->
+  <path d="M 310 400 Q 345 400, 360 440" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ==================== STEP 2A: VENDOR BILL LINE (AP) ==================== -->
+  <g transform="translate(365, 110)" filter="url(#shadow)">
+    <rect width="280" height="200" rx="12" fill="url(#cardGrad)" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect width="280" height="30" rx="12" fill="url(#purpleGlow)"/>
+    <text x="140" y="20" text-anchor="middle" class="card-head">2A. فاتورة المورد (Vendor AP)</text>
+    
+    <g transform="translate(18, 50)">
+      <text x="0" y="0" class="prop-lbl">TABLE: Bil_VendorBillLines</text>
+      <text x="0" y="22" class="prop-lbl">INVOICE NO:</text>
+      <text x="100" y="22" class="prop-val">V-EAC-2026-89</text>
+
+      <text x="0" y="46" class="prop-lbl">QTY MATCH:</text>
+      <text x="100" y="46" class="prop-val">2.0 Hours <tspan fill="#34d399">✓</tspan></text>
+
+      <text x="0" y="70" class="prop-lbl">BASE COST:</text>
+      <text x="100" y="70" class="money-neg">-$980.00 USD</text>
+
+      <text x="0" y="94" class="prop-lbl">DISBURSEMENT:</text>
+      <text x="100" y="94" class="money-pos">+$60.00 (5.0%)</text>
+
+      <rect x="0" y="112" width="244" height="24" rx="4" fill="#2e1065"/>
+      <text x="8" y="128" font-size="10.5" font-family="'SF Mono', monospace" fill="#d8b4fe">STATUS: VERIFIED BY SYSTEM</text>
+    </g>
+  </g>
+
+  <!-- ==================== STEP 2B: CUSTOMER INVOICE LINE (AR) ==================== -->
+  <g transform="translate(365, 330)" filter="url(#shadow)">
+    <rect width="280" height="200" rx="12" fill="url(#cardGrad)" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect width="280" height="30" rx="12" fill="url(#cyanGlow)"/>
+    <text x="140" y="20" text-anchor="middle" class="card-head">2B. فاتورة العميل (Customer AR)</text>
+    
+    <g transform="translate(18, 50)">
+      <text x="0" y="0" class="prop-lbl">TABLE: Bil_CustomerInvoiceLines</text>
+      <text x="0" y="22" class="prop-lbl">INVOICE NO:</text>
+      <text x="100" y="22" class="prop-val">INV-TAS-2026-44</text>
+
+      <text x="0" y="46" class="prop-lbl">QTY BILLED:</text>
+      <text x="100" y="46" class="prop-val">2.0 Hours <tspan fill="#34d399">✓</tspan></text>
+
+      <text x="0" y="70" class="prop-lbl">CONTRACT RATE:</text>
+      <text x="100" y="70" class="money-pos">$600.00 / Hour</text>
+
+      <text x="0" y="94" class="prop-lbl">TOTAL BILLED:</text>
+      <text x="100" y="94" class="money-pos">$1,200.00 USD</text>
+
+      <rect x="0" y="112" width="244" height="24" rx="4" fill="#083344"/>
+      <text x="8" y="128" font-size="10.5" font-family="'SF Mono', monospace" fill="#67e8f9">MATCHED TO CAPTAIN LOG</text>
+    </g>
+  </g>
+
+  <!-- Arrows to Step 3 Shield -->
+  <path d="M 645 210 L 685 240" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+  <path d="M 645 430 L 685 400" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+
+  <!-- ==================== STEP 3: MARGIN SHIELD RECONCILIATION ==================== -->
+  <g transform="translate(690, 110)" filter="url(#shadow)">
+    <rect width="280" height="420" rx="14" fill="url(#shieldGlow)" stroke="#10b981" stroke-width="2"/>
+    <rect width="280" height="34" rx="14" fill="#065f46"/>
+    <text x="140" y="22" text-anchor="middle" class="card-head">🛡️ 3. حائط صد الهامش السالب</text>
+    <text x="140" y="52" text-anchor="middle" font-size="11.5" font-family="'Segoe UI', sans-serif" font-weight="bold" fill="#6ee7b7">Bil_ServiceReconciliations</text>
+
+    <g transform="translate(18, 70)">
+      <text x="0" y="0" class="prop-lbl">REVENUE ASSURANCE FORMULA:</text>
+      
+      <!-- Breakdown Box -->
+      <rect x="0" y="10" width="244" height="135" rx="8" fill="#022c22" stroke="#047857"/>
+      
+      <text x="12" y="32" font-size="12" font-family="'SF Mono', monospace" fill="#93c5fd">Customer Revenue:</text>
+      <text x="175" y="32" font-size="12" font-family="'SF Mono', monospace" font-weight="bold" fill="#34d399">+$1,200.00</text>
+
+      <text x="12" y="58" font-size="12" font-family="'SF Mono', monospace" fill="#fca5a5">Vendor Base Cost:</text>
+      <text x="175" y="58" font-size="12" font-family="'SF Mono', monospace" font-weight="bold" fill="#f87171">-$980.00</text>
+
+      <text x="12" y="84" font-size="12" font-family="'SF Mono', monospace" fill="#fde68a">Disbursement (5%):</text>
+      <text x="175" y="84" font-size="12" font-family="'SF Mono', monospace" font-weight="bold" fill="#fbbf24">+$60.00</text>
+
+      <line x1="12" y1="96" x2="232" y2="96" stroke="#059669" stroke-width="1.5"/>
+
+      <text x="12" y="118" font-size="12" font-family="'SF Mono', monospace" font-weight="bold" fill="#ffffff">NET PROFIT MARGIN:</text>
+      <text x="175" y="118" font-size="13" font-family="'SF Mono', monospace" font-weight="900" fill="#4ade80">+$280.00</text>
+
+      <!-- DB Constraint Box -->
+      <text x="0" y="170" class="prop-lbl">DATABASE CHECK CONSTRAINT:</text>
+      <rect x="0" y="180" width="244" height="52" rx="6" fill="#064e3b" stroke="#34d399"/>
+      <text x="8" y="200" font-size="9" font-family="'SF Mono', monospace" font-weight="bold" fill="#a7f3d0">CHECK (CustomerRevenue &gt;=</text>
+      <text x="14" y="218" font-size="9" font-family="'SF Mono', monospace" font-weight="bold" fill="#a7f3d0">VendorCost - Commission)</text>
+
+      <rect x="0" y="246" width="244" height="34" rx="6" fill="#052e16"/>
+      <text x="10" y="268" font-size="11.5" font-family="'Segoe UI', sans-serif" font-weight="bold" fill="#4ade80">
+        🛡️ تم التدقيق: الفاتورة آمنة ومربحة
+      </text>
+
+      <text x="0" y="306" font-size="11" font-family="'Segoe UI', sans-serif" fill="#d1fae5">
+        في حال كانت التكلفة أعلى من الإيراد، يُلغي SQL المعاملة فوراً ويمنع الفوترة بالخسارة!
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Metric Footer -->
+  <g transform="translate(30, 555)">
+    <rect width="940" height="75" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
+    <text x="40" y="32" font-size="13" font-family="'Segoe UI', sans-serif" font-weight="bold" fill="#38bdf8">💎 أثر الحماية في نظام TAS:</text>
+    <text x="40" y="55" font-size="12" font-family="'Segoe UI', sans-serif" fill="#cbd5e1">1) منع تسرب أي خدمة ميدانية بدون قيد مالي.</text>
+    <text x="350" y="55" font-size="12" font-family="'Segoe UI', sans-serif" fill="#cbd5e1">2) ضمان كامل نسبة عمولة إدارة الموردين (Disbursement).</text>
+    <text x="730" y="55" font-size="12" font-family="'Segoe UI', sans-serif" fill="#cbd5e1">3) تقليص دورة التحصيل DSO بنسبة 60%.</text>
+  </g>
+</svg>

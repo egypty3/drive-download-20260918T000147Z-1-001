@@ -1,0 +1,355 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 840" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070c14"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Actor Header Gradients -->
+    <linearGradient id="gradCommercial" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="gradAirline" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="gradSales" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="gradRamp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="gradCaptain" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="gradVendor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="gradFinance" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+
+    <!-- Glow & Shadow Filters -->
+    <filter id="nodeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+    <filter id="badgeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#818cf8"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#a855f7"/>
+    </marker>
+  </defs>
+
+  <style>
+    .title-main { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 22px; font-weight: 800; fill: #f8fafc; }
+    .title-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 12px; fill: #94a3b8; }
+    .actor-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .actor-role { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 10px; fill: #cbd5e1; text-anchor: middle; }
+    .step-box-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11.5px; font-weight: 700; fill: #f1f5f9; text-anchor: middle; }
+    .step-box-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 9.5px; fill: #94a3b8; text-anchor: middle; }
+    .step-box-doc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2px; text-anchor: middle; }
+    .phase-tag { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tahoma", sans-serif; font-size: 11px; font-weight: 800; fill: #64748b; letter-spacing: 0.8px; }
+  </style>
+
+  <!-- Canvas Outer Border -->
+  <rect width="1220" height="840" rx="16" fill="url(#canvasBg)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Header -->
+  <rect x="25" y="18" width="1170" height="64" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
+  <text x="610" y="44" text-anchor="middle" class="title-main">مخطط تفاعل أطراف المنظومة مع دورة حياة العقد والفوترة</text>
+  <text x="610" y="65" text-anchor="middle" class="title-sub">Cross-Functional Actors Interaction &amp; Document Handoff Across Turnaround Billing Lifecycle</text>
+
+  <!-- ==================== ACTOR SWIMLANE HEADERS (COLUMNS) ==================== -->
+  <!-- Col 1: Commercial / Legal -->
+  <g transform="translate(30, 95)" filter="url(#nodeShadow)">
+    <rect width="150" height="52" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="4" rx="2" fill="url(#gradCommercial)"/>
+    <text x="75" y="24" font-size="14" text-anchor="middle">🏛️</text>
+    <text x="75" y="38" class="actor-name">الإدارة التجارية</text>
+    <text x="75" y="48" class="actor-role">Commercial &amp; Legal</text>
+  </g>
+
+  <!-- Col 2: Airline Customer -->
+  <g transform="translate(195, 95)" filter="url(#nodeShadow)">
+    <rect width="150" height="52" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="4" rx="2" fill="url(#gradAirline)"/>
+    <text x="75" y="24" font-size="14" text-anchor="middle">✈️</text>
+    <text x="75" y="38" class="actor-name">شركة الطيران</text>
+    <text x="75" y="48" class="actor-role">Airline Dispatch / OCC</text>
+  </g>
+
+  <!-- Col 3: Sales / Dispatch -->
+  <g transform="translate(360, 95)" filter="url(#nodeShadow)">
+    <rect width="150" height="52" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="4" rx="2" fill="url(#gradSales)"/>
+    <text x="75" y="24" font-size="14" text-anchor="middle">💼</text>
+    <text x="75" y="38" class="actor-name">مبيعات المناولة</text>
+    <text x="75" y="48" class="actor-role">Commercial Operations</text>
+  </g>
+
+  <!-- Col 4: Ramp Supervisor -->
+  <g transform="translate(525, 95)" filter="url(#nodeShadow)">
+    <rect width="150" height="52" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="4" rx="2" fill="url(#gradRamp)"/>
+    <text x="75" y="24" font-size="14" text-anchor="middle">🦺</text>
+    <text x="75" y="38" class="actor-name">مشرف المهبط</text>
+    <text x="75" y="48" class="actor-role">Apron Ramp Lead</text>
+  </g>
+
+  <!-- Col 5: Aircraft Captain -->
+  <g transform="translate(690, 95)" filter="url(#nodeShadow)">
+    <rect width="140" height="52" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="0" y="0" width="140" height="4" rx="2" fill="url(#gradCaptain)"/>
+    <text x="70" y="24" font-size="14" text-anchor="middle">🧑‍✈️</text>
+    <text x="70" y="38" class="actor-name">كابتن الطائرة</text>
+    <text x="70" y="48" class="actor-role">Flight Captain / Crew</text>
+  </g>
+
+  <!-- Col 6: Subcontractor -->
+  <g transform="translate(845, 95)" filter="url(#nodeShadow)">
+    <rect width="145" height="52" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+    <rect x="0" y="0" width="145" height="4" rx="2" fill="url(#gradVendor)"/>
+    <text x="72" y="24" font-size="14" text-anchor="middle">⛽</text>
+    <text x="72" y="38" class="actor-name">مقاولو الباطن</text>
+    <text x="72" y="48" class="actor-role">Vendors (Fuel/Catering)</text>
+  </g>
+
+  <!-- Col 7: Billing & Finance -->
+  <g transform="translate(1005, 95)" filter="url(#nodeShadow)">
+    <rect width="150" height="52" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="4" rx="2" fill="url(#gradFinance)"/>
+    <text x="75" y="24" font-size="14" text-anchor="middle">📊</text>
+    <text x="75" y="38" class="actor-name">الحسابات والفوترة</text>
+    <text x="75" y="48" class="actor-role">Finance &amp; AR Audit</text>
+  </g>
+
+  <!-- Vertical Swimlane Guide Lines -->
+  <line x1="105" y1="155" x2="105" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="270" y1="155" x2="270" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="435" y1="155" x2="435" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="600" y1="155" x2="600" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="760" y1="155" x2="760" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="917" y1="155" x2="917" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="1080" y1="155" x2="1080" y2="805" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- ==================== PHASE 1: MASTER SETUP & GOVERNANCE ==================== -->
+  <rect x="25" y="165" width="1170" height="100" rx="10" fill="rgba(15, 23, 42, 0.45)" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1"/>
+  <text x="40" y="183" class="phase-tag">PHASE 1: COMMERCIAL GOVERNANCE &amp; MASTER SETUP (التأسيس والحوكمة)</text>
+
+  <!-- Step 1.1: Commercial Setup -->
+  <g transform="translate(35, 192)" filter="url(#nodeShadow)">
+    <rect width="140" height="65" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">تأسيس العقد والتعرفة</text>
+    <text x="70" y="32" class="step-box-desc">تسجيل أوزان MTOW والعملة</text>
+    <text x="70" y="44" class="step-box-desc">شروط الائتمان وباقات الخدمات</text>
+    <rect x="8" y="50" width="124" height="12" rx="3" fill="rgba(56, 189, 248, 0.15)"/>
+    <text x="70" y="59" class="step-box-doc" fill="#38bdf8">📄 Contract Master</text>
+  </g>
+
+  <!-- Arrow from Commercial Setup to Airline Customer -->
+  <path d="M 175 225 L 195 225" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)" fill="none"/>
+
+  <!-- Step 1.2: Airline Approval & Activation -->
+  <g transform="translate(200, 192)" filter="url(#nodeShadow)">
+    <rect width="140" height="65" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">اعتماد شروط الخدمة</text>
+    <text x="70" y="32" class="step-box-desc">توقيع اتفاقية IATA SGHA</text>
+    <text x="70" y="44" class="step-box-desc">وتحديد ملحق الأسعار Annex</text>
+    <rect x="8" y="50" width="124" height="12" rx="3" fill="rgba(129, 140, 248, 0.15)"/>
+    <text x="70" y="59" class="step-box-doc" fill="#818cf8">📜 SGHA Master Annex</text>
+  </g>
+
+  <!-- Step 1.3: Active Rule In Engine (Stored in TAS) -->
+  <g transform="translate(365, 192)" filter="url(#nodeShadow)">
+    <rect width="140" height="65" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">تفعيل محرك الاحتساب</text>
+    <text x="70" y="32" class="step-box-desc">برمجة قواعد السماح الزمني</text>
+    <text x="70" y="44" class="step-box-desc">والحد الأدنى للإيرادات</text>
+    <rect x="8" y="50" width="124" height="12" rx="3" fill="rgba(6, 182, 212, 0.15)"/>
+    <text x="70" y="59" class="step-box-doc" fill="#06b6d4">⚙️ Rate Engine Active</text>
+  </g>
+
+  <!-- ==================== PHASE 2: PRE-FLIGHT COMMERCIAL PIPELINE ==================== -->
+  <rect x="25" y="280" width="1170" height="125" rx="10" fill="rgba(15, 23, 42, 0.45)" stroke="rgba(99, 102, 241, 0.2)" stroke-width="1"/>
+  <text x="40" y="298" class="phase-tag">PHASE 2: PRE-FLIGHT QUOTATION &amp; WORK ORDER (المسار التجاري وأمر التشغيل)</text>
+
+  <!-- Step 2.1: Flight Request from Airline -->
+  <g transform="translate(200, 310)" filter="url(#nodeShadow)">
+    <rect width="140" height="75" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">طلب رحلة عارضة/مجدولة</text>
+    <text x="70" y="32" class="step-box-desc">إرسال تفاصيل الطراز والركاب</text>
+    <text x="70" y="44" class="step-box-desc">ومواعيد الهبوط المقترحة</text>
+    <rect x="8" y="56" width="124" height="14" rx="3" fill="rgba(129, 140, 248, 0.15)"/>
+    <text x="70" y="67" class="step-box-doc" fill="#818cf8">📩 Flight Schedule / Req</text>
+  </g>
+
+  <!-- Arrow Airline to Commercial Sales -->
+  <path d="M 340 345 L 365 345" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowIndigo)" fill="none"/>
+
+  <!-- Step 2.2: Pricing Engine & Quotation Generation -->
+  <g transform="translate(365, 310)" filter="url(#nodeShadow)">
+    <rect width="140" height="75" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">عرض السعر والمبدئية</text>
+    <text x="70" y="32" class="step-box-desc">احتساب آلي لرسوم MTOW</text>
+    <text x="70" y="44" class="step-box-desc">وفحص شروط السداد المسبق</text>
+    <rect x="8" y="56" width="124" height="14" rx="3" fill="rgba(6, 182, 212, 0.15)"/>
+    <text x="70" y="67" class="step-box-doc" fill="#06b6d4">🧾 Quotation &amp; Proforma</text>
+  </g>
+
+  <!-- Arrow loop back to Airline for Proforma payment/approval -->
+  <path d="M 390 310 C 390 295, 310 295, 310 310" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+
+  <!-- Arrow Sales to Ramp Supervisor: Turnaround Work Order -->
+  <path d="M 505 345 L 530 345" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowSky)" fill="none"/>
+
+  <!-- Step 2.3: Work Order Dispatched to Apron -->
+  <g transform="translate(530, 310)" filter="url(#nodeShadow)">
+    <rect width="140" height="75" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">أمر تشغيل المهبط</text>
+    <text x="70" y="32" class="step-box-desc">حدود الطاقة المجانية (GPU 2h)</text>
+    <text x="70" y="44" class="step-box-desc">وتعليمات الركاب والمعدات</text>
+    <rect x="8" y="56" width="124" height="14" rx="3" fill="rgba(245, 158, 11, 0.15)"/>
+    <text x="70" y="67" class="step-box-doc" fill="#f59e0b">📋 Turnaround Work Order</text>
+  </g>
+
+  <!-- ==================== PHASE 3: PHYSICAL APRON EXECUTION ==================== -->
+  <rect x="25" y="420" width="1170" height="145" rx="10" fill="rgba(15, 23, 42, 0.45)" stroke="rgba(245, 158, 11, 0.2)" stroke-width="1"/>
+  <text x="40" y="438" class="phase-tag">PHASE 3: APRON OPERATIONS &amp; CAPTAIN SIGN-OFF (التنفيذ الميداني واعتماد الكابتن)</text>
+
+  <!-- Step 3.1: Ramp Crew Delivery & Timestamping -->
+  <g transform="translate(530, 450)" filter="url(#nodeShadow)">
+    <rect width="140" height="95" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="70" y="18" class="step-box-title">تسجيل أحداث الدوران</text>
+    <text x="70" y="32" class="step-box-desc">هبوط ووضع أوتاد Chocks</text>
+    <text x="70" y="44" class="step-box-desc">عداد كهرباء GPU بالدقيقة</text>
+    <text x="70" y="56" class="step-box-desc">تفريغ صرف ومياه ونظافة</text>
+    <rect x="8" y="74" width="124" height="14" rx="3" fill="rgba(245, 158, 11, 0.15)"/>
+    <text x="70" y="85" class="step-box-doc" fill="#f59e0b">⏱️ Live Apron Timestamps</text>
+  </g>
+
+  <!-- Arrow Ramp Supervisor to Aircraft Captain: Electronic Sign-Off Request -->
+  <path d="M 670 497 L 695 497" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowEmerald)" fill="none"/>
+
+  <!-- Step 3.2: Captain Live Verification & Sign-Off -->
+  <g transform="translate(695, 450)" filter="url(#nodeShadow)">
+    <rect width="135" height="95" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="67" y="18" class="step-box-title">مراجعة واعتماد الكابتن</text>
+    <text x="67" y="32" class="step-box-desc">تأكيد ساعات GPU والخدمات</text>
+    <text x="67" y="44" class="step-box-desc">الإضافية والتوقيع الإلكتروني</text>
+    <text x="67" y="56" class="step-box-desc">على جهاز التابلت بالمهبط</text>
+    <rect x="8" y="74" width="119" height="14" rx="3" fill="rgba(168, 85, 129, 0.15)"/>
+    <text x="67" y="85" class="step-box-doc" fill="#10b981">✍️ Captain E-Signature</text>
+  </g>
+
+  <!-- Subcontractor interaction: Fueling / Catering -->
+  <g transform="translate(850, 450)" filter="url(#nodeShadow)">
+    <rect width="135" height="95" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="1.2"/>
+    <text x="67" y="18" class="step-box-title">تزويد الوقود والخدمات</text>
+    <text x="67" y="32" class="step-box-desc">ضخ الوقود وتأمين الإطفاء</text>
+    <text x="67" y="44" class="step-box-desc">وتسليم قسيمة الاستلام</text>
+    <text x="67" y="56" class="step-box-desc">الموقعة من الطاقم للمهبط</text>
+    <rect x="8" y="74" width="119" height="14" rx="3" fill="rgba(236, 72, 153, 0.15)"/>
+    <text x="67" y="85" class="step-box-doc" fill="#ec4899">⛽ Fuel Delivery Voucher</text>
+  </g>
+
+  <!-- Bidirectional connection between Subcontractor and Ramp Supervisor -->
+  <path d="M 850 515 L 670 515" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowAmber)" fill="none"/>
+
+  <!-- ==================== PHASE 4: 3-WAY MATCHING & TAX INVOICING ==================== -->
+  <rect x="25" y="580" width="1170" height="130" rx="10" fill="rgba(15, 23, 42, 0.45)" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1"/>
+  <text x="40" y="598" class="phase-tag">PHASE 4: 3-WAY MATCHING &amp; FINAL BILLING (المطابقة الثلاثية والفوترة النهائية)</text>
+
+  <!-- Arrow from Captain Sign-Off & Ramp Log to Finance -->
+  <path d="M 762 545 L 762 645 L 1005 645" stroke="#10b981" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrowPurple)" fill="none"/>
+
+  <!-- Arrow from Subcontractor Invoice to Finance -->
+  <path d="M 917 690 L 917 665 L 1005 665" stroke="#ec4899" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrowPurple)" fill="none"/>
+
+  <!-- Step 4.1: Vendor Submits Invoice -->
+  <g transform="translate(850, 615)" filter="url(#nodeShadow)">
+    <rect width="135" height="75" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="1.2"/>
+    <text x="67" y="18" class="step-box-title">إرسال مطالبة المورد</text>
+    <text x="67" y="32" class="step-box-desc">فاتورة الوقود والمعدات</text>
+    <text x="67" y="44" class="step-box-desc">وفق السعر والعملة المعتمدة</text>
+    <rect x="8" y="56" width="119" height="14" rx="3" fill="rgba(236, 72, 153, 0.15)"/>
+    <text x="67" y="67" class="step-box-doc" fill="#ec4899">🧾 Vendor Invoice Bill</text>
+  </g>
+
+  <!-- Step 4.2: Finance 3-Way Reconcile & Margin Shield -->
+  <g transform="translate(1005, 605)" filter="url(#nodeShadow)">
+    <rect width="150" height="95" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="75" y="18" class="step-box-title">المطابقة وحماية الهامش</text>
+    <text x="75" y="32" class="step-box-desc">مطابقة تذكرة المهبط والمورد</text>
+    <text x="75" y="44" class="step-box-desc">احتساب عمولة الإدارة 5%</text>
+    <text x="75" y="56" class="step-box-desc">منع الفوترة بالخسارة آلياً</text>
+    <rect x="8" y="74" width="134" height="14" rx="3" fill="rgba(168, 85, 247, 0.2)"/>
+    <text x="75" y="85" class="step-box-doc" fill="#c084fc">🛡️ Margin Shield Passed</text>
+  </g>
+
+  <!-- Step 4.3: Final Tax Invoice Generated -->
+  <!-- Line connecting Finance to Final Invoice sent to Airline -->
+  <path d="M 1080 700 L 1080 720 L 270 720 L 270 690" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowIndigo)" fill="none"/>
+
+  <g transform="translate(200, 615)" filter="url(#nodeShadow)">
+    <rect width="140" height="75" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="70" y="18" class="step-box-title">استلام الفاتورة النهائية</text>
+    <text x="70" y="32" class="step-box-desc">فاتورة ضريبية مدعومة بتوقيع</text>
+    <text x="70" y="44" class="step-box-desc">الكابتن وساعات الطاقة المدققة</text>
+    <rect x="8" y="56" width="124" height="14" rx="3" fill="rgba(16, 185, 129, 0.2)"/>
+    <text x="70" y="67" class="step-box-doc" fill="#10b981">📑 Final Tax Invoice</text>
+  </g>
+
+  <!-- ==================== PHASE 5: AUDIT, REBATES & RENEWAL ==================== -->
+  <rect x="25" y="725" width="1170" height="95" rx="10" fill="rgba(15, 23, 42, 0.45)" stroke="rgba(16, 185, 129, 0.2)" stroke-width="1"/>
+  <text x="40" y="743" class="phase-tag">PHASE 5: VOLUME REBATES, AUDIT &amp; CONTRACT RENEWAL (الرقابة وخصم الحجم والتجديد)</text>
+
+  <!-- Step 5.1: Volume Count Checked in TAS -->
+  <g transform="translate(35, 752)" filter="url(#nodeShadow)">
+    <rect width="140" height="60" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="70" y="16" class="step-box-title">رصد حجم الرحلات والربحية</text>
+    <text x="70" y="30" class="step-box-desc">تطبيق خصم الحجم التراكمي</text>
+    <text x="70" y="42" class="step-box-desc">تنبيهات التجديد 90/60/30 يوم</text>
+    <rect x="8" y="45" width="124" height="12" rx="3" fill="rgba(56, 189, 248, 0.15)"/>
+    <text x="70" y="54" class="step-box-doc" fill="#38bdf8">📈 Rebate &amp; Renewal</text>
+  </g>
+
+  <!-- Step 5.2: Rebate Note to Airline -->
+  <g transform="translate(200, 752)" filter="url(#nodeShadow)">
+    <rect width="140" height="60" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="70" y="16" class="step-box-title">إشعار دائن بخصم الحجم</text>
+    <text x="70" y="30" class="step-box-desc">استحقاق خصم الشريك المميز</text>
+    <rect x="8" y="42" width="124" height="12" rx="3" fill="rgba(129, 140, 248, 0.15)"/>
+    <text x="70" y="51" class="step-box-doc" fill="#818cf8">💎 Volume Rebate Note</text>
+  </g>
+
+  <!-- Step 5.3: ERP AR Settlement -->
+  <g transform="translate(1005, 752)" filter="url(#nodeShadow)">
+    <rect width="150" height="60" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.2"/>
+    <text x="75" y="16" class="step-box-title">الترحيل لنظام الـ ERP</text>
+    <text x="75" y="30" class="step-box-desc">متابعة التحصيل وفترة الائتمان</text>
+    <rect x="8" y="42" width="134" height="12" rx="3" fill="rgba(168, 85, 247, 0.15)"/>
+    <text x="75" y="51" class="step-box-doc" fill="#c084fc">🏛️ ERP / GL Integrated</text>
+  </g>
+</svg>
