@@ -384,67 +384,115 @@
 
 لكي يعالج النظام هذه المحددات دون تعارض أو تكرار بيانات، يتم توزيعها على جداول مطبعة وفق معايير **المستوى الطبيعي الثالث (3NF)**:
 
-<div style="background: #061512; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 12px; overflow: hidden; margin: 24px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.45);">
-  <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(30, 41, 59, 0.8)); padding: 12px 18px; border-bottom: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; font-weight: 700; font-size: 14px;">
-    📐 مخطط الجداول وحقول الربط المفتاحية في قاعدة البيانات (Relational DDL Mapping)
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; padding: 16px;">
-
-    <!-- Table: Com_Contracts -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 14px;">
-      <div style="font-weight: 700; color: #38bdf8; font-size: 13px; margin-bottom: 8px;">📄 رأس العقد: <code>dbo.Com_Contracts</code></div>
-      <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin: 0; padding-right: 16px;">
-        <li><code>ContractID (PK, bigint)</code>: المعرف التعاقدي الفريد.</li>
-        <li><code>ContractNumber (nvarchar 50)</code>: رقم الاتفاقية المرجعي.</li>
-        <li><code>VersionNumber (int)</code>: إصدار العقد (v1, v2) للتعديلات الموسمية.</li>
-        <li><code>CustomerID (FK)</code>: يربط بجدول العميل المالي <code>AR_Customers</code>.</li>
-        <li><code>EffectiveFrom / ValidTo (date)</code>: نافذة الصلاحية الزمنية.</li>
-        <li><code>CurrencyCode (char 3)</code>: عملة الفوترة المعتمدة (USD/EUR).</li>
-        <li><code>PaymentTermID (FK)</code>: شروط السداد والائتمان المعتمدة.</li>
-      </ul>
-    </div>
-
-    <!-- Table: Com_ContractAirports -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 14px;">
-      <div style="font-weight: 700; color: #34d399; font-size: 13px; margin-bottom: 8px;">📍 ربط المطارات: <code>dbo.Com_ContractAirports</code> (N:M)</div>
-      <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin: 0; padding-right: 16px;">
-        <li><code>ContractID (PK/FK)</code>: مرجع العقد (Cascade Delete).</li>
-        <li><code>AirportID (PK/FK)</code>: مرجع المطار المصرح به (CAI, HRG...).</li>
-        <li><code>IsPrimaryStation (bit)</code>: المحطة الرئيسية لعمليات الناقل.</li>
-        <li><code>StationConcessionFee (decimal 18,2)</code>: رسوم امتياز المحطة.</li>
-      </ul>
-    </div>
-
-    <!-- Table: Com_ContractAirlines -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(129, 140, 248, 0.25); border-radius: 8px; padding: 14px;">
-      <div style="font-weight: 700; color: #a5b4fc; font-size: 13px; margin-bottom: 8px;">✈️ ربط شركات الطيران: <code>dbo.Com_ContractAirlines</code> (N:M)</div>
-      <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin: 0; padding-right: 16px;">
-        <li><code>ContractID (PK/FK)</code>: مرجع العقد.</li>
-        <li><code>AirlineID (PK/FK)</code>: مرجع خط الطيران (MS, FZ, TK...).</li>
-        <li><code>AllianceCode (nvarchar 20)</code>: تحالف الطيران المشترك.</li>
-      </ul>
-    </div>
-
-    <!-- Table: Com_ContractServices -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 14px;">
-      <div style="font-weight: 700; color: #fbbf24; font-size: 13px; margin-bottom: 8px;">🧰 تعرفة الخدمات والبدلات: <code>dbo.Com_ContractServices</code></div>
-      <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin: 0; padding-right: 16px;">
-        <li><code>ContractServiceID (PK, bigint)</code>: معرف البند.</li>
-        <li><code>ContractID (FK)</code>: مرجع العقد.</li>
-        <li><code>ServiceID (FK)</code>: يربط بفهرس خدمات المناولة SGHA.</li>
-        <li><code>NegotiatedPrice (decimal 18,2)</code>: السعر التعاقدي المتفق عليه.</li>
-        <li><code>OvertimePrice (decimal 18,2)</code>: سعر الساعة الإضافية.</li>
-        <li><code>DefaultSupplierID (FK)</code>: المقاول المعتمد للخدمة إن وجد.</li>
-      </ul>
-    </div>
-
-    <!-- Table: Opr_TurnaroundWorkOrders -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(244, 63, 94, 0.25); border-radius: 8px; padding: 14px; grid-column: 1 / -1;">
-      <div style="font-weight: 700; color: #fb7185; font-size: 13px; margin-bottom: 8px;">🎯 نقطة الالتقاء التشغيلي: <code>dbo.Opr_TurnaroundWorkOrders</code></div>
-      <p style="font-size: 12px; color: #cbd5e1; margin-bottom: 6px;">هذا الجدول هو ثمرة تلاقي جميع المحددات؛ حيث يرتبط بـ: <code>ContractID</code> + <code>AirportID</code> + <code>AirlineID</code> + <code>RegistrationID (الطائرة)</code> + <code>FlightTypeCode</code> ليتحكم في تنفيذ المهبط ويولد الفاتورة التلقائية.</p>
-    </div>
-
-  </div>
+<div style="background: #061512; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 14px; overflow: hidden; margin: 24px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+<div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(30, 41, 59, 0.85)); padding: 14px 20px; border-bottom: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: space-between;">
+<span style="color: #34d399; font-weight: 700; font-size: 15px;">📐 مصفوفة جداول قاعدة البيانات وحقول الربط المفتاحية (Relational DDL &amp; Schema Mapping)</span>
+<span style="font-size: 11px; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 3px 10px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.4);">3NF NORMALIZED</span>
+</div>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 12.5px;">
+<thead>
+<tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.2); background: rgba(15, 23, 42, 0.85); color: #34d399;">
+<th style="padding: 12px 14px; font-weight: 700;">اسم الجدول (Table Name)</th>
+<th style="padding: 12px 14px; font-weight: 700;">نوع الكيان</th>
+<th style="padding: 12px 14px; font-weight: 700;">المفتاح الأساسي (PK)</th>
+<th style="padding: 12px 14px; font-weight: 700;">المفاتيح الأجنبية والربط (FK References)</th>
+<th style="padding: 12px 14px; font-weight: 700; text-align: center;">العلاقة</th>
+<th style="padding: 12px 14px; font-weight: 700;">قيد التكامل والأثر الرقابي</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+<td style="padding: 12px 14px; font-weight: 700; color: #f8fafc;"><code>dbo.Com_Contracts</code></td>
+<td style="padding: 12px 14px; color: #38bdf8;">رأس العقد (Master Hub)</td>
+<td style="padding: 12px 14px; color: #fbbf24; font-family: monospace;">ContractID</td>
+<td style="padding: 12px 14px; color: #cbd5e1;"><code>CustomerID ➔ AR_Customers</code></td>
+<td style="padding: 12px 14px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+<td style="padding: 12px 14px; color: #34d399;">حظر حذف العميل المرتبط بعقد نشط (RESTRICT)</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+<td style="padding: 12px 14px; font-weight: 700; color: #f8fafc;"><code>dbo.Com_ContractAirports</code></td>
+<td style="padding: 12px 14px; color: #34d399;">جدول ربط المطارات</td>
+<td style="padding: 12px 14px; color: #fbbf24; font-family: monospace;">(ContractID, AirportID)</td>
+<td style="padding: 12px 14px; color: #cbd5e1;"><code>AirportID ➔ Opr_Airports</code></td>
+<td style="padding: 12px 14px; text-align: center; color: #38bdf8; font-weight: 700;">N : M</td>
+<td style="padding: 12px 14px; color: #cbd5e1;">حذف تابع تلقائي مع العقد (CASCADE)</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.25);">
+<td style="padding: 12px 14px; font-weight: 700; color: #f8fafc;"><code>dbo.Com_ContractAirlines</code></td>
+<td style="padding: 12px 14px; color: #a5b4fc;">جدول ربط شركات الطيران</td>
+<td style="padding: 12px 14px; color: #fbbf24; font-family: monospace;">(ContractID, AirlineID)</td>
+<td style="padding: 12px 14px; color: #cbd5e1;"><code>AirlineID ➔ Opr_Airlines</code></td>
+<td style="padding: 12px 14px; text-align: center; color: #38bdf8; font-weight: 700;">N : M</td>
+<td style="padding: 12px 14px; color: #cbd5e1;">حذف تابع تلقائي مع العقد (CASCADE)</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.08); background: rgba(30, 41, 59, 0.15);">
+<td style="padding: 12px 14px; font-weight: 700; color: #f8fafc;"><code>dbo.Com_ContractServices</code></td>
+<td style="padding: 12px 14px; color: #fbbf24;">تعرفة الخدمات والبدلات</td>
+<td style="padding: 12px 14px; color: #fbbf24; font-family: monospace;">ContractServiceID</td>
+<td style="padding: 12px 14px; color: #cbd5e1;"><code>ServiceID ➔ Com_Services</code><br/><code>SupplierID ➔ AP_Suppliers</code></td>
+<td style="padding: 12px 14px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+<td style="padding: 12px 14px; color: #34d399;">تطبيق قاعدة حائط صد الهامش (Margin Shield)</td>
+</tr>
+<tr style="background: rgba(30, 41, 59, 0.25);">
+<td style="padding: 12px 14px; font-weight: 700; color: #f8fafc;"><code>dbo.Opr_TurnaroundWorkOrders</code></td>
+<td style="padding: 12px 14px; color: #fb7185;">نقطة الالتقاء والفوترة</td>
+<td style="padding: 12px 14px; color: #fbbf24; font-family: monospace;">WorkOrderID</td>
+<td style="padding: 12px 14px; color: #cbd5e1;"><code>ContractID, AirportID, AirlineID, RegistrationID</code></td>
+<td style="padding: 12px 14px; text-align: center; color: #38bdf8; font-weight: 700;">1 : N</td>
+<td style="padding: 12px 14px; color: #34d399;">منع الفوترة أو فتح أمر تشغيل خارج غطاء العقد</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="padding: 16px; background: rgba(15, 23, 42, 0.6); border-top: 1px solid rgba(16, 185, 129, 0.2);">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 14px;">
+<div style="font-weight: 700; color: #38bdf8; font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 6px;">📄 رأس العقد: <code>dbo.Com_Contracts</code></div>
+<div style="font-size: 12px; color: #cbd5e1; line-height: 1.7;">
+<div>• <code>ContractID (PK, bigint)</code>: المعرف التعاقدي الفريد.</div>
+<div>• <code>ContractNumber (nvarchar 50)</code>: رقم الاتفاقية المرجعي.</div>
+<div>• <code>VersionNumber (int)</code>: إصدار العقد (v1, v2) للتعديلات الموسمية.</div>
+<div>• <code>CustomerID (FK)</code>: يربط بجدول العميل المالي <code>AR_Customers</code>.</div>
+<div>• <code>EffectiveFrom / ValidTo</code>: نافذة الصلاحية الزمنية وسريان العقد.</div>
+<div>• <code>CurrencyCode / PaymentTermID</code>: عملة الفوترة وشروط الائتمان.</div>
+</div>
+</div>
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 14px;">
+<div style="font-weight: 700; color: #34d399; font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid rgba(52, 211, 153, 0.2); padding-bottom: 6px;">📍 ربط المطارات: <code>dbo.Com_ContractAirports</code> (N:M)</div>
+<div style="font-size: 12px; color: #cbd5e1; line-height: 1.7;">
+<div>• <code>ContractID (PK/FK)</code>: مرجع العقد (Cascade Delete).</div>
+<div>• <code>AirportID (PK/FK)</code>: مرجع المطار المصرح به (CAI, HRG...).</div>
+<div>• <code>IsPrimaryStation (bit)</code>: المحطة الرئيسية لعمليات الناقل.</div>
+<div>• <code>StationConcessionFee (decimal)</code>: رسوم امتياز سلطة المطار.</div>
+</div>
+</div>
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(129, 140, 248, 0.25); border-radius: 8px; padding: 14px;">
+<div style="font-weight: 700; color: #a5b4fc; font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid rgba(129, 140, 248, 0.2); padding-bottom: 6px;">✈️ ربط شركات الطيران: <code>dbo.Com_ContractAirlines</code> (N:M)</div>
+<div style="font-size: 12px; color: #cbd5e1; line-height: 1.7;">
+<div>• <code>ContractID (PK/FK)</code>: مرجع العقد.</div>
+<div>• <code>AirlineID (PK/FK)</code>: مرجع خط الطيران (MS, FZ, TK...).</div>
+<div>• <code>AllianceCode (nvarchar 20)</code>: تحالف الطيران المشترك.</div>
+</div>
+</div>
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 14px;">
+<div style="font-weight: 700; color: #fbbf24; font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid rgba(245, 158, 11, 0.2); padding-bottom: 6px;">🧰 تعرفة الخدمات: <code>dbo.Com_ContractServices</code></div>
+<div style="font-size: 12px; color: #cbd5e1; line-height: 1.7;">
+<div>• <code>ContractServiceID (PK, bigint)</code>: معرف البند الفريد.</div>
+<div>• <code>ServiceID (FK)</code>: يربط بفهرس خدمات المناولة IATA SGHA.</div>
+<div>• <code>NegotiatedPrice</code>: السعر التعاقدي المتفق عليه.</div>
+<div>• <code>OvertimePrice</code>: سعر الساعة أو النصف ساعة الإضافية.</div>
+<div>• <code>DefaultSupplierID (FK)</code>: المقاول المعتمد للخدمة.</div>
+</div>
+</div>
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(244, 63, 94, 0.25); border-radius: 8px; padding: 14px; grid-column: 1 / -1;">
+<div style="font-weight: 700; color: #fb7185; font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid rgba(244, 63, 94, 0.2); padding-bottom: 6px;">🎯 نقطة الالتقاء التشغيلي والفوترة: <code>dbo.Opr_TurnaroundWorkOrders</code></div>
+<div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.7;">
+يرتبط هذا الجدول الميداني بجميع المفاتيح لضمان التحقق الفوري: <code>ContractID</code> + <code>AirportID</code> + <code>AirlineID</code> + <code>RegistrationID (طراز الطائرة والوزن)</code> + <code>FlightTypeCode</code>. يتحكم بالمهبط ويولد الفاتورة التلقائية والمطابقة الثلاثية (3-Way Matching).
+</div>
+</div>
+</div>
+</div>
 </div>
 
 ---
