@@ -10,24 +10,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Clean Modern Enterprise Palette (Screenshot 2 Inspiration) */
-      --primary-navy: #0f2b5c;
-      --primary-blue: #1d4ed8;
-      --primary-hover: #1e40af;
+      /* Official TAS Brand Palette with #5793cc */
+      --primary-navy: #5793cc;
+      --primary-navy-dark: #437fb9;
+      --primary-blue: #5793cc;
+      --primary-hover: #437fb9;
       --accent-gold: #f59e0b;
       --accent-gold-hover: #d97706;
       
-      --bg-app: #f4f6f9;
+      --bg-app: #f4f7fb;
       --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --bg-muted: #f1f5f9;
+      --bg-subtle: #f8fbfe;
+      --bg-muted: #edf4fa;
       
-      --border-light: #e2e8f0;
-      --border-card: #e5e7eb;
-      --border-input: #cbd5e1;
-      --border-focus: #2563eb;
+      --border-light: #dde7f0;
+      --border-card: #e2ecf5;
+      --border-input: #c6d9e8;
+      --border-focus: #5793cc;
       
-      --text-main: #0f172a;
+      --text-main: #1e293b;
       --text-secondary: #334155;
       --text-muted: #64748b;
       --text-dim: #94a3b8;
@@ -44,18 +45,19 @@
       --rose-600: #e11d48;
       --rose-50: #fff1f2;
       
-      --sky-700: #0369a1;
-      --sky-600: #0284c7;
-      --sky-50: #f0f9ff;
+      --sky-700: #437fb9;
+      --sky-600: #5793cc;
+      --sky-100: #e8f1fa;
+      --sky-50: #f0f7fc;
       
       --radius-sm: 4px;
       --radius-md: 8px;
       --radius-lg: 12px;
       --radius-pill: 9999px;
       
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --shadow-sm: 0 1px 2px 0 rgba(87, 147, 204, 0.08);
+      --shadow-md: 0 4px 6px -1px rgba(87, 147, 204, 0.1), 0 2px 4px -2px rgba(87, 147, 204, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(87, 147, 204, 0.12), 0 4px 6px -4px rgba(87, 147, 204, 0.06);
       
       --transition-smooth: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -87,32 +89,39 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 1px 3px rgba(87, 147, 204, 0.08);
     }
 
     .header-brand-cluster {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
-    .brand-logo-badge {
-      width: 38px;
-      height: 38px;
-      background: var(--primary-navy);
-      border-radius: var(--radius-md);
+    .header-tas-logo-link {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(15, 43, 92, 0.25);
+      text-decoration: none;
     }
-    .brand-logo-badge svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2.2;
+
+    .header-tas-logo {
+      height: 44px;
+      width: auto;
+      max-width: 125px;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+      transition: var(--transition-smooth);
+    }
+    .header-tas-logo:hover {
+      opacity: 0.92;
+      transform: translateY(-0.5px);
+    }
+
+    .header-brand-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--border-light);
     }
 
     .brand-titles h1 {
@@ -131,7 +140,7 @@
     .badge-portal-version {
       font-size: 10.5px;
       font-weight: 700;
-      background: #e0f2fe;
+      background: var(--sky-100, #e0f0fa);
       color: var(--sky-700);
       padding: 2px 7px;
       border-radius: var(--radius-pill);
@@ -726,7 +735,7 @@
     }
     .remaining-days-badge.safe { background: #ecfdf5; color: var(--emerald-700); }
     .remaining-days-badge.expiring { background: #fffbeb; color: var(--amber-700); }
-    .remaining-days-badge.renewal { background: #eff6ff; color: var(--primary-blue); }
+    .remaining-days-badge.renewal { background: #f0f7fc; color: var(--primary-blue); }
     .remaining-days-badge.expired { background: #fff1f2; color: var(--rose-700); }
 
     .val-str {
@@ -753,7 +762,7 @@
     }
     .status-badge-chip.active { background: #ecfdf5; color: var(--emerald-700); }
     .status-badge-chip.expiring { background: #fffbeb; color: var(--amber-700); }
-    .status-badge-chip.renewal { background: #eff6ff; color: var(--primary-blue); }
+    .status-badge-chip.renewal { background: #f0f7fc; color: var(--primary-blue); }
     .status-badge-chip.expired { background: #fff1f2; color: var(--rose-700); }
     .status-badge-chip.draft { background: #f1f5f9; color: #475569; }
 
@@ -776,9 +785,9 @@
       transition: var(--transition-smooth);
     }
     .btn-tbl-edit {
-      background: #eff6ff;
+      background: #f0f7fc;
       color: var(--primary-blue);
-      border: 1px solid #bfdbfe;
+      border: 1px solid #cbe3f5;
     }
     .btn-tbl-edit:hover {
       background: var(--primary-blue);
@@ -977,7 +986,7 @@
       background: var(--primary-navy);
       border-color: var(--primary-navy);
       color: #ffffff;
-      box-shadow: 0 0 0 4px rgba(15, 43, 92, 0.15);
+      box-shadow: 0 0 0 4px rgba(87, 147, 204, 0.25);
     }
     .stepper-node-btn.completed .stepper-circle-digit {
       background: #10b981;
@@ -1199,9 +1208,9 @@
     .btn-compact-add-lookup {
       height: 30px;
       padding: 0 12px;
-      border: 1px solid #bfdbfe;
+      border: 1px solid #cbe3f5;
       border-radius: var(--radius-sm);
-      background: #eff6ff;
+      background: #f0f7fc;
       color: var(--primary-blue);
       font-size: 11.5px;
       font-weight: 700;
@@ -1227,7 +1236,7 @@
     .multi-check-dropdown-control {
       min-height: 42px;
       background: #ffffff;
-      border: 1px solid var(--border-input, #cbd5e1);
+      border: 1px solid var(--border-input, #c6d9e8);
       border-radius: var(--radius-sm, 6px);
       padding: 5px 12px;
       cursor: pointer;
@@ -1239,12 +1248,12 @@
       user-select: none;
     }
     .multi-check-dropdown-control:hover {
-      border-color: #94a3b8;
+      border-color: #8ba5bc;
       background: #fafafa;
     }
     .multi-check-dropdown-control.active {
-      border-color: var(--primary-blue, #1e40af);
-      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+      border-color: var(--primary-blue, #1f6ea8);
+      box-shadow: 0 0 0 3px rgba(41, 133, 200, 0.15);
       background: #ffffff;
     }
     .multi-check-selected-preview {
@@ -1257,7 +1266,7 @@
     }
     .multi-check-placeholder {
       font-size: 13px;
-      color: var(--text-muted, #94a3b8);
+      color: var(--text-muted, #8ba5bc);
       font-style: italic;
     }
     .multi-check-controls-right {
@@ -1269,11 +1278,11 @@
     .multi-check-count-badge {
       font-size: 11px;
       font-weight: 700;
-      color: var(--primary-navy, #0f172a);
+      color: var(--primary-navy, #5793cc);
       background: #f1f5f9;
       padding: 2px 7px;
       border-radius: 12px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dde7f0;
     }
     .btn-multi-check-clear {
       background: none;
@@ -1291,7 +1300,7 @@
     }
     .multi-check-chevron {
       font-size: 13px;
-      color: #64748b;
+      color: #5b7994;
       transition: transform 0.2s ease;
       display: inline-block;
     }
@@ -1302,9 +1311,9 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      background: #eff6ff;
-      color: var(--primary-blue, #1e40af);
-      border: 1px solid #bfdbfe;
+      background: #f0f7fc;
+      color: var(--primary-blue, #1f6ea8);
+      border: 1px solid #cbe3f5;
       border-radius: 4px;
       padding: 2px 7px;
       font-size: 11.5px;
@@ -1313,7 +1322,7 @@
     }
     .selected-tag-pill .tag-x {
       font-size: 11px;
-      color: #3b82f6;
+      color: #2985c8;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -1427,13 +1436,13 @@
       background: #f1f5f9;
     }
     .multi-check-option-row.checked {
-      background: #eff6ff;
+      background: #f0f7fc;
     }
     .multi-check-checkbox-sq {
       width: 16px;
       height: 16px;
       border-radius: 3px;
-      border: 1.5px solid #94a3b8;
+      border: 1.5px solid #8ba5bc;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1444,23 +1453,23 @@
       transition: all 0.12s ease;
     }
     .multi-check-option-row.checked .multi-check-checkbox-sq {
-      background: var(--primary-blue, #1e40af);
-      border-color: var(--primary-blue, #1e40af);
+      background: var(--primary-blue, #1f6ea8);
+      border-color: var(--primary-blue, #1f6ea8);
       color: #ffffff;
     }
     .ms-code-badge {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
-      color: var(--primary-navy, #0f172a);
+      color: var(--primary-navy, #5793cc);
       background: #e2e8f0;
       padding: 1px 6px;
       border-radius: 4px;
       flex-shrink: 0;
     }
     .multi-check-option-row.checked .ms-code-badge {
-      background: #dbeafe;
-      color: var(--primary-blue, #1e40af);
+      background: #d8ecf8;
+      color: var(--primary-blue, #1f6ea8);
     }
     .ms-label-wrap {
       display: flex;
@@ -1473,13 +1482,13 @@
     .ms-label-title {
       font-size: 12.5px;
       font-weight: 500;
-      color: var(--text-main, #0f172a);
+      color: var(--text-main, #1e293b);
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .ms-label-sub {
       font-size: 11px;
-      color: #64748b;
+      color: #5b7994;
       margin-left: auto;
       flex-shrink: 0;
     }
@@ -1489,16 +1498,16 @@
       align-items: center;
       padding: 7px 10px;
       background: #f8fafc;
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid #dde7f0;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
     .multi-check-footer-hint {
       font-size: 11px;
-      color: #94a3b8;
+      color: #8ba5bc;
     }
     .btn-multi-check-done {
-      background: var(--primary-blue, #1e40af);
+      background: var(--primary-blue, #1f6ea8);
       color: #ffffff;
       border: none;
       padding: 3px 10px;
@@ -1509,7 +1518,7 @@
       transition: background 0.15s;
     }
     .btn-multi-check-done:hover {
-      background: #1e3a8a;
+      background: #1a5d8f;
     }
     .multi-check-empty {
       padding: 16px;
@@ -1577,9 +1586,9 @@
       white-space: nowrap;
     }
     .selected-tag-pill.tail-pill {
-      background: #e0f2fe;
-      color: #0369a1;
-      border-color: #bae6fd;
+      background: #f0f7fc;
+      color: var(--sky-700);
+      border-color: #cbe3f5;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
     }
@@ -1837,11 +1846,10 @@
   <!-- Clean Top Enterprise Header (Screenshot 2 Theme) -->
   <header class="portal-header">
     <div class="header-brand-cluster">
-      <div class="brand-logo-badge">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-      </div>
+      <a href="javascript:void(0)" onclick="switchStudioMode('contractsList')" class="header-tas-logo-link" title="TAS Aviation Portal Home">
+        <img src="TasDashboard/Logos/Tas/tas_logo_horizontal.png" alt="TAS Aviation Services" class="header-tas-logo">
+      </a>
+      <div class="header-brand-divider"></div>
       <div class="brand-titles">
         <h1>TAS Aviation Portal <span class="badge-portal-version">Operations v4.0</span></h1>
         <p>Commercial Ground Handling &amp; Contract Lifecycle Studio</p>
@@ -4281,7 +4289,7 @@
                onclick="event.stopPropagation(); toggleTailChip('${t.tail}');" 
                title="${t.tail} - ${t.modelName} (MTOW: ${t.mtow}T, ${t.leased ? 'Leased' : 'Owned'})">
             <span class="multi-check-checkbox-sq">${isSelected ? '✓' : ''}</span>
-            <span class="ms-code-badge" style="font-family: 'JetBrains Mono', monospace; font-weight: 800; background: #e0f2fe; color: #0369a1; border-color: #bae6fd; min-width: 76px; text-align: center;">
+            <span class="ms-code-badge" style="font-family: 'JetBrains Mono', monospace; font-weight: 800; background: #f0f7fc; color: var(--sky-700); border-color: #cbe3f5; min-width: 76px; text-align: center;">
               ✈️ ${t.tail}
             </span>
             <div class="ms-label-wrap">
@@ -5284,7 +5292,7 @@
               <div style="margin-top: 5px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
                 ${(contract.tails && contract.tails.length > 0)
                   ? contract.tails.map(t => `<span class="selected-tag-pill tail-pill" style="font-size: 11px; padding: 2px 7px;">✈️ ${t}</span>`).join('') + ` <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">(${contract.tails.length} airframes whitelisted)</span>`
-                  : '<span style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: #eff6ff; padding: 3px 8px; border-radius: 4px; border: 1px solid #bfdbfe;">🌐 Open Fleet Policy (All Carrier Airframes Covered)</span>'
+                  : '<span style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: #f0f7fc; padding: 3px 8px; border-radius: 4px; border: 1px solid #cbe3f5;">🌐 Open Fleet Policy (All Carrier Airframes Covered)</span>'
                 }
               </div>
             </div>
