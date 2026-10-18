@@ -1518,6 +1518,72 @@
       font-size: 12px;
     }
 
+    /* Tail Registration Specific Elements */
+    .tail-scope-toggle-group {
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      gap: 3px;
+    }
+    .tail-scope-btn {
+      border: none;
+      background: transparent;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .tail-scope-btn:hover {
+      color: var(--text-main);
+    }
+    .tail-scope-btn.active {
+      background: #ffffff;
+      color: var(--primary-navy);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-weight: 700;
+    }
+    .tail-hint-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-top: 6px;
+    }
+    .tail-inline-add-bar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .tail-inline-add-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .selected-tag-pill.tail-pill {
+      background: #e0f2fe;
+      color: #0369a1;
+      border-color: #bae6fd;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
     /* Lookup Modal Specific Elements */
     .lookup-type-segmented-bar {
       display: flex;
@@ -2378,6 +2444,114 @@
             </div>
           </div>
 
+          <!-- Tail Number & Aircraft Registration Section -->
+          <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-light);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <label style="margin-bottom: 2px; font-weight: 700; color: var(--text-main); font-size: 13.5px; display: flex; align-items: center; gap: 6px;">
+                  <span>🛩️</span> Covered Tail Numbers &amp; Aircraft Registrations
+                </label>
+                <div style="font-size: 12px; color: var(--text-muted);">
+                  Specify individual aircraft tail registrations (Tail No.), certified MTOW, and lease status.
+                </div>
+              </div>
+
+              <!-- Scope Toggle Segmented Buttons -->
+              <div class="tail-scope-toggle-group">
+                <button type="button" class="tail-scope-btn active" id="btnTailScopeAll" onclick="setTailCoverageScope('ALL')" title="All active airframes of covered models are automatically authorized">
+                  🌐 All Fleet Tails (Open)
+                </button>
+                <button type="button" class="tail-scope-btn" id="btnTailScopeCustom" onclick="setTailCoverageScope('CUSTOM')" title="Whitelist specific tail numbers for this contract (charter, wet-lease, VIP)">
+                  🎯 Specific Tail Whitelist
+                </button>
+              </div>
+            </div>
+
+            <!-- Open Fleet Informational Banner (Shown when scope is ALL) -->
+            <div id="boxTailOpenFleetHint" class="tail-hint-box" style="margin-bottom: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">ℹ️</span>
+                  <div>
+                    <strong style="color: var(--primary-navy); font-size: 12.5px;">Open Fleet Policy Active:</strong>
+                    <span style="color: var(--text-secondary); font-size: 12px; margin-left: 4px;">
+                      All airframes of the selected models operated by the carrier are authorized. Click <strong>"Specific Tail Whitelist"</strong> to lock turnaround work orders to designated tail numbers.
+                    </span>
+                  </div>
+                </div>
+                <button type="button" class="btn-compact-action" style="white-space: nowrap; font-size: 11px; color: var(--primary-blue);" onclick="setTailCoverageScope('CUSTOM')">
+                  Select Specific Tails &rarr;
+                </button>
+              </div>
+            </div>
+
+            <!-- Specific Tail Numbers Multi-Check Dropdown (Shown when scope is CUSTOM) -->
+            <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapTailDropdown" style="display: none; margin-bottom: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label style="margin-bottom: 0; font-weight: 600; font-size: 12.5px;">Designated Tail Numbers <span class="req-star">*</span></label>
+                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('TAIL')">+ Register New Tail</button>
+              </div>
+
+              <!-- Trigger Control Box -->
+              <div class="multi-check-dropdown-control" id="triggerTailDropdown" onclick="toggleMultiDropdown('tail')">
+                <div class="multi-check-selected-preview" id="previewTailSelected">
+                  <span class="multi-check-placeholder">Select or add specific tail registrations (e.g. SU-GBF, OK-TVF)...</span>
+                </div>
+                <div class="multi-check-controls-right">
+                  <span class="multi-check-count-badge" id="badgeTailCount" style="display: none;">0 selected</span>
+                  <button type="button" class="btn-multi-check-clear" id="btnClearTailTrigger" onclick="event.stopPropagation(); clearTailSelection();" title="Clear selected tails" style="display: none;">✕</button>
+                  <span class="multi-check-chevron">▾</span>
+                </div>
+              </div>
+
+              <!-- Popup Dropdown Panel -->
+              <div class="multi-check-dropdown-panel" id="panelTailDropdown">
+                <div class="multi-check-panel-header">
+                  <div class="multi-check-search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="tailSearchInput" placeholder="Search tail number (e.g. SU-GBF, A320, Boeing)..." oninput="filterTailsDisplay()" onclick="event.stopPropagation()">
+                    <button type="button" id="btnClearTailSearch" class="btn-clear-search-mini" onclick="event.stopPropagation(); clearTailSearch();" style="display: none;">✕</button>
+                  </div>
+                  <div class="multi-check-actions-bar">
+                    <span class="multi-check-status-text" id="tailCounterBadge">0 of 0 selected</span>
+                    <div style="display: flex; gap: 6px;">
+                      <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); selectAllFilteredTails();">Select All</button>
+                      <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); clearTailSelection();">Clear</button>
+                      <button type="button" class="btn-compact-action" style="color: var(--primary-blue);" onclick="event.stopPropagation(); openLookupModal('TAIL');">+ Register</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Options List with Checkboxes -->
+                <div class="multi-check-options-list" id="gridTailChips">
+                  <!-- Dynamically rendered by renderTailChips() -->
+                </div>
+
+                <div class="multi-check-panel-footer">
+                  <span class="multi-check-footer-hint">Click outside or press Done to close</span>
+                  <button type="button" class="btn-multi-check-done" onclick="closeAllMultiDropdowns()">Done</button>
+                </div>
+              </div>
+
+              <!-- Quick Inline Tail Registration -->
+              <div class="tail-inline-add-bar">
+                <span class="tail-inline-add-title">⚡ Quick Register:</span>
+                <input type="text" id="inpInlineTailNo" class="form-input-control" placeholder="Tail No (e.g. SU-XYZ)" style="width: 140px; height: 32px; font-size: 12px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;" onkeydown="if(event.key==='Enter'){event.preventDefault(); quickAddInlineTail();}">
+                <select id="selInlineTailModel" class="form-input-control" style="width: 140px; height: 32px; font-size: 12px;">
+                  <!-- Dynamic from fleet -->
+                </select>
+                <input type="number" id="inpInlineTailMtow" class="form-input-control" placeholder="MTOW (Tons)" step="0.5" style="width: 105px; height: 32px; font-size: 12px;" onkeydown="if(event.key==='Enter'){event.preventDefault(); quickAddInlineTail();}">
+                <select id="selInlineTailLease" class="form-input-control" style="width: 95px; height: 32px; font-size: 12px;">
+                  <option value="OWNED">Owned</option>
+                  <option value="LEASED">Leased</option>
+                </select>
+                <button type="button" class="btn-compact-action" style="height: 32px; padding: 0 12px; background: var(--primary-blue); color: #ffffff; font-weight: 700; border-radius: var(--radius-sm);" onclick="quickAddInlineTail()">
+                  + Add Tail
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div class="form-grid-2" style="margin-top: 14px;">
             <div class="input-field-unit">
               <label for="inpTurnaroundTime">Standard Turnaround Duration (Minutes)</label>
@@ -2502,6 +2676,10 @@
               <div>
                 <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Covered Fleet Models</span>
                 <div style="font-weight: 600;" id="revFleetList">-</div>
+              </div>
+              <div>
+                <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Tail Registrations</span>
+                <div style="font-weight: 600;" id="revTailList">-</div>
               </div>
               <div>
                 <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Monthly Flight Volume</span>
@@ -2680,6 +2858,7 @@
         <button type="button" class="lookup-type-btn active" id="tabLookupAirline" onclick="switchLookupModalType('AIRLINE')">Airline / Customer</button>
         <button type="button" class="lookup-type-btn" id="tabLookupStation" onclick="switchLookupModalType('STATION')">Airport Station</button>
         <button type="button" class="lookup-type-btn" id="tabLookupFleet" onclick="switchLookupModalType('FLEET')">Aircraft Model</button>
+        <button type="button" class="lookup-type-btn" id="tabLookupTail" onclick="switchLookupModalType('TAIL')">Tail Registration</button>
         <button type="button" class="lookup-type-btn" id="tabLookupService" onclick="switchLookupModalType('SERVICE')">Ground Service</button>
       </div>
 
@@ -2763,6 +2942,48 @@
           </div>
         </div>
 
+        <!-- Fields for TAIL REGISTRATION -->
+        <div id="lookupFieldsTail" class="lookup-form-section" style="display: none;">
+          <div class="form-grid-2">
+            <div class="input-field-unit">
+              <label for="inpLookupTailNo">Tail / Registration Number <span class="req-star">*</span></label>
+              <input type="text" id="inpLookupTailNo" class="form-input-control" placeholder="e.g. SU-GBF, OK-TVF" style="text-transform: uppercase; font-family: 'JetBrains Mono', monospace; font-weight: 700;">
+            </div>
+            <div class="input-field-unit">
+              <label for="selLookupTailModel">Aircraft Model Type <span class="req-star">*</span></label>
+              <select id="selLookupTailModel" class="form-input-control">
+                <!-- Dynamically populated from lookupFleet -->
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-top: 10px;">
+            <div class="input-field-unit">
+              <label for="selLookupTailAirline">Operating Airline / Carrier <span class="req-star">*</span></label>
+              <select id="selLookupTailAirline" class="form-input-control">
+                <!-- Dynamically populated from lookupAirlines -->
+              </select>
+            </div>
+            <div class="input-field-unit">
+              <label for="inpLookupTailMtow">Certified MTOW (Tons) <span class="req-star">*</span></label>
+              <input type="number" id="inpLookupTailMtow" class="form-input-control" placeholder="e.g. 77.0" step="0.5">
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-top: 10px;">
+            <div class="input-field-unit">
+              <label for="inpLookupTailSeats">Passenger Seating Capacity</label>
+              <input type="number" id="inpLookupTailSeats" class="form-input-control" placeholder="e.g. 180" min="0">
+            </div>
+            <div class="input-field-unit">
+              <label for="selLookupTailOwnership">Airframe Ownership / Status</label>
+              <select id="selLookupTailOwnership" class="form-input-control">
+                <option value="OWNED">Carrier Owned Airframe</option>
+                <option value="LEASED_DRY">Dry Leased (Operated by Airline)</option>
+                <option value="LEASED_WET">Wet Leased / ACMI Partner</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
         <!-- Fields for SERVICE -->
         <div id="lookupFieldsService" class="lookup-form-section" style="display: none;">
           <div class="form-grid-2">
@@ -2811,6 +3032,8 @@
     let activeStepIndex = 1;
     let selectedStationCodes = [];
     let selectedAircraftModels = [];
+    let selectedTailRegistrations = [];
+    let tailCoverageScope = 'ALL'; // 'ALL' = Open Fleet (all tails of covered models), 'CUSTOM' = Specific Tail Whitelist
     let selectedServices = [];
 
     let contractsMasterData = [];
@@ -2877,6 +3100,71 @@
       { code: 'E195', name: 'Embraer E195-E2', tier: 'REGIONAL' },
       { code: 'AT76', name: 'ATR 72-600 Turboprop', tier: 'REGIONAL' },
       { code: 'DH8D', name: 'De Havilland Dash 8-400', tier: 'REGIONAL' }
+    ];
+
+    let lookupTails = [
+      // EgyptAir Fleet
+      { tail: 'SU-GBF', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 168, status: 'Active', leased: false },
+      { tail: 'SU-GBD', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 168, status: 'Active', leased: false },
+      { tail: 'SU-GCT', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'A321', modelName: 'Airbus A321neo', mtow: 93.5, seats: 198, status: 'Active', leased: false },
+      { tail: 'SU-GCU', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'A321', modelName: 'Airbus A321neo', mtow: 93.5, seats: 198, status: 'Active', leased: false },
+      { tail: 'SU-GDM', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 160, status: 'Active', leased: false },
+      { tail: 'SU-GDN', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 160, status: 'Active', leased: false },
+      { tail: 'SU-GEZ', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'B789', modelName: 'Boeing 787-9 Dreamliner', mtow: 254.0, seats: 309, status: 'Active', leased: false },
+      { tail: 'SU-GEY', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'B789', modelName: 'Boeing 787-9 Dreamliner', mtow: 254.0, seats: 309, status: 'Active', leased: false },
+      { tail: 'SU-GDL', airlineId: 'MS_HOLDING', airlineCode: 'MS / MSR', model: 'B77W', modelName: 'Boeing 777-300ER', mtow: 351.5, seats: 365, status: 'Active', leased: false },
+      { tail: 'SU-GCE', airlineId: 'MS_HOLDING', airlineCode: 'MSX / MSX', model: 'A332F', modelName: 'Airbus A330-200F Cargo', mtow: 233.0, seats: 0, status: 'Active Cargo', leased: false },
+      { tail: 'SU-GCF', airlineId: 'MS_HOLDING', airlineCode: 'MSX / MSX', model: 'B738F', modelName: 'Boeing 737-800 BCF', mtow: 79.0, seats: 0, status: 'Active Cargo', leased: false },
+
+      // Air Cairo Fleet
+      { tail: 'SU-BTM', airlineId: 'SM_AIRCAIRO', airlineCode: 'SM / MSC', model: 'A320', modelName: 'Airbus A320neo', mtow: 79.0, seats: 186, status: 'Active', leased: false },
+      { tail: 'SU-BTN', airlineId: 'SM_AIRCAIRO', airlineCode: 'SM / MSC', model: 'A320', modelName: 'Airbus A320neo', mtow: 79.0, seats: 186, status: 'Active', leased: false },
+      { tail: 'SU-BTO', airlineId: 'SM_AIRCAIRO', airlineCode: 'SM / MSC', model: 'AT76', modelName: 'ATR 72-600 Turboprop', mtow: 23.0, seats: 70, status: 'Active', leased: false },
+      { tail: 'SU-BTP', airlineId: 'SM_AIRCAIRO', airlineCode: 'SM / MSC', model: 'E190', modelName: 'Embraer E190 E-Jet', mtow: 51.8, seats: 110, status: 'Active', leased: false },
+
+      // FlyEgypt
+      { tail: 'SU-FGA', airlineId: 'FZ_TOUR', airlineCode: 'FT / FEG', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 189, status: 'Active', leased: true },
+      { tail: 'SU-FGB', airlineId: 'FZ_TOUR', airlineCode: 'FT / FEG', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 189, status: 'Active', leased: true },
+
+      // Nile Air
+      { tail: 'SU-BQM', airlineId: 'NP_NILE', airlineCode: 'NP / NIA', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 164, status: 'Active', leased: false },
+      { tail: 'SU-BQN', airlineId: 'NP_NILE', airlineCode: 'NP / NIA', model: 'A321', modelName: 'Airbus A321-200', mtow: 89.0, seats: 204, status: 'Active', leased: false },
+
+      // Nesma Airlines
+      { tail: 'SU-NMA', airlineId: 'NE_NESMA', airlineCode: 'NE / NMA', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 180, status: 'Active', leased: false },
+      { tail: 'SU-NMB', airlineId: 'NE_NESMA', airlineCode: 'NE / NMA', model: 'AT76', modelName: 'ATR 72-600 Turboprop', mtow: 23.0, seats: 72, status: 'Active', leased: false },
+
+      // Smartwings
+      { tail: 'OK-TVF', airlineId: 'FZ_TOUR', airlineCode: 'QS / TVS', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 189, status: 'Active', leased: false },
+      { tail: 'OK-TVS', airlineId: 'FZ_TOUR', airlineCode: 'QS / TVS', model: 'B38M', modelName: 'Boeing 737 MAX 8', mtow: 82.2, seats: 189, status: 'Active', leased: false },
+
+      // Saudia Airlines
+      { tail: 'HZ-AQ1', airlineId: 'SV_SAUDIA', airlineCode: 'SV / SVA', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 144, status: 'Active', leased: false },
+      { tail: 'HZ-AK24', airlineId: 'SV_SAUDIA', airlineCode: 'SV / SVA', model: 'B77W', modelName: 'Boeing 777-300ER', mtow: 351.5, seats: 413, status: 'Active', leased: false },
+
+      // Emirates
+      { tail: 'A6-ENA', airlineId: 'EK_EMIRATES', airlineCode: 'EK / UAE', model: 'B77W', modelName: 'Boeing 777-300ER', mtow: 351.5, seats: 354, status: 'Active', leased: false },
+      { tail: 'A6-EQP', airlineId: 'EK_EMIRATES', airlineCode: 'EK / UAE', model: 'B77W', modelName: 'Boeing 777-300ER', mtow: 351.5, seats: 360, status: 'Active', leased: false },
+
+      // Turkish Airlines
+      { tail: 'TC-LNC', airlineId: 'TK_CARGO', airlineCode: 'TK / THY', model: 'A333', modelName: 'Airbus A330-300', mtow: 242.0, seats: 289, status: 'Active', leased: false },
+      { tail: 'TC-JVD', airlineId: 'TK_CARGO', airlineCode: 'TK / THY', model: 'B738', modelName: 'Boeing 737-800 NG', mtow: 79.0, seats: 165, status: 'Active', leased: false },
+
+      // Lufthansa
+      { tail: 'D-AINZ', airlineId: 'LH_LUFTHANSA', airlineCode: 'LH / DLH', model: 'A320', modelName: 'Airbus A320neo', mtow: 79.0, seats: 180, status: 'Active', leased: false },
+      { tail: 'D-AIEA', airlineId: 'LH_LUFTHANSA', airlineCode: 'LH / DLH', model: 'A321', modelName: 'Airbus A321neo', mtow: 93.5, seats: 215, status: 'Active', leased: false },
+
+      // British Airways
+      { tail: 'G-EUYR', airlineId: 'BA_BRITISH', airlineCode: 'BA / BAW', model: 'A320', modelName: 'Airbus A320-200', mtow: 77.0, seats: 180, status: 'Active', leased: false },
+      { tail: 'G-ZBKA', airlineId: 'BA_BRITISH', airlineCode: 'BA / BAW', model: 'B789', modelName: 'Boeing 787-9 Dreamliner', mtow: 254.0, seats: 216, status: 'Active', leased: false },
+
+      // Qatar Airways
+      { tail: 'A7-BAC', airlineId: 'QR_QATAR', airlineCode: 'QR / QTR', model: 'B77W', modelName: 'Boeing 777-300ER', mtow: 351.5, seats: 358, status: 'Active', leased: false },
+      { tail: 'A7-BHI', airlineId: 'QR_QATAR', airlineCode: 'QR / QTR', model: 'B789', modelName: 'Boeing 787-9 Dreamliner', mtow: 254.0, seats: 311, status: 'Active', leased: false },
+
+      // Wizz Air
+      { tail: 'HA-LVI', airlineId: 'WZ_WIZZAIR', airlineCode: 'W6 / WZZ', model: 'A321', modelName: 'Airbus A321neo', mtow: 97.0, seats: 239, status: 'Active', leased: false },
+      { tail: 'HA-LVM', airlineId: 'WZ_WIZZAIR', airlineCode: 'W6 / WZZ', model: 'A321', modelName: 'Airbus A321neo', mtow: 97.0, seats: 239, status: 'Active', leased: false }
     ];
 
     let lookupServices = [
@@ -3071,6 +3359,12 @@
         const finalVal = tmpl.val + valVariation;
         const margin = +(tmpl.margin + ((i % 5) * 0.4) - 0.8).toFixed(1);
 
+        const matchingTails = lookupTails.filter(t => 
+          (t.airlineId === (tmpl.custId || 'MS_HOLDING') || t.airlineCode === tmpl.code) && 
+          tmpl.fl.includes(t.model)
+        ).map(t => t.tail);
+        const seedContractTails = matchingTails.length > 0 ? matchingTails.slice(0, 4) : [];
+
         contractsMasterData.push({
           id: i,
           ref: ref,
@@ -3081,6 +3375,7 @@
           primaryStation: hub,
           stations: stSet,
           fleet: tmpl.fl,
+          tails: seedContractTails,
           flightsPerMonth: tmpl.f + (i % 7),
           createdDate: createdDate,
           startDate: startDate,
@@ -3353,7 +3648,11 @@
                 <div style="max-width: 200px;">${stationsHtml}</div>
               </td>
               <td>
-                <span style="font-weight: 600; font-size: 12px; color: var(--text-main);">${c.fleet.slice(0, 3).join(', ')}${c.fleet.length > 3 ? ' +' + (c.fleet.length - 3) : ''}</span>
+                <div style="font-weight: 600; font-size: 12px; color: var(--text-main);">${c.fleet.slice(0, 3).join(', ')}${c.fleet.length > 3 ? ' +' + (c.fleet.length - 3) : ''}</div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 4px;">
+                  <span style="color: var(--primary-blue); font-size: 11px;">🛩️</span>
+                  <span style="color: #475569;">${c.tails && c.tails.length > 0 ? (c.tails.slice(0, 2).join(', ') + (c.tails.length > 2 ? ` (+${c.tails.length - 2})` : '')) : 'Open fleet'}</span>
+                </div>
               </td>
               <td>
                 <div class="date-str-box">${c.startDate} &rarr; ${c.endDate}</div>
@@ -3571,7 +3870,7 @@
     }
 
     function closeAllMultiDropdowns() {
-      ['station', 'fleet', 'service'].forEach(name => {
+      ['station', 'fleet', 'tail', 'service'].forEach(name => {
         const cName = name.charAt(0).toUpperCase() + name.slice(1);
         const panel = document.getElementById(`panel${cName}Dropdown`);
         const trigger = document.getElementById(`trigger${cName}Dropdown`);
@@ -3801,11 +4100,15 @@
       }
       const term = (document.getElementById('fleetSearchInput')?.value || '').trim();
       renderFleetChips(term);
+      populateInlineTailModels();
+      renderTailChips();
     }
 
     function removeFleetTag(code) {
       selectedAircraftModels = selectedAircraftModels.filter(c => c !== code);
       renderFleetChips();
+      populateInlineTailModels();
+      renderTailChips();
     }
 
     function filterFleetDisplay() {
@@ -3834,12 +4137,288 @@
         }
       });
       renderFleetChips(term);
+      populateInlineTailModels();
+      renderTailChips();
     }
 
     function clearFleetSelection() {
       selectedAircraftModels = [];
       const term = (document.getElementById('fleetSearchInput')?.value || '').trim().toLowerCase();
       renderFleetChips(term);
+      populateInlineTailModels();
+      renderTailChips();
+    }
+
+    // ==========================================================
+    // Step 3 (Sub): Aircraft Tail Numbers & Registrations Logic
+    // ==========================================================
+    function getAvailableTailsForCurrentSelection() {
+      const custVal = document.getElementById('selectCustomerAR')?.value;
+      const currentAirline = lookupAirlines.find(a => a.id === custVal);
+      
+      let tails = [...lookupTails];
+      if (custVal && custVal !== 'NEW_REG') {
+        const airlineTails = tails.filter(t => t.airlineId === custVal || (currentAirline && t.airlineCode === currentAirline.code));
+        if (airlineTails.length > 0) {
+          tails = airlineTails;
+        }
+      }
+
+      // If specific aircraft models are selected, filter by those models
+      if (selectedAircraftModels.length > 0) {
+        const modelMatched = tails.filter(t => selectedAircraftModels.includes(t.model));
+        if (modelMatched.length > 0) {
+          tails = modelMatched;
+        }
+      }
+
+      return tails;
+    }
+
+    function setTailCoverageScope(scope) {
+      tailCoverageScope = scope;
+      const btnAll = document.getElementById('btnTailScopeAll');
+      const btnCustom = document.getElementById('btnTailScopeCustom');
+      const boxHint = document.getElementById('boxTailOpenFleetHint');
+      const wrapDropdown = document.getElementById('wrapTailDropdown');
+
+      if (btnAll) btnAll.classList.toggle('active', scope === 'ALL');
+      if (btnCustom) btnCustom.classList.toggle('active', scope === 'CUSTOM');
+
+      if (boxHint) boxHint.style.display = (scope === 'ALL') ? 'block' : 'none';
+      if (wrapDropdown) wrapDropdown.style.display = (scope === 'CUSTOM') ? 'block' : 'none';
+
+      if (scope === 'CUSTOM' && selectedTailRegistrations.length === 0) {
+        const available = getAvailableTailsForCurrentSelection();
+        if (available.length > 0) {
+          selectedTailRegistrations = available.slice(0, Math.min(3, available.length)).map(t => t.tail);
+        }
+      }
+
+      populateInlineTailModels();
+      renderTailChips();
+    }
+
+    function populateInlineTailModels() {
+      const sel = document.getElementById('selInlineTailModel');
+      if (!sel) return;
+      const currentVal = sel.value;
+      let models = selectedAircraftModels.length > 0 ? selectedAircraftModels : lookupFleet.map(f => f.code);
+      let html = models.map(m => `<option value="${m}">${m}</option>`).join('');
+      sel.innerHTML = html;
+      if (currentVal && models.includes(currentVal)) {
+        sel.value = currentVal;
+      }
+    }
+
+    function renderTailChips(filterTerm) {
+      const container = document.getElementById('gridTailChips');
+      const badgeEl = document.getElementById('tailCounterBadge');
+      const previewEl = document.getElementById('previewTailSelected');
+      const triggerBadge = document.getElementById('badgeTailCount');
+      const btnClearTrigger = document.getElementById('btnClearTailTrigger');
+      if (!container) return;
+
+      const available = getAvailableTailsForCurrentSelection();
+      const term = (filterTerm || '').trim().toLowerCase();
+      const filtered = available.filter(t => 
+        !term || 
+        t.tail.toLowerCase().includes(term) || 
+        t.model.toLowerCase().includes(term) || 
+        (t.modelName && t.modelName.toLowerCase().includes(term)) ||
+        (t.airlineCode && t.airlineCode.toLowerCase().includes(term))
+      );
+
+      if (badgeEl) {
+        badgeEl.textContent = `${selectedTailRegistrations.length} of ${available.length} selected`;
+      }
+
+      if (previewEl) {
+        if (tailCoverageScope === 'ALL') {
+          previewEl.innerHTML = '<span class="multi-check-placeholder" style="color: var(--emerald-600); font-weight: 600;">🌐 All Fleet Airframes Authorized (Open Policy)</span>';
+        } else if (selectedTailRegistrations.length === 0) {
+          previewEl.innerHTML = '<span class="multi-check-placeholder">Select or add specific tail registrations (e.g. SU-GBF, OK-TVF)...</span>';
+        } else {
+          const maxPills = 4;
+          const visibleTags = selectedTailRegistrations.slice(0, maxPills);
+          let html = visibleTags.map(tailNo => `
+            <span class="selected-tag-pill tail-pill">
+              ✈️ ${tailNo}
+              <span class="tag-x" onclick="event.stopPropagation(); removeTailTag('${tailNo}')" title="Remove ${tailNo}">✕</span>
+            </span>
+          `).join('');
+
+          if (selectedTailRegistrations.length > maxPills) {
+            html += `<span class="selected-more-badge">+${selectedTailRegistrations.length - maxPills} more</span>`;
+          }
+          previewEl.innerHTML = html;
+        }
+      }
+
+      if (triggerBadge) {
+        if (selectedTailRegistrations.length > 0 && tailCoverageScope === 'CUSTOM') {
+          triggerBadge.textContent = `${selectedTailRegistrations.length} selected`;
+          triggerBadge.style.display = 'inline-block';
+        } else {
+          triggerBadge.style.display = 'none';
+        }
+      }
+
+      if (btnClearTrigger) {
+        btnClearTrigger.style.display = (selectedTailRegistrations.length > 0 && tailCoverageScope === 'CUSTOM') ? 'inline-block' : 'none';
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="multi-check-empty">No aircraft tail registrations match search. Use quick register below to add one!</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(t => {
+        const isSelected = selectedTailRegistrations.includes(t.tail);
+        return `
+          <div class="multi-check-option-row ${isSelected ? 'checked' : ''}" 
+               id="row_tail_${t.tail}" 
+               onclick="event.stopPropagation(); toggleTailChip('${t.tail}');" 
+               title="${t.tail} - ${t.modelName} (MTOW: ${t.mtow}T, ${t.leased ? 'Leased' : 'Owned'})">
+            <span class="multi-check-checkbox-sq">${isSelected ? '✓' : ''}</span>
+            <span class="ms-code-badge" style="font-family: 'JetBrains Mono', monospace; font-weight: 800; background: #e0f2fe; color: #0369a1; border-color: #bae6fd; min-width: 76px; text-align: center;">
+              ✈️ ${t.tail}
+            </span>
+            <div class="ms-label-wrap">
+              <span class="ms-label-title" style="font-weight: 700;">${t.model} • ${t.modelName || t.model}</span>
+              <span class="ms-label-sub">
+                MTOW: <strong>${t.mtow} T</strong> • ${t.seats ? t.seats + ' seats • ' : ''}${t.leased ? 'Leased (ACMI)' : 'Carrier Owned'} • ${t.airlineCode || ''}
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleTailChip(tailNo) {
+      if (selectedTailRegistrations.includes(tailNo)) {
+        selectedTailRegistrations = selectedTailRegistrations.filter(t => t !== tailNo);
+      } else {
+        selectedTailRegistrations.push(tailNo);
+        const tailObj = lookupTails.find(t => t.tail === tailNo);
+        if (tailObj && !selectedAircraftModels.includes(tailObj.model)) {
+          selectedAircraftModels.push(tailObj.model);
+          renderFleetChips();
+        }
+      }
+      tailCoverageScope = 'CUSTOM';
+      const btnAll = document.getElementById('btnTailScopeAll');
+      const btnCustom = document.getElementById('btnTailScopeCustom');
+      if (btnAll) btnAll.classList.remove('active');
+      if (btnCustom) btnCustom.classList.add('active');
+      const boxHint = document.getElementById('boxTailOpenFleetHint');
+      const wrapDropdown = document.getElementById('wrapTailDropdown');
+      if (boxHint) boxHint.style.display = 'none';
+      if (wrapDropdown) wrapDropdown.style.display = 'block';
+
+      const term = (document.getElementById('tailSearchInput')?.value || '').trim();
+      renderTailChips(term);
+    }
+
+    function removeTailTag(tailNo) {
+      selectedTailRegistrations = selectedTailRegistrations.filter(t => t !== tailNo);
+      renderTailChips();
+    }
+
+    function filterTailsDisplay() {
+      const val = (document.getElementById('tailSearchInput')?.value || '').trim();
+      const btnClear = document.getElementById('btnClearTailSearch');
+      if (btnClear) btnClear.style.display = val ? 'block' : 'none';
+      renderTailChips(val);
+    }
+
+    function clearTailSearch() {
+      const inp = document.getElementById('tailSearchInput');
+      if (inp) inp.value = '';
+      const btnClear = document.getElementById('btnClearTailSearch');
+      if (btnClear) btnClear.style.display = 'none';
+      renderTailChips('');
+    }
+
+    function selectAllFilteredTails() {
+      const available = getAvailableTailsForCurrentSelection();
+      const term = (document.getElementById('tailSearchInput')?.value || '').trim().toLowerCase();
+      const filtered = available.filter(t => 
+        !term || 
+        t.tail.toLowerCase().includes(term) || 
+        t.model.toLowerCase().includes(term) || 
+        (t.modelName && t.modelName.toLowerCase().includes(term))
+      );
+      filtered.forEach(t => {
+        if (!selectedTailRegistrations.includes(t.tail)) {
+          selectedTailRegistrations.push(t.tail);
+          if (!selectedAircraftModels.includes(t.model)) {
+            selectedAircraftModels.push(t.model);
+          }
+        }
+      });
+      renderFleetChips();
+      renderTailChips(term);
+    }
+
+    function clearTailSelection() {
+      selectedTailRegistrations = [];
+      const term = (document.getElementById('tailSearchInput')?.value || '').trim().toLowerCase();
+      renderTailChips(term);
+    }
+
+    function quickAddInlineTail() {
+      const inpNo = document.getElementById('inpInlineTailNo');
+      const selModel = document.getElementById('selInlineTailModel');
+      const inpMtow = document.getElementById('inpInlineTailMtow');
+      const selLease = document.getElementById('selInlineTailLease');
+
+      const tailNo = (inpNo?.value || '').trim().toUpperCase();
+      const modelCode = selModel?.value || (selectedAircraftModels[0] || 'A320');
+      const mtow = parseFloat(inpMtow?.value) || 77.0;
+      const isLeased = selLease?.value === 'LEASED';
+
+      if (!tailNo) {
+        alert('Validation notice: Please enter a Tail Registration Number (e.g. SU-XYZ or OK-TVF).');
+        if (inpNo) inpNo.focus();
+        return;
+      }
+
+      const custVal = document.getElementById('selectCustomerAR')?.value || 'MS_HOLDING';
+      const custObj = lookupAirlines.find(a => a.id === custVal);
+      const modelObj = lookupFleet.find(f => f.code === modelCode);
+
+      const newTailObj = {
+        tail: tailNo,
+        airlineId: custVal,
+        airlineCode: custObj ? custObj.code : 'GEN',
+        model: modelCode,
+        modelName: modelObj ? modelObj.name : `${modelCode} Aircraft`,
+        mtow: mtow,
+        seats: 180,
+        status: 'Active',
+        leased: isLeased
+      };
+
+      if (!lookupTails.some(t => t.tail === tailNo)) {
+        lookupTails.push(newTailObj);
+      }
+
+      if (!selectedTailRegistrations.includes(tailNo)) {
+        selectedTailRegistrations.push(tailNo);
+      }
+      if (!selectedAircraftModels.includes(modelCode)) {
+        selectedAircraftModels.push(modelCode);
+        renderFleetChips();
+      }
+
+      setTailCoverageScope('CUSTOM');
+      renderTailChips();
+
+      if (inpNo) inpNo.value = '';
+      if (inpMtow) inpMtow.value = '';
+
+      showToast(`✅ Registered & whitelisted tail [${tailNo}] (${modelCode}) for this contract!`);
     }
 
     // Step 4: Auxiliary Ground Services Dropdown with Checkboxes
@@ -4001,10 +4580,10 @@
 
     function switchLookupModalType(type) {
       currentLookupModalType = type;
-      const tabs = ['AIRLINE', 'STATION', 'FLEET', 'SERVICE'];
+      const tabs = ['AIRLINE', 'STATION', 'FLEET', 'TAIL', 'SERVICE'];
       tabs.forEach(t => {
-        const btnId = `tabLookup${t === 'AIRLINE' ? 'Airline' : t === 'STATION' ? 'Station' : t === 'FLEET' ? 'Fleet' : 'Service'}`;
-        const secId = `lookupFields${t === 'AIRLINE' ? 'Airline' : t === 'STATION' ? 'Station' : t === 'FLEET' ? 'Fleet' : 'Service'}`;
+        const btnId = `tabLookup${t === 'AIRLINE' ? 'Airline' : t === 'STATION' ? 'Station' : t === 'FLEET' ? 'Fleet' : t === 'TAIL' ? 'Tail' : 'Service'}`;
+        const secId = `lookupFields${t === 'AIRLINE' ? 'Airline' : t === 'STATION' ? 'Station' : t === 'FLEET' ? 'Fleet' : t === 'TAIL' ? 'Tail' : 'Service'}`;
         const tabBtn = document.getElementById(btnId);
         const sec = document.getElementById(secId);
         if (tabBtn) tabBtn.classList.toggle('active', t === type);
@@ -4022,9 +4601,30 @@
       } else if (type === 'FLEET') {
         if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Aircraft Model';
         if (subEl) subEl.textContent = 'Add an aircraft type, ICAO/IATA designator, and MTOW weight category.';
+      } else if (type === 'TAIL') {
+        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Aircraft Tail Registration';
+        if (subEl) subEl.textContent = 'Register an individual aircraft tail number with certified MTOW into the fleet catalog.';
+        populateTailLookupSelects();
       } else if (type === 'SERVICE') {
         if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Ground Handling Service';
         if (subEl) subEl.textContent = 'Define a ground service, equipment item, or tariff unit.';
+      }
+    }
+
+    function populateTailLookupSelects() {
+      const selAirline = document.getElementById('selLookupTailAirline');
+      const selModel = document.getElementById('selLookupTailModel');
+      const custVal = document.getElementById('selectCustomerAR')?.value;
+
+      if (selAirline) {
+        selAirline.innerHTML = lookupAirlines.map(a => `<option value="${a.id}" ${a.id === custVal ? 'selected' : ''}>${a.name} (${a.code})</option>`).join('');
+      }
+
+      if (selModel) {
+        selModel.innerHTML = lookupFleet.map(f => `<option value="${f.code}">${f.code} - ${f.name}</option>`).join('');
+        if (selectedAircraftModels.length > 0) {
+          selModel.value = selectedAircraftModels[0];
+        }
       }
     }
 
@@ -4142,6 +4742,55 @@
         }
 
         renderFleetChips();
+        closeLookupModal();
+
+      } else if (currentLookupModalType === 'TAIL') {
+        const tailNo = (document.getElementById('inpLookupTailNo')?.value || '').trim().toUpperCase();
+        const airlineId = document.getElementById('selLookupTailAirline')?.value || 'MS_HOLDING';
+        const modelCode = document.getElementById('selLookupTailModel')?.value || 'A320';
+        const mtow = parseFloat(document.getElementById('inpLookupTailMtow')?.value) || 77.0;
+        const seats = parseInt(document.getElementById('inpLookupTailSeats')?.value, 10) || 180;
+        const ownership = document.getElementById('selLookupTailOwnership')?.value || 'OWNED';
+
+        if (!tailNo) {
+          alert('Validation error: Please provide Aircraft Tail Registration Number (e.g. SU-GBF).');
+          return;
+        }
+
+        const airlineObj = lookupAirlines.find(a => a.id === airlineId);
+        const modelObj = lookupFleet.find(f => f.code === modelCode);
+
+        const newTail = {
+          tail: tailNo,
+          airlineId: airlineId,
+          airlineCode: airlineObj ? airlineObj.code : 'GEN',
+          model: modelCode,
+          modelName: modelObj ? modelObj.name : `${modelCode} Aircraft`,
+          mtow: mtow,
+          seats: seats,
+          status: 'Active',
+          leased: ownership.startsWith('LEASED')
+        };
+
+        if (!lookupTails.some(t => t.tail === tailNo)) {
+          lookupTails.push(newTail);
+        }
+
+        if (useAtCurrentContract) {
+          if (!selectedTailRegistrations.includes(tailNo)) {
+            selectedTailRegistrations.push(tailNo);
+          }
+          if (!selectedAircraftModels.includes(modelCode)) {
+            selectedAircraftModels.push(modelCode);
+            renderFleetChips();
+          }
+          setTailCoverageScope('CUSTOM');
+          showToast(`✅ Added tail [${tailNo}] (${modelCode}) and selected for current contract!`);
+        } else {
+          showToast(`💾 Saved tail [${tailNo}] to fleet registrations catalog.`);
+        }
+
+        renderTailChips();
         closeLookupModal();
 
       } else if (currentLookupModalType === 'SERVICE') {
@@ -4293,6 +4942,9 @@
       document.getElementById('inpTurnaroundTime').value = '';
       document.getElementById('selMtowTier').value = '';
       clearFleetSearch();
+      selectedTailRegistrations = [];
+      clearTailSearch();
+      setTailCoverageScope('ALL');
 
       // Reset Step 4
       document.getElementById('inpBaseNarrowRate').value = '';
@@ -4303,6 +4955,8 @@
 
       renderStationChips();
       renderFleetChips();
+      renderTailChips();
+      populateInlineTailModels();
       renderServiceChips();
 
       jumpToStep(1);
@@ -4323,6 +4977,9 @@
         const cCode = cObj ? cObj.code.split('/')[0].trim() : 'GEN';
         refInp.value = `TAS-CAI-2027-${cCode}001`;
       }
+      populateTailLookupSelects();
+      populateInlineTailModels();
+      renderTailChips();
     }
 
     function loadContractToEdit(contractId) {
@@ -4363,6 +5020,17 @@
       });
       renderFleetChips();
 
+      // Tail Registrations
+      if (contract.tails && contract.tails.length > 0) {
+        selectedTailRegistrations = [...contract.tails];
+        setTailCoverageScope('CUSTOM');
+      } else {
+        selectedTailRegistrations = [];
+        setTailCoverageScope('ALL');
+      }
+      renderTailChips();
+      populateInlineTailModels();
+
       // Rates
       document.getElementById('inpBaseNarrowRate').value = '1350';
       document.getElementById('inpBaseWideRate').value = '2800';
@@ -4390,6 +5058,18 @@
       document.getElementById('revValidityPeriod').textContent = `${eff} → ${val}`;
       document.getElementById('revStationsList').textContent = selectedStationCodes.length > 0 ? selectedStationCodes.join(', ') : 'None selected';
       document.getElementById('revFleetList').textContent = selectedAircraftModels.length > 0 ? selectedAircraftModels.join(', ') : 'None selected';
+
+      const revTailListEl = document.getElementById('revTailList');
+      if (revTailListEl) {
+        if (tailCoverageScope === 'ALL') {
+          revTailListEl.innerHTML = '<span style="color: var(--primary-blue); font-weight: 700;">🌐 All Fleet Airframes (Open Policy)</span>';
+        } else if (selectedTailRegistrations.length === 0) {
+          revTailListEl.innerHTML = '<span style="color: var(--amber-700); font-weight: 600;">⚠️ Specific Whitelist (0 tails selected - all models allowed)</span>';
+        } else {
+          revTailListEl.innerHTML = selectedTailRegistrations.map(t => `<span class="selected-tag-pill tail-pill" style="display:inline-flex; margin:2px 3px; font-size:11px; padding:2px 6px;">✈️ ${t}</span>`).join('') + ` <span style="font-size:11px; color:var(--text-muted); font-weight:600;">(${selectedTailRegistrations.length} registered)</span>`;
+        }
+      }
+
       document.getElementById('revFlightsCount').textContent = `${flts} flights/month (${flts * 12}/year)`;
 
       const annualRevenue = Math.round(flts * 12 * rateN * 1.15);
@@ -4417,6 +5097,7 @@
         primaryStation: selectedStationCodes[0] || 'CAI',
         stations: selectedStationCodes.length > 0 ? [...selectedStationCodes] : ['CAI'],
         fleet: selectedAircraftModels.length > 0 ? [...selectedAircraftModels] : ['A320'],
+        tails: (tailCoverageScope === 'CUSTOM' && selectedTailRegistrations.length > 0) ? [...selectedTailRegistrations] : [],
         flightsPerMonth: flts,
         createdDate: '2026-10-17',
         startDate: eff,
@@ -4593,6 +5274,21 @@
               </div>
             </div>
             <div>
+              <span style="color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase;">Covered Fleet Models</span>
+              <div style="margin-top: 4px; display: flex; gap: 4px; flex-wrap: wrap;">
+                ${contract.fleet.map(f => `<span class="fleet-badge-pill">${f}</span>`).join('')}
+              </div>
+            </div>
+            <div style="grid-column: span 2;">
+              <span style="color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase;">Tail Registrations Coverage</span>
+              <div style="margin-top: 5px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+                ${(contract.tails && contract.tails.length > 0)
+                  ? contract.tails.map(t => `<span class="selected-tag-pill tail-pill" style="font-size: 11px; padding: 2px 7px;">✈️ ${t}</span>`).join('') + ` <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">(${contract.tails.length} airframes whitelisted)</span>`
+                  : '<span style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: #eff6ff; padding: 3px 8px; border-radius: 4px; border: 1px solid #bfdbfe;">🌐 Open Fleet Policy (All Carrier Airframes Covered)</span>'
+                }
+              </div>
+            </div>
+            <div>
               <span style="color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase;">Contract Validity</span>
               <strong style="font-family: 'JetBrains Mono', monospace; display: block;">${contract.startDate} &rarr; ${contract.endDate}</strong>
               <span style="font-size: 11px; color: ${rem <= 60 ? 'var(--amber-700)' : 'var(--emerald-700)'}; font-weight: 700;">(${rem} days remaining)</span>
@@ -4667,6 +5363,9 @@
       renderCustomerSelectOptions();
       renderStationChips();
       renderFleetChips();
+      renderTailChips();
+      populateInlineTailModels();
+      populateTailLookupSelects();
       renderServiceChips();
       switchStudioMode('contractsList');
     });
