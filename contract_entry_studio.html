@@ -146,39 +146,47 @@
       border-radius: var(--radius-pill);
     }
 
-    /* Center Navigation Tabs */
+    /* Center Navigation Tabs (Bootstrap-friendly Responsive Nav Pills) */
     .portal-nav-tabs {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #f1f5f9;
-      padding: 4px;
-      border-radius: var(--radius-md);
+      background: #edf3f8;
+      padding: 5px;
+      border-radius: 12px;
       border: 1px solid var(--border-light);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+      max-width: 100%;
     }
     .portal-nav-tab {
       background: transparent;
-      border: none;
-      padding: 7px 16px;
-      border-radius: 6px;
+      border: 1px solid transparent;
+      padding: 8px 18px;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: var(--transition-smooth);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      text-decoration: none;
+      position: relative;
     }
     .portal-nav-tab:hover {
-      color: var(--text-main);
+      color: var(--primary-navy);
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-1px);
     }
     .portal-nav-tab.active {
       background: #ffffff;
       color: var(--primary-navy);
       font-weight: 700;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      border-color: rgba(87, 147, 204, 0.3);
+      box-shadow: 0 2px 10px rgba(87, 147, 204, 0.18), 0 1px 2px rgba(0, 0, 0, 0.06);
     }
     .portal-nav-tab svg {
       width: 16px;
@@ -186,6 +194,12 @@
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .portal-nav-tab.active svg {
+      stroke: var(--primary-navy);
+      filter: drop-shadow(0 1px 3px rgba(87, 147, 204, 0.4));
     }
 
     .header-user-profile {
@@ -1837,7 +1851,888 @@
       .form-grid-3, .form-grid-4 { grid-template-columns: 1fr; }
       .selection-chips-grid { grid-template-columns: 1fr; }
       .stepper-nodes-row { overflow-x: auto; padding-bottom: 8px; }
-      .stepper-connecting-line { display: none; }
+    }
+
+    /* ==========================================================
+       START SCREEN / LAUNCHPAD HUB (2 LARGE GLOWING BUTTONS)
+       ========================================================== */
+    .portal-start-screen {
+      animation: fadeIn 0.3s ease;
+      padding-bottom: 40px;
+    }
+
+    .start-screen-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7fc 60%, #e8f3fc 100%);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 34px 38px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(87, 147, 204, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .start-screen-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(87, 147, 204, 0.22) 0%, rgba(87, 147, 204, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .start-screen-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: 30%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .start-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .start-hero-content h2 {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .start-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 5px 13px;
+      background: #e8f2fb;
+      color: var(--primary-navy);
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(87, 147, 204, 0.35);
+      margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(87, 147, 204, 0.15);
+    }
+
+    .start-hero-content p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    .start-hero-meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-stat-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-card);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      text-align: right;
+      min-width: 145px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero-stat-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-stat-pill .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary-navy);
+    }
+
+    .hero-stat-pill .lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================
+       2 LARGE BUTTONS WITH GLOW EFFECT & COMPATIBLE THEME COLORS
+       ========================================================== */
+    .portal-launch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .portal-launch-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 38px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* CARD 1: MASTER LOOKUPS (TAS SKY / ROYAL BLUE GLOW) */
+    .portal-launch-card.card-lookups {
+      border: 2px solid rgba(87, 147, 204, 0.45);
+      background: linear-gradient(165deg, #ffffff 0%, #f6faff 50%, #edf5fd 100%);
+      box-shadow: 0 0 30px -4px rgba(87, 147, 204, 0.38), 0 14px 30px -6px rgba(37, 99, 235, 0.18);
+    }
+    .portal-launch-card.card-lookups::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(87, 147, 204, 0.28) 0%, rgba(87, 147, 204, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.4s ease;
+    }
+    .portal-launch-card.card-lookups::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #5793cc, #3b82f6, #6366f1, #38bdf8);
+      box-shadow: 0 0 12px rgba(87, 147, 204, 0.6);
+    }
+    .portal-launch-card.card-lookups:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: 0 0 48px 3px rgba(87, 147, 204, 0.62), 0 24px 48px -8px rgba(37, 99, 235, 0.35);
+    }
+    .portal-launch-card.card-lookups:hover::before {
+      transform: scale(1.2);
+    }
+
+    /* CARD 2: CONTRACTS REGISTRY & ADD NEW (EMERALD / MINT TEAL GLOW) */
+    .portal-launch-card.card-contracts {
+      border: 2px solid rgba(16, 185, 129, 0.45);
+      background: linear-gradient(165deg, #ffffff 0%, #f4fbf7 50%, #eaf7f0 100%);
+      box-shadow: 0 0 30px -4px rgba(16, 185, 129, 0.38), 0 14px 30px -6px rgba(5, 150, 105, 0.18);
+    }
+    .portal-launch-card.card-contracts::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(16, 185, 129, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.4s ease;
+    }
+    .portal-launch-card.card-contracts::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #059669, #10b981, #34d399, #059669);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+    }
+    .portal-launch-card.card-contracts:hover {
+      transform: translateY(-8px);
+      border-color: #059669;
+      box-shadow: 0 0 48px 3px rgba(16, 185, 129, 0.62), 0 24px 48px -8px rgba(5, 150, 105, 0.35);
+    }
+    .portal-launch-card.card-contracts:hover::before {
+      transform: scale(1.2);
+    }
+
+    /* Launch Card Internal Elements */
+    .launch-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .launch-icon-container {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      transition: all 0.32s ease;
+      flex-shrink: 0;
+    }
+    .portal-launch-card:hover .launch-icon-container {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .card-lookups .launch-icon-container {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      color: #1d4ed8;
+      border: 2px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.35), inset 0 1px 2px #ffffff;
+    }
+
+    .card-contracts .launch-icon-container {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      color: #047857;
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35), inset 0 1px 2px #ffffff;
+    }
+
+    /* Live Pulse Dots */
+    .live-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .dot-blue {
+      background: #2563eb;
+      box-shadow: 0 0 8px #2563eb;
+      animation: pulseDotBlue 2s infinite ease-in-out;
+    }
+    .dot-emerald {
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulseDotEmerald 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDotBlue {
+      0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #2563eb; }
+      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #3b82f6; }
+      100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #2563eb; }
+    }
+    @keyframes pulseDotEmerald {
+      0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #10b981; }
+      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #34d399; }
+      100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #10b981; }
+    }
+
+    .launch-badge-pill {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .card-lookups .launch-badge-pill {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
+    }
+    .card-contracts .launch-badge-pill {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+    }
+
+    .launch-card-body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .launch-card-body h3 {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .launch-card-body p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .launch-tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .launch-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+    .launch-tag:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border-color: var(--primary-blue);
+    }
+
+    .launch-card-footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* GLOWING BUTTONS */
+    .btn-launch-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      flex: 1;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Primary Lookups Button (Blue Glow) */
+    .card-lookups .btn-launch-primary,
+    .btn-glow-blue {
+      background: linear-gradient(135deg, #5793cc 0%, #2563eb 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(87, 147, 204, 0.45), 0 0 15px rgba(37, 99, 235, 0.3);
+    }
+    .card-lookups .btn-launch-primary:hover,
+    .btn-glow-blue:hover {
+      background: linear-gradient(135deg, #437fb9 0%, #1d4ed8 100%);
+      box-shadow: 0 6px 26px rgba(87, 147, 204, 0.65), 0 0 24px rgba(37, 99, 235, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Primary Contracts Button (Emerald Glow) */
+    .card-contracts .btn-launch-primary,
+    .btn-glow-emerald {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45), 0 0 15px rgba(5, 150, 105, 0.3);
+    }
+    .card-contracts .btn-launch-primary:hover,
+    .btn-glow-emerald:hover {
+      background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+      box-shadow: 0 6px 26px rgba(16, 185, 129, 0.65), 0 0 24px rgba(5, 150, 105, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Secondary Glowing Button (+ Add New Contract) */
+    .btn-launch-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #ffffff;
+      border: 2px solid #10b981;
+      color: #047857;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.18);
+      white-space: nowrap;
+    }
+    .btn-launch-secondary:hover {
+      background: #ecfdf5;
+      border-color: #059669;
+      color: #065f46;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4), 0 0 12px rgba(16, 185, 129, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       LOOKUPS SCREEN (ENHANCED BUTTONS, CARDS & CATALOG)
+       ========================================================== */
+    .portal-lookups-screen {
+      animation: fadeIn 0.3s ease;
+      padding-bottom: 50px;
+    }
+
+    .lookups-hero-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f4f8fe 100%);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(87, 147, 204, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .lookups-hero-info h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .lookups-hero-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .lookups-hero-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-nav-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-input);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-nav-outline:hover {
+      background: #f0f7fc;
+      border-color: var(--primary-blue);
+      color: var(--primary-navy);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(87, 147, 204, 0.18);
+    }
+
+    .lookups-modal-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin-bottom: 32px;
+    }
+
+    .lookup-modal-link-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 16px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 8px rgba(87, 147, 204, 0.06);
+      position: relative;
+    }
+
+    .lookup-modal-link-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 28px -4px rgba(87, 147, 204, 0.22);
+      border-color: var(--primary-blue);
+    }
+
+    .lookup-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .lookup-card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+    .lookup-modal-link-card:hover .lookup-card-icon {
+      transform: scale(1.08);
+    }
+
+    .lookup-count-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      background: #f1f5f9;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+    }
+
+    .lookup-modal-link-card h4 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .lookup-modal-link-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .lookup-card-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* ENHANCED LOOKUP ACTION BUTTONS */
+    .btn-lookup-action-add {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #5793cc 0%, #437fb9 100%);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 8px rgba(87, 147, 204, 0.3);
+    }
+    .btn-lookup-action-add:hover {
+      background: linear-gradient(135deg, #437fb9 0%, #306c9e 100%);
+      box-shadow: 0 4px 14px rgba(87, 147, 204, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-lookup-action-view {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #ffffff;
+      border: 1.5px solid var(--border-input);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-lookup-action-view:hover {
+      background: #edf4fa;
+      border-color: var(--primary-navy);
+      color: var(--primary-navy);
+      transform: translateY(-1px);
+    }
+
+    /* Interactive Lookups Preview Table */
+    .lookups-preview-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 2px 12px rgba(87, 147, 204, 0.06);
+    }
+
+    .preview-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 18px;
+    }
+
+    .preview-type-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .preview-tab-btn {
+      padding: 9px 18px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border-input);
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .preview-tab-btn:hover {
+      background: #edf4fa;
+      border-color: var(--primary-navy);
+      color: var(--primary-navy);
+    }
+    .preview-tab-btn.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+      box-shadow: 0 2px 10px rgba(87, 147, 204, 0.35);
+    }
+
+    .preview-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .preview-search-box {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border-input);
+      border-radius: var(--radius-md);
+      padding: 8px 14px;
+      gap: 8px;
+      width: 260px;
+      transition: border-color 0.2s ease;
+    }
+    .preview-search-box:focus-within {
+      border-color: var(--primary-navy);
+      box-shadow: 0 0 0 3px rgba(87, 147, 204, 0.15);
+    }
+    .preview-search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .btn-add-preview-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      background: linear-gradient(135deg, #5793cc 0%, #3a7ab5 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 3px 10px rgba(87, 147, 204, 0.35);
+    }
+    .btn-add-preview-current:hover {
+      background: linear-gradient(135deg, #437fb9 0%, #296096 100%);
+      box-shadow: 0 5px 16px rgba(87, 147, 204, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================
+       RESPONSIVE & BOOTSTRAP-FRIENDLY BREAKPOINTS FOR WHOLE PAGE
+       ========================================================== */
+    @media (max-width: 1200px) {
+      .portal-main-container { padding: 20px 24px; }
+      .kpi-cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 992px) {
+      header.portal-header {
+        height: auto;
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .header-brand-cluster {
+        flex: 1 1 auto;
+      }
+      .header-user-profile {
+        flex: 0 0 auto;
+      }
+      .portal-nav-tabs {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        justify-content: flex-start;
+        padding: 6px;
+      }
+      .portal-nav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .portal-nav-tab {
+        flex: 0 0 auto;
+        min-height: 40px;
+      }
+
+      .portal-launch-grid {
+        grid-template-columns: 1fr;
+      }
+      .start-screen-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 26px 24px;
+      }
+      .start-hero-meta {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .lookups-hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .preview-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .preview-search-box {
+        width: 100%;
+      }
+      .kpi-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filter-dropdowns-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-grid-3, .form-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .portal-main-container {
+        padding: 16px;
+      }
+      .kpi-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .filter-dropdowns-row {
+        grid-template-columns: 1fr;
+      }
+      .form-grid-3, .form-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .selection-chips-grid {
+        grid-template-columns: 1fr;
+      }
+      .stepper-nodes-row {
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+      .launch-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-launch-primary,
+      .btn-launch-secondary {
+        width: 100%;
+      }
+      .portal-launch-card {
+        padding: 28px 22px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header.portal-header {
+        padding: 10px 14px;
+      }
+      .header-brand-divider {
+        display: none;
+      }
+      .brand-titles p {
+        display: none;
+      }
+      .brand-titles h1 {
+        font-size: 14px;
+      }
+      .header-tas-logo {
+        height: 34px;
+        max-width: 90px;
+      }
+      .portal-nav-tab {
+        padding: 7px 12px;
+        font-size: 12px;
+        gap: 6px;
+      }
+      .start-hero-content h2 {
+        font-size: 21px;
+      }
+      .hero-stat-pill {
+        flex: 1 1 100%;
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -1858,9 +2753,17 @@
 
     <!-- Center Navigation Tabs -->
     <div class="portal-nav-tabs">
-      <button type="button" class="portal-nav-tab active" id="tabBtnContractsList" onclick="switchStudioMode('contractsList')">
+      <button type="button" class="portal-nav-tab active" id="tabBtnHome" onclick="switchStudioMode('home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Start Hub</span>
+      </button>
+      <button type="button" class="portal-nav-tab" id="tabBtnContractsList" onclick="switchStudioMode('contractsList')">
         <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6m-6 4h4"/></svg>
         <span>Contracts Registry (120)</span>
+      </button>
+      <button type="button" class="portal-nav-tab" id="tabBtnLookups" onclick="switchStudioMode('lookups')">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+        <span>Master Lookups</span>
       </button>
       <button type="button" class="portal-nav-tab" id="tabBtnWizard" onclick="createNewContractFromList()">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -1885,16 +2788,294 @@
       <div class="breadcrumb-trail">
         <span>Dashboard</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Ground Handling</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        <span class="active" id="activeBreadcrumbText">Contracts Registry</span>
+        <span class="active" id="activeBreadcrumbText">Start Hub</span>
       </div>
     </div>
 
     <!-- ==========================================================
-       SCREEN 1: CONTRACTS REGISTRY (120 CONTRACTS)
+       SCREEN 0: START SCREEN / LAUNCHPAD HUB (2 BIG BEAUTIFUL BUTTONS)
        ========================================================== -->
-    <div id="sectionContractsList" class="contracts-registry-view">
+    <div id="sectionHome" class="portal-start-screen">
+      <!-- Start Hero Welcome Banner -->
+      <div class="start-screen-hero">
+        <div class="start-hero-content">
+          <div class="start-hero-badge">
+            <span class="live-pulse-dot dot-blue"></span> TAS Commercial Portal • Operations v4.0
+          </div>
+          <h2>
+            <span>Aviation Operations &amp; Commercial Center</span>
+          </h2>
+          <p>
+            Welcome to the centralized management hub for Egyptian ground handling operations. Select an operational module below to access master catalogs or explore commercial contract portfolios.
+          </p>
+        </div>
+        <div class="start-hero-meta">
+          <div class="hero-stat-pill">
+            <div class="num" id="homeHeroAgreementsCount">120</div>
+            <div class="lbl">Registered Contracts</div>
+          </div>
+          <div class="hero-stat-pill">
+            <div class="num" id="homeHeroPortfolioVal">$250.9M</div>
+            <div class="lbl">Current Month Value</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 LARGE GLOWING ATTRACTIVE BUTTONS -->
+      <div class="portal-launch-grid">
+        <!-- BUTTON 1: MASTER LOOKUPS SCREEN (TAS SKY/ROYAL BLUE GLOW) -->
+        <div class="portal-launch-card card-lookups" id="launchCardLookups" onclick="switchStudioMode('lookups')">
+          <div class="launch-card-header">
+            <div class="launch-icon-container">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <span class="launch-badge-pill"><span class="live-pulse-dot dot-blue"></span> ⚙️ Master Reference Data</span>
+          </div>
+
+          <div class="launch-card-body">
+            <h3>Master Lookups Catalog</h3>
+            <p>
+              Direct administration for all 5 foundational reference models: Airlines, Egyptian Hub Stations, Aircraft Models, Certified Tail Numbers &amp; MTOW, and Ground Handling Tariffs.
+            </p>
+
+            <div class="launch-tags-group">
+              <span class="launch-tag">🏢 Airlines (<strong id="tagAirlinesCount">16</strong>)</span>
+              <span class="launch-tag">🛫 Hub Stations (<strong id="tagStationsCount">15</strong>)</span>
+              <span class="launch-tag">✈️ Fleet Models (<strong id="tagFleetCount">23</strong>)</span>
+              <span class="launch-tag">🏷️ Tail Numbers (<strong id="tagTailsCount">37</strong>)</span>
+              <span class="launch-tag">🧰 Tariffs (<strong id="tagServicesCount">18</strong>)</span>
+            </div>
+          </div>
+
+          <div class="launch-card-footer">
+            <button type="button" class="btn-launch-primary btn-glow-blue" onclick="event.stopPropagation(); switchStudioMode('lookups');">
+              <span>Open Master Lookups Catalog</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- BUTTON 2: CONTRACTS REGISTRY & ADD NEW (EMERALD/MINT TEAL GLOW) -->
+        <div class="portal-launch-card card-contracts" id="launchCardContracts" onclick="switchStudioMode('contractsList')">
+          <div class="launch-card-header">
+            <div class="launch-icon-container">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <span class="launch-badge-pill"><span class="live-pulse-dot dot-emerald"></span> 💼 Commercial Portfolio</span>
+          </div>
+
+          <div class="launch-card-body">
+            <h3>Contracts Registry &amp; Entry</h3>
+            <p>
+              Access the complete commercial database of 120 handling agreements. Filter operations across Egyptian airports, analyze real-time monthly portfolio revenues, or launch new agreement wizard.
+            </p>
+
+            <div class="launch-tags-group">
+              <span class="launch-tag">📁 <strong>120</strong> Agreements</span>
+              <span class="launch-tag">🟢 <strong>86</strong> Active Ramp Operations</span>
+              <span class="launch-tag">💼 Current Month: <strong id="tagHomePortfolioVal">$250.9M</strong></span>
+              <span class="launch-tag">⏳ <strong>14</strong> Expiring &lt;60d</span>
+            </div>
+          </div>
+
+          <div class="launch-card-footer" onclick="event.stopPropagation();">
+            <button type="button" class="btn-launch-primary btn-glow-emerald" onclick="switchStudioMode('contractsList');">
+              <span>View Contracts Registry (120)</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn-launch-secondary" onclick="createNewContractFromList();" title="Create a new commercial contract">
+              <span>➕ Add New Contract</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+       SCREEN 1: MASTER LOOKUPS CATALOG & MODAL LINKS
+       ========================================================== -->
+    <div id="sectionLookups" class="portal-lookups-screen" style="display: none;">
+      <!-- Lookups Hero Header -->
+      <div class="lookups-hero-card">
+        <div class="lookups-hero-info">
+          <h2>
+            <span>Master Lookups Catalog</span>
+            <span style="font-size: 13px; background: #e8f2fb; color: var(--primary-navy); padding: 3px 12px; border-radius: var(--radius-pill); font-family: 'JetBrains Mono', monospace; font-weight: 700;">5 Operational Catalogs</span>
+          </h2>
+          <p>Direct administrative access to all reference parameters. Click any card below to launch its registration modal or preview existing records.</p>
+        </div>
+        <div class="lookups-hero-nav">
+          <button type="button" class="btn-nav-outline" onclick="switchStudioMode('home')">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Back to Start Hub</span>
+          </button>
+          <button type="button" class="btn-nav-outline" onclick="switchStudioMode('contractsList')">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            <span>Contracts Registry (120)</span>
+          </button>
+          <button type="button" class="btn-nav-outline" style="border-color: #10b981; color: #047857;" onclick="createNewContractFromList()">
+            <span>➕ New Contract</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5 Beautiful Cards / Links to Modal Lookups -->
+      <div class="lookups-modal-links-grid">
+        <!-- 1. AIRLINE / CUSTOMER -->
+        <div class="lookup-modal-link-card">
+          <div class="lookup-card-top">
+            <div class="lookup-card-icon" style="background:#eff6ff; color:#2563eb;">🏢</div>
+            <span class="lookup-count-badge" id="badgeLookupAirline">16 Airlines</span>
+          </div>
+          <h4>Airlines &amp; Customers</h4>
+          <p>Carrier profiles, IATA/ICAO airline codes (MS, EK, SV, TK...), carrier categories, and credit payment terms.</p>
+          <div class="lookup-card-buttons">
+            <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('AIRLINE')">
+              <span>➕ Add Airline</span>
+            </button>
+            <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('AIRLINE')">
+              <span>👁️ Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. AIRPORT STATIONS -->
+        <div class="lookup-modal-link-card">
+          <div class="lookup-card-top">
+            <div class="lookup-card-icon" style="background:#ecfdf5; color:#059669;">🛫</div>
+            <span class="lookup-count-badge" id="badgeLookupStation">15 Stations</span>
+          </div>
+          <h4>Airport Stations</h4>
+          <p>Egyptian international and domestic airport stations (CAI, HRG, SSH, LXR, HBE, ASW, RMF, SPX, DBB) and hub networks.</p>
+          <div class="lookup-card-buttons">
+            <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('STATION')">
+              <span>➕ Add Station</span>
+            </button>
+            <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('STATION')">
+              <span>👁️ Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. AIRCRAFT FLEET MODELS -->
+        <div class="lookup-modal-link-card">
+          <div class="lookup-card-top">
+            <div class="lookup-card-icon" style="background:#f5f3ff; color:#7c3aed;">✈️</div>
+            <span class="lookup-count-badge" id="badgeLookupFleet">23 Models</span>
+          </div>
+          <h4>Aircraft Fleet Models</h4>
+          <p>Airbus, Boeing, Embraer, and ATR airframes, ICAO/IATA designators, and narrow/wide-body MTOW tiers.</p>
+          <div class="lookup-card-buttons">
+            <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('FLEET')">
+              <span>➕ Add Aircraft</span>
+            </button>
+            <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('FLEET')">
+              <span>👁️ Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. TAIL REGISTRATIONS -->
+        <div class="lookup-modal-link-card">
+          <div class="lookup-card-top">
+            <div class="lookup-card-icon" style="background:#fffbeb; color:#d97706;">🏷️</div>
+            <span class="lookup-count-badge" id="badgeLookupTail">37 Tails</span>
+          </div>
+          <h4>Tail Registrations &amp; MTOW</h4>
+          <p>Certified aircraft tail registrations (e.g. SU-GBF, SU-GCT, A6-ENA), certified MTOW tonnage, and seat layouts.</p>
+          <div class="lookup-card-buttons">
+            <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('TAIL')">
+              <span>➕ Register Tail</span>
+            </button>
+            <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('TAIL')">
+              <span>👁️ Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. GROUND SERVICES & TARIFFS -->
+        <div class="lookup-modal-link-card">
+          <div class="lookup-card-top">
+            <div class="lookup-card-icon" style="background:#fef2f2; color:#dc2626;">🧰</div>
+            <span class="lookup-count-badge" id="badgeLookupService">18 Services</span>
+          </div>
+          <h4>Ground Services &amp; Tariffs</h4>
+          <p>IATA SGHA standard ground turnaround services, ramp power GSE units (GPU 400Hz, ASU), and hourly tariff baselines.</p>
+          <div class="lookup-card-buttons">
+            <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('SERVICE')">
+              <span>➕ Add Service</span>
+            </button>
+            <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('SERVICE')">
+              <span>👁️ Preview</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Interactive Catalog Preview Table -->
+      <div class="lookups-preview-card">
+        <div class="preview-header-bar">
+          <div class="preview-type-tabs">
+            <button type="button" class="preview-tab-btn active" id="tabPrevAirline" onclick="switchPreviewCatalogTab('AIRLINE')">
+              <span>🏢 Airlines</span>
+              <span id="prevTabCountAirline" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(16)</span>
+            </button>
+            <button type="button" class="preview-tab-btn" id="tabPrevStation" onclick="switchPreviewCatalogTab('STATION')">
+              <span>🛫 Stations</span>
+              <span id="prevTabCountStation" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(15)</span>
+            </button>
+            <button type="button" class="preview-tab-btn" id="tabPrevFleet" onclick="switchPreviewCatalogTab('FLEET')">
+              <span>✈️ Fleet Models</span>
+              <span id="prevTabCountFleet" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(23)</span>
+            </button>
+            <button type="button" class="preview-tab-btn" id="tabPrevTail" onclick="switchPreviewCatalogTab('TAIL')">
+              <span>🏷️ Tails</span>
+              <span id="prevTabCountTail" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(37)</span>
+            </button>
+            <button type="button" class="preview-tab-btn" id="tabPrevService" onclick="switchPreviewCatalogTab('SERVICE')">
+              <span>🧰 Services</span>
+              <span id="prevTabCountService" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(18)</span>
+            </button>
+          </div>
+
+          <div class="preview-controls">
+            <div class="preview-search-box">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="inpPreviewSearch" placeholder="Filter items in this catalog..." oninput="onPreviewCatalogSearch()">
+            </div>
+            <button type="button" class="btn-add-preview-current" id="btnAddPreviewCurrent" onclick="openCurrentPreviewLookupModal()">
+              <span>+ Add Airline</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive-box">
+          <table class="contracts-data-table" id="previewCatalogTable">
+            <thead id="previewCatalogThead">
+              <!-- Dynamically populated headers -->
+            </thead>
+            <tbody id="previewCatalogTbody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+       SCREEN 2: CONTRACTS REGISTRY (120 CONTRACTS)
+       ========================================================== -->
+    <div id="sectionContractsList" class="contracts-registry-view" style="display: none;">
 
       <!-- Hero Action Card -->
       <div class="registry-hero-card">
@@ -1956,8 +3137,8 @@
             <span class="kpi-label">Portfolio Value</span>
             <span style="font-size: 16px;">💼</span>
           </div>
-          <div class="kpi-val" id="kpiPortfolioTotalValue" style="font-size: 20px;">$252.8M</div>
-          <div class="kpi-sub" id="kpiPortfolioAvgMargin">Average margin: 26.8%</div>
+          <div class="kpi-val" id="kpiPortfolioTotalValue" style="font-size: 20px;">$250.9M</div>
+          <div class="kpi-sub" id="kpiPortfolioAvgMargin">Average margin: 27.4%</div>
         </div>
       </div>
 
@@ -2065,7 +3246,8 @@
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Date Filter:
             </span>
-            <button type="button" class="date-pill-btn active" id="btnDatePreset_ALL" onclick="applyContractDatePreset('ALL')">All Contracts</button>
+            <button type="button" class="date-pill-btn active" id="btnDatePreset_CURRENT_MONTH" onclick="applyContractDatePreset('CURRENT_MONTH')">Current Month</button>
+            <button type="button" class="date-pill-btn" id="btnDatePreset_ALL" onclick="applyContractDatePreset('ALL')">All Contracts</button>
             <button type="button" class="date-pill-btn" id="btnDatePreset_TODAY" onclick="applyContractDatePreset('TODAY')">Today</button>
             <button type="button" class="date-pill-btn" id="btnDatePreset_PREV_DAY" onclick="applyContractDatePreset('PREV_DAY')">Previous Day</button>
             <button type="button" class="date-pill-btn" id="btnDatePreset_LAST_WEEK" onclick="applyContractDatePreset('LAST_WEEK')">Last Week</button>
@@ -2077,20 +3259,21 @@
           <div class="date-filter-range-inputs">
             <div class="date-range-box">
               <label for="contractFilterDateFrom" style="font-size: 11px; font-weight: 600;">From</label>
-              <input type="date" id="contractFilterDateFrom" class="date-range-input" onchange="onCustomDateRangeChanged()">
+              <input type="date" id="contractFilterDateFrom" class="date-range-input" value="2026-10-01" onchange="onCustomDateRangeChanged()">
             </div>
             <div class="date-range-box">
               <label for="contractFilterDateTo" style="font-size: 11px; font-weight: 600;">To</label>
-              <input type="date" id="contractFilterDateTo" class="date-range-input" onchange="onCustomDateRangeChanged()">
+              <input type="date" id="contractFilterDateTo" class="date-range-input" value="2026-10-31" onchange="onCustomDateRangeChanged()">
             </div>
             <div class="date-range-box">
               <select id="contractFilterDateTarget" class="date-target-select" onchange="onContractFilterChanged()">
-                <option value="CREATED" selected>Creation Date</option>
+                <option value="ACTIVE_PERIOD" selected>Active Period (Coverage)</option>
+                <option value="CREATED">Creation Date</option>
                 <option value="START">Effective Start</option>
                 <option value="END">Expiry Date</option>
               </select>
             </div>
-            <button type="button" id="btnClearContractDates" class="btn-clear-date-ctrl" onclick="applyContractDatePreset('ALL')" title="Clear date filter" style="display: none;">✕</button>
+            <button type="button" id="btnClearContractDates" class="btn-clear-date-ctrl" onclick="applyContractDatePreset('ALL')" title="Clear date filter" style="display: block;">✕</button>
           </div>
         </div>
       </div>
@@ -3054,11 +4237,11 @@
     let contractFilterPayment = 'ALL';
     let contractSortBy = 'EXPIRY_ASC';
 
-    // Date Filtering State
-    let contractDateFilterPreset = 'ALL';
-    let contractDateFrom = '';
-    let contractDateTo = '';
-    let contractDateTarget = 'CREATED';
+    // Date Filtering State (defaults to Current Month active period)
+    let contractDateFilterPreset = 'CURRENT_MONTH';
+    let contractDateFrom = '2026-10-01';
+    let contractDateTo = '2026-10-31';
+    let contractDateTarget = 'ACTIVE_PERIOD';
 
     let activeRenewingContractId = null;
     let currentLookupModalType = 'AIRLINE';
@@ -3411,6 +4594,15 @@
       return '$' + num.toLocaleString('en-US');
     }
 
+    function formatShortCurrency(val) {
+      const num = Number(val) || 0;
+      if (num === 0) return '$0';
+      if (num >= 1000000000) return `$${(num / 1000000000).toFixed(1)}B`;
+      if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M`;
+      if (num >= 1000) return `$${(num / 1000).toFixed(1)}K`;
+      return `$${num.toLocaleString('en-US')}`;
+    }
+
     function getCategoryLabel(cat) {
       switch (cat) {
         case 'COMMERCIAL': return 'Commercial';
@@ -3457,6 +4649,12 @@
 
       if (contractDateFrom || contractDateTo) {
         result = result.filter(c => {
+          if (contractDateTarget === 'ACTIVE_PERIOD') {
+            if (contractDateTo && c.startDate && c.startDate > contractDateTo) return false;
+            if (contractDateFrom && c.endDate && c.endDate < contractDateFrom) return false;
+            return true;
+          }
+
           let dateVal = c.createdDate;
           if (contractDateTarget === 'START') dateVal = c.startDate;
           else if (contractDateTarget === 'END') dateVal = c.endDate;
@@ -3484,7 +4682,13 @@
       contractDateFilterPreset = preset;
       const refDate = new Date('2026-10-17');
 
-      if (preset === 'ALL') {
+      if (preset === 'CURRENT_MONTH') {
+        const y = refDate.getFullYear();
+        const m = refDate.getMonth();
+        const lastDay = new Date(y, m + 1, 0);
+        contractDateFrom = `${y}-${String(m + 1).padStart(2, '0')}-01`;
+        contractDateTo = `${y}-${String(m + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}`;
+      } else if (preset === 'ALL') {
         contractDateFrom = '';
         contractDateTo = '';
       } else if (preset === 'TODAY') {
@@ -3499,10 +4703,15 @@
         contractDateFrom = dFrom.toISOString().split('T')[0];
         contractDateTo = '2026-10-17';
       } else if (preset === 'LAST_MONTH') {
-        const dFrom = new Date(refDate);
-        dFrom.setDate(dFrom.getDate() - 30);
-        contractDateFrom = dFrom.toISOString().split('T')[0];
-        contractDateTo = '2026-10-17';
+        const y = refDate.getFullYear();
+        const prevM = refDate.getMonth() - 1;
+        const firstDay = new Date(y, prevM, 1);
+        const lastDay = new Date(y, prevM + 1, 0);
+        const pYear = firstDay.getFullYear();
+        const pMonth = String(firstDay.getMonth() + 1).padStart(2, '0');
+        const pLastDay = String(lastDay.getDate()).padStart(2, '0');
+        contractDateFrom = `${pYear}-${pMonth}-01`;
+        contractDateTo = `${pYear}-${pMonth}-${pLastDay}`;
       } else if (preset === 'LAST_QUARTER') {
         const dFrom = new Date(refDate);
         dFrom.setDate(dFrom.getDate() - 90);
@@ -3520,7 +4729,7 @@
       if (inpFrom) inpFrom.value = contractDateFrom;
       if (inpTo) inpTo.value = contractDateTo;
 
-      const presets = ['ALL', 'TODAY', 'PREV_DAY', 'LAST_WEEK', 'LAST_MONTH', 'LAST_QUARTER', 'LAST_YEAR'];
+      const presets = ['CURRENT_MONTH', 'ALL', 'TODAY', 'PREV_DAY', 'LAST_WEEK', 'LAST_MONTH', 'LAST_QUARTER', 'LAST_YEAR'];
       presets.forEach(p => {
         const btn = document.getElementById(`btnDatePreset_${p}`);
         if (btn) btn.classList.toggle('active', p === preset);
@@ -3539,7 +4748,7 @@
       contractDateFrom = inpFrom ? inpFrom.value : '';
       contractDateTo = inpTo ? inpTo.value : '';
 
-      const presets = ['ALL', 'TODAY', 'PREV_DAY', 'LAST_WEEK', 'LAST_MONTH', 'LAST_QUARTER', 'LAST_YEAR'];
+      const presets = ['CURRENT_MONTH', 'ALL', 'TODAY', 'PREV_DAY', 'LAST_WEEK', 'LAST_MONTH', 'LAST_QUARTER', 'LAST_YEAR'];
       presets.forEach(p => {
         const btn = document.getElementById(`btnDatePreset_${p}`);
         if (btn) btn.classList.remove('active');
@@ -3585,9 +4794,11 @@
       setElText('kpiExpiringContractsCount', countExpiring);
       setElText('kpiRenewalContractsCount', countRenewal);
 
-      const totalVal = contractsMasterData.reduce((acc, c) => acc + c.annualValue, 0);
-      const avgMargin = (contractsMasterData.reduce((acc, c) => acc + c.profitMargin, 0) / countAll).toFixed(1);
-      setElText('kpiPortfolioTotalValue', `$${(totalVal / 1000000).toFixed(1)}M`);
+      const totalVal = filtered.reduce((acc, c) => acc + (c.annualValue || 0), 0);
+      const avgMargin = filtered.length > 0 
+        ? (filtered.reduce((acc, c) => acc + (c.profitMargin || 0), 0) / filtered.length).toFixed(1)
+        : '0.0';
+      setElText('kpiPortfolioTotalValue', formatShortCurrency(totalVal));
       setElText('kpiPortfolioAvgMargin', `Average margin: ${avgMargin}%`);
 
       const totalPages = Math.ceil(totalFiltered / contractsPerPage) || 1;
@@ -3819,10 +5030,9 @@
       contractSortBy = 'EXPIRY_ASC';
       currentContractPage = 1;
 
-      contractDateFilterPreset = 'ALL';
-      contractDateFrom = '';
-      contractDateTo = '';
-      contractDateTarget = 'CREATED';
+      contractDateTarget = 'ACTIVE_PERIOD';
+      const dfTarget = document.getElementById('contractFilterDateTarget');
+      if (dfTarget) dfTarget.value = 'ACTIVE_PERIOD';
 
       const input = document.getElementById('contractsSearchInput');
       if (input) input.value = '';
@@ -3834,25 +5044,12 @@
       document.getElementById('filterContractPayment').value = 'ALL';
       document.getElementById('filterContractSort').value = 'EXPIRY_ASC';
 
-      const dfFrom = document.getElementById('contractFilterDateFrom');
-      if (dfFrom) dfFrom.value = '';
-      const dfTo = document.getElementById('contractFilterDateTo');
-      if (dfTo) dfTo.value = '';
-      const dfTarget = document.getElementById('contractFilterDateTarget');
-      if (dfTarget) dfTarget.value = 'CREATED';
-      const btnClrDate = document.getElementById('btnClearContractDates');
-      if (btnClrDate) btnClrDate.style.display = 'none';
-
-      document.querySelectorAll('.date-filter-presets-group .date-pill-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.id === 'btnDatePreset_ALL');
-      });
-
       document.querySelectorAll('.status-filter-pills .status-pill-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-status') === 'ALL');
       });
 
-      renderContractsTable();
-      showToast('🔄 Filters and date ranges have been reset to default.');
+      applyContractDatePreset('CURRENT_MONTH');
+      showToast('🔄 Filters reset to Current Month default view.');
     }
 
     // ==========================================================
@@ -4584,6 +5781,8 @@
       modal.classList.remove('open');
       const form = document.getElementById('formAddLookupItem');
       if (form) form.reset();
+      renderLookupsCatalogView();
+      updateStartScreenMetrics();
     }
 
     function switchLookupModalType(type) {
@@ -4836,29 +6035,274 @@
     }
 
     // ==========================================================
-    // SCREEN 2 WIZARD LOGIC & NAVIGATION
+    // SCREEN & STUDIO MODE NAVIGATION
     // ==========================================================
     function switchStudioMode(mode) {
       closeAllMultiDropdowns();
+      const secHome = document.getElementById('sectionHome');
+      const secLookups = document.getElementById('sectionLookups');
       const secList = document.getElementById('sectionContractsList');
       const secWiz = document.getElementById('sectionWizard');
+
+      const tabHome = document.getElementById('tabBtnHome');
+      const tabLookups = document.getElementById('tabBtnLookups');
       const tabList = document.getElementById('tabBtnContractsList');
       const tabWiz = document.getElementById('tabBtnWizard');
       const breadcrumb = document.getElementById('activeBreadcrumbText');
 
-      if (mode === 'wizard') {
-        secList.style.display = 'none';
-        secWiz.style.display = 'block';
-        tabList.classList.remove('active');
-        tabWiz.classList.add('active');
+      if (secHome) secHome.style.display = 'none';
+      if (secLookups) secLookups.style.display = 'none';
+      if (secList) secList.style.display = 'none';
+      if (secWiz) secWiz.style.display = 'none';
+
+      if (tabHome) tabHome.classList.remove('active');
+      if (tabLookups) tabLookups.classList.remove('active');
+      if (tabList) tabList.classList.remove('active');
+      if (tabWiz) tabWiz.classList.remove('active');
+
+      if (mode === 'home') {
+        if (secHome) secHome.style.display = 'block';
+        if (tabHome) tabHome.classList.add('active');
+        if (breadcrumb) breadcrumb.textContent = 'Start Hub';
+        updateStartScreenMetrics();
+      } else if (mode === 'lookups') {
+        if (secLookups) secLookups.style.display = 'block';
+        if (tabLookups) tabLookups.classList.add('active');
+        if (breadcrumb) breadcrumb.textContent = 'Master Lookups Catalog';
+        renderLookupsCatalogView();
+      } else if (mode === 'wizard') {
+        if (secWiz) secWiz.style.display = 'block';
+        if (tabWiz) tabWiz.classList.add('active');
         if (breadcrumb) breadcrumb.textContent = 'New Contract Entry';
-      } else {
-        secList.style.display = 'block';
-        secWiz.style.display = 'none';
-        tabList.classList.add('active');
-        tabWiz.classList.remove('active');
+      } else { // contractsList
+        if (secList) secList.style.display = 'block';
+        if (tabList) tabList.classList.add('active');
         if (breadcrumb) breadcrumb.textContent = 'Contracts Registry';
         renderContractsTable();
+      }
+    }
+
+    // ==========================================================
+    // LOOKUPS SCREEN PREVIEW & INTERACTION LOGIC
+    // ==========================================================
+    let currentPreviewLookupType = 'AIRLINE';
+    let previewCatalogSearchTerm = '';
+
+    function updateStartScreenMetrics() {
+      const setEl = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+      setEl('tagAirlinesCount', lookupAirlines.length);
+      setEl('tagStationsCount', lookupStations.length);
+      setEl('tagFleetCount', lookupFleet.length);
+      setEl('tagTailsCount', lookupTails.length);
+      setEl('tagServicesCount', lookupServices.length);
+      setEl('homeHeroAgreementsCount', contractsMasterData.length);
+
+      const kpiVal = document.getElementById('kpiPortfolioTotalValue');
+      const valStr = kpiVal ? kpiVal.textContent : '$250.9M';
+      setEl('homeHeroPortfolioVal', valStr);
+      setEl('tagHomePortfolioVal', valStr);
+    }
+
+    function switchPreviewCatalogTab(type) {
+      currentPreviewLookupType = type;
+      const tabs = ['AIRLINE', 'STATION', 'FLEET', 'TAIL', 'SERVICE'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabPrev${t === 'AIRLINE' ? 'Airline' : t === 'STATION' ? 'Station' : t === 'FLEET' ? 'Fleet' : t === 'TAIL' ? 'Tail' : 'Service'}`);
+        if (btn) btn.classList.toggle('active', t === type);
+      });
+
+      const btnAdd = document.getElementById('btnAddPreviewCurrent');
+      if (btnAdd) {
+        const label = type === 'AIRLINE' ? '+ Add Airline' : type === 'STATION' ? '+ Add Station' : type === 'FLEET' ? '+ Add Aircraft' : type === 'TAIL' ? '+ Register Tail' : '+ Add Service';
+        btnAdd.innerHTML = `<span>${label}</span>`;
+      }
+
+      renderLookupsCatalogView();
+    }
+
+    function openCurrentPreviewLookupModal() {
+      openLookupModal(currentPreviewLookupType);
+    }
+
+    function onPreviewCatalogSearch() {
+      const inp = document.getElementById('inpPreviewSearch');
+      previewCatalogSearchTerm = (inp ? inp.value : '').trim().toLowerCase();
+      renderLookupsCatalogView();
+    }
+
+    function renderLookupsCatalogView() {
+      const setEl = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      setEl('badgeLookupAirline', `${lookupAirlines.length} Airlines`);
+      setEl('badgeLookupStation', `${lookupStations.length} Stations`);
+      setEl('badgeLookupFleet', `${lookupFleet.length} Models`);
+      setEl('badgeLookupTail', `${lookupTails.length} Tails`);
+      setEl('badgeLookupService', `${lookupServices.length} Services`);
+
+      setEl('prevTabCountAirline', `(${lookupAirlines.length})`);
+      setEl('prevTabCountStation', `(${lookupStations.length})`);
+      setEl('prevTabCountFleet', `(${lookupFleet.length})`);
+      setEl('prevTabCountTail', `(${lookupTails.length})`);
+      setEl('prevTabCountService', `(${lookupServices.length})`);
+
+      updateStartScreenMetrics();
+
+      const thead = document.getElementById('previewCatalogThead');
+      const tbody = document.getElementById('previewCatalogTbody');
+      if (!thead || !tbody) return;
+
+      const term = previewCatalogSearchTerm;
+
+      if (currentPreviewLookupType === 'AIRLINE') {
+        thead.innerHTML = `
+          <tr>
+            <th style="width: 140px;">Airline Code</th>
+            <th>Carrier / Customer Name</th>
+            <th style="width: 170px;">Category</th>
+            <th style="width: 150px;">Payment Terms</th>
+            <th style="width: 130px;">Primary Hub</th>
+            <th style="width: 160px;">Country / Region</th>
+            <th style="width: 110px; text-align: center;">Actions</th>
+          </tr>
+        `;
+        const list = lookupAirlines.filter(a => !term || a.name.toLowerCase().includes(term) || a.code.toLowerCase().includes(term) || a.country.toLowerCase().includes(term));
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:var(--text-muted);">No airlines match "${term}".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map(a => `
+            <tr>
+              <td><span class="contract-ver-badge" style="background:#eff6ff; color:#2563eb; font-weight:700;">${a.code}</span></td>
+              <td><strong>${a.name}</strong></td>
+              <td><span class="status-badge-chip active">${a.cat}</span></td>
+              <td><span style="font-family:'JetBrains Mono', monospace; font-size:12px;">${a.pmt}</span></td>
+              <td><span class="station-badge-pill hub">${a.hub || 'CAI'}</span></td>
+              <td>${a.country}</td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-table-action" onclick="openLookupModal('AIRLINE')" title="Add or edit airline">➕ Add</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+      } else if (currentPreviewLookupType === 'STATION') {
+        thead.innerHTML = `
+          <tr>
+            <th style="width: 130px;">IATA Code</th>
+            <th>Airport Station Name</th>
+            <th style="width: 200px;">Region / Operational Zone</th>
+            <th style="width: 150px;">Hub Classification</th>
+            <th style="width: 110px; text-align: center;">Actions</th>
+          </tr>
+        `;
+        const list = lookupStations.filter(s => !term || s.code.toLowerCase().includes(term) || s.name.toLowerCase().includes(term) || s.region.toLowerCase().includes(term));
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">No stations match "${term}".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map(s => `
+            <tr>
+              <td><span class="station-badge-pill hub" style="font-size:13px; font-weight:800;">${s.code}</span></td>
+              <td><strong>${s.name}</strong></td>
+              <td>${s.region}</td>
+              <td><span class="status-badge-chip active">Egyptian Port</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-table-action" onclick="openLookupModal('STATION')" title="Add or edit station">➕ Add</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+      } else if (currentPreviewLookupType === 'FLEET') {
+        thead.innerHTML = `
+          <tr>
+            <th style="width: 140px;">Model Code</th>
+            <th>Full Aircraft Model Name</th>
+            <th style="width: 180px;">Tier Classification</th>
+            <th style="width: 170px;">Ramp Category</th>
+            <th style="width: 110px; text-align: center;">Actions</th>
+          </tr>
+        `;
+        const list = lookupFleet.filter(f => !term || f.code.toLowerCase().includes(term) || f.name.toLowerCase().includes(term) || f.tier.toLowerCase().includes(term));
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">No aircraft models match "${term}".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map(f => `
+            <tr>
+              <td><span class="contract-ver-badge" style="background:#f5f3ff; color:#7c3aed; font-weight:800;">${f.code}</span></td>
+              <td><strong>${f.name}</strong></td>
+              <td><span class="status-badge-chip ${f.tier === 'WIDE' || f.tier === 'HEAVY' ? 'renewal' : 'active'}">${f.tier} BODY</span></td>
+              <td>Standard IATA SGHA</td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-table-action" onclick="openLookupModal('FLEET')" title="Add or edit fleet model">➕ Add</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+      } else if (currentPreviewLookupType === 'TAIL') {
+        thead.innerHTML = `
+          <tr>
+            <th style="width: 140px;">Tail Registration</th>
+            <th>Operating Airline</th>
+            <th style="width: 150px;">Aircraft Model</th>
+            <th style="width: 140px;">Certified MTOW</th>
+            <th style="width: 110px;">Seats</th>
+            <th style="width: 130px;">Ownership</th>
+            <th style="width: 120px;">Status</th>
+            <th style="width: 110px; text-align: center;">Actions</th>
+          </tr>
+        `;
+        const list = lookupTails.filter(t => !term || t.tail.toLowerCase().includes(term) || t.airlineCode.toLowerCase().includes(term) || t.model.toLowerCase().includes(term));
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:var(--text-muted);">No tails match "${term}".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map(t => `
+            <tr>
+              <td><span class="tail-reg-code" style="background:#f1f5f9; padding:4px 8px; border-radius:4px; font-weight:700;">${t.tail}</span></td>
+              <td><strong>${t.airlineCode}</strong></td>
+              <td><span class="fleet-badge-chip">${t.model}</span></td>
+              <td><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">${t.mtow.toFixed(1)} T</span></td>
+              <td>${t.seats > 0 ? t.seats + ' pax' : 'Cargo'}</td>
+              <td>${t.leased ? '<span class="status-badge-chip expiring">Leased</span>' : '<span class="status-badge-chip active">Owned</span>'}</td>
+              <td><span class="status-badge-chip active">${t.status}</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-table-action" onclick="openLookupModal('TAIL')" title="Register tail">➕ Add</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+      } else if (currentPreviewLookupType === 'SERVICE') {
+        thead.innerHTML = `
+          <tr>
+            <th style="width: 130px;">Service Code</th>
+            <th>Ground Service Description</th>
+            <th style="width: 160px;">Standard Base Rate</th>
+            <th style="width: 180px;">Tariff Pricing Unit</th>
+            <th style="width: 110px; text-align: center;">Actions</th>
+          </tr>
+        `;
+        const list = lookupServices.filter(s => !term || s.code.toLowerCase().includes(term) || s.name.toLowerCase().includes(term));
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">No services match "${term}".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map(s => `
+            <tr>
+              <td><span class="contract-ver-badge" style="background:#fef2f2; color:#dc2626; font-weight:800;">${s.code}</span></td>
+              <td><strong>${s.name}</strong></td>
+              <td><strong style="color:var(--primary-blue); font-family:'JetBrains Mono', monospace;">$${s.rate.toFixed(2)}</strong></td>
+              <td>Per sortie / unit hour</td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-table-action" onclick="openLookupModal('SERVICE')" title="Add or edit service">➕ Add</button>
+              </td>
+            </tr>
+          `).join('');
+        }
       }
     }
 
@@ -5367,7 +6811,7 @@
     // App Initialization
     document.addEventListener('DOMContentLoaded', () => {
       initContractsData();
-      renderContractsTable();
+      applyContractDatePreset('CURRENT_MONTH');
       renderCustomerSelectOptions();
       renderStationChips();
       renderFleetChips();
@@ -5375,7 +6819,8 @@
       populateInlineTailModels();
       populateTailLookupSelects();
       renderServiceChips();
-      switchStudioMode('contractsList');
+      renderLookupsCatalogView();
+      switchStudioMode('home');
     });
 </script>
 </body>
