@@ -655,27 +655,29 @@
     }
     .table-responsive-box {
       width: 100%;
-      overflow-x: auto;
+      overflow-x: hidden !important; /* Strictly prevent horizontal scrollbar */
     }
     .contracts-data-table {
       width: 100%;
+      max-width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 13px;
+      font-size: 12.5px;
+      table-layout: auto;
     }
     .contracts-data-table thead th {
       background: #f8fafc;
       color: var(--text-muted);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 12px 16px;
+      padding: 11px 12px;
       border-bottom: 1px solid var(--border-light);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.35px;
       white-space: nowrap;
     }
     .contracts-data-table tbody td {
-      padding: 13px 16px;
+      padding: 11px 12px;
       border-bottom: 1px solid #f1f5f9;
       color: var(--text-secondary);
       vertical-align: middle;
@@ -688,49 +690,109 @@
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
       color: var(--primary-navy);
-      font-size: 12.5px;
+      font-size: 11.5px;
     }
     .contract-ver-badge {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 600;
       color: var(--text-muted);
       background: #f1f5f9;
-      padding: 1px 6px;
+      padding: 1px 5px;
       border-radius: var(--radius-sm);
       display: inline-block;
-      margin-top: 2px;
     }
 
     .carrier-title {
       font-weight: 700;
+      font-size: 13px;
       color: var(--text-main);
+      line-height: 1.3;
     }
     .carrier-submeta {
-      font-size: 11.5px;
+      font-size: 11px;
       color: var(--text-muted);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      margin-top: 3px;
+      flex-wrap: wrap;
+    }
+    .carrier-submeta .sep {
+      color: #cbd5e1;
+      font-size: 10px;
     }
     .carrier-iata {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
       color: var(--primary-blue);
+      font-size: 11px;
     }
 
     .station-badge-pill {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 1px 6px;
       border-radius: var(--radius-sm);
       background: #e0f2fe;
       color: var(--sky-700);
-      margin-right: 4px;
+      margin-right: 3px;
+      margin-bottom: 2px;
       display: inline-block;
     }
     .station-badge-pill.hub {
       background: var(--primary-navy);
       color: #ffffff;
+    }
+    .station-badge-pill.extra {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+    .stations-pills-wrap {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+      max-width: 140px;
+    }
+
+    .fleet-models-str {
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+    .fleet-ops-sub {
+      font-size: 11px;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .fleet-ops-sub .flights-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+    .fleet-ops-sub .flights-unit {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .fleet-ops-sub .sep {
+      color: #cbd5e1;
+      font-size: 10px;
+    }
+    .fleet-ops-sub .tails-str {
+      font-size: 10.5px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      max-width: 90px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
     }
 
     .date-str-box {
@@ -783,20 +845,30 @@
     .table-actions-cell {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      white-space: nowrap;
+      flex-wrap: nowrap;
     }
     .btn-tbl-action {
-      height: 30px;
-      padding: 0 10px;
+      height: 27px;
+      padding: 0 7px;
       border-radius: var(--radius-sm);
       font-family: inherit;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       transition: var(--transition-smooth);
+      white-space: nowrap;
+    }
+    .btn-tbl-action .btn-icon {
+      font-size: 11.5px;
+      line-height: 1;
+    }
+    .btn-tbl-action .btn-lbl {
+      display: inline;
     }
     .btn-tbl-edit {
       background: #f0f7fc;
@@ -824,6 +896,205 @@
     .btn-tbl-view:hover {
       background: #e2e8f0;
       color: var(--text-main);
+    }
+    .btn-tbl-amend {
+      background: #f0fdf4;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+    .btn-tbl-amend:hover {
+      background: #047857;
+      border-color: #047857;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(4, 120, 87, 0.35);
+    }
+    .contract-amend-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      margin-top: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn-hero-amend {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #ffffff;
+      border: 2px solid var(--primary-navy);
+      color: var(--primary-navy);
+      transition: var(--transition-smooth);
+      box-shadow: 0 2px 6px rgba(87, 147, 204, 0.2);
+      white-space: nowrap;
+    }
+    .btn-hero-amend:hover {
+      background: #f0f7fc;
+      border-color: var(--primary-navy-dark);
+      color: var(--primary-navy-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(87, 147, 204, 0.35);
+    }
+
+    /* Contract Amendment Dialog Components */
+    .amendment-options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 14px 0;
+    }
+    .amendment-opt-card {
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      background: #ffffff;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .amendment-opt-card:hover {
+      border-color: #b7d5ee;
+      box-shadow: 0 3px 12px rgba(87, 147, 204, 0.12);
+    }
+    .amendment-opt-card.active {
+      border-color: #059669;
+      background: #fbfdfc;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.18);
+    }
+    .amendment-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .amendment-card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .amendment-card-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #f0f7fc;
+      color: var(--primary-navy-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .amendment-opt-card.active .amendment-card-icon {
+      background: #ecfdf5;
+      color: #047857;
+    }
+    .amendment-card-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .amendment-sub-fields {
+      display: none;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-light);
+      margin-top: 8px;
+    }
+    .amendment-opt-card.active .amendment-sub-fields {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    /* Switch Toggle for Option Cards */
+    .switch-toggle-wrap {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .switch-toggle-wrap input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .22s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 22px;
+    }
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .22s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+    .switch-toggle-wrap input:checked + .switch-slider {
+      background-color: #059669;
+    }
+    .switch-toggle-wrap input:checked + .switch-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Chips for Stations and Fleet Expansion */
+    .amend-chip-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .amend-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border: 1px solid var(--border-input);
+      background: #ffffff;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .amend-chip-btn:hover:not(:disabled) {
+      border-color: var(--primary-navy);
+      background: #f0f7fc;
+      color: var(--primary-navy);
+    }
+    .amend-chip-btn.current {
+      background: #edf4fa;
+      border-color: #cbdfe9;
+      color: var(--text-muted);
+      cursor: default;
+      opacity: 0.85;
+    }
+    .amend-chip-btn.selected {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      border-color: #047857;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
+      font-weight: 700;
     }
 
     /* Pagination Bar */
@@ -1219,25 +1490,38 @@
       background: #f1f5f9;
       border-color: #94a3b8;
     }
+    .btn-compact-action.btn-add-highlight,
     .btn-compact-add-lookup {
       height: 30px;
       padding: 0 12px;
-      border: 1px solid #cbe3f5;
+      border: 1px solid #b7d5ee;
       border-radius: var(--radius-sm);
       background: #f0f7fc;
-      color: var(--primary-blue);
+      color: var(--primary-navy-dark, #437fb9) !important;
       font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       transition: var(--transition-smooth);
       white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
+    .btn-compact-action.btn-add-highlight:hover,
     .btn-compact-add-lookup:hover {
-      background: var(--primary-blue);
-      color: #ffffff;
+      background: var(--primary-navy);
+      border-color: var(--primary-navy);
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(87, 147, 204, 0.4);
+    }
+    .btn-compact-action.btn-add-highlight svg,
+    .btn-compact-add-lookup svg {
+      width: 11px;
+      height: 11px;
+      stroke: currentColor;
+      stroke-width: 3;
+      flex-shrink: 0;
     }
 
     /* ==========================================================
@@ -1637,17 +1921,33 @@
       box-shadow: var(--shadow-sm);
     }
     .btn-lookup-trigger-link {
-      background: transparent;
-      border: none;
-      color: var(--primary-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #f0f7fc;
+      border: 1px solid #b7d5ee;
+      border-radius: 6px;
+      color: var(--primary-navy-dark, #437fb9);
       font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
-      padding: 0;
-      text-decoration: underline;
+      padding: 3px 10px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     .btn-lookup-trigger-link:hover {
-      color: var(--primary-navy);
+      background: var(--primary-navy);
+      border-color: var(--primary-navy);
+      color: #ffffff !important;
+      box-shadow: 0 3px 10px rgba(87, 147, 204, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-lookup-trigger-link svg {
+      width: 11px;
+      height: 11px;
+      stroke: currentColor;
+      stroke-width: 3;
     }
 
     /* Bottom Wizard Action Footer (Screenshot 2 Styling) */
@@ -2101,10 +2401,10 @@
     }
 
     .card-lookups .launch-icon-container {
-      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-      color: #1d4ed8;
-      border: 2px solid rgba(59, 130, 246, 0.4);
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.35), inset 0 1px 2px #ffffff;
+      background: linear-gradient(135deg, #e8f2fb 0%, #d4e7f8 100%);
+      color: var(--primary-navy-dark, #437fb9);
+      border: 2px solid rgba(87, 147, 204, 0.4);
+      box-shadow: 0 0 20px rgba(87, 147, 204, 0.35), inset 0 1px 2px #ffffff;
     }
 
     .card-contracts .launch-icon-container {
@@ -2123,8 +2423,8 @@
       flex-shrink: 0;
     }
     .dot-blue {
-      background: #2563eb;
-      box-shadow: 0 0 8px #2563eb;
+      background: #4095d1;
+      box-shadow: 0 0 8px #4095d1;
       animation: pulseDotBlue 2s infinite ease-in-out;
     }
     .dot-emerald {
@@ -2134,9 +2434,9 @@
     }
 
     @keyframes pulseDotBlue {
-      0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #2563eb; }
-      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #3b82f6; }
-      100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #2563eb; }
+      0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #4095d1; }
+      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #5793cc; }
+      100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #4095d1; }
     }
     @keyframes pulseDotEmerald {
       0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 4px #10b981; }
@@ -2156,10 +2456,10 @@
       gap: 7px;
     }
     .card-lookups .launch-badge-pill {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
+      background: #f0f7fc;
+      color: var(--primary-navy-dark, #437fb9);
+      border: 1px solid #b7d5ee;
+      box-shadow: 0 0 10px rgba(87, 147, 204, 0.15);
     }
     .card-contracts .launch-badge-pill {
       background: #ecfdf5;
@@ -2248,14 +2548,14 @@
     /* Primary Lookups Button (Blue Glow) */
     .card-lookups .btn-launch-primary,
     .btn-glow-blue {
-      background: linear-gradient(135deg, #5793cc 0%, #2563eb 100%);
+      background: linear-gradient(135deg, #5da0d7 0%, #437fb9 50%, #3572a8 100%);
       color: #ffffff;
-      box-shadow: 0 4px 18px rgba(87, 147, 204, 0.45), 0 0 15px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 18px rgba(87, 147, 204, 0.45), 0 0 15px rgba(87, 147, 204, 0.3);
     }
     .card-lookups .btn-launch-primary:hover,
     .btn-glow-blue:hover {
-      background: linear-gradient(135deg, #437fb9 0%, #1d4ed8 100%);
-      box-shadow: 0 6px 26px rgba(87, 147, 204, 0.65), 0 0 24px rgba(37, 99, 235, 0.5);
+      background: linear-gradient(135deg, #4a91cf 0%, #3572a8 50%, #295e8d 100%);
+      box-shadow: 0 6px 26px rgba(87, 147, 204, 0.65), 0 0 24px rgba(87, 147, 204, 0.45);
       transform: translateY(-2px);
     }
 
@@ -2449,49 +2749,118 @@
       align-items: center;
     }
 
-    /* ENHANCED LOOKUP ACTION BUTTONS */
+    /* ENHANCED LOOKUP ACTION BUTTONS (ALIGNED TO TAS LOGO THEME) */
     .btn-lookup-action-add {
       flex: 1;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
+      gap: 7px;
+      padding: 11px 16px;
+      border-radius: 9px;
+      font-size: 13.5px;
       font-weight: 700;
-      background: linear-gradient(135deg, #5793cc 0%, #437fb9 100%);
-      color: #ffffff;
-      border: none;
+      background: linear-gradient(135deg, #5da0d7 0%, #468ec9 50%, #367ea8 100%);
+      color: #ffffff !important;
+      border: 1px solid #367ea8;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 2px 8px rgba(87, 147, 204, 0.3);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 3px 10px rgba(87, 147, 204, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      white-space: nowrap;
+      text-decoration: none;
+      text-shadow: 0 1px 2px rgba(20, 60, 95, 0.35);
     }
     .btn-lookup-action-add:hover {
-      background: linear-gradient(135deg, #437fb9 0%, #306c9e 100%);
-      box-shadow: 0 4px 14px rgba(87, 147, 204, 0.45);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #4b92cd 0%, #367ea8 50%, #28668d 100%);
+      border-color: #28668d;
+      box-shadow: 0 5px 16px rgba(87, 147, 204, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      color: #ffffff !important;
+    }
+
+    .btn-add-svg-icon {
+      width: 14px;
+      height: 14px;
+      stroke: #ffffff !important;
+      color: #ffffff !important;
+      fill: none;
+      flex-shrink: 0;
+      stroke-width: 3;
+      filter: drop-shadow(0 1px 1.5px rgba(20, 60, 95, 0.4));
     }
 
     .btn-lookup-action-view {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
-      border-radius: 8px;
+      gap: 6px;
+      padding: 11px 16px;
+      border-radius: 9px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       background: #ffffff;
       border: 1.5px solid var(--border-input);
       color: var(--text-secondary);
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     .btn-lookup-action-view:hover {
       background: #edf4fa;
       border-color: var(--primary-navy);
       color: var(--primary-navy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(87, 147, 204, 0.25);
+    }
+
+    .btn-table-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #f0f7fc;
+      border: 1.5px solid #b7d5ee;
+      color: var(--primary-navy-dark, #437fb9);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-table-action:hover {
+      background: var(--primary-navy);
+      border-color: var(--primary-navy);
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(87, 147, 204, 0.4);
       transform: translateY(-1px);
+    }
+    .btn-table-action svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      stroke-width: 3;
+    }
+
+    .modal-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary-navy);
+      color: #ffffff;
+      flex-shrink: 0;
+      margin-right: 6px;
+      vertical-align: middle;
+      box-shadow: 0 2px 6px rgba(87, 147, 204, 0.35);
+    }
+    .modal-icon-badge svg {
+      stroke: #ffffff;
+      stroke-width: 3;
     }
 
     /* Interactive Lookups Preview Table */
@@ -2579,22 +2948,34 @@
     .btn-add-preview-current {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 9px 20px;
-      background: linear-gradient(135deg, #5793cc 0%, #3a7ab5 100%);
-      color: #ffffff;
-      border: none;
+      gap: 7px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #5da0d7 0%, #468ec9 50%, #367ea8 100%);
+      color: #ffffff !important;
+      border: 1px solid #367ea8;
       border-radius: var(--radius-md);
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 3px 10px rgba(87, 147, 204, 0.35);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 3px 10px rgba(87, 147, 204, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(20, 60, 95, 0.35);
     }
     .btn-add-preview-current:hover {
-      background: linear-gradient(135deg, #437fb9 0%, #296096 100%);
+      background: linear-gradient(135deg, #4b92cd 0%, #367ea8 50%, #28668d 100%);
+      border-color: #28668d;
       box-shadow: 0 5px 16px rgba(87, 147, 204, 0.5);
       transform: translateY(-1px);
+      color: #ffffff !important;
+    }
+    .btn-add-preview-current svg {
+      width: 14px;
+      height: 14px;
+      stroke: #ffffff !important;
+      color: #ffffff !important;
+      fill: none;
+      stroke-width: 3;
     }
 
     /* ==========================================================
@@ -2603,6 +2984,26 @@
     @media (max-width: 1200px) {
       .portal-main-container { padding: 20px 24px; }
       .kpi-cards-grid { grid-template-columns: repeat(3, 1fr); }
+      .contracts-data-table thead th,
+      .contracts-data-table tbody td {
+        padding: 9px 8px;
+        font-size: 11.5px;
+      }
+      .carrier-title {
+        font-size: 12px;
+      }
+      .btn-tbl-action {
+        height: 25px;
+        padding: 0 5px;
+        font-size: 10.5px;
+        gap: 2px;
+      }
+      .date-str-box {
+        font-size: 11px;
+      }
+      .val-str {
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 992px) {
@@ -2668,6 +3069,21 @@
       }
       .form-grid-3, .form-grid-4 {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .contracts-data-table thead th,
+      .contracts-data-table tbody td {
+        padding: 8px 6px;
+      }
+      .btn-tbl-action .btn-lbl {
+        display: none;
+      }
+      .btn-tbl-action {
+        padding: 0 6px;
+        height: 26px;
+      }
+      .fleet-ops-sub .tails-str,
+      .fleet-ops-sub .sep {
+        display: none;
       }
     }
 
@@ -2767,7 +3183,7 @@
       </button>
       <button type="button" class="portal-nav-tab" id="tabBtnWizard" onclick="createNewContractFromList()">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>+ New Contract Entry</span>
+        <span>New Contract Entry</span>
       </button>
     </div>
 
@@ -2894,7 +3310,8 @@
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
             <button type="button" class="btn-launch-secondary" onclick="createNewContractFromList();" title="Create a new commercial contract">
-              <span>➕ Add New Contract</span>
+              <svg class="btn-add-svg-icon" style="stroke: #047857;" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add New Contract</span>
             </button>
           </div>
         </div>
@@ -2924,7 +3341,8 @@
             <span>Contracts Registry (120)</span>
           </button>
           <button type="button" class="btn-nav-outline" style="border-color: #10b981; color: #047857;" onclick="createNewContractFromList()">
-            <span>➕ New Contract</span>
+            <svg class="btn-add-svg-icon" style="stroke: #047857;" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>New Contract</span>
           </button>
         </div>
       </div>
@@ -2934,14 +3352,15 @@
         <!-- 1. AIRLINE / CUSTOMER -->
         <div class="lookup-modal-link-card">
           <div class="lookup-card-top">
-            <div class="lookup-card-icon" style="background:#eff6ff; color:#2563eb;">🏢</div>
+            <div class="lookup-card-icon" style="background:#f0f7fc; color:#437fb9;">🏢</div>
             <span class="lookup-count-badge" id="badgeLookupAirline">16 Airlines</span>
           </div>
           <h4>Airlines &amp; Customers</h4>
           <p>Carrier profiles, IATA/ICAO airline codes (MS, EK, SV, TK...), carrier categories, and credit payment terms.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('AIRLINE')">
-              <span>➕ Add Airline</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Airline</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('AIRLINE')">
               <span>👁️ Preview</span>
@@ -2959,7 +3378,8 @@
           <p>Egyptian international and domestic airport stations (CAI, HRG, SSH, LXR, HBE, ASW, RMF, SPX, DBB) and hub networks.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('STATION')">
-              <span>➕ Add Station</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Station</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('STATION')">
               <span>👁️ Preview</span>
@@ -2977,7 +3397,8 @@
           <p>Airbus, Boeing, Embraer, and ATR airframes, ICAO/IATA designators, and narrow/wide-body MTOW tiers.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('FLEET')">
-              <span>➕ Add Aircraft</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Aircraft</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('FLEET')">
               <span>👁️ Preview</span>
@@ -2995,7 +3416,8 @@
           <p>Certified aircraft tail registrations (e.g. SU-GBF, SU-GCT, A6-ENA), certified MTOW tonnage, and seat layouts.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('TAIL')">
-              <span>➕ Register Tail</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Register Tail</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('TAIL')">
               <span>👁️ Preview</span>
@@ -3013,7 +3435,8 @@
           <p>IATA SGHA standard ground turnaround services, ramp power GSE units (GPU 400Hz, ASU), and hourly tariff baselines.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('SERVICE')">
-              <span>➕ Add Service</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Service</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('SERVICE')">
               <span>👁️ Preview</span>
@@ -3054,7 +3477,8 @@
               <input type="text" id="inpPreviewSearch" placeholder="Filter items in this catalog..." oninput="onPreviewCatalogSearch()">
             </div>
             <button type="button" class="btn-add-preview-current" id="btnAddPreviewCurrent" onclick="openCurrentPreviewLookupModal()">
-              <span>+ Add Airline</span>
+              <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Airline</span>
             </button>
           </div>
         </div>
@@ -3086,10 +3510,14 @@
           </h2>
           <p>Central commercial database of authorized airline ground handling agreements across Egyptian stations.</p>
         </div>
-        <div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button type="button" class="btn-hero-amend" onclick="openAmendmentModal()" title="Add amendment & optional services to a contract">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <span>Add Amendment</span>
+          </button>
           <button type="button" class="btn-create-contract-hero" onclick="createNewContractFromList()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>+ Add New Contract</span>
+            <span>Add New Contract</span>
           </button>
         </div>
       </div>
@@ -3284,15 +3712,13 @@
           <table class="contracts-data-table">
             <thead>
               <tr>
-                <th style="width: 140px;">Contract Ref</th>
-                <th style="min-width: 220px;">Customer &amp; Airline</th>
-                <th style="min-width: 160px;">Authorized Stations</th>
-                <th style="width: 130px;">Covered Fleet</th>
-                <th style="min-width: 180px;">Validity &amp; Remaining</th>
-                <th style="width: 100px;">Flights/Mo</th>
-                <th style="width: 140px;">Annual Value</th>
-                <th style="width: 120px;">Status</th>
-                <th style="width: 170px; text-align: center;">Actions</th>
+                <th style="min-width: 180px;">Customer &amp; Agreement</th>
+                <th style="width: 120px;">Stations</th>
+                <th style="width: 140px;">Fleet &amp; Volume</th>
+                <th style="width: 145px;">Validity</th>
+                <th style="width: 120px;">Annual Value</th>
+                <th style="width: 95px;">Status</th>
+                <th style="width: 195px; text-align: center;">Actions</th>
               </tr>
             </thead>
             <tbody id="contractsTableBody">
@@ -3398,7 +3824,7 @@
             <div class="input-field-unit">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                 <label for="selectCustomerAR" style="margin-bottom: 0;">Customer / Airline <span class="req-star">*</span></label>
-                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('AIRLINE')">+ Add Airline</button>
+                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('AIRLINE')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add Airline</span></button>
               </div>
               <select id="selectCustomerAR" class="form-input-control" onchange="onCustomerSelectChanged()">
                 <option value="">-- Select Customer --</option>
@@ -3499,7 +3925,7 @@
           <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapStationDropdown">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <label style="margin-bottom: 0; font-weight: 600;">Authorized Airport Stations Network <span class="req-star">*</span></label>
-              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('STATION')">+ Add Station</button>
+              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('STATION')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add Station</span></button>
             </div>
 
             <!-- Trigger Control Box -->
@@ -3527,7 +3953,7 @@
                   <div style="display: flex; gap: 6px;">
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); selectAllFilteredStations();">Select All</button>
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); clearStationSelection();">Clear</button>
-                    <button type="button" class="btn-compact-action" style="color: var(--primary-blue);" onclick="event.stopPropagation(); openLookupModal('STATION');">+ Add</button>
+                    <button type="button" class="btn-compact-action btn-add-highlight" onclick="event.stopPropagation(); openLookupModal('STATION');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add</span></button>
                   </div>
                 </div>
               </div>
@@ -3590,7 +4016,7 @@
           <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapFleetDropdown">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <label style="margin-bottom: 0; font-weight: 600;">Covered Aircraft Types &amp; Models <span class="req-star">*</span></label>
-              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('FLEET')">+ Add Aircraft</button>
+              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('FLEET')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add Aircraft</span></button>
             </div>
 
             <!-- Trigger Control Box -->
@@ -3618,7 +4044,7 @@
                   <div style="display: flex; gap: 6px;">
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); selectAllFilteredFleet();">Select All</button>
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); clearFleetSelection();">Clear</button>
-                    <button type="button" class="btn-compact-action" style="color: var(--primary-blue);" onclick="event.stopPropagation(); openLookupModal('FLEET');">+ Add</button>
+                    <button type="button" class="btn-compact-action btn-add-highlight" onclick="event.stopPropagation(); openLookupModal('FLEET');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add</span></button>
                   </div>
                 </div>
               </div>
@@ -3680,7 +4106,7 @@
             <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapTailDropdown" style="display: none; margin-bottom: 8px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                 <label style="margin-bottom: 0; font-weight: 600; font-size: 12.5px;">Designated Tail Numbers <span class="req-star">*</span></label>
-                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('TAIL')">+ Register New Tail</button>
+                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('TAIL')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Register Tail</span></button>
               </div>
 
               <!-- Trigger Control Box -->
@@ -3708,7 +4134,7 @@
                     <div style="display: flex; gap: 6px;">
                       <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); selectAllFilteredTails();">Select All</button>
                       <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); clearTailSelection();">Clear</button>
-                      <button type="button" class="btn-compact-action" style="color: var(--primary-blue);" onclick="event.stopPropagation(); openLookupModal('TAIL');">+ Register</button>
+                      <button type="button" class="btn-compact-action btn-add-highlight" onclick="event.stopPropagation(); openLookupModal('TAIL');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Register</span></button>
                     </div>
                   </div>
                 </div>
@@ -3736,8 +4162,9 @@
                   <option value="OWNED">Owned</option>
                   <option value="LEASED">Leased</option>
                 </select>
-                <button type="button" class="btn-compact-action" style="height: 32px; padding: 0 12px; background: var(--primary-blue); color: #ffffff; font-weight: 700; border-radius: var(--radius-sm);" onclick="quickAddInlineTail()">
-                  + Add Tail
+                <button type="button" class="btn-compact-action" style="height: 32px; padding: 0 14px; background: linear-gradient(135deg, #5da0d7 0%, #468ec9 50%, #367ea8 100%); color: #ffffff; font-weight: 700; border-radius: var(--radius-sm); border: 1px solid #367ea8; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(87,147,204,0.35); cursor: pointer;" onclick="quickAddInlineTail()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>Add Tail</span>
                 </button>
               </div>
             </div>
@@ -3793,7 +4220,7 @@
           <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapServiceDropdown">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <label style="margin-bottom: 0; font-weight: 600;">Ground Handling Services &amp; GSE Equipment</label>
-              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('SERVICE')">+ Add Service</button>
+              <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('SERVICE')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add Service</span></button>
             </div>
 
             <!-- Trigger Control Box -->
@@ -3821,7 +4248,7 @@
                   <div style="display: flex; gap: 6px;">
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); selectAllFilteredServices();">Select All</button>
                     <button type="button" class="btn-compact-action" onclick="event.stopPropagation(); clearServiceSelection();">Clear</button>
-                    <button type="button" class="btn-compact-action" style="color: var(--primary-blue);" onclick="event.stopPropagation(); openLookupModal('SERVICE');">+ Add</button>
+                    <button type="button" class="btn-compact-action btn-add-highlight" onclick="event.stopPropagation(); openLookupModal('SERVICE');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add</span></button>
                   </div>
                 </div>
               </div>
@@ -4026,8 +4453,313 @@
         <button type="button" class="btn-tbl-action btn-tbl-edit" id="quickViewBtnEdit">
           ✏️ Edit in Studio
         </button>
+        <button type="button" class="btn-tbl-action btn-tbl-amend" id="quickViewBtnAmend">
+          📜 Add Amendment
+        </button>
         <button type="button" class="btn-tbl-action btn-tbl-renew" id="quickViewBtnRenew">
           🔄 Renew Agreement
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL 4: CONTRACT AMENDMENT & OPTIONS DIALOG
+       Options: Airport Stations, Airfleet Models, Crew Housing,
+       Crew Transportation, Ladders, Water Servicing, Ramp GSE
+       ========================================================== -->
+  <div class="modal-backdrop-layer" id="modalContractAmendment">
+    <div class="modal-dialog-box" style="max-width: 840px; max-height: 92vh; display: flex; flex-direction: column;">
+      <button class="btn-close-modal" onclick="closeAmendmentModal()">✕</button>
+      <div class="modal-header-block" style="margin-bottom: 12px; flex-shrink: 0;">
+        <h3 style="display: flex; align-items: center; gap: 8px;">
+          <span class="modal-icon-badge" style="background:#047857;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" width="14" height="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span> 
+          <span>Add Contract Amendment &amp; Options</span>
+        </h3>
+        <p>Append operational airport stations, fleet models, crew layover housing, crew transportation, passenger ladders/stairs, potable water, and turnaround equipment.</p>
+      </div>
+
+      <div style="overflow-y: auto; padding-right: 6px; flex: 1;">
+        <!-- Contract Header & Reference Bar -->
+        <div class="renewal-summary-card" style="margin-bottom: 14px; background: #f8fafc; border-left: 4px solid #059669;">
+          <div>
+            <span class="lbl">Contract to Amend:</span>
+            <select id="amendSelectContract" class="form-input-control" style="height: 32px; font-size: 12.5px; font-weight: 700; margin-top: 3px;" onchange="onAmendContractChanged()">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div>
+            <span class="lbl">Current Validity &amp; Status:</span>
+            <div class="val" id="amendCurrentPeriod" style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px;">-</div>
+          </div>
+          <div>
+            <span class="lbl">Current Authorized Stations:</span>
+            <div id="amendCurrentStationsBadges" style="margin-top: 4px; display: flex; gap: 4px; flex-wrap: wrap;">-</div>
+          </div>
+          <div>
+            <span class="lbl">Current Covered Fleet:</span>
+            <div id="amendCurrentFleetBadges" style="margin-top: 4px; display: flex; gap: 4px; flex-wrap: wrap;">-</div>
+          </div>
+        </div>
+
+        <!-- Amendment Meta Grid -->
+        <div class="form-grid-3" style="margin-bottom: 14px;">
+          <div class="input-field-unit">
+            <label for="inpAmendRefCode">Amendment Reference</label>
+            <input type="text" id="inpAmendRefCode" class="form-input-control" readonly style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #047857; background: #ecfdf5;">
+          </div>
+          <div class="input-field-unit">
+            <label for="inpAmendEffectiveDate">Effective Date <span class="req-star">*</span></label>
+            <input type="date" id="inpAmendEffectiveDate" class="form-input-control">
+          </div>
+          <div class="input-field-unit">
+            <label for="inpAmendTitle">Amendment Title / Purpose</label>
+            <input type="text" id="inpAmendTitle" class="form-input-control" placeholder="e.g. Ramp Services &amp; Crew Support Expansion">
+          </div>
+        </div>
+
+        <!-- Section 1: Airport Stations Expansion -->
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
+            <label style="margin: 0; font-size: 13px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
+              <span>🛫</span> Airport Stations Network Expansion
+            </label>
+            <span style="font-size: 11px; color: var(--text-muted);">Click to toggle additional stations to add under this agreement</span>
+          </div>
+          <div class="amend-chip-selector" id="amendStationsChipsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 2: Airfleet Models Expansion -->
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
+            <label style="margin: 0; font-size: 13px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
+              <span>✈️</span> Covered Airfleet Models Expansion
+            </label>
+            <span style="font-size: 11px; color: var(--text-muted);">Click to append aircraft airframes to covered fleet</span>
+          </div>
+          <div class="amend-chip-selector" id="amendFleetChipsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 3: Dedicated Option Cards (User requested: Crew Housing, Transportation, Ladders, Water, etc.) -->
+        <label style="font-size: 12.5px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; display: block;">
+          Additional Contract Inclusions &amp; Operational Amenities:
+        </label>
+        <div class="amendment-options-grid">
+
+          <!-- OPTION A: Crew Housing -->
+          <div class="amendment-opt-card" id="cardAmendCrewHousing">
+            <div class="amendment-card-top">
+              <span class="amendment-card-title">
+                <span class="amendment-card-icon">🏨</span> Providing Crew Housing
+              </span>
+              <label class="switch-toggle-wrap">
+                <input type="checkbox" id="chkAmendCrewHousing" onchange="toggleAmendOptionCard('cardAmendCrewHousing', this.checked)">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="amendment-card-desc">
+              Provide dedicated hotel accommodation and layover lodging for flight cockpit and cabin crew.
+            </div>
+            <div class="amendment-sub-fields">
+              <div class="form-grid-2">
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Hotel Standard</label>
+                  <select id="selAmendHousingTier" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="5_STAR">5-Star Luxury City Hotel</option>
+                    <option value="4_STAR" selected>4-Star Airport Transit Hotel</option>
+                    <option value="VILLA">Dedicated Airline Crew Villa</option>
+                  </select>
+                </div>
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Board Inclusions</label>
+                  <select id="selAmendHousingBoard" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="FULL">Full Board (Breakfast + Lunch + Dinner)</option>
+                    <option value="HALF">Half Board</option>
+                    <option value="BB" selected>Bed &amp; Breakfast</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-grid-2" style="margin-top: 6px;">
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Rooms Allocated / Rotation</label>
+                  <input type="number" id="inpAmendHousingRooms" class="form-input-control" value="8" min="1" max="50" style="height: 30px; font-size: 11.5px;">
+                </div>
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Station Applicable</label>
+                  <select id="selAmendHousingStation" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="ALL">All Authorized Stations</option>
+                    <option value="CAI">Cairo (CAI) Only</option>
+                    <option value="HRG">Hurghada (HRG) Only</option>
+                    <option value="SSH">Sharm El Sheikh (SSH) Only</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPTION B: Crew Transportation -->
+          <div class="amendment-opt-card" id="cardAmendCrewTransport">
+            <div class="amendment-card-top">
+              <span class="amendment-card-title">
+                <span class="amendment-card-icon">🚐</span> Providing Crew Transportation
+              </span>
+              <label class="switch-toggle-wrap">
+                <input type="checkbox" id="chkAmendCrewTransport" onchange="toggleAmendOptionCard('cardAmendCrewTransport', this.checked)">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="amendment-card-desc">
+              Dedicated private transfer shuttles between airside aircraft stand, terminal, and crew hotel.
+            </div>
+            <div class="amendment-sub-fields">
+              <div class="form-grid-2">
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Vehicle Type</label>
+                  <select id="selAmendTransportType" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="VAN" selected>VIP AC Crew Van (HiAce / Sprinter)</option>
+                    <option value="BUS">Dedicated AC Shuttle Bus (30 Seats)</option>
+                    <option value="SEDAN">Executive Captain Sedan</option>
+                  </select>
+                </div>
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Transfer Route</label>
+                  <select id="selAmendTransportRoute" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="ROUNDTRIP" selected>Ramp &harr; Terminal &harr; Hotel (Roundtrip)</option>
+                    <option value="RAMP_TERMINAL">Airside Ramp &harr; Terminal Only</option>
+                    <option value="UNLIMITED">24/7 Unlimited On-Call Chauffeur</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPTION C: Providing Ladders / Passenger Stairs -->
+          <div class="amendment-opt-card" id="cardAmendLadders">
+            <div class="amendment-card-top">
+              <span class="amendment-card-title">
+                <span class="amendment-card-icon">🪜</span> Providing Passenger Stairs &amp; Ladders
+              </span>
+              <label class="switch-toggle-wrap">
+                <input type="checkbox" id="chkAmendLadders" onchange="toggleAmendOptionCard('cardAmendLadders', this.checked)">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="amendment-card-desc">
+              Motorized passenger boarding stairs, towable airstairs, and ramp maintenance access ladders.
+            </div>
+            <div class="amendment-sub-fields">
+              <div class="form-grid-2">
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Stair / Ladder Specification</label>
+                  <select id="selAmendLadderType" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="MOTORIZED_CANOPY" selected>Self-Propelled Motorized Stairs (Covered Canopy)</option>
+                    <option value="MOTORIZED_OPEN">Self-Propelled Motorized Stairs (Open Step)</option>
+                    <option value="TOWABLE">Towable Passenger Airstairs</option>
+                    <option value="MAINT_LADDER">Engine &amp; Tail Maintenance Service Ladders</option>
+                  </select>
+                </div>
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Equipment Inclusions</label>
+                  <div style="font-size: 11.5px; padding-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+                    <label style="cursor: pointer;"><input type="checkbox" id="chkAmendStairOperator" checked> Certified GSE Operator Included</label>
+                    <label style="cursor: pointer;"><input type="checkbox" id="chkAmendStairLighting" checked> Illuminated Steps &amp; Handrails</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPTION D: Providing Potable Water -->
+          <div class="amendment-opt-card" id="cardAmendWater">
+            <div class="amendment-card-top">
+              <span class="amendment-card-title">
+                <span class="amendment-card-icon">💧</span> Providing Potable Drinking Water
+              </span>
+              <label class="switch-toggle-wrap">
+                <input type="checkbox" id="chkAmendWater" onchange="toggleAmendOptionCard('cardAmendWater', this.checked)">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="amendment-card-desc">
+              Sanitary potable drinking water replenishment via certified stainless-steel water trucks.
+            </div>
+            <div class="amendment-sub-fields">
+              <div class="form-grid-2">
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Water Refill Capacity</label>
+                  <select id="selAmendWaterCapacity" class="form-input-control" style="height: 30px; font-size: 11.5px;">
+                    <option value="FULL" selected>Full Tank Replenishment per Sortie</option>
+                    <option value="TOPUP">Partial Top-Up (up to 500 Liters)</option>
+                    <option value="WIDEBODY">Heavy Widebody High Volume (2,000L+)</option>
+                  </select>
+                </div>
+                <div class="input-field-unit">
+                  <label style="font-size: 11px;">Sanitation &amp; Testing</label>
+                  <div style="font-size: 11.5px; padding-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+                    <label style="cursor: pointer;"><input type="checkbox" id="chkAmendWaterCert" checked> WHO / IATA Quality Certificate</label>
+                    <label style="cursor: pointer;"><input type="checkbox" id="chkAmendWaterDisinfect" checked> Anti-Bacterial Hose Flush</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Auxiliary Turnaround GSE & Equipment ("etc.") -->
+        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px;">
+          <label style="font-size: 12.5px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; display: block;">
+            Additional Ramp Equipment &amp; Turnaround Utilities (GSE Addenda):
+          </label>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 12px;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGseGPU" onchange="calculateAmendCommercials()"> <span>⚡ GPU 400Hz Ground Power</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGseASU" onchange="calculateAmendCommercials()"> <span>💨 ASU Air Start Unit</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGseACU" onchange="calculateAmendCommercials()"> <span>❄️ ACU Cabin Pre-Cooling</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGsePushback" onchange="calculateAmendCommercials()"> <span>🚜 Pushback Tug &amp; Towbar</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGseLavatory" onchange="calculateAmendCommercials()"> <span>🚽 Lavatory Waste Disposal</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAmendGseCabinClean" onchange="calculateAmendCommercials()"> <span>🧹 Deep Cabin Turnaround Clean</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 5: Commercial & Value Adjustment -->
+        <div class="form-grid-3" style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 10px;">
+          <div class="input-field-unit">
+            <label for="inpAmendMonthlyAdj">Monthly Surcharge / Fee (USD)</label>
+            <input type="number" id="inpAmendMonthlyAdj" class="form-input-control" value="4500" step="100" min="0" oninput="calculateAmendCommercials()">
+          </div>
+          <div class="input-field-unit">
+            <label for="inpAmendNewAnnualVal">Updated Annual Contract Value</label>
+            <input type="text" id="inpAmendNewAnnualVal" class="form-input-control" readonly style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #047857;">
+          </div>
+          <div class="input-field-unit">
+            <label for="inpAmendNotes">Amendment Clause Notes</label>
+            <input type="text" id="inpAmendNotes" class="form-input-control" placeholder="e.g. Executed under commercial addendum annex B...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-actions-footer" style="flex-shrink: 0; padding-top: 12px; margin-top: 6px;">
+        <button type="button" class="btn-stepper-back" onclick="closeAmendmentModal()">Cancel</button>
+        <button type="button" class="btn-save-continue-gold" style="background: #047857; color: #ffffff; display: inline-flex; align-items: center; gap: 6px;" onclick="saveContractAmendment()">
+          <span>✓ Apply &amp; Save Amendment</span>
         </button>
       </div>
     </div>
@@ -4041,7 +4773,7 @@
     <div class="modal-dialog-box" style="max-width: 580px;">
       <button class="btn-close-modal" onclick="closeLookupModal()">✕</button>
       <div class="modal-header-block">
-        <h3 id="lookupModalTitle"><span>➕</span> Add New Lookup Record</h3>
+        <h3 id="lookupModalTitle"><span class="modal-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span> Add New Lookup Record</h3>
         <p id="lookupModalSubtitle">Add custom master data to system registry catalogs.</p>
       </div>
 
@@ -4556,6 +5288,41 @@
         ).map(t => t.tail);
         const seedContractTails = matchingTails.length > 0 ? matchingTails.slice(0, 4) : [];
 
+        const contractAmendments = [];
+        if (i === 1) {
+          contractAmendments.push({
+            ref: `${ref}-AMD-1`,
+            title: 'Annex 1: Hurghada Transit & Ramp Service Expansion',
+            effectiveDate: '2026-03-01',
+            createdDate: '2026-02-15',
+            addedStations: ['HRG'],
+            addedFleet: ['A321'],
+            crewHousing: { enabled: true, tier: '4-Star Airport Transit Hotel', board: 'BB', rooms: 8, station: 'HRG' },
+            crewTransport: { enabled: true, type: 'VIP AC Crew Van (HiAce / Sprinter)', route: 'Ramp ↔ Terminal ↔ Hotel (Roundtrip)' },
+            ladders: { enabled: true, type: 'Self-Propelled Motorized Stairs (Covered Canopy)', operatorIncluded: true },
+            potableWater: { enabled: true, capacity: 'Full Tank Replenishment per Sortie', whoCert: true },
+            gseServices: ['GPU 400Hz', 'Lavatory Waste Disposal'],
+            monthlySurcharge: 5400,
+            notes: 'High season turnaround equipment, crew layover lodging and passenger stairs authorized for Red Sea operations.'
+          });
+        } else if (i === 4) {
+          contractAmendments.push({
+            ref: `${ref}-AMD-1`,
+            title: 'Annex A: Sharm El Sheikh Station & Water Servicing Addendum',
+            effectiveDate: '2026-04-15',
+            createdDate: '2026-04-01',
+            addedStations: ['SSH'],
+            addedFleet: ['B788'],
+            crewHousing: { enabled: false },
+            crewTransport: { enabled: true, type: 'Dedicated AC Shuttle Bus (30 Seats)', route: 'Airside Ramp ↔ Terminal Only' },
+            ladders: { enabled: true, type: 'Self-Propelled Motorized Stairs (Covered Canopy)', operatorIncluded: true },
+            potableWater: { enabled: true, capacity: 'Heavy Widebody High Volume (2,000L+)', whoCert: true },
+            gseServices: ['GPU 400Hz', 'ASU Air Start Unit'],
+            monthlySurcharge: 4200,
+            notes: 'Potable water replenishment and widebody stairs addition for European charter arrivals.'
+          });
+        }
+
         contractsMasterData.push({
           id: i,
           ref: ref,
@@ -4576,8 +5343,9 @@
           profitMargin: margin,
           paymentTerms: tmpl.pmt,
           currency: 'USD',
-          version: `v${1 + (i % 3)}.${i % 4}`,
-          notes: 'Standard SGHA handling agreement authorized by Egyptian CAA'
+          version: contractAmendments.length > 0 ? `v1.${contractAmendments.length} (AMD)` : `v${1 + (i % 3)}.${i % 4}`,
+          notes: 'Standard SGHA handling agreement authorized by Egyptian CAA',
+          amendments: contractAmendments
         });
       }
     }
@@ -4815,7 +5583,7 @@
       if (pageItems.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="9" style="text-align: center; padding: 40px; color: var(--text-muted);">
+            <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">
               <strong>No contracts match the selected search or filter criteria.</strong>
               <div style="margin-top: 6px; font-size: 12px;">Clear filters or click "All Contracts" above to view records.</div>
             </td>
@@ -4845,48 +5613,47 @@
             remBadge = `<span class="remaining-days-badge" style="background:#f1f5f9; color:#475569;">In Prep</span>`;
           }
 
-          const stationsHtml = c.stations.map(st => `
-            <span class="station-badge-pill ${st === c.primaryStation ? 'hub' : ''}" title="${st === c.primaryStation ? 'Primary Hub' : 'Authorized'}">${st}</span>
-          `).join('');
+          const stationsMax = 3;
+          const stationsSlice = c.stations.slice(0, stationsMax);
+          const stationsExtra = c.stations.length - stationsMax;
+          const stationsHtml = stationsSlice.map(st => `
+            <span class="station-badge-pill ${st === c.primaryStation ? 'hub' : ''}" title="${st === c.primaryStation ? 'Primary Hub' : 'Authorized Airport'}">${st}</span>
+          `).join('') + (stationsExtra > 0 ? `<span class="station-badge-pill extra" title="${c.stations.slice(stationsMax).join(', ')}">+${stationsExtra}</span>` : '');
+
+          const tailsInfo = (c.tails && c.tails.length > 0)
+            ? (c.tails[0] + (c.tails.length > 1 ? ` (+${c.tails.length - 1})` : ''))
+            : 'Open fleet';
 
           return `
             <tr>
               <td>
-                <div class="contract-ref-code">${c.ref}</div>
-                <div class="contract-ver-badge">${c.version}</div>
-              </td>
-              <td>
                 <div class="carrier-title">${c.customerName}</div>
                 <div class="carrier-submeta">
                   <span class="carrier-iata">${c.carrierCode}</span>
-                  <span>•</span>
-                  <span>${getCategoryLabel(c.category)}</span>
+                  <span class="sep">•</span>
+                  <span class="contract-ref-code">${c.ref}</span>
+                  <span class="contract-ver-badge">${c.version}</span>
+                  ${c.amendments && c.amendments.length > 0 ? `<span class="contract-amend-badge">📜 AMD (${c.amendments.length})</span>` : ''}
                 </div>
               </td>
               <td>
-                <div style="max-width: 200px;">${stationsHtml}</div>
+                <div class="stations-pills-wrap">${stationsHtml}</div>
               </td>
               <td>
-                <div style="font-weight: 600; font-size: 12px; color: var(--text-main);">${c.fleet.slice(0, 3).join(', ')}${c.fleet.length > 3 ? ' +' + (c.fleet.length - 3) : ''}</div>
-                <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 4px;">
-                  <span style="color: var(--primary-blue); font-size: 11px;">🛩️</span>
-                  <span style="color: #475569;">${c.tails && c.tails.length > 0 ? (c.tails.slice(0, 2).join(', ') + (c.tails.length > 2 ? ` (+${c.tails.length - 2})` : '')) : 'Open fleet'}</span>
+                <div class="fleet-models-str">${c.fleet.slice(0, 2).join(', ')}${c.fleet.length > 2 ? ' +' + (c.fleet.length - 2) : ''}</div>
+                <div class="fleet-ops-sub">
+                  <span class="flights-num">${c.flightsPerMonth}</span> <span class="flights-unit">flts/mo</span>
+                  <span class="sep">•</span>
+                  <span class="tails-str" title="${c.tails && c.tails.length > 0 ? c.tails.join(', ') : 'Open fleet policy'}">🛩️ ${tailsInfo}</span>
                 </div>
               </td>
               <td>
                 <div class="date-str-box">${c.startDate} &rarr; ${c.endDate}</div>
-                <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px; font-family: 'JetBrains Mono', monospace;">
-                  <span style="font-weight: 600; color: #64748b;">Created:</span> ${c.createdDate}
-                </div>
-                <div style="margin-top: 4px;">${remBadge}</div>
-              </td>
-              <td style="text-align: center;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text-main);">${c.flightsPerMonth}</span>
-                <span style="font-size: 11px; color: var(--text-muted); display: block;">flts/mo</span>
+                <div style="margin-top: 3px;">${remBadge}</div>
               </td>
               <td>
                 <div class="val-str">${formatCurrency(c.annualValue)}</div>
-                <div class="margin-str">Margin: +${c.profitMargin}%</div>
+                <div class="margin-str">+${c.profitMargin}% margin</div>
               </td>
               <td>
                 ${statusChip}
@@ -4894,13 +5661,16 @@
               <td>
                 <div class="table-actions-cell" style="justify-content: center;">
                   <button type="button" class="btn-tbl-action btn-tbl-edit" onclick="loadContractToEdit(${c.id})" title="Edit agreement in studio">
-                    <span>✏️ Edit</span>
+                    <span class="btn-icon">✏️</span><span class="btn-lbl">Edit</span>
+                  </button>
+                  <button type="button" class="btn-tbl-action btn-tbl-amend" onclick="openAmendmentModal(${c.id})" title="Add contract amendment & options">
+                    <span class="btn-icon">📜</span><span class="btn-lbl">Amend</span>
                   </button>
                   <button type="button" class="btn-tbl-action btn-tbl-renew" onclick="openRenewalModal(${c.id})" title="Renew agreement to new dates">
-                    <span>🔄 Renew</span>
+                    <span class="btn-icon">🔄</span><span class="btn-lbl">Renew</span>
                   </button>
                   <button type="button" class="btn-tbl-action btn-tbl-view" onclick="openContractQuickView(${c.id})" title="View details card">
-                    <span>👁️</span>
+                    <span class="btn-icon">👁️</span>
                   </button>
                 </div>
               </td>
@@ -5799,21 +6569,22 @@
 
       const titleEl = document.getElementById('lookupModalTitle');
       const subEl = document.getElementById('lookupModalSubtitle');
+      const badgeIcon = '<span class="modal-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>';
       if (type === 'AIRLINE') {
-        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Customer / Airline Record';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Customer / Airline Record`;
         if (subEl) subEl.textContent = 'Add an airline client or charter operator to system master data.';
       } else if (type === 'STATION') {
-        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Airport Station';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Airport Station`;
         if (subEl) subEl.textContent = 'Register a domestic or international airport station with IATA code.';
       } else if (type === 'FLEET') {
-        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Aircraft Model';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Aircraft Model`;
         if (subEl) subEl.textContent = 'Add an aircraft type, ICAO/IATA designator, and MTOW weight category.';
       } else if (type === 'TAIL') {
-        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Aircraft Tail Registration';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Aircraft Tail Registration`;
         if (subEl) subEl.textContent = 'Register an individual aircraft tail number with certified MTOW into the fleet catalog.';
         populateTailLookupSelects();
       } else if (type === 'SERVICE') {
-        if (titleEl) titleEl.innerHTML = '<span>➕</span> Add Ground Handling Service';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Ground Handling Service`;
         if (subEl) subEl.textContent = 'Define a ground service, equipment item, or tariff unit.';
       }
     }
@@ -6116,8 +6887,8 @@
 
       const btnAdd = document.getElementById('btnAddPreviewCurrent');
       if (btnAdd) {
-        const label = type === 'AIRLINE' ? '+ Add Airline' : type === 'STATION' ? '+ Add Station' : type === 'FLEET' ? '+ Add Aircraft' : type === 'TAIL' ? '+ Register Tail' : '+ Add Service';
-        btnAdd.innerHTML = `<span>${label}</span>`;
+        const label = type === 'AIRLINE' ? 'Add Airline' : type === 'STATION' ? 'Add Station' : type === 'FLEET' ? 'Add Aircraft' : type === 'TAIL' ? 'Register Tail' : 'Add Service';
+        btnAdd.innerHTML = `<svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>${label}</span>`;
       }
 
       renderLookupsCatalogView();
@@ -6158,6 +6929,12 @@
       if (!thead || !tbody) return;
 
       const term = previewCatalogSearchTerm;
+      const rowAddBtn = (modalType, tooltip) => `
+        <button type="button" class="btn-table-action" onclick="openLookupModal('${modalType}')" title="${tooltip}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Add</span>
+        </button>
+      `;
 
       if (currentPreviewLookupType === 'AIRLINE') {
         thead.innerHTML = `
@@ -6177,14 +6954,14 @@
         } else {
           tbody.innerHTML = list.map(a => `
             <tr>
-              <td><span class="contract-ver-badge" style="background:#eff6ff; color:#2563eb; font-weight:700;">${a.code}</span></td>
+              <td><span class="contract-ver-badge" style="background:#f0f7fc; color:#437fb9; font-weight:700;">${a.code}</span></td>
               <td><strong>${a.name}</strong></td>
               <td><span class="status-badge-chip active">${a.cat}</span></td>
               <td><span style="font-family:'JetBrains Mono', monospace; font-size:12px;">${a.pmt}</span></td>
               <td><span class="station-badge-pill hub">${a.hub || 'CAI'}</span></td>
               <td>${a.country}</td>
               <td style="text-align: center;">
-                <button type="button" class="btn-table-action" onclick="openLookupModal('AIRLINE')" title="Add or edit airline">➕ Add</button>
+                ${rowAddBtn('AIRLINE', 'Add or edit airline')}
               </td>
             </tr>
           `).join('');
@@ -6211,7 +6988,7 @@
               <td>${s.region}</td>
               <td><span class="status-badge-chip active">Egyptian Port</span></td>
               <td style="text-align: center;">
-                <button type="button" class="btn-table-action" onclick="openLookupModal('STATION')" title="Add or edit station">➕ Add</button>
+                ${rowAddBtn('STATION', 'Add or edit station')}
               </td>
             </tr>
           `).join('');
@@ -6238,7 +7015,7 @@
               <td><span class="status-badge-chip ${f.tier === 'WIDE' || f.tier === 'HEAVY' ? 'renewal' : 'active'}">${f.tier} BODY</span></td>
               <td>Standard IATA SGHA</td>
               <td style="text-align: center;">
-                <button type="button" class="btn-table-action" onclick="openLookupModal('FLEET')" title="Add or edit fleet model">➕ Add</button>
+                ${rowAddBtn('FLEET', 'Add or edit fleet model')}
               </td>
             </tr>
           `).join('');
@@ -6271,7 +7048,7 @@
               <td>${t.leased ? '<span class="status-badge-chip expiring">Leased</span>' : '<span class="status-badge-chip active">Owned</span>'}</td>
               <td><span class="status-badge-chip active">${t.status}</span></td>
               <td style="text-align: center;">
-                <button type="button" class="btn-table-action" onclick="openLookupModal('TAIL')" title="Register tail">➕ Add</button>
+                ${rowAddBtn('TAIL', 'Register tail')}
               </td>
             </tr>
           `).join('');
@@ -6298,7 +7075,7 @@
               <td><strong style="color:var(--primary-blue); font-family:'JetBrains Mono', monospace;">$${s.rate.toFixed(2)}</strong></td>
               <td>Per sortie / unit hour</td>
               <td style="text-align: center;">
-                <button type="button" class="btn-table-action" onclick="openLookupModal('SERVICE')" title="Add or edit service">➕ Add</button>
+                ${rowAddBtn('SERVICE', 'Add or edit service')}
               </td>
             </tr>
           `).join('');
@@ -6690,6 +7467,414 @@
     }
 
     // ==========================================================
+    // CONTRACT AMENDMENT & OPTIONS CONTROLLER
+    // Airport Stations, Fleet Models, Crew Housing, Transportation,
+    // Passenger Ladders/Stairs, Potable Water, Ramp GSE Addenda
+    // ==========================================================
+    let currentAmendingContractId = null;
+    let amendSelectedNewStations = new Set();
+    let amendSelectedNewFleet = new Set();
+
+    function openAmendmentModal(contractId) {
+      initContractsData();
+      if (!contractsMasterData || contractsMasterData.length === 0) return;
+
+      const selContract = document.getElementById('amendSelectContract');
+      if (selContract) {
+        selContract.innerHTML = contractsMasterData.map(c => `
+          <option value="${c.id}">${c.ref} — ${c.customerName} (${c.carrierCode}) [${c.status}]</option>
+        `).join('');
+      }
+
+      let targetId = contractId;
+      if (!targetId) {
+        const active = contractsMasterData.find(c => c.status === 'ACTIVE');
+        targetId = active ? active.id : contractsMasterData[0].id;
+      }
+
+      if (selContract) {
+        selContract.value = targetId;
+      }
+
+      updateAmendmentModalForm(targetId);
+      document.getElementById('modalContractAmendment').classList.add('open');
+    }
+
+    function closeAmendmentModal() {
+      document.getElementById('modalContractAmendment').classList.remove('open');
+      currentAmendingContractId = null;
+      amendSelectedNewStations.clear();
+      amendSelectedNewFleet.clear();
+    }
+
+    function onAmendContractChanged() {
+      const selContract = document.getElementById('amendSelectContract');
+      if (!selContract) return;
+      const id = parseInt(selContract.value, 10);
+      updateAmendmentModalForm(id);
+    }
+
+    function updateAmendmentModalForm(contractId) {
+      currentAmendingContractId = contractId;
+      amendSelectedNewStations.clear();
+      amendSelectedNewFleet.clear();
+
+      const contract = contractsMasterData.find(c => c.id === contractId);
+      if (!contract) return;
+
+      // Amendment Ref code: e.g. TAS-CAI-2026-001-AMD-1
+      const amdCount = (contract.amendments ? contract.amendments.length : 0) + 1;
+      const refCode = `${contract.ref}-AMD-${amdCount}`;
+      const inpRef = document.getElementById('inpAmendRefCode');
+      if (inpRef) inpRef.value = refCode;
+
+      // Effective date defaults to today or contract start date
+      const inpDate = document.getElementById('inpAmendEffectiveDate');
+      if (inpDate) {
+        const todayStr = new Date().toISOString().split('T')[0];
+        inpDate.value = todayStr;
+      }
+
+      // Title default
+      const inpTitle = document.getElementById('inpAmendTitle');
+      if (inpTitle) {
+        inpTitle.value = `Amendment #${amdCount}: Operational Scope & Amenities Expansion`;
+      }
+
+      // Validity & status
+      const perEl = document.getElementById('amendCurrentPeriod');
+      if (perEl) {
+        perEl.innerHTML = `<strong>${contract.startDate} &rarr; ${contract.endDate}</strong> &nbsp; <span class="status-badge-chip ${contract.status.toLowerCase()}">● ${contract.status}</span> &nbsp; <span style="font-size:11px; color:var(--text-muted);">Current Value: <strong>${formatCurrency(contract.annualValue)}</strong></span>`;
+      }
+
+      // Current stations badges
+      const stEl = document.getElementById('amendCurrentStationsBadges');
+      if (stEl) {
+        stEl.innerHTML = contract.stations.map(st => `
+          <span class="station-badge-pill ${st === contract.primaryStation ? 'hub' : ''}" style="margin: 2px;">
+            ${st}${st === contract.primaryStation ? ' (Hub)' : ''}
+          </span>
+        `).join('');
+      }
+
+      // Current fleet badges
+      const flEl = document.getElementById('amendCurrentFleetBadges');
+      if (flEl) {
+        flEl.innerHTML = contract.fleet.map(fl => `
+          <span class="fleet-badge-pill" style="margin: 2px;">${fl}</span>
+        `).join('');
+      }
+
+      // Render Airport Stations Chips
+      const stationsContainer = document.getElementById('amendStationsChipsContainer');
+      if (stationsContainer) {
+        stationsContainer.innerHTML = lookupStations.map(st => {
+          const isContracted = contract.stations.includes(st.code);
+          if (isContracted) {
+            return `
+              <div class="amend-chip-btn existing" title="${st.name} (Already authorized under current agreement)">
+                <span class="chk-box">✓</span>
+                <span>${st.code}</span>
+                <span style="font-size: 10px; opacity: 0.85;">(Contracted)</span>
+              </div>
+            `;
+          }
+          return `
+            <div class="amend-chip-btn" id="amendChipSt_${st.code}" onclick="toggleAmendStation('${st.code}')" title="${st.name} — ${st.region}">
+              <span class="chk-box">+</span>
+              <span style="font-weight: 700;">${st.code}</span>
+              <span style="font-size: 10px; color: var(--text-muted);">${st.region}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render Fleet Models Chips
+      const fleetContainer = document.getElementById('amendFleetChipsContainer');
+      if (fleetContainer) {
+        fleetContainer.innerHTML = lookupFleet.map(fl => {
+          const isContracted = contract.fleet.includes(fl.code);
+          if (isContracted) {
+            return `
+              <div class="amend-chip-btn existing" title="${fl.name} (Already authorized in fleet)">
+                <span class="chk-box">✓</span>
+                <span>${fl.code}</span>
+                <span style="font-size: 10px; opacity: 0.85;">(Covered)</span>
+              </div>
+            `;
+          }
+          return `
+            <div class="amend-chip-btn" id="amendChipFl_${fl.code}" onclick="toggleAmendFleet('${fl.code}')" title="${fl.name}">
+              <span class="chk-box">+</span>
+              <span style="font-weight: 700;">${fl.code}</span>
+              <span style="font-size: 10px; color: var(--text-muted);">${fl.tier}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Reset option cards: Crew Housing, Crew Transport, Ladders, Water
+      const cards = [
+        { id: 'cardAmendCrewHousing', chk: 'chkAmendCrewHousing', active: false },
+        { id: 'cardAmendCrewTransport', chk: 'chkAmendCrewTransport', active: false },
+        { id: 'cardAmendLadders', chk: 'chkAmendLadders', active: true },
+        { id: 'cardAmendWater', chk: 'chkAmendWater', active: true }
+      ];
+
+      cards.forEach(c => {
+        const chk = document.getElementById(c.chk);
+        if (chk) chk.checked = c.active;
+        toggleAmendOptionCard(c.id, c.active, false);
+      });
+
+      // Default GSE toggles
+      const gseIds = ['chkAmendGseGPU', 'chkAmendGseASU', 'chkAmendGseACU', 'chkAmendGsePushback', 'chkAmendGseLavatory', 'chkAmendGseCabinClean'];
+      gseIds.forEach((gid, i) => {
+        const el = document.getElementById(gid);
+        if (el) el.checked = (i === 0 || i === 4); // Default GPU and Lavatory checked
+      });
+
+      // Notes
+      const inpNotes = document.getElementById('inpAmendNotes');
+      if (inpNotes) inpNotes.value = 'Annex service agreement for auxiliary ramp ground support & passenger conveniences.';
+
+      calculateAmendCommercials();
+    }
+
+    function toggleAmendStation(code) {
+      if (amendSelectedNewStations.has(code)) {
+        amendSelectedNewStations.delete(code);
+      } else {
+        amendSelectedNewStations.add(code);
+      }
+      const chip = document.getElementById(`amendChipSt_${code}`);
+      if (chip) {
+        if (amendSelectedNewStations.has(code)) {
+          chip.classList.add('selected');
+          const chkBox = chip.querySelector('.chk-box');
+          if (chkBox) chkBox.textContent = '✓';
+        } else {
+          chip.classList.remove('selected');
+          const chkBox = chip.querySelector('.chk-box');
+          if (chkBox) chkBox.textContent = '+';
+        }
+      }
+      calculateAmendCommercials();
+    }
+
+    function toggleAmendFleet(code) {
+      if (amendSelectedNewFleet.has(code)) {
+        amendSelectedNewFleet.delete(code);
+      } else {
+        amendSelectedNewFleet.add(code);
+      }
+      const chip = document.getElementById(`amendChipFl_${code}`);
+      if (chip) {
+        if (amendSelectedNewFleet.has(code)) {
+          chip.classList.add('selected');
+          const chkBox = chip.querySelector('.chk-box');
+          if (chkBox) chkBox.textContent = '✓';
+        } else {
+          chip.classList.remove('selected');
+          const chkBox = chip.querySelector('.chk-box');
+          if (chkBox) chkBox.textContent = '+';
+        }
+      }
+      calculateAmendCommercials();
+    }
+
+    function toggleAmendOptionCard(cardId, isChecked, recalculate = true) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        if (isChecked) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      }
+      if (recalculate) {
+        calculateAmendCommercials();
+      }
+    }
+
+    function calculateAmendCommercials() {
+      if (!currentAmendingContractId) return;
+      const contract = contractsMasterData.find(c => c.id === currentAmendingContractId);
+      if (!contract) return;
+
+      let monthlyFee = 0;
+
+      // Stations fee: $1,200/mo per added station
+      monthlyFee += amendSelectedNewStations.size * 1200;
+
+      // Fleet models fee: $750/mo per added model
+      monthlyFee += amendSelectedNewFleet.size * 750;
+
+      // Crew Housing
+      const chkHousing = document.getElementById('chkAmendCrewHousing');
+      if (chkHousing && chkHousing.checked) {
+        const rooms = parseInt(document.getElementById('inpAmendHousingRooms')?.value, 10) || 8;
+        const tier = document.getElementById('selAmendHousingTier')?.value;
+        const roomRate = tier === '5_STAR' ? 120 : (tier === 'VILLA' ? 95 : 75);
+        monthlyFee += Math.round(rooms * roomRate * 12);
+      }
+
+      // Crew Transport
+      const chkTransport = document.getElementById('chkAmendCrewTransport');
+      if (chkTransport && chkTransport.checked) {
+        monthlyFee += 1850;
+      }
+
+      // Ladders & Stairs
+      const chkLadders = document.getElementById('chkAmendLadders');
+      if (chkLadders && chkLadders.checked) {
+        monthlyFee += 1200;
+      }
+
+      // Potable Water
+      const chkWater = document.getElementById('chkAmendWater');
+      if (chkWater && chkWater.checked) {
+        monthlyFee += 950;
+      }
+
+      // GSE Addenda
+      if (document.getElementById('chkAmendGseGPU')?.checked) monthlyFee += 450;
+      if (document.getElementById('chkAmendGseASU')?.checked) monthlyFee += 550;
+      if (document.getElementById('chkAmendGseACU')?.checked) monthlyFee += 600;
+      if (document.getElementById('chkAmendGsePushback')?.checked) monthlyFee += 500;
+      if (document.getElementById('chkAmendGseLavatory')?.checked) monthlyFee += 400;
+      if (document.getElementById('chkAmendGseCabinClean')?.checked) monthlyFee += 350;
+
+      const inpMonthly = document.getElementById('inpAmendMonthlyAdj');
+      if (inpMonthly) {
+        inpMonthly.value = monthlyFee;
+      }
+
+      // Updated annual value
+      const newAnnual = contract.annualValue + (monthlyFee * 12);
+      const inpAnnual = document.getElementById('inpAmendNewAnnualVal');
+      if (inpAnnual) {
+        inpAnnual.value = formatCurrency(newAnnual);
+      }
+    }
+
+    function saveContractAmendment() {
+      if (!currentAmendingContractId) {
+        alert('Please select a contract to amend.');
+        return;
+      }
+      const contract = contractsMasterData.find(c => c.id === currentAmendingContractId);
+      if (!contract) return;
+
+      const refCode = document.getElementById('inpAmendRefCode').value || `${contract.ref}-AMD-1`;
+      const effDate = document.getElementById('inpAmendEffectiveDate').value;
+      const title = document.getElementById('inpAmendTitle').value || 'Service Scope & Operational Amendment';
+      const monthlyFee = parseFloat(document.getElementById('inpAmendMonthlyAdj').value) || 0;
+      const notes = document.getElementById('inpAmendNotes').value || '';
+
+      if (!effDate) {
+        alert('Please specify the effective date for the amendment.');
+        return;
+      }
+
+      const addedStations = Array.from(amendSelectedNewStations);
+      const addedFleet = Array.from(amendSelectedNewFleet);
+
+      const isHousing = document.getElementById('chkAmendCrewHousing')?.checked || false;
+      const isTransport = document.getElementById('chkAmendCrewTransport')?.checked || false;
+      const isLadders = document.getElementById('chkAmendLadders')?.checked || false;
+      const isWater = document.getElementById('chkAmendWater')?.checked || false;
+
+      const gseServices = [];
+      if (document.getElementById('chkAmendGseGPU')?.checked) gseServices.push('GPU 400Hz');
+      if (document.getElementById('chkAmendGseASU')?.checked) gseServices.push('ASU Air Start');
+      if (document.getElementById('chkAmendGseACU')?.checked) gseServices.push('ACU Pre-Cooling');
+      if (document.getElementById('chkAmendGsePushback')?.checked) gseServices.push('Pushback Tug');
+      if (document.getElementById('chkAmendGseLavatory')?.checked) gseServices.push('Lavatory Waste');
+      if (document.getElementById('chkAmendGseCabinClean')?.checked) gseServices.push('Cabin Turnaround Clean');
+
+      const hasChanges = addedStations.length > 0 || addedFleet.length > 0 || isHousing || isTransport || isLadders || isWater || gseServices.length > 0 || monthlyFee > 0;
+      if (!hasChanges) {
+        alert('Please select at least one amendment option (stations, fleet models, crew housing, transport, ladders, water, or turnaround equipment).');
+        return;
+      }
+
+      // Merge newly added stations into contract
+      addedStations.forEach(st => {
+        if (!contract.stations.includes(st)) {
+          contract.stations.push(st);
+        }
+      });
+
+      // Merge newly added fleet models into contract
+      addedFleet.forEach(fl => {
+        if (!contract.fleet.includes(fl)) {
+          contract.fleet.push(fl);
+        }
+      });
+
+      // Construct amendment record
+      const amendmentRecord = {
+        ref: refCode,
+        title: title,
+        effectiveDate: effDate,
+        createdDate: new Date().toISOString().split('T')[0],
+        addedStations: addedStations,
+        addedFleet: addedFleet,
+        crewHousing: isHousing ? {
+          enabled: true,
+          tier: document.getElementById('selAmendHousingTier')?.options[document.getElementById('selAmendHousingTier').selectedIndex]?.text || 'Hotel',
+          board: document.getElementById('selAmendHousingBoard')?.value || 'BB',
+          rooms: parseInt(document.getElementById('inpAmendHousingRooms')?.value, 10) || 8,
+          station: document.getElementById('selAmendHousingStation')?.value || 'ALL'
+        } : { enabled: false },
+        crewTransport: isTransport ? {
+          enabled: true,
+          type: document.getElementById('selAmendTransportType')?.options[document.getElementById('selAmendTransportType').selectedIndex]?.text || 'Crew Van',
+          route: document.getElementById('selAmendTransportRoute')?.options[document.getElementById('selAmendTransportRoute').selectedIndex]?.text || 'Roundtrip'
+        } : { enabled: false },
+        ladders: isLadders ? {
+          enabled: true,
+          type: document.getElementById('selAmendLadderType')?.options[document.getElementById('selAmendLadderType').selectedIndex]?.text || 'Passenger Stairs',
+          operatorIncluded: document.getElementById('chkAmendStairOperator')?.checked || false
+        } : { enabled: false },
+        potableWater: isWater ? {
+          enabled: true,
+          capacity: document.getElementById('selAmendWaterCapacity')?.options[document.getElementById('selAmendWaterCapacity').selectedIndex]?.text || 'Full Tank',
+          whoCert: document.getElementById('chkAmendWaterCert')?.checked || false
+        } : { enabled: false },
+        gseServices: gseServices,
+        monthlySurcharge: monthlyFee,
+        notes: notes
+      };
+
+      if (!contract.amendments) {
+        contract.amendments = [];
+      }
+      contract.amendments.push(amendmentRecord);
+
+      // Increment version number e.g. v1.1 (AMD)
+      const currentVerNum = parseFloat(contract.version.replace(/[^0-9.]/g, '')) || 1.0;
+      contract.version = `v${(currentVerNum + 0.1).toFixed(1)} (AMD)`;
+
+      // Update annual value
+      contract.annualValue += Math.round(monthlyFee * 12);
+
+      // Close modal
+      closeAmendmentModal();
+
+      // Refresh table and start screen metrics
+      renderContractsTable();
+      updateStartScreenMetrics();
+
+      // Toast feedback
+      showToast(`🎉 Amendment [${refCode}] saved and applied to [${contract.ref}]!`);
+
+      // Open quick view to show result
+      openContractQuickView(contract.id);
+    }
+
+    // ==========================================================
     // QUICK AUDIT VIEW MODAL
     // ==========================================================
     function openContractQuickView(contractId) {
@@ -6700,12 +7885,57 @@
       const rem = calculateDaysRemaining(contract.endDate);
       const container = document.getElementById('quickViewModalContent');
 
+      // Build amendments history HTML if any amendments exist
+      let amendmentsHtml = '';
+      if (contract.amendments && contract.amendments.length > 0) {
+        const items = contract.amendments.map((amd, idx) => `
+          <div style="background: #ffffff; border: 1px solid #d1fae5; border-radius: 6px; padding: 12px; margin-top: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="contract-amend-badge">Amendment #${idx + 1}</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #047857; font-size: 13px;">${amd.ref}</span>
+              </div>
+              <span style="font-size: 11.5px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Effective: ${amd.effectiveDate}</span>
+            </div>
+            <div style="font-size: 12.5px; font-weight: 600; color: var(--text-main); margin-bottom: 6px;">${amd.title || 'Service Scope & Operational Amendment'}</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; margin-bottom: 6px;">
+              ${amd.addedStations && amd.addedStations.length > 0 ? `<span class="station-badge-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #047857;">+ Stations: ${amd.addedStations.join(', ')}</span>` : ''}
+              ${amd.addedFleet && amd.addedFleet.length > 0 ? `<span class="fleet-badge-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #047857;">+ Fleet: ${amd.addedFleet.join(', ')}</span>` : ''}
+              ${amd.crewHousing?.enabled ? `<span style="background: #f0fdf4; border: 1px solid #86efac; color: #15803d; padding: 2px 6px; border-radius: 4px;">🏨 Crew Housing (${amd.crewHousing.tier}, ${amd.crewHousing.rooms} rooms)</span>` : ''}
+              ${amd.crewTransport?.enabled ? `<span style="background: #f0fdf4; border: 1px solid #86efac; color: #15803d; padding: 2px 6px; border-radius: 4px;">🚐 Crew Transport (${amd.crewTransport.type})</span>` : ''}
+              ${amd.ladders?.enabled ? `<span style="background: #f0fdf4; border: 1px solid #86efac; color: #15803d; padding: 2px 6px; border-radius: 4px;">🪜 Stairs & Ladders (${amd.ladders.type})</span>` : ''}
+              ${amd.potableWater?.enabled ? `<span style="background: #f0fdf4; border: 1px solid #86efac; color: #15803d; padding: 2px 6px; border-radius: 4px;">💧 Potable Water (${amd.potableWater.capacity})</span>` : ''}
+              ${amd.gseServices && amd.gseServices.length > 0 ? `<span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 2px 6px; border-radius: 4px;">⚙️ GSE: ${amd.gseServices.join(', ')}</span>` : ''}
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); padding-top: 4px;">
+              <span>${amd.notes ? `<em>"${amd.notes}"</em>` : ''}</span>
+              <span style="font-weight: 700; color: #047857; font-family: 'JetBrains Mono', monospace;">+${formatCurrency(amd.monthlySurcharge || 0)}/mo</span>
+            </div>
+          </div>
+        `).join('');
+
+        amendmentsHtml = `
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+            <div style="font-weight: 700; font-size: 13px; color: #065f46; display: flex; align-items: center; justify-content: space-between;">
+              <span style="display: flex; align-items: center; gap: 6px;">
+                <span>📜</span> Executed Amendments &amp; Operational Addenda (${contract.amendments.length})
+              </span>
+              <button type="button" class="btn-tbl-action btn-tbl-amend" onclick="closeContractQuickView(); openAmendmentModal(${contract.id})" style="height: 26px; font-size: 11px;">
+                + Add Another Amendment
+              </button>
+            </div>
+            ${items}
+          </div>
+        `;
+      }
+
       container.innerHTML = `
         <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 18px; margin-bottom: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
             <div>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 800; color: var(--primary-navy);">${contract.ref}</span>
               <span class="contract-ver-badge" style="margin-left: 8px;">${contract.version}</span>
+              ${contract.amendments && contract.amendments.length > 0 ? `<span class="contract-amend-badge" style="margin-left: 6px;">📜 AMD (${contract.amendments.length})</span>` : ''}
             </div>
             <div>
               <span class="status-badge-chip ${contract.status.toLowerCase()}">
@@ -6759,6 +7989,7 @@
             </div>
           </div>
         </div>
+        ${amendmentsHtml}
       `;
 
       const btnEdit = document.getElementById('quickViewBtnEdit');
@@ -6766,6 +7997,13 @@
         btnEdit.onclick = () => {
           closeContractQuickView();
           loadContractToEdit(contract.id);
+        };
+      }
+      const btnAmend = document.getElementById('quickViewBtnAmend');
+      if (btnAmend) {
+        btnAmend.onclick = () => {
+          closeContractQuickView();
+          openAmendmentModal(contract.id);
         };
       }
       const btnRenew = document.getElementById('quickViewBtnRenew');
