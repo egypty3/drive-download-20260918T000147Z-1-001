@@ -1,0 +1,1094 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3560 2250" width="100%" height="100%" style="background:#070b14;">
+  <defs>
+    <!-- Background Canvas Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#090f1d"/>
+      <stop offset="100%" stop-color="#0b1326"/>
+    </linearGradient>
+
+    <!-- Domain Glow & Header Gradients -->
+    <linearGradient id="hdrFinancial" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#be123c"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="hdrCommercial" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="hdrOperations" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="hdrFleet" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="hdrPlanning" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0e7490"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="hdrAdmin" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4338ca"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <!-- Table Card Background Gradient -->
+    <linearGradient id="tableCardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141c2e"/>
+      <stop offset="100%" stop-color="#0d1424"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Relation Arrow Markers -->
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#c084fc"/>
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818cf8"/>
+    </marker>
+    <marker id="circleStart" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+      <circle cx="5" cy="5" r="3.5" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <style>
+    .banner-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 26px; font-weight: 900; fill: #ffffff; }
+    .banner-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 14px; font-weight: 500; fill: #94a3b8; }
+    .domain-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0.5px; fill: #ffffff; }
+    .tbl-title { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 13.5px; font-weight: 800; fill: #ffffff; }
+    .tbl-rows { font-family: "JetBrains Mono", Consolas, monospace; font-size: 10px; font-weight: 700; fill: #e2e8f0; }
+    .col-pk { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11.5px; font-weight: 800; fill: #fde047; }
+    .col-fk { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11.5px; font-weight: 800; fill: #38bdf8; }
+    .col-norm { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 600; fill: #cbd5e1; }
+    .col-type { font-family: "JetBrains Mono", Consolas, monospace; font-size: 9.5px; font-weight: 600; fill: #64748b; }
+    .cardinality-txt { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 900; fill: #f8fafc; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="3560" height="2250" fill="url(#bgGradient)"/>
+  <!-- Subtle Grid Overlay -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.04)" stroke-width="1"/>
+  </pattern>
+  <rect width="3560" height="2250" fill="url(#grid)"/>
+
+  <!-- TOP BANNER & STATS -->
+  <g transform="translate(40, 20)">
+    <rect width="3480" height="80" rx="14" fill="#0c1222" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="20" y="16" width="6" height="48" rx="3" fill="#38bdf8"/>
+    <text x="38" y="44" class="banner-title">TasDashBoardDev — Full Entity-Relationship Architecture Diagram (ERD &amp; Inferred Keys)</text>
+    <text x="38" y="66" class="banner-sub">Complete Reverse-Engineered Relational Graph of Ground Handling, Commercial Turnaround Contracts, Fleet &amp; Billing Engine</text>
+
+    <!-- KPI Badges -->
+    <g transform="translate(2180, 24)">
+      <rect x="0" y="0" width="180" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="12" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-weight="800">📊 117 Total Tables</text>
+
+      <rect x="195" y="0" width="220" height="34" rx="8" fill="rgba(244, 63, 94, 0.15)" stroke="rgba(244, 63, 94, 0.4)" stroke-width="1"/>
+      <text x="305" y="22" text-anchor="middle" font-size="12" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-weight="800">❌ 0 DB Physical FKs</text>
+
+      <rect x="430" y="0" width="250" height="34" rx="8" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1"/>
+      <text x="555" y="22" text-anchor="middle" font-size="12" fill="#34d399" font-family="'JetBrains Mono', monospace" font-weight="800">🔗 292 Inferred Relational FKs</text>
+
+      <rect x="695" y="0" width="200" height="34" rx="8" fill="rgba(168, 85, 247, 0.15)" stroke="rgba(168, 85, 247, 0.4)" stroke-width="1"/>
+      <text x="795" y="22" text-anchor="middle" font-size="12" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-weight="800">🏛️ 6 Functional Domains</text>
+
+      <rect x="910" y="0" width="160" height="34" rx="8" fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1"/>
+      <text x="990" y="22" text-anchor="middle" font-size="12" fill="#fcd34d" font-family="'JetBrains Mono', monospace" font-weight="800">⚙️ MS SQL Server</text>
+    </g>
+  </g>
+
+    <!-- Cluster: FINANCIAL -->
+    <rect x="35" y="120" width="330" height="2090" rx="14" fill="rgba(244, 63, 94, 0.06)" stroke="rgba(244, 63, 94, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(49, 132)">
+      <rect width="302" height="26" rx="6" fill="url(#hdrFinancial)"/>
+      <text x="151.0" y="18" text-anchor="middle" class="domain-label">1. Financial: AR Customers &amp; AP Suppliers</text>
+    </g>
+
+    <!-- Cluster: COMMERCIAL -->
+    <rect x="385" y="120" width="745" height="2090" rx="14" fill="rgba(245, 158, 11, 0.06)" stroke="rgba(245, 158, 11, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(399, 132)">
+      <rect width="717" height="26" rx="6" fill="url(#hdrCommercial)"/>
+      <text x="358.5" y="18" text-anchor="middle" class="domain-label">2. Commercial Contracts &amp; Tariffs</text>
+    </g>
+
+    <!-- Cluster: OPERATIONS -->
+    <rect x="1150" y="120" width="420" height="2090" rx="14" fill="rgba(168, 85, 247, 0.06)" stroke="rgba(192, 132, 252, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(1164, 132)">
+      <rect width="392" height="26" rx="6" fill="url(#hdrOperations)"/>
+      <text x="196.0" y="18" text-anchor="middle" class="domain-label">3. Operations &amp; Apron Work Orders</text>
+    </g>
+
+    <!-- Cluster: FLEET_STATIONS -->
+    <rect x="1590" y="120" width="750" height="2090" rx="14" fill="rgba(16, 185, 129, 0.06)" stroke="rgba(16, 185, 129, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(1604, 132)">
+      <rect width="722" height="26" rx="6" fill="url(#hdrFleet)"/>
+      <text x="361.0" y="18" text-anchor="middle" class="domain-label">4. Fleet &amp; Station Infrastructure</text>
+    </g>
+
+    <!-- Cluster: PLANNING -->
+    <rect x="2360" y="120" width="360" height="2090" rx="14" fill="rgba(6, 182, 212, 0.06)" stroke="rgba(6, 182, 212, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(2374, 132)">
+      <rect width="332" height="26" rx="6" fill="url(#hdrPlanning)"/>
+      <text x="166.0" y="18" text-anchor="middle" class="domain-label">5. Flight Planning &amp; Schedules</text>
+    </g>
+
+    <!-- Cluster: SYSTEM_ADMIN -->
+    <rect x="2740" y="120" width="780" height="2090" rx="14" fill="rgba(99, 102, 241, 0.06)" stroke="rgba(129, 140, 248, 0.5)" stroke-width="1.2" stroke-dasharray="6,4"/>
+    <g transform="translate(2754, 132)">
+      <rect width="752" height="26" rx="6" fill="url(#hdrAdmin)"/>
+      <text x="376.0" y="18" text-anchor="middle" class="domain-label">6. System Org &amp; Master Setup</text>
+    </g>
+  <!-- ================= RELATIONAL CONNECTIONS ================= -->
+  <g class="relationships-layer">
+    <path d="M 340.0 756.0 C 1429.0 756.0, 1671.0 251.0, 2760.0 251.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 340.0 756.0 C 1429.0 756.0, 1671.0 576.0, 2760.0 576.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 195.0 395.0 C 195.0 437.5, 190.0 437.5, 190.0 480.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 335.0 251.0 C 1426.2 251.0, 1668.8 1432.0, 2760.0 1432.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 335.0 251.0 C 1426.2 251.0, 1668.8 1066.0, 2760.0 1066.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 335.0 251.0 C 1426.2 251.0, 1668.8 576.0, 2760.0 576.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 335.0 251.0 C 1426.2 251.0, 1668.8 251.0, 2760.0 251.0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowRose)" marker-start="url(#circleStart)"/>
+    <path d="M 560.0 1736.0 C 560.0 1728.0, 560.0 1728.0, 560.0 1720.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 760.0 C 580.0 577.5, 570.0 577.5, 570.0 395.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 767.0 856.0, 773.0 856.0, 800.0 856.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1136.0 856.0, 1224.0 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1131.5 856.0, 1218.5 251.0, 1610.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1136.0 856.0, 1224.0 808.4, 1620.0 808.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 420.0 856.0 C 384.0 856.0, 376.0 756.0, 340.0 756.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1307.0 856.0, 1433.0 1552.0, 2000.0 1552.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 767.0 856.0, 773.0 856.0, 800.0 856.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1302.5 856.0, 1427.5 251.0, 1990.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1820.0 856.0, 2060.0 251.0, 3140.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1820.0 856.0, 2060.0 251.0, 3140.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 1649.0 856.0, 1851.0 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 1000.0 C 580.0 1360.0, 560.0 1360.0, 560.0 1720.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 1000.0 C 580.0 1270.0, 560.0 1270.0, 560.0 1540.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 856.0 C 767.0 856.0, 773.0 1376.0, 800.0 1376.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 570.0 395.0 C 570.0 1057.5, 560.0 1057.5, 560.0 1720.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 410.0 251.0 C 376.2 251.0, 368.8 251.0, 335.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 730.0 251.0 C 1643.5 251.0, 1846.5 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 730.0 251.0 C 1643.5 251.0, 1846.5 251.0, 2760.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 730.0 251.0 C 1643.5 251.0, 1846.5 576.0, 2760.0 576.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 730.0 251.0 C 1130.5 251.0, 1219.5 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 560.0 810.0 C 560.0 1265.0, 560.0 1265.0, 560.0 1720.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 700.0 666.0 C 1627.0 666.0, 1833.0 251.0, 2760.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 700.0 666.0 C 1627.0 666.0, 1833.0 576.0, 2760.0 576.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1756.0 C 1323.0 1756.0, 1377.0 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1756.0 C 1318.5 1756.0, 1371.5 251.0, 1610.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1756.0 C 1489.5 1756.0, 1580.5 251.0, 1990.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1756.0 C 1494.0 1756.0, 1586.0 1552.0, 2000.0 1552.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 940.0 1660.0 C 940.0 1330.0, 950.0 1330.0, 950.0 1000.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1756.0 C 2007.0 1756.0, 2213.0 251.0, 3140.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1376.0 C 1323.0 1376.0, 1377.0 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 800.0 1376.0 C 593.0 1376.0, 547.0 756.0, 340.0 756.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1376.0 C 1836.0 1376.0, 2004.0 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 1160.0 C 580.0 777.5, 570.0 777.5, 570.0 395.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 1307.0 1256.0, 1433.0 646.0, 2000.0 646.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 1160.0 C 580.0 777.5, 570.0 777.5, 570.0 395.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 420.0 1256.0 C 381.8 1256.0, 373.2 251.0, 335.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 1136.0 1256.0, 1224.0 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 1131.5 1256.0, 1218.5 251.0, 1610.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 1302.5 1256.0, 1427.5 251.0, 1990.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 767.0 1256.0, 773.0 856.0, 800.0 856.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 740.0 1256.0 C 1649.0 1256.0, 1851.0 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 580.0 1400.0 C 580.0 1560.0, 560.0 1560.0, 560.0 1720.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1100.0 856.0 C 2018.0 856.0, 2222.0 251.0, 3140.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1100.0 856.0 C 2018.0 856.0, 2222.0 251.0, 3140.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1100.0 856.0 C 1847.0 856.0, 2013.0 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1990.0 251.0 C 1409.5 251.0, 1280.5 1618.4, 700.0 1618.4" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 2160.0 790.0 C 2160.0 875.0, 2150.0 875.0, 2150.0 960.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 2160.0 550.0 C 2160.0 472.5, 2150.0 472.5, 2150.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 2000.0 1056.0 C 1415.0 1056.0, 1285.0 1618.4, 700.0 1618.4" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 2150.0 1200.0 C 2150.0 1265.0, 2140.0 1265.0, 2140.0 1330.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1470.0 C 1770.0 932.5, 1770.0 932.5, 1770.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1470.0 C 1770.0 1198.0, 1770.0 1198.0, 1770.0 926.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1290.0 C 1770.0 842.5, 1770.0 842.5, 1770.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1290.0 C 1770.0 1108.0, 1770.0 1108.0, 1770.0 926.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1765.0 920.0 C 1765.0 657.5, 1770.0 657.5, 1770.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1100.0 C 1770.0 747.5, 1770.0 747.5, 1770.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 1100.0 C 1770.0 1097.0, 1765.0 1097.0, 1765.0 1094.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 730.0 C 1770.0 562.5, 1770.0 562.5, 1770.0 395.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1610.0 251.0 C 1200.5 251.0, 1109.5 1618.4, 700.0 1618.4" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1930.0 251.0 C 2303.5 251.0, 2386.5 1432.0, 2760.0 1432.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1930.0 251.0 C 2303.5 251.0, 2386.5 1612.0, 2760.0 1612.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1770.0 395.0 C 1770.0 477.5, 1760.0 477.5, 1760.0 560.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1930.0 251.0 C 2303.5 251.0, 2386.5 576.0, 2760.0 576.0" fill="none" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowEmerald)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1936.0 C 1164.0 1936.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1480.0 1936.0 C 2056.0 1936.0, 2184.0 1066.0, 2760.0 1066.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 816.0 C 1459.8 816.0, 1255.2 251.0, 335.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 816.0 C 2344.0 816.0, 2336.0 1056.0, 2300.0 1056.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 816.0 C 2348.5 816.0, 2341.5 251.0, 2310.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 816.0 C 2353.0 816.0, 2347.0 646.0, 2320.0 646.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2530.0 1140.0 C 2530.0 1050.0, 2520.0 1050.0, 2520.0 960.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 1236.0 C 2348.5 1236.0, 2341.5 251.0, 2310.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 1236.0 C 2353.0 1236.0, 2347.0 646.0, 2320.0 646.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2530.0 1360.0 C 2530.0 1160.0, 2520.0 1160.0, 2520.0 960.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 1456.0 C 2348.5 1456.0, 2341.5 251.0, 2310.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 1456.0 C 2177.5 1456.0, 2132.5 251.0, 1930.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 1456.0 C 2173.0 1456.0, 2127.0 808.4, 1920.0 808.4" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2520.0 940.0 C 2520.0 950.0, 2520.0 950.0, 2520.0 960.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2540.0 395.0 C 2540.0 557.5, 2520.0 557.5, 2520.0 720.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2177.5 251.0, 2132.5 251.0, 1930.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2344.0 251.0, 2336.0 1056.0, 2300.0 1056.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2348.5 251.0, 2341.5 251.0, 2310.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2353.0 251.0, 2347.0 646.0, 2320.0 646.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 1459.8 251.0, 1255.2 251.0, 335.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2173.0 251.0, 2127.0 808.4, 1920.0 808.4" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 2380.0 251.0 C 2348.5 251.0, 2341.5 251.0, 2310.0 251.0" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowCyan)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 2106.0 C 1164.0 2106.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1480.0 2106.0 C 2056.0 2106.0, 2184.0 1066.0, 2760.0 1066.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 780.0 251.0 C 579.8 251.0, 535.2 251.0, 335.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1516.0 251.0, 1604.0 1056.0, 2000.0 1056.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1511.5 251.0, 1598.5 251.0, 1990.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1516.0 251.0, 1604.0 646.0, 2000.0 646.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 780.0 251.0 C 757.5 251.0, 752.5 251.0, 730.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 638.4, 1620.0 638.4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1340.5 251.0, 1389.5 251.0, 1610.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 808.4, 1620.0 808.4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 989.6, 1620.0 989.6" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 1196.0, 1620.0 1196.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 1368.4, 1620.0 1368.4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 1368.4, 1620.0 1368.4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1345.0 251.0, 1395.0 1548.4, 1620.0 1548.4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1120.0 251.0 C 1516.0 251.0, 1604.0 1552.0, 2000.0 1552.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1416.0 C 1164.0 1416.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1500.0 1416.0 C 2067.0 1416.0, 2193.0 1066.0, 2760.0 1066.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1416.0 C 813.0 1416.0, 727.0 756.0, 340.0 756.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1596.0 C 1164.0 1596.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1500.0 1596.0 C 2067.0 1596.0, 2193.0 1066.0, 2760.0 1066.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1596.0 C 813.0 1596.0, 727.0 756.0, 340.0 756.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1056.0 C 1164.0 1056.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 676.0 C 1164.0 676.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 866.0 C 1164.0 866.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1236.0 C 1164.0 1236.0, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1236.0 C 1155.0 1236.0, 1145.0 856.0, 1100.0 856.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1200.0 1749.6 C 1164.0 1749.6, 1156.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1180.0 251.0 C 1153.0 251.0, 1147.0 251.0, 1120.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1520.0 251.0 C 1736.0 251.0, 1784.0 1552.0, 2000.0 1552.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1180.0 251.0 C 1144.0 251.0, 1136.0 856.0, 1100.0 856.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1520.0 251.0 C 2249.0 251.0, 2411.0 251.0, 3140.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1520.0 251.0 C 2078.0 251.0, 2202.0 1066.0, 2760.0 1066.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1180.0 251.0 C 802.0 251.0, 718.0 756.0, 340.0 756.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 1520.0 251.0 C 2249.0 251.0, 2411.0 251.0, 3140.0 251.0" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowPurple)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1920.0 C 2900.0 1715.0, 2900.0 1715.0, 2900.0 1510.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1920.0 C 2900.0 1805.0, 2900.0 1805.0, 2900.0 1690.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1920.0 C 2900.0 1895.0, 2900.0 1895.0, 2900.0 1870.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1740.0 C 2900.0 1715.0, 2900.0 1715.0, 2900.0 1690.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2910.0 480.0 C 2910.0 437.5, 2910.0 437.5, 2910.0 395.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2915.0 740.0 C 2915.0 567.5, 2910.0 567.5, 2910.0 395.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2915.0 740.0 C 2915.0 730.0, 2910.0 730.0, 2910.0 720.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1170.0 C 2900.0 1190.0, 2900.0 1190.0, 2900.0 1210.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 3260.0 920.0 C 3260.0 840.0, 3260.0 840.0, 3260.0 760.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 3120.0 1236.0 C 2742.0 1236.0, 2658.0 1408.4, 2280.0 1408.4" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 2900.0 1560.0 C 2900.0 1535.0, 2900.0 1535.0, 2900.0 1510.0" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 3120.0 818.4 C 2742.0 818.4, 2658.0 1408.4, 2280.0 1408.4" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 3120.0 616.0 C 2742.0 616.0, 2658.0 1408.4, 2280.0 1408.4" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowIndigo)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1556.0 C 1323.0 1556.0, 1377.0 638.4, 1620.0 638.4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1556.0 C 1318.5 1556.0, 1371.5 251.0, 1610.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1556.0 C 1489.5 1556.0, 1580.5 251.0, 1990.0 251.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1556.0 C 1494.0 1556.0, 1586.0 1552.0, 2000.0 1552.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 1080.0 1556.0 C 1836.0 1556.0, 2004.0 1066.0, 2760.0 1066.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 800.0 1556.0 C 593.0 1556.0, 547.0 756.0, 340.0 756.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+    <path d="M 940.0 1460.0 C 940.0 1490.0, 940.0 1490.0, 940.0 1520.0" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-opacity="0.65" marker-end="url(#arrowAmber)" marker-start="url(#circleStart)"/>
+  </g>
+  <!-- ================= TABLE CARDS ================= -->
+  <g class="tables-layer">
+
+    <!-- Table: AR_Customers -->
+    <g transform="translate(55, 155)" filter="url(#cardShadow)" id="table-card-AR_Customers">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f43f5e" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrFinancial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrFinancial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">AR_Customers</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">1,176 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CustomerCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">PK</text>      <text x="10" y="74" class="col-norm">• CustomerName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• CustomerName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• CustomerShortName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• StatusFlag <tspan class="col-type">bit</tspan></text>      <text x="10" y="162" class="col-fk">🔗 CustomerGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">FK ➔ Group</text>      <text x="10" y="184" class="col-fk">🔗 CounrtyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">FK ➔ Setup</text>      <text x="10" y="206" class="col-norm">• Governate <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 52 more columns (60 total)</text>    </g>
+
+    <!-- Table: AR_Customer_Group -->
+    <g transform="translate(60, 480)" filter="url(#cardShadow)" id="table-card-AR_Customer_Group">
+      <!-- Card Body -->
+      <rect width="260" height="196" rx="9" fill="url(#tableCardBg)" stroke="#f43f5e" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrFinancial)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrFinancial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">AR_Customer_Group</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">5 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CustomerGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">PK</text>      <text x="10" y="74" class="col-norm">• CustomerGroupName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• CustomerGroupArabicName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• PaymentType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• PaymentTerm <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• DefaultDiscount <tspan class="col-type">decimal</tspan></text>    </g>
+
+    <!-- Table: AP_Supplierpliers -->
+    <g transform="translate(60, 660)" filter="url(#cardShadow)" id="table-card-AP_Supplierpliers">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f43f5e" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrFinancial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrFinancial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">AP_Supplierpliers</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">9 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 SupplierCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">PK</text>      <text x="10" y="74" class="col-norm">• SupplierName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• SupplierShort <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• SupplierStatus <tspan class="col-type">bit</tspan></text>      <text x="10" y="140" class="col-norm">• SupplierAddr01 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• SupplierAddr02 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• SupplierTel <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• SupplierFax <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 85 more columns (93 total)</text>    </g>
+
+    <!-- Table: AP_Supplier_Group -->
+    <g transform="translate(60, 1020)" filter="url(#cardShadow)" id="table-card-AP_Supplier_Group">
+      <!-- Card Body -->
+      <rect width="260" height="196" rx="9" fill="url(#tableCardBg)" stroke="#f43f5e" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrFinancial)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrFinancial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">AP_Supplier_Group</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">26 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 SupGroup <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">PK</text>      <text x="10" y="74" class="col-norm">• SupGroupName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• SupGroupArabicName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• PaymentTerm <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• PaymentType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• DefaultDiscount <tspan class="col-type">decimal</tspan></text>    </g>
+
+    <!-- Table: AP_Vendor_Type -->
+    <g transform="translate(60, 1180)" filter="url(#cardShadow)" id="table-card-AP_Vendor_Type">
+      <!-- Card Body -->
+      <rect width="260" height="108" rx="9" fill="url(#tableCardBg)" stroke="#f43f5e" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrFinancial)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrFinancial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">AP_Vendor_Type</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">2 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 VendorCode <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f43f5e">PK</text>      <text x="10" y="74" class="col-norm">• VendorName <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Com_ContractSetup -->
+    <g transform="translate(410, 155)" filter="url(#cardShadow)" id="table-card-Com_ContractSetup">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_ContractSetup</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">21 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContractID <tspan class="col-type">int</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• ContractCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• ContractTypeID <tspan class="col-type">int</tspan></text>      <text x="10" y="118" class="col-norm">• ContractDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-fk">🔗 IATAVersionCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ IATAVersions</text>      <text x="10" y="162" class="col-fk">🔗 CustomerCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Customers</text>      <text x="10" y="184" class="col-norm">• EffectiveFrom <tspan class="col-type">datetime</tspan></text>      <text x="10" y="206" class="col-norm">• ValidFrom <tspan class="col-type">datetime</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 49 more columns (57 total)</text>    </g>
+
+    <!-- Table: Com_ContractTypeSetup -->
+    <g transform="translate(420, 570)" filter="url(#cardShadow)" id="table-card-Com_ContractTypeSetup">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_ContractTypeSetup</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">12 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContractTypeID <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• ContractTypeCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• ContractTypeName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-fk">🔗 IATAVersionCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ IATAVersions</text>      <text x="10" y="140" class="col-norm">• PaymentMethod <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• PaymentTerm <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-fk">🔗 CompanyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Company</text>      <text x="10" y="206" class="col-fk">🔗 BranchCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ CompanyBran..</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 9 more columns (17 total)</text>    </g>
+
+    <!-- Table: Com_ContractRule -->
+    <g transform="translate(420, 760)" filter="url(#cardShadow)" id="table-card-Com_ContractRule">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_ContractRule</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">11,990 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContractID <tspan class="col-type">int</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-pk">🔑 ServiceID <tspan class="col-type">varchar</tspan></text>      <text x="312" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="96" class="col-pk">🔑 IATASource <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="118" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportGroups</text>      <text x="10" y="140" class="col-fk">🔗 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Airports</text>      <text x="10" y="162" class="col-fk">🔗 TerminalCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportTerm..</text>      <text x="10" y="184" class="col-fk">🔗 SupplierCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Supplierpli..</text>      <text x="10" y="206" class="col-fk">🔗 DayTypeCode <tspan class="col-type">int</tspan></text>      <text x="312" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ DayTypes</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 74 more columns (82 total)</text>    </g>
+
+    <!-- Table: Com_PriceList -->
+    <g transform="translate(420, 1160)" filter="url(#cardShadow)" id="table-card-Com_PriceList">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_PriceList</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">40,286 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContractID <tspan class="col-type">int</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-pk">🔑 RegistrationID <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="96" class="col-pk">🔑 RuleID <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="118" class="col-fk">🔗 ContractCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ ContractSetup</text>      <text x="10" y="140" class="col-norm">• ContractDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-fk">🔗 CustomerID <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Customers</text>      <text x="10" y="184" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportGroups</text>      <text x="10" y="206" class="col-fk">🔗 StationID <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Airports</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 23 more columns (31 total)</text>    </g>
+
+    <!-- Table: Com_Services -->
+    <g transform="translate(800, 760)" filter="url(#cardShadow)" id="table-card-Com_Services">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_Services</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">275 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ServiceCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• ServiceNameEn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• ServiceNameAr <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• ServiceGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-fk">🔗 UOM <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Uom</text>      <text x="10" y="162" class="col-fk">🔗 SalesUOM <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Uom</text>      <text x="10" y="184" class="col-norm">• Saleable <tspan class="col-type">bit</tspan></text>      <text x="10" y="206" class="col-fk">🔗 CurrencyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Currency</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 6 more columns (14 total)</text>    </g>
+
+    <!-- Table: Com_ServiceGroups -->
+    <g transform="translate(800, 1120)" filter="url(#cardShadow)" id="table-card-Com_ServiceGroups">
+      <!-- Card Body -->
+      <rect width="280" height="130" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_ServiceGroups</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">12 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ServiceGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• ServiceGroupNameEn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• ServiceGroupNameAr <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Com_PackagesHeader -->
+    <g transform="translate(800, 1280)" filter="url(#cardShadow)" id="table-card-Com_PackagesHeader">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_PackagesHeader</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">27 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 PackageCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• PackageName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportGroups</text>      <text x="10" y="118" class="col-fk">🔗 FlightTypeCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ FlightTypes</text>      <text x="10" y="140" class="col-norm">• LoadingTimeNarrow <tspan class="col-type">int</tspan></text>      <text x="10" y="162" class="col-norm">• LoadingTimeWide <tspan class="col-type">int</tspan></text>      <text x="10" y="184" class="col-norm">• MTOWFrom <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-norm">• MTOWTo <tspan class="col-type">int</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 3 more columns (11 total)</text>    </g>
+
+    <!-- Table: com_Packages -->
+    <g transform="translate(800, 1460)" filter="url(#cardShadow)" id="table-card-com_Packages">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">com_Packages</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">742 rows</text>
+      <text x="10" y="52" class="col-norm">• PCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="74" class="col-norm">• PackageDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportGroups</text>      <text x="10" y="118" class="col-fk">🔗 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Airports</text>      <text x="10" y="140" class="col-fk">🔗 ModelCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirCraftModel</text>      <text x="10" y="162" class="col-norm">• MTOWFrom <tspan class="col-type">int</tspan></text>      <text x="10" y="184" class="col-norm">• MTOWTo <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-fk">🔗 LoadTypeCode <tspan class="col-type">varchar</tspan></text>      <text x="272" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ LoadTypes</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 15 more columns (23 total)</text>    </g>
+
+    <!-- Table: Com_PackageServices -->
+    <g transform="translate(800, 1660)" filter="url(#cardShadow)" id="table-card-Com_PackageServices">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Com_PackageServices</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">397 rows</text>
+      <text x="10" y="52" class="col-norm">• PCode <tspan class="col-type">varchar</tspan></text>      <text x="10" y="74" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">varchar</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirportGroups</text>      <text x="10" y="96" class="col-fk">🔗 AirportCode <tspan class="col-type">varchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ Airports</text>      <text x="10" y="118" class="col-fk">🔗 ModelCode <tspan class="col-type">varchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ AirCraftModel</text>      <text x="10" y="140" class="col-norm">• MTOWFrom <tspan class="col-type">int</tspan></text>      <text x="10" y="162" class="col-norm">• MTOWTO <tspan class="col-type">int</tspan></text>      <text x="10" y="184" class="col-fk">🔗 FlightTypeCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ FlightTypes</text>      <text x="10" y="206" class="col-fk">🔗 LoadTypeCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">FK ➔ LoadTypes</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 10 more columns (18 total)</text>    </g>
+
+    <!-- Table: COM_IATASetup -->
+    <g transform="translate(420, 1540)" filter="url(#cardShadow)" id="table-card-COM_IATASetup">
+      <!-- Card Body -->
+      <rect width="280" height="196" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">COM_IATASetup</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">1,031 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 IATAVersionCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-pk">🔑 ParentCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="96" class="col-pk">🔑 IATACode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="118" class="col-norm">• IATACodeRef <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• IATADescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• IsParent <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: COM_IATAVersions -->
+    <g transform="translate(420, 1720)" filter="url(#cardShadow)" id="table-card-COM_IATAVersions">
+      <!-- Card Body -->
+      <rect width="280" height="130" rx="9" fill="url(#tableCardBg)" stroke="#f59e0b" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrCommercial)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrCommercial)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">COM_IATAVersions</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">1 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 IATAVersionCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#f59e0b">PK</text>      <text x="10" y="74" class="col-norm">• IATAVersionDesc <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• ParentCode <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Opr_WorkOrder -->
+    <g transform="translate(780, 155)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrder">
+      <!-- Card Body -->
+      <rect width="340" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="340" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="340" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrder</text>
+      <rect x="264" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="298" y="20" text-anchor="middle" class="tbl-rows">6 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="332" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-fk">🔗 CustomerCode <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Customers</text>      <text x="10" y="118" class="col-fk">🔗 AirlineCode <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Airlines</text>      <text x="10" y="140" class="col-fk">🔗 ModelCode <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ AirCraftModel</text>      <text x="10" y="162" class="col-fk">🔗 RegistrationNo <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ AircraftRre..</text>      <text x="10" y="184" class="col-fk">🔗 Contracts <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ ContractSetup</text>      <text x="10" y="206" class="col-fk">🔗 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ AirportGroups</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 59 more columns (67 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderServices -->
+    <g transform="translate(1180, 155)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderServices">
+      <!-- Card Body -->
+      <rect width="340" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="340" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="340" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderServices</text>
+      <rect x="264" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="298" y="20" text-anchor="middle" class="tbl-rows">12 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="332" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 ServiceLineNo <tspan class="col-type">bigint</tspan></text>      <text x="332" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-fk">🔗 DayTypeCode <tspan class="col-type">int</tspan></text>      <text x="332" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ DayTypes</text>      <text x="10" y="140" class="col-norm">• ServiceGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-fk">🔗 ServiceCode <tspan class="col-type">nvarchar</tspan></text>      <text x="332" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Services</text>      <text x="10" y="184" class="col-norm">• ServiceName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• PriceDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 74 more columns (82 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderPAXCount -->
+    <g transform="translate(1200, 580)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderPAXCount">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderPAXCount</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 PAXListID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-pk">🔑 PAXLineNo <tspan class="col-type">int</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="140" class="col-norm">• PAXJoinFirst <tspan class="col-type">int</tspan></text>      <text x="10" y="162" class="col-norm">• PAXJoinBusiness <tspan class="col-type">int</tspan></text>      <text x="10" y="184" class="col-norm">• PAXJoinEconomy <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-norm">• PAXTransitFirst <tspan class="col-type">int</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 24 more columns (32 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderPAXList -->
+    <g transform="translate(1200, 770)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderPAXList">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderPAXList</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 PAXListID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-pk">🔑 PAXLineNo <tspan class="col-type">int</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="140" class="col-norm">• PAXName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• PAXNationality <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• PAXAgeClassification <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• PAXSeat <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 6 more columns (14 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderMovement -->
+    <g transform="translate(1200, 960)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderMovement">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderMovement</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 MovementID <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-fk">🔗 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ WorkOrder</text>      <text x="10" y="96" class="col-fk">🔗 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ WorkOrder</text>      <text x="10" y="118" class="col-norm">• Area <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• Position <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• ChocksOn <tspan class="col-type">datetime</tspan></text>      <text x="10" y="184" class="col-norm">• ChocksOff <tspan class="col-type">datetime</tspan></text>      <text x="10" y="206" class="col-norm">• Basic <tspan class="col-type">bit</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 1 more columns (9 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderResources -->
+    <g transform="translate(1200, 1140)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderResources">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderResources</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 ServiceLineNo <tspan class="col-type">int</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-pk">🔑 ServiceCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="140" class="col-pk">🔑 ResourceCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="162" class="col-norm">• TaskCategory <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• TaskStatus <tspan class="col-type">bit</tspan></text>      <text x="10" y="206" class="col-norm">• Certified <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_WorkOrderCatering -->
+    <g transform="translate(1200, 1320)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderCatering">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderCatering</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 CateringCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-norm">• Quantity <tspan class="col-type">numeric</tspan></text>      <text x="10" y="140" class="col-norm">• CateringUOM <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-fk">🔗 CurrencyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Currency</text>      <text x="10" y="184" class="col-norm">• CurrencyRate <tspan class="col-type">numeric</tspan></text>      <text x="10" y="206" class="col-norm">• UnitPrice <tspan class="col-type">numeric</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 7 more columns (15 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderExpenses -->
+    <g transform="translate(1200, 1500)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderExpenses">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderExpenses</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 ExpensesCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-norm">• ExpensesDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• ExpensesTime <tspan class="col-type">datetime</tspan></text>      <text x="10" y="162" class="col-fk">🔗 CurrencyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Currency</text>      <text x="10" y="184" class="col-norm">• ExpensesQuantity <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-norm">• ExpensesPrice <tspan class="col-type">numeric</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 5 more columns (13 total)</text>    </g>
+
+    <!-- Table: Opr_WorkOrderSecurity -->
+    <g transform="translate(1200, 1680)" filter="url(#cardShadow)" id="table-card-Opr_WorkOrderSecurity">
+      <!-- Card Body -->
+      <rect width="300" height="174" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_WorkOrderSecurity</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-pk">🔑 SecurityID <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="118" class="col-norm">• Arrival <tspan class="col-type">bit</tspan></text>      <text x="10" y="140" class="col-norm">• Depature <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_Hotel -->
+    <g transform="translate(1200, 1840)" filter="url(#cardShadow)" id="table-card-Opr_Hotel">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_Hotel</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">1 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 Id <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-pk">🔑 FileNo <tspan class="col-type">int</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="96" class="col-norm">• Cost <tspan class="col-type">decimal</tspan></text>      <text x="10" y="118" class="col-fk">🔗 Currency <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">FK ➔ Currency</text>      <text x="10" y="140" class="col-norm">• HotelName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• RoomTypes <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• TotalPaxCount <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-pk">🔑 WorkID <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>    </g>
+
+    <!-- Table: Opr_Transportion -->
+    <g transform="translate(1200, 2010)" filter="url(#cardShadow)" id="table-card-Opr_Transportion">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#c084fc" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrOperations)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrOperations)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_Transportion</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 Id <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#c084fc">PK</text>      <text x="10" y="74" class="col-norm">• Origin <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• Destination <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• LeadPassenger <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• Vendor <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• CarType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• TimeStart <tspan class="col-type">datetime</tspan></text>      <text x="10" y="206" class="col-norm">• TimeEnd <tspan class="col-type">datetime</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 6 more columns (14 total)</text>    </g>
+
+    <!-- Table: Opr_Airports -->
+    <g transform="translate(1610, 155)" filter="url(#cardShadow)" id="table-card-Opr_Airports">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_Airports</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">32 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-norm">• AirportName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• AirportName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-fk">🔗 IATACode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ IATASetup</text>      <text x="10" y="140" class="col-norm">• AirportAuthorty <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• StatusFlag <tspan class="col-type">bit</tspan></text>      <text x="10" y="184" class="col-norm">• CertificateType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-fk">🔗 CountryCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ Setup</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 21 more columns (29 total)</text>    </g>
+
+    <!-- Table: Opr_AirportGroups -->
+    <g transform="translate(1620, 560)" filter="url(#cardShadow)" id="table-card-Opr_AirportGroups">
+      <!-- Card Body -->
+      <rect width="280" height="196" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportGroups</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">8 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-norm">• AirportGroupName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• AirportGroupName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• AirportGroupDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• StatusFlag <tspan class="col-type">bit</tspan></text>      <text x="10" y="162" class="col-norm">• DayOnlyFlag <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_AirportTerminals -->
+    <g transform="translate(1620, 730)" filter="url(#cardShadow)" id="table-card-Opr_AirportTerminals">
+      <!-- Card Body -->
+      <rect width="300" height="196" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportTerminals</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">14 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-pk">🔑 TerminalCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="96" class="col-norm">• TerminalName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• TerminalName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• TerminalType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• TerminalPrivate <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_AirportParkingArea -->
+    <g transform="translate(1620, 920)" filter="url(#cardShadow)" id="table-card-Opr_AirportParkingArea">
+      <!-- Card Body -->
+      <rect width="290" height="174" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="290" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="290" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportParkingArea</text>
+      <rect x="214" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="248" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="282" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-pk">🔑 CodeParkingAreas <tspan class="col-type">nvarchar</tspan></text>      <text x="282" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="96" class="col-norm">• NameParkingAreas_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• NameParkingAreas_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• IsMilitaryArea <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_AirportParkingPosition -->
+    <g transform="translate(1620, 1100)" filter="url(#cardShadow)" id="table-card-Opr_AirportParkingPosition">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportParkingPosition</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-pk">🔑 CodeParkingAreas <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="96" class="col-pk">🔑 CodeParkingPosition <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="118" class="col-norm">• NameParkingPosition_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• NameParkingPosition_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• OpenParkingPosition <tspan class="col-type">bit</tspan></text>      <text x="10" y="184" class="col-norm">• Bridge <tspan class="col-type">bit</tspan></text>      <text x="10" y="206" class="col-norm">• NeedMarsh <tspan class="col-type">bit</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 1 more columns (9 total)</text>    </g>
+
+    <!-- Table: Opr_AirportGateInformation -->
+    <g transform="translate(1620, 1290)" filter="url(#cardShadow)" id="table-card-Opr_AirportGateInformation">
+      <!-- Card Body -->
+      <rect width="300" height="196" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportGateInformation</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-pk">🔑 TerminalCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="96" class="col-pk">🔑 CodeGate <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="118" class="col-norm">• GateDescription_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• GateDescription_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• GateType <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Opr_AirportCounterInformation -->
+    <g transform="translate(1620, 1470)" filter="url(#cardShadow)" id="table-card-Opr_AirportCounterInformation">
+      <!-- Card Body -->
+      <rect width="300" height="196" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirportCounterInformation</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">0 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-pk">🔑 TerminalCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="96" class="col-pk">🔑 CodeCounter <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="118" class="col-norm">• CounterDescription_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• CounterDescription_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• TypeCounter <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Opr_AirCraftModel -->
+    <g transform="translate(1990, 155)" filter="url(#cardShadow)" id="table-card-Opr_AirCraftModel">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirCraftModel</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">452 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ModelCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-fk">🔗 IataCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ IATASetup</text>      <text x="10" y="96" class="col-norm">• IcoaCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• BodyType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• CertificateType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• ModelName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• Description <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• RelevantInfo <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 20 more columns (28 total)</text>    </g>
+
+    <!-- Table: Opr_AircraftRregistration -->
+    <g transform="translate(2000, 550)" filter="url(#cardShadow)" id="table-card-Opr_AircraftRregistration">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AircraftRregistration</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">3,746 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 RegistrationNo <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-fk">🔗 AirlineCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ Airlines</text>      <text x="10" y="96" class="col-fk">🔗 ModelCode <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ AirCraftModel</text>      <text x="10" y="118" class="col-norm">• ModelVersion <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• BodyType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• CurrentlyIn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• Year <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-norm">• Month <tspan class="col-type">int</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 33 more columns (41 total)</text>    </g>
+
+    <!-- Table: Opr_Airlines -->
+    <g transform="translate(2000, 960)" filter="url(#cardShadow)" id="table-card-Opr_Airlines">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_Airlines</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">382 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 AirlineCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-norm">• AirlineName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• AirlineName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-fk">🔗 IATACode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">FK ➔ IATASetup</text>      <text x="10" y="140" class="col-norm">• CertificateType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• ICOACallSign <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• DelayGroupID <tspan class="col-type">int</tspan></text>      <text x="10" y="206" class="col-norm">• PropertyOF <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 11 more columns (19 total)</text>    </g>
+
+    <!-- Table: Opr_AirLineGroup -->
+    <g transform="translate(2000, 1330)" filter="url(#cardShadow)" id="table-card-Opr_AirLineGroup">
+      <!-- Card Body -->
+      <rect width="280" height="196" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_AirLineGroup</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">3 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 GroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-norm">• GroupName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• GroupName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• GroupDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• GroupOption <tspan class="col-type">int</tspan></text>      <text x="10" y="162" class="col-norm">• StatusFlag <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_DayTypes -->
+    <g transform="translate(2000, 1500)" filter="url(#cardShadow)" id="table-card-Opr_DayTypes">
+      <!-- Card Body -->
+      <rect width="260" height="130" rx="9" fill="url(#tableCardBg)" stroke="#10b981" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrFleet)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrFleet)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_DayTypes</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">3 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 DayCode <tspan class="col-type">int</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#10b981">PK</text>      <text x="10" y="74" class="col-norm">• DayDescriptionEn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• DayDescriptionAr <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Opr_Schedule -->
+    <g transform="translate(2380, 155)" filter="url(#cardShadow)" id="table-card-Opr_Schedule">
+      <!-- Card Body -->
+      <rect width="320" height="240" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="320" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="320" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_Schedule</text>
+      <rect x="244" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="278" y="20" text-anchor="middle" class="tbl-rows">16 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ScheduleFileNo <tspan class="col-type">int</tspan></text>      <text x="312" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-fk">🔗 PlanId <tspan class="col-type">int</tspan></text>      <text x="312" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ PlanHeader</text>      <text x="10" y="96" class="col-norm">• PatternId <tspan class="col-type">int</tspan></text>      <text x="10" y="118" class="col-norm">• DayId <tspan class="col-type">int</tspan></text>      <text x="10" y="140" class="col-norm">• LandId <tspan class="col-type">int</tspan></text>      <text x="10" y="162" class="col-fk">🔗 Airport <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ Airports</text>      <text x="10" y="184" class="col-fk">🔗 Airline <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ Airlines</text>      <text x="10" y="206" class="col-fk">🔗 Aircraft <tspan class="col-type">nvarchar</tspan></text>      <text x="312" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AirCraftModel</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 65 more columns (73 total)</text>    </g>
+
+    <!-- Table: Opr_ScheduleReason -->
+    <g transform="translate(2380, 550)" filter="url(#cardShadow)" id="table-card-Opr_ScheduleReason">
+      <!-- Card Body -->
+      <rect width="260" height="174" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_ScheduleReason</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">3 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ReasonCode <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-norm">• DescriptionAr <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• DescriptionEn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• FreeFees <tspan class="col-type">bit</tspan></text>      <text x="10" y="140" class="col-norm">• IsVisible <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Opr_PlanHeader -->
+    <g transform="translate(2380, 720)" filter="url(#cardShadow)" id="table-card-Opr_PlanHeader">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_PlanHeader</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">3 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 PlanId <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-fk">🔗 CustomerCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ Customers</text>      <text x="10" y="96" class="col-fk">🔗 Airline <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ Airlines</text>      <text x="10" y="118" class="col-fk">🔗 Aircraft <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AirCraftModel</text>      <text x="10" y="140" class="col-fk">🔗 RegistrationNumber <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AircraftRre..</text>      <text x="10" y="162" class="col-norm">• FromAirport <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• ToAirport <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• PlanFrom <tspan class="col-type">datetime</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 14 more columns (22 total)</text>    </g>
+
+    <!-- Table: Opr_PlanWeekPattern -->
+    <g transform="translate(2380, 940)" filter="url(#cardShadow)" id="table-card-Opr_PlanWeekPattern">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_PlanWeekPattern</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">3 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 PlanId <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-pk">🔑 PatternId <tspan class="col-type">int</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="96" class="col-norm">• PatternDescription <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• PatternFrom <tspan class="col-type">datetime</tspan></text>      <text x="10" y="140" class="col-norm">• PatternTo <tspan class="col-type">datetime</tspan></text>      <text x="10" y="162" class="col-norm">• LandingType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• PatternNote <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• PaymentMethod <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Opr_PlanPatternDay -->
+    <g transform="translate(2380, 1140)" filter="url(#cardShadow)" id="table-card-Opr_PlanPatternDay">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_PlanPatternDay</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">5 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 PlanId <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-pk">🔑 PatternId <tspan class="col-type">int</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="96" class="col-pk">🔑 DayId <tspan class="col-type">int</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="118" class="col-fk">🔗 AirCraft <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AirCraftModel</text>      <text x="10" y="140" class="col-fk">🔗 RegistrationNumber <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AircraftRre..</text>      <text x="10" y="162" class="col-pk">🔑 FlightId <tspan class="col-type">int</tspan></text>      <text x="292" y="162" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="184" class="col-norm">• LandingType <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• DayNote <tspan class="col-type">varchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 2 more columns (10 total)</text>    </g>
+
+    <!-- Table: Opr_PlanPatternDayLands -->
+    <g transform="translate(2380, 1360)" filter="url(#cardShadow)" id="table-card-Opr_PlanPatternDayLands">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#06b6d4" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrPlanning)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrPlanning)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Opr_PlanPatternDayLands</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">5 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 PatternDayLandId <tspan class="col-type">int</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="74" class="col-pk">🔑 PlanId <tspan class="col-type">int</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="96" class="col-pk">🔑 PatternId <tspan class="col-type">int</tspan></text>      <text x="292" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="118" class="col-pk">🔑 DayId <tspan class="col-type">int</tspan></text>      <text x="292" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">PK</text>      <text x="10" y="140" class="col-fk">🔗 AirCraft <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="140" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AirCraftModel</text>      <text x="10" y="162" class="col-norm">• FlightNoIn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-fk">🔗 AirportCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="184" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ Airports</text>      <text x="10" y="206" class="col-fk">🔗 TerminalCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="206" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#06b6d4">FK ➔ AirportTerm..</text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 11 more columns (19 total)</text>    </g>
+
+    <!-- Table: Tas_Company -->
+    <g transform="translate(2760, 155)" filter="url(#cardShadow)" id="table-card-Tas_Company">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Company</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">1 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 Company <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• CompanyName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• POBox <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• Website <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• Tel <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• Fax <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• Period <tspan class="col-type">decimal</tspan></text>      <text x="10" y="206" class="col-norm">• MaxPeriod <tspan class="col-type">decimal</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 68 more columns (76 total)</text>    </g>
+
+    <!-- Table: Tas_CompanyBranches -->
+    <g transform="translate(2760, 480)" filter="url(#cardShadow)" id="table-card-Tas_CompanyBranches">
+      <!-- Card Body -->
+      <rect width="300" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="300" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="300" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_CompanyBranches</text>
+      <rect x="224" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="258" y="20" text-anchor="middle" class="tbl-rows">8 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CompanyCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-pk">🔑 BranchCode <tspan class="col-type">nvarchar</tspan></text>      <text x="292" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="96" class="col-norm">• BranchName_En <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• BranchName_Ar <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• TEL <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• MOBILE <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• POBOX <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• CITY <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 4 more columns (12 total)</text>    </g>
+
+    <!-- Table: Tas_Company_Branches_Setup -->
+    <g transform="translate(2760, 740)" filter="url(#cardShadow)" id="table-card-Tas_Company_Branches_Setup">
+      <!-- Card Body -->
+      <rect width="310" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="310" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="310" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Company_Branches_Setup</text>
+      <rect x="234" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="268" y="20" text-anchor="middle" class="tbl-rows">10,722 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 TypeCode <tspan class="col-type">nvarchar</tspan></text>      <text x="302" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-pk">🔑 Code <tspan class="col-type">nvarchar</tspan></text>      <text x="302" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="96" class="col-pk">🔑 Company <tspan class="col-type">nvarchar</tspan></text>      <text x="302" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="118" class="col-pk">🔑 Branch <tspan class="col-type">nvarchar</tspan></text>      <text x="302" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="140" class="col-norm">• ACC1 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• ACC2 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• ACC3 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• ACC4 <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 2 more columns (10 total)</text>    </g>
+
+    <!-- Table: Tas_Currency -->
+    <g transform="translate(2760, 970)" filter="url(#cardShadow)" id="table-card-Tas_Currency">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Currency</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">8 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CurCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• CurName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• LossAccnt <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• GainAccnt <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• CurUnit <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• CurSubunit <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• CurPayAcc <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• CurCollAcc <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Tas_Currency_Rate -->
+    <g transform="translate(2760, 1170)" filter="url(#cardShadow)" id="table-card-Tas_Currency_Rate">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Currency_Rate</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">117 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CurCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• CurOpr <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• CurRate <tspan class="col-type">decimal</tspan></text>      <text x="10" y="118" class="col-norm">• CurOprOther <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• CurRateOther <tspan class="col-type">decimal</tspan></text>      <text x="10" y="162" class="col-norm">• LossAccnt <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• GainAccnt <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• CurRate01 <tspan class="col-type">decimal</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 6 more columns (14 total)</text>    </g>
+
+    <!-- Table: Tas_Country_Setup -->
+    <g transform="translate(2760, 1380)" filter="url(#cardShadow)" id="table-card-Tas_Country_Setup">
+      <!-- Card Body -->
+      <rect width="280" height="130" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Country_Setup</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">241 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• ContName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• Nationality <tspan class="col-type">nvarchar</tspan></text>    </g>
+
+    <!-- Table: Tas_Subdivison -->
+    <g transform="translate(2760, 1560)" filter="url(#cardShadow)" id="table-card-Tas_Subdivison">
+      <!-- Card Body -->
+      <rect width="280" height="130" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Subdivison</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">27 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 SubCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• SubName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-fk">🔗 CountryCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">FK ➔ Setup</text>    </g>
+
+    <!-- Table: Tas_City -->
+    <g transform="translate(2760, 1740)" filter="url(#cardShadow)" id="table-card-Tas_City">
+      <!-- Card Body -->
+      <rect width="280" height="130" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_City</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">30 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 CitCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• CitName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-fk">🔗 SubCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">FK ➔ Subdivison</text>    </g>
+
+    <!-- Table: Tas_Area -->
+    <g transform="translate(2760, 1920)" filter="url(#cardShadow)" id="table-card-Tas_Area">
+      <!-- Card Body -->
+      <rect width="280" height="218" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Area</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">150 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ContCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-pk">🔑 SubCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="96" class="col-pk">🔑 CitCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="118" class="col-pk">🔑 AreaCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="140" class="col-norm">• DescEnglish <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="162" class="col-norm">• DescArabic <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• Status <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Tas_Uom -->
+    <g transform="translate(3140, 155)" filter="url(#cardShadow)" id="table-card-Tas_Uom">
+      <!-- Card Body -->
+      <rect width="260" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Uom</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">45 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 Uom <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• UomName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• AllowDecimal <tspan class="col-type">bit</tspan></text>      <text x="10" y="118" class="col-norm">• MaxScale <tspan class="col-type">decimal</tspan></text>      <text x="10" y="140" class="col-norm">• Scale <tspan class="col-type">decimal</tspan></text>      <text x="10" y="162" class="col-norm">• UomGroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• UomEq <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• Status <tspan class="col-type">bit</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 1 more columns (9 total)</text>    </g>
+
+    <!-- Table: Tas_Uom_Group -->
+    <g transform="translate(3120, 340)" filter="url(#cardShadow)" id="table-card-Tas_Uom_Group">
+      <!-- Card Body -->
+      <rect width="260" height="152" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Uom_Group</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">5 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 Uom_Group_Code <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• Uom_Group_Name <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• Status <tspan class="col-type">bit</tspan></text>      <text x="10" y="118" class="col-norm">• Time <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Tas_UserSetup -->
+    <g transform="translate(3120, 520)" filter="url(#cardShadow)" id="table-card-Tas_UserSetup">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_UserSetup</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">23 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 UserID <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• UserName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• UserPass <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-fk">🔗 GroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="118" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">FK ➔ AirLineGroup</text>      <text x="10" y="140" class="col-norm">• Notification <tspan class="col-type">bit</tspan></text>      <text x="10" y="162" class="col-norm">• Mail <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• Branches <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• DefaultBranch <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 2 more columns (10 total)</text>    </g>
+
+    <!-- Table: Tas_UserGroupSetup -->
+    <g transform="translate(3120, 740)" filter="url(#cardShadow)" id="table-card-Tas_UserGroupSetup">
+      <!-- Card Body -->
+      <rect width="260" height="196" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="260" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="260" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_UserGroupSetup</text>
+      <rect x="184" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="218" y="20" text-anchor="middle" class="tbl-rows">13 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 GroupCode <tspan class="col-type">nvarchar</tspan></text>      <text x="252" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• GroupNameAr <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="96" class="col-norm">• GroupNameEn <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="118" class="col-norm">• GroupAdmin <tspan class="col-type">bit</tspan></text>      <text x="10" y="140" class="col-norm">• TasAdmin <tspan class="col-type">bit</tspan></text>      <text x="10" y="162" class="col-norm">• StatusCode <tspan class="col-type">bit</tspan></text>    </g>
+
+    <!-- Table: Tas_Log -->
+    <g transform="translate(3120, 920)" filter="url(#cardShadow)" id="table-card-Tas_Log">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Log</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">101 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 LogID <tspan class="col-type">bigint</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-norm">• ThreadId <tspan class="col-type">bigint</tspan></text>      <text x="10" y="96" class="col-norm">• Message <tspan class="col-type">varchar</tspan></text>      <text x="10" y="118" class="col-norm">• Timestamp <tspan class="col-type">datetime</tspan></text>      <text x="10" y="140" class="col-norm">• LogLevel <tspan class="col-type">varchar</tspan></text>      <text x="10" y="162" class="col-norm">• Pagename <tspan class="col-type">varchar</tspan></text>      <text x="10" y="184" class="col-norm">• ComponentName <tspan class="col-type">varchar</tspan></text>      <text x="10" y="206" class="col-norm">• Namespace <tspan class="col-type">varchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 4 more columns (12 total)</text>    </g>
+
+    <!-- Table: Tas_Menus -->
+    <g transform="translate(3120, 1140)" filter="url(#cardShadow)" id="table-card-Tas_Menus">
+      <!-- Card Body -->
+      <rect width="280" height="240" rx="9" fill="url(#tableCardBg)" stroke="#818cf8" stroke-width="1.4"/>
+      <!-- Header Bar -->
+      <rect width="280" height="32" rx="9" fill="url(#hdrAdmin)"/>
+      <rect y="24" width="280" height="8" fill="url(#hdrAdmin)"/>
+      <!-- Table Name & Row count -->
+      <text x="10" y="21" class="tbl-title">Tas_Menus</text>
+      <rect x="204" y="6" width="68" height="20" rx="4" fill="rgba(15, 23, 42, 0.6)"/>
+      <text x="238" y="20" text-anchor="middle" class="tbl-rows">1,454 rows</text>
+      <text x="10" y="52" class="col-pk">🔑 ModuleID <tspan class="col-type">int</tspan></text>      <text x="272" y="52" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="74" class="col-pk">🔑 MenuID <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="74" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="96" class="col-pk">🔑 PerantID <tspan class="col-type">nvarchar</tspan></text>      <text x="272" y="96" text-anchor="end" font-size="9" font-family="'JetBrains Mono', monospace" fill="#818cf8">PK</text>      <text x="10" y="118" class="col-norm">• MenuTitle <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="140" class="col-norm">• HasChildren <tspan class="col-type">bit</tspan></text>      <text x="10" y="162" class="col-norm">• StringID <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="184" class="col-norm">• PageName <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="206" class="col-norm">• IconID <tspan class="col-type">nvarchar</tspan></text>      <text x="10" y="230" font-size="9.5" font-family="sans-serif" font-style="italic" fill="#64748b">+ 12 more columns (20 total)</text>    </g>
+  </g>
+</svg>

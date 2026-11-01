@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>TasContractStudioDB — Contract Entry Studio Interactive ERD Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-canvas: #070b14;
+      --bg-panel: rgba(15, 23, 42, 0.85);
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(148, 163, 184, 0.15);
+      --border-glow: rgba(56, 189, 248, 0.4);
+      --accent-blue: #38bdf8;
+      --accent-rose: #f43f5e;
+      --accent-amber: #f59e0b;
+      --accent-purple: #c084fc;
+      --accent-emerald: #10b981;
+      --accent-cyan: #06b6d4;
+      --accent-indigo: #818cf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --scrollbar-thumb: rgba(100, 116, 139, 0.45);
+      --scrollbar-track: rgba(15, 23, 42, 0.5);
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+      scrollbar-width: thin;
+    }
+
+    @supports not (scrollbar-color: auto) {
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation Header */
+    header {
+      background: rgba(11, 18, 33, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: white;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* Filter & Search Bar */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      padding: 7px 28px 7px 32px;
+      font-size: 12.5px;
+      font-family: inherit;
+      width: 225px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, width 0.2s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+      width: 265px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      color: var(--text-dim);
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: none;
+      padding: 2px 4px;
+      line-height: 1;
+    }
+
+    .search-clear:hover {
+      color: var(--text-main);
+    }
+
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 340px;
+      max-height: 360px;
+      overflow-y: auto;
+      background: rgba(11, 18, 33, 0.98);
+      border: 1px solid var(--border-glow);
+      border-radius: 10px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.75);
+      z-index: 100;
+      display: none;
+      padding: 6px;
+    }
+
+    .search-dropdown.open {
+      display: block;
+    }
+
+    .search-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+    .search-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-item:hover {
+      background: rgba(56, 189, 248, 0.14);
+    }
+
+    .domain-filters {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      min-width: 0;
+      padding: 2px 0;
+    }
+
+    .domain-filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: white;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .action-btn:hover {
+      filter: brightness(1.12);
+    }
+
+    .action-btn.secondary {
+      background: rgba(30, 41, 59, 0.85);
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+
+    .action-btn.secondary.active {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.14);
+    }
+
+    /* Main Workspace Layout */
+    .workspace {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Diagram Canvas Container */
+    .canvas-container {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      background: radial-gradient(circle at center, #0b1222 0%, #070b14 100%);
+    }
+
+    .canvas-container.dragging {
+      cursor: grabbing;
+    }
+
+    #svgWrapper {
+      width: 2910px;
+      height: 1500px;
+      transform-origin: 0 0;
+      will-change: transform;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* Floating Zoom Controls */
+    .zoom-hud {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      border-radius: 10px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+      z-index: 40;
+    }
+
+    .hud-btn {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .hud-btn:hover {
+      background: var(--accent-blue);
+      color: #040711;
+      border-color: var(--accent-blue);
+    }
+
+    .zoom-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 2px 0;
+    }
+
+    /* Side Drawer / Inspector */
+    .inspector-panel {
+      width: 440px;
+      min-width: 440px;
+      background: rgba(11, 18, 33, 0.98);
+      border-left: 1px solid var(--border-color);
+      backdrop-filter: blur(20px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), min-width 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      z-index: 45;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .inspector-panel.collapsed {
+      width: 0;
+      min-width: 0;
+      border-left-width: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .inspector-header {
+      padding: 14px 18px;
+      background: rgba(15, 23, 42, 0.92);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .inspector-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-blue);
+      word-break: break-all;
+    }
+
+    .close-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .close-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent-rose);
+      background: rgba(244, 63, 94, 0.18);
+    }
+
+    .inspector-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .purpose-box {
+      background: rgba(30, 41, 59, 0.45);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.48;
+    }
+
+    .stat-badge-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat-badge {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .stat-val {
+      font-size: 17px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .rel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rel-card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-align: left;
+      width: 100%;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    .rel-card:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateX(2px);
+    }
+
+    .code-box {
+      background: #040711;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.2px;
+      color: #7dd3fc;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.55;
+      max-height: 460px;
+      overflow-y: auto;
+    }
+
+    .mini-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--accent-blue);
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .mini-btn:hover {
+      background: var(--accent-blue);
+      color: #040711;
+    }
+
+    /* Tab switcher for Inspector */
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(15, 23, 42, 0.6);
+      flex-shrink: 0;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 6px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    /* Global Table Node Styling in SVG */
+    svg g[id^="table-card-"] {
+      cursor: pointer;
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    svg g[id^="table-card-"]:hover {
+      filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.85)) !important;
+    }
+
+    .table-selected .card-body-rect,
+    .table-selected > rect:first-of-type {
+      stroke: #38bdf8 !important;
+      stroke-width: 3.5px !important;
+    }
+
+    .table-selected {
+      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.95)) !important;
+    }
+
+    .table-neighbor .card-body-rect,
+    .table-neighbor > rect:first-of-type {
+      stroke: #fde047 !important;
+      stroke-width: 2.4px !important;
+    }
+
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -28; }
+    }
+
+    .active-conn-path {
+      animation: dashFlow 0.9s linear infinite;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="brand-section">
+      <span class="brand-badge">TAS STUDIO</span>
+      <div class="brand-title">
+        <span>TasContractStudioDB — ERD Explorer</span>
+        <span class="brand-sub">26 Tables · 42 Enforced Physical Foreign Keys</span>
+      </div>
+    </div>
+
+    <!-- Controls & Search -->
+    <div class="controls-bar">
+      <div class="search-box" id="searchBox">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search 26 tables or columns..." autocomplete="off">
+        <button type="button" class="search-clear" id="searchClearBtn" title="Clear search">✕</button>
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+
+      <div class="domain-filters" id="domainFilters">
+        <button type="button" class="filter-btn active" data-domain="ALL">All Tables (26)</button>
+        <button type="button" class="filter-btn" data-domain="CORE_CONTRACTS">Core Contracts (5)</button>
+        <button type="button" class="filter-btn" data-domain="LIFECYCLE_AMENDMENTS">Lifecycle &amp; Amendments (7)</button>
+        <button type="button" class="filter-btn" data-domain="FLEET_STATIONS">Fleet &amp; Stations (6)</button>
+        <button type="button" class="filter-btn" data-domain="FINANCIAL_LEGAL">Financial &amp; Customers (5)</button>
+        <button type="button" class="filter-btn" data-domain="SECURITY_AUDIT">Security &amp; Audit (3)</button>
+      </div>
+
+      <button type="button" class="action-btn secondary active" id="btnToggleLines" title="Toggle between showing all 42 physical FK lines or only active table lines">🔗 All 42 Lines</button>
+      <button type="button" class="action-btn" id="btnResetZoom">⟲ Fit View</button>
+      <button type="button" class="action-btn secondary active" id="btnToggleInspector">📋 Inspector</button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <div class="workspace">
+    <!-- SVG Canvas -->
+    <div class="canvas-container" id="canvasContainer">
+      <div id="svgWrapper">
+        <svg id="erdSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2910 1500" width="2910" height="1500" style="background:#070b14; display:block;">
+          <defs>
+            <!-- Background Canvas Gradients -->
+            <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#050811"/>
+              <stop offset="50%" stop-color="#090f1d"/>
+              <stop offset="100%" stop-color="#0b1326"/>
+            </linearGradient>
+
+            <!-- Domain Glow & Header Gradients -->
+            <linearGradient id="hdrFinancial" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#be123c"/>
+              <stop offset="100%" stop-color="#f43f5e"/>
+            </linearGradient>
+            <linearGradient id="hdrCommercial" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#b45309"/>
+              <stop offset="100%" stop-color="#f59e0b"/>
+            </linearGradient>
+            <linearGradient id="hdrOperations" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#6d28d9"/>
+              <stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+            <linearGradient id="hdrFleet" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#047857"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+            <linearGradient id="hdrAdmin" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4338ca"/>
+              <stop offset="100%" stop-color="#6366f1"/>
+            </linearGradient>
+
+            <!-- Table Card Background Gradient -->
+            <linearGradient id="tableCardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#141c2e"/>
+              <stop offset="100%" stop-color="#0d1424"/>
+            </linearGradient>
+
+            <!-- Filters -->
+            <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+            </filter>
+
+            <!-- Relation Arrow Markers -->
+            <marker id="arrowRose" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+            </marker>
+            <marker id="arrowAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+            </marker>
+            <marker id="arrowPurple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#c084fc"/>
+            </marker>
+            <marker id="arrowEmerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+            </marker>
+            <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818cf8"/>
+            </marker>
+            <marker id="circleStart" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+              <circle cx="5" cy="5" r="3.5" fill="#94a3b8"/>
+            </marker>
+          </defs>
+
+          <style>
+            .banner-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 22px; font-weight: 900; fill: #ffffff; }
+            .banner-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; font-size: 13.5px; font-weight: 500; fill: #94a3b8; }
+            .domain-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14.5px; font-weight: 800; letter-spacing: 0.4px; fill: #ffffff; }
+            .tbl-title { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 13.5px; font-weight: 800; fill: #ffffff; }
+            .tbl-rows { font-family: "JetBrains Mono", Consolas, monospace; font-size: 10px; font-weight: 700; fill: #e2e8f0; }
+            .col-pk { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11.5px; font-weight: 800; fill: #fde047; }
+            .col-fk { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11.5px; font-weight: 800; fill: #38bdf8; }
+            .col-norm { font-family: "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 600; fill: #cbd5e1; }
+            .col-type { font-family: "JetBrains Mono", Consolas, monospace; font-size: 9.5px; font-weight: 600; fill: #64748b; }
+          </style>
+
+          <!-- Background Base Canvas -->
+          <rect id="bgRect" width="2910" height="1500" fill="url(#bgGradient)"/>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.04)" stroke-width="1"/>
+          </pattern>
+          <rect id="gridRect" width="2910" height="1500" fill="url(#grid)"/>
+
+          <!-- TOP BANNER & STATS -->
+          <g id="topBanner" transform="translate(35, 20)">
+            <rect id="bannerBgRect" width="2840" height="80" rx="14" fill="#0c1222" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5" filter="url(#cardShadow)"/>
+            <rect x="20" y="16" width="6" height="48" rx="3" fill="#38bdf8"/>
+            <text x="38" y="43" class="banner-title">TasContractStudioDB — Contract Entry &amp; Lifecycle Studio Relational ERD (26 Tables &amp; 42 Foreign Keys)</text>
+            <text x="38" y="65" class="banner-sub">Microsoft SQL Server Storage Architecture for 5-Step Contract Creation, Master Lookups, Aircraft Registrations, Versioning, Renewals &amp; Amendments</text>
+
+            <!-- KPI Badges -->
+            <g id="bannerKpiGroup" transform="translate(1748, 23)">
+              <rect x="0" y="0" width="175" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+              <text x="87.5" y="22" text-anchor="middle" font-size="12" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-weight="800">📊 26 / 26 Tables</text>
+
+              <rect x="187" y="0" width="242" height="34" rx="8" fill="rgba(16, 185, 129, 0.16)" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1"/>
+              <text x="308" y="22" text-anchor="middle" font-size="12" fill="#34d399" font-family="'JetBrains Mono', monospace" font-weight="800">✅ 42 / 42 Physical FKs</text>
+
+              <rect x="441" y="0" width="206" height="34" rx="8" fill="rgba(244, 63, 94, 0.15)" stroke="rgba(244, 63, 94, 0.4)" stroke-width="1"/>
+              <text x="544" y="22" text-anchor="middle" font-size="12" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-weight="800">📚 9 Master Catalogs</text>
+
+              <rect x="659" y="0" width="198" height="34" rx="8" fill="rgba(168, 85, 247, 0.15)" stroke="rgba(168, 85, 247, 0.4)" stroke-width="1"/>
+              <text x="758" y="22" text-anchor="middle" font-size="12" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-weight="800">🏛️ 5 Functional Domains</text>
+
+              <rect x="869" y="0" width="164" height="34" rx="8" fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1"/>
+              <text x="951" y="22" text-anchor="middle" font-size="12" fill="#fcd34d" font-family="'JetBrains Mono', monospace" font-weight="800">⚙️ MS SQL Server</text>
+            </g>
+          </g>
+
+          <!-- Dynamic Domain Clusters, All Relationships & All Table Cards -->
+          <g id="clustersLayer"></g>
+          <g class="relationships-layer" id="relationshipsLayer"></g>
+          <g class="tables-layer" id="tablesLayer"></g>
+          <g id="activeConnectionsLayer"></g>
+        </svg>
+      </div>
+
+      <!-- Floating Zoom HUD -->
+      <div class="zoom-hud">
+        <button type="button" class="hud-btn" id="btnZoomIn" title="Zoom In">+</button>
+        <div class="zoom-pct" id="zoomPct">50%</div>
+        <button type="button" class="hud-btn" id="btnZoomOut" title="Zoom Out">−</button>
+        <button type="button" class="hud-btn" id="btnFitScreen" title="Fit to Screen">⤢</button>
+      </div>
+    </div>
+
+    <!-- Right Side Inspector Panel -->
+    <div class="inspector-panel" id="inspectorPanel">
+      <div class="inspector-header">
+        <div class="inspector-title" id="inspectorTableName">Com_Contracts</div>
+        <button type="button" class="close-btn" id="btnCloseInspector" title="Close Inspector">✕</button>
+      </div>
+
+      <div class="tab-nav">
+        <button type="button" class="tab-btn active" data-tab="details" id="tabBtnDetails">Overview</button>
+        <button type="button" class="tab-btn" data-tab="relations" id="tabBtnRelations">Relations</button>
+        <button type="button" class="tab-btn" data-tab="sql" id="tabBtnSql">Table DDL SQL</button>
+        <button type="button" class="tab-btn" data-tab="catalog" id="tabBtnCatalog">All (26)</button>
+      </div>
+
+      <div class="inspector-body" id="inspectorContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Database Schema & Relationships (100% synced with contract_entry_studio_mssql.sql)
+    const DB_DATA = {"database":"TasContractStudioDB","total_tables":26,"total_relations":42,"tables":{"Sec_Roles":{"name":"Sec_Roles","domain":"SECURITY_AUDIT","purpose":"Portal role definitions powering the Role Switcher (Commercial Desk draft creator vs Commercial Admin approver).","isHub":true,"rows":2,"ddl":"-- Portal role definitions powering the Role Switcher (Commercial Desk draft creator vs Commercial Admin approver).\nCREATE TABLE dbo.[Sec_Roles] (\n    [RoleCode] NVARCHAR(30) NOT NULL,\n    [RoleDisplayName] NVARCHAR(100) NOT NULL,\n    [RoleBadgeLabel] NVARCHAR(60) NOT NULL,\n    [CanCreateDraft] BIT NOT NULL CONSTRAINT [DF_Sec_Roles_CanCreateDraft] DEFAULT (1),\n    [CanEditLatestVersion] BIT NOT NULL CONSTRAINT [DF_Sec_Roles_CanEditLatestVersion] DEFAULT (1),\n    [CanApproveAndActivate] BIT NOT NULL CONSTRAINT [DF_Sec_Roles_CanApproveAndActivate] DEFAULT (0),\n    [CanExecuteAmendments] BIT NOT NULL CONSTRAINT [DF_Sec_Roles_CanExecuteAmendments] DEFAULT (1),\n    [CanManageMasterLookups] BIT NOT NULL CONSTRAINT [DF_Sec_Roles_CanManageMasterLookups] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Sec_Roles_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Sec_Roles] PRIMARY KEY CLUSTERED ([RoleCode] ASC),\n    CONSTRAINT [CK_Sec_Roles_RoleCode] CHECK ([RoleCode] IN (N'COMMERCIAL_DESK', N'COMMERCIAL_ADMIN'))\n);","columns":[{"name":"RoleCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"RoleDisplayName","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":false,"identity":false,"pk":false},{"name":"RoleBadgeLabel","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":false,"identity":false,"pk":false},{"name":"CanCreateDraft","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CanEditLatestVersion","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CanApproveAndActivate","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CanExecuteAmendments","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CanManageMasterLookups","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["RoleCode"]},"Sec_Users":{"name":"Sec_Users","domain":"SECURITY_AUDIT","purpose":"Authenticated commercial officers and administrators creating, amending, renewing, and approving contracts.","isHub":true,"rows":4,"ddl":"-- Authenticated commercial officers and administrators creating, amending, renewing, and approving contracts.\nCREATE TABLE dbo.[Sec_Users] (\n    [UserID] INT IDENTITY(1,1) NOT NULL,\n    [Username] NVARCHAR(60) NOT NULL,\n    [FullName] NVARCHAR(120) NOT NULL,\n    [AvatarInitials] NVARCHAR(6) NOT NULL,\n    [Email] NVARCHAR(150) NOT NULL,\n    [RoleCode] NVARCHAR(30) NOT NULL,\n    [Department] NVARCHAR(100) NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Sec_Users_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Sec_Users_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Sec_Users] PRIMARY KEY CLUSTERED ([UserID] ASC),\n    CONSTRAINT [UQ_Sec_Users_Username] UNIQUE NONCLUSTERED ([Username] ASC),\n    CONSTRAINT [UQ_Sec_Users_Email] UNIQUE NONCLUSTERED ([Email] ASC),\n    CONSTRAINT [FK_Sec_Users_Sec_Roles] FOREIGN KEY ([RoleCode]) REFERENCES dbo.[Sec_Roles] ([RoleCode])\n);","columns":[{"name":"UserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":true,"pk":true},{"name":"Username","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":false,"identity":false,"pk":false},{"name":"FullName","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":false,"identity":false,"pk":false},{"name":"AvatarInitials","sql_type":"NVARCHAR(6)","type":"nvarchar","max_len":"6","nullable":false,"identity":false,"pk":false},{"name":"Email","sql_type":"NVARCHAR(150)","type":"nvarchar","max_len":"150","nullable":false,"identity":false,"pk":false},{"name":"RoleCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"Department","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["UserID"]},"Lkp_Currencies":{"name":"Lkp_Currencies","domain":"FINANCIAL_LEGAL","purpose":"Master Lookup #6 — ISO 4217 billing currencies, symbols, USD conversion rates, and base currency flags (Step 1 & Master Lookups).","isHub":false,"rows":6,"ddl":"-- Master Lookup #6 — ISO 4217 billing currencies, symbols, USD conversion rates, and base currency flags (Step 1 & Master Lookups).\nCREATE TABLE dbo.[Lkp_Currencies] (\n    [CurrencyCode] NVARCHAR(10) NOT NULL,\n    [CurrencySymbol] NVARCHAR(10) NOT NULL,\n    [CurrencyName] NVARCHAR(100) NOT NULL,\n    [ExchangeRateToUSD] DECIMAL(18, 6) NOT NULL,\n    [IsBaseCurrency] BIT NOT NULL CONSTRAINT [DF_Lkp_Currencies_IsBaseCurrency] DEFAULT (0),\n    [DisplayFormat] NVARCHAR(120) NOT NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_Currencies_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_Currencies_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_Currencies] PRIMARY KEY CLUSTERED ([CurrencyCode] ASC),\n    CONSTRAINT [CK_Lkp_Currencies_PositiveRate] CHECK ([ExchangeRateToUSD] > (0))\n);","columns":[{"name":"CurrencyCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":true},{"name":"CurrencySymbol","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":false},{"name":"CurrencyName","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":false,"identity":false,"pk":false},{"name":"ExchangeRateToUSD","sql_type":"DECIMAL(18, 6)","type":"decimal","max_len":"18,6","nullable":false,"identity":false,"pk":false},{"name":"IsBaseCurrency","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"DisplayFormat","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":false,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["CurrencyCode"]},"Lkp_PaymentTerms":{"name":"Lkp_PaymentTerms","domain":"FINANCIAL_LEGAL","purpose":"Master Lookup #7 — Payment & credit settlement terms (Net 30, Net 14, 100% Proforma, Net 60, Net 45, Net 7) and credit risk tiers.","isHub":false,"rows":6,"ddl":"-- Master Lookup #7 — Payment & credit settlement terms (Net 30, Net 14, 100% Proforma, Net 60, Net 45, Net 7) and credit risk tiers.\nCREATE TABLE dbo.[Lkp_PaymentTerms] (\n    [PaymentTermCode] NVARCHAR(20) NOT NULL,\n    [TermName] NVARCHAR(120) NOT NULL,\n    [CreditSettlementDays] INT NOT NULL,\n    [CreditRiskCategory] NVARCHAR(60) NOT NULL,\n    [BillingCycleDesc] NVARCHAR(300) NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_PaymentTerms_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_PaymentTerms_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_PaymentTerms] PRIMARY KEY CLUSTERED ([PaymentTermCode] ASC),\n    CONSTRAINT [CK_Lkp_PaymentTerms_Days] CHECK ([CreditSettlementDays] BETWEEN (0) AND (365))\n);","columns":[{"name":"PaymentTermCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"TermName","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":false,"identity":false,"pk":false},{"name":"CreditSettlementDays","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"CreditRiskCategory","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":false,"identity":false,"pk":false},{"name":"BillingCycleDesc","sql_type":"NVARCHAR(300)","type":"nvarchar","max_len":"300","nullable":true,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["PaymentTermCode"]},"Lkp_SghaStandards":{"name":"Lkp_SghaStandards","domain":"FINANCIAL_LEGAL","purpose":"Master Lookup #8 — IATA Standard Ground Handling Agreement (SGHA) editions and custom bilateral SLA frameworks.","isHub":false,"rows":6,"ddl":"-- Master Lookup #8 — IATA Standard Ground Handling Agreement (SGHA) editions and custom bilateral SLA frameworks.\nCREATE TABLE dbo.[Lkp_SghaStandards] (\n    [SghaStandardCode] NVARCHAR(30) NOT NULL,\n    [EditionRelease] NVARCHAR(30) NOT NULL,\n    [StandardFullName] NVARCHAR(150) NOT NULL,\n    [GoverningBody] NVARCHAR(100) NULL,\n    [StandardDescription] NVARCHAR(400) NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_SghaStandards_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_SghaStandards_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_SghaStandards] PRIMARY KEY CLUSTERED ([SghaStandardCode] ASC)\n);","columns":[{"name":"SghaStandardCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"EditionRelease","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"StandardFullName","sql_type":"NVARCHAR(150)","type":"nvarchar","max_len":"150","nullable":false,"identity":false,"pk":false},{"name":"GoverningBody","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"StandardDescription","sql_type":"NVARCHAR(400)","type":"nvarchar","max_len":"400","nullable":true,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["SghaStandardCode"]},"Lkp_CarrierCategories":{"name":"Lkp_CarrierCategories","domain":"FINANCIAL_LEGAL","purpose":"Airline operating classifications used in Contracts Registry filtering & Airline Customer setup (Commercial, Charter, Cargo, LCC, VIP).","isHub":false,"rows":5,"ddl":"-- Airline operating classifications used in Contracts Registry filtering & Airline Customer setup (Commercial, Charter, Cargo, LCC, VIP).\nCREATE TABLE dbo.[Lkp_CarrierCategories] (\n    [CategoryCode] NVARCHAR(20) NOT NULL,\n    [CategoryName] NVARCHAR(80) NOT NULL,\n    [DefaultTargetMarginPct] DECIMAL(5, 2) NOT NULL,\n    [SortOrder] INT NOT NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_CarrierCategories_IsActive] DEFAULT (1),\n    CONSTRAINT [PK_Lkp_CarrierCategories] PRIMARY KEY CLUSTERED ([CategoryCode] ASC)\n);","columns":[{"name":"CategoryCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"CategoryName","sql_type":"NVARCHAR(80)","type":"nvarchar","max_len":"80","nullable":false,"identity":false,"pk":false},{"name":"DefaultTargetMarginPct","sql_type":"DECIMAL(5, 2)","type":"decimal","max_len":"5,2","nullable":false,"identity":false,"pk":false},{"name":"SortOrder","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false}],"pks":["CategoryCode"]},"Lkp_AirportStations":{"name":"Lkp_AirportStations","domain":"FLEET_STATIONS","purpose":"Master Lookup #2 — Authorized Egyptian airport stations (CAI, HRG, SSH, LXR, HBE, SPX, etc.) and regional hubs (Step 2).","isHub":true,"rows":15,"ddl":"-- Master Lookup #2 — Authorized Egyptian airport stations (CAI, HRG, SSH, LXR, HBE, SPX, etc.) and regional hubs (Step 2).\nCREATE TABLE dbo.[Lkp_AirportStations] (\n    [StationCode] NVARCHAR(10) NOT NULL,\n    [AirportName] NVARCHAR(150) NOT NULL,\n    [RegionGovernorate] NVARCHAR(100) NULL,\n    [CountryName] NVARCHAR(80) NOT NULL CONSTRAINT [DF_Lkp_AirportStations_CountryName] DEFAULT N'Egypt',\n    [IsPrimaryHubEligible] BIT NOT NULL CONSTRAINT [DF_Lkp_AirportStations_IsPrimaryHubEligible] DEFAULT (1),\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_AirportStations_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_AirportStations_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_AirportStations] PRIMARY KEY CLUSTERED ([StationCode] ASC)\n);","columns":[{"name":"StationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":true},{"name":"AirportName","sql_type":"NVARCHAR(150)","type":"nvarchar","max_len":"150","nullable":false,"identity":false,"pk":false},{"name":"RegionGovernorate","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"CountryName","sql_type":"NVARCHAR(80)","type":"nvarchar","max_len":"80","nullable":false,"identity":false,"pk":false},{"name":"IsPrimaryHubEligible","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["StationCode"]},"Lkp_ApronPolicies":{"name":"Lkp_ApronPolicies","domain":"FLEET_STATIONS","purpose":"Master Lookup #9 — Apron stand parking & passenger boarding transfer policies (Contact Gate, Remote Cobus, Walk-in, VIP, Cargo Ramp).","isHub":false,"rows":5,"ddl":"-- Master Lookup #9 — Apron stand parking & passenger boarding transfer policies (Contact Gate, Remote Cobus, Walk-in, VIP, Cargo Ramp).\nCREATE TABLE dbo.[Lkp_ApronPolicies] (\n    [ApronPolicyCode] NVARCHAR(30) NOT NULL,\n    [PolicyName] NVARCHAR(150) NOT NULL,\n    [StandCategory] NVARCHAR(60) NOT NULL,\n    [TransferBoardingMethod] NVARCHAR(120) NULL,\n    [OperationalSlaNotes] NVARCHAR(400) NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_ApronPolicies_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_ApronPolicies_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_ApronPolicies] PRIMARY KEY CLUSTERED ([ApronPolicyCode] ASC)\n);","columns":[{"name":"ApronPolicyCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"PolicyName","sql_type":"NVARCHAR(150)","type":"nvarchar","max_len":"150","nullable":false,"identity":false,"pk":false},{"name":"StandCategory","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":false,"identity":false,"pk":false},{"name":"TransferBoardingMethod","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":true,"identity":false,"pk":false},{"name":"OperationalSlaNotes","sql_type":"NVARCHAR(400)","type":"nvarchar","max_len":"400","nullable":true,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ApronPolicyCode"]},"Lkp_MtowTiers":{"name":"Lkp_MtowTiers","domain":"FLEET_STATIONS","purpose":"Maximum Takeoff Weight (MTOW) billing categories (Narrowbody, Widebody, Heavy >250T, Regional Turboprop <50T) in Step 3.","isHub":false,"rows":4,"ddl":"-- Maximum Takeoff Weight (MTOW) billing categories (Narrowbody, Widebody, Heavy >250T, Regional Turboprop <50T) in Step 3.\nCREATE TABLE dbo.[Lkp_MtowTiers] (\n    [MtowTierCode] NVARCHAR(20) NOT NULL,\n    [TierDisplayName] NVARCHAR(100) NOT NULL,\n    [MinWeightTons] DECIMAL(8, 2) NOT NULL,\n    [MaxWeightTons] DECIMAL(8, 2) NULL,\n    [SortOrder] INT NOT NULL,\n    CONSTRAINT [PK_Lkp_MtowTiers] PRIMARY KEY CLUSTERED ([MtowTierCode] ASC)\n);","columns":[{"name":"MtowTierCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"TierDisplayName","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":false,"identity":false,"pk":false},{"name":"MinWeightTons","sql_type":"DECIMAL(8, 2)","type":"decimal","max_len":"8,2","nullable":false,"identity":false,"pk":false},{"name":"MaxWeightTons","sql_type":"DECIMAL(8, 2)","type":"decimal","max_len":"8,2","nullable":true,"identity":false,"pk":false},{"name":"SortOrder","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false}],"pks":["MtowTierCode"]},"Lkp_AircraftModels":{"name":"Lkp_AircraftModels","domain":"FLEET_STATIONS","purpose":"Master Lookup #3 — Aircraft airframe models (A320, A321, B738, B77W, B789, A332F, etc.) mapped to MTOW weight tiers (Step 3).","isHub":true,"rows":23,"ddl":"-- Master Lookup #3 — Aircraft airframe models (A320, A321, B738, B77W, B789, A332F, etc.) mapped to MTOW weight tiers (Step 3).\nCREATE TABLE dbo.[Lkp_AircraftModels] (\n    [ModelCode] NVARCHAR(20) NOT NULL,\n    [ManufacturerDesc] NVARCHAR(150) NOT NULL,\n    [MtowTierCode] NVARCHAR(20) NOT NULL,\n    [IsCargoFreighter] BIT NOT NULL CONSTRAINT [DF_Lkp_AircraftModels_IsCargoFreighter] DEFAULT (0),\n    [DefaultTurnaroundMins] INT NOT NULL CONSTRAINT [DF_Lkp_AircraftModels_DefaultTurnaroundMins] DEFAULT (45),\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_AircraftModels_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_AircraftModels_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_AircraftModels] PRIMARY KEY CLUSTERED ([ModelCode] ASC),\n    CONSTRAINT [FK_Lkp_AircraftModels_MtowTiers] FOREIGN KEY ([MtowTierCode]) REFERENCES dbo.[Lkp_MtowTiers] ([MtowTierCode])\n);","columns":[{"name":"ModelCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"ManufacturerDesc","sql_type":"NVARCHAR(150)","type":"nvarchar","max_len":"150","nullable":false,"identity":false,"pk":false},{"name":"MtowTierCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"IsCargoFreighter","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"DefaultTurnaroundMins","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ModelCode"]},"Ar_AirlineCustomers":{"name":"Ar_AirlineCustomers","domain":"FINANCIAL_LEGAL","purpose":"Master Lookup #1 — Corporate airline & carrier accounts with IATA/ICAO codes, default credit terms, currency, and hub station.","isHub":true,"rows":24,"ddl":"-- Master Lookup #1 — Corporate airline & carrier accounts with IATA/ICAO codes, default credit terms, currency, and hub station.\nCREATE TABLE dbo.[Ar_AirlineCustomers] (\n    [CustomerID] NVARCHAR(40) NOT NULL,\n    [CarrierDisplayCode] NVARCHAR(25) NOT NULL,\n    [IataCode] NVARCHAR(10) NOT NULL,\n    [IcaoCode] NVARCHAR(10) NULL,\n    [CustomerFullName] NVARCHAR(200) NOT NULL,\n    [CategoryCode] NVARCHAR(20) NOT NULL,\n    [DefaultPaymentTermCode] NVARCHAR(20) NOT NULL,\n    [DefaultCurrencyCode] NVARCHAR(10) NOT NULL CONSTRAINT [DF_Ar_AirlineCustomers_DefaultCurrencyCode] DEFAULT N'USD',\n    [PrimaryHubStationCode] NVARCHAR(10) NULL,\n    [CountryRegion] NVARCHAR(100) NULL,\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Ar_AirlineCustomers_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Ar_AirlineCustomers_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Ar_AirlineCustomers] PRIMARY KEY CLUSTERED ([CustomerID] ASC),\n    CONSTRAINT [FK_Ar_AirlineCustomers_Categories] FOREIGN KEY ([CategoryCode]) REFERENCES dbo.[Lkp_CarrierCategories] ([CategoryCode]),\n    CONSTRAINT [FK_Ar_AirlineCustomers_PaymentTerms] FOREIGN KEY ([DefaultPaymentTermCode]) REFERENCES dbo.[Lkp_PaymentTerms] ([PaymentTermCode]),\n    CONSTRAINT [FK_Ar_AirlineCustomers_Currencies] FOREIGN KEY ([DefaultCurrencyCode]) REFERENCES dbo.[Lkp_Currencies] ([CurrencyCode]),\n    CONSTRAINT [FK_Ar_AirlineCustomers_HubStation] FOREIGN KEY ([PrimaryHubStationCode]) REFERENCES dbo.[Lkp_AirportStations] ([StationCode])\n);","columns":[{"name":"CustomerID","sql_type":"NVARCHAR(40)","type":"nvarchar","max_len":"40","nullable":false,"identity":false,"pk":true},{"name":"CarrierDisplayCode","sql_type":"NVARCHAR(25)","type":"nvarchar","max_len":"25","nullable":false,"identity":false,"pk":false},{"name":"IataCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":false},{"name":"IcaoCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":true,"identity":false,"pk":false},{"name":"CustomerFullName","sql_type":"NVARCHAR(200)","type":"nvarchar","max_len":"200","nullable":false,"identity":false,"pk":false},{"name":"CategoryCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"DefaultPaymentTermCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"DefaultCurrencyCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":false},{"name":"PrimaryHubStationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":true,"identity":false,"pk":false},{"name":"CountryRegion","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["CustomerID"]},"Flt_AircraftRegistrations":{"name":"Flt_AircraftRegistrations","domain":"FLEET_STATIONS","purpose":"Master Lookup #4 — Individual aircraft registrations (e.g. SU-GBF, OK-TVF), certified MTOW tons, seat capacity, and ownership/lease status.","isHub":true,"rows":37,"ddl":"-- Master Lookup #4 — Individual aircraft registrations (e.g. SU-GBF, OK-TVF), certified MTOW tons, seat capacity, and ownership/lease status.\nCREATE TABLE dbo.[Flt_AircraftRegistrations] (\n    [RegistrationNo] NVARCHAR(20) NOT NULL,\n    [CustomerID] NVARCHAR(40) NOT NULL,\n    [ModelCode] NVARCHAR(20) NOT NULL,\n    [OperatingCarrierCode] NVARCHAR(25) NOT NULL,\n    [VariantModelName] NVARCHAR(120) NULL,\n    [CertifiedMtowTons] DECIMAL(8, 2) NOT NULL,\n    [PassengerSeats] INT NOT NULL CONSTRAINT [DF_Flt_AircraftRegistrations_PassengerSeats] DEFAULT (0),\n    [OwnershipStatus] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Flt_AircraftRegistrations_OwnershipStatus] DEFAULT N'OWNED',\n    [IsLeased] BIT NOT NULL CONSTRAINT [DF_Flt_AircraftRegistrations_IsLeased] DEFAULT (0),\n    [OperationalStatus] NVARCHAR(30) NOT NULL CONSTRAINT [DF_Flt_AircraftRegistrations_OperationalStatus] DEFAULT N'Active',\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Flt_AircraftRegistrations_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Flt_AircraftRegistrations] PRIMARY KEY CLUSTERED ([RegistrationNo] ASC),\n    CONSTRAINT [CK_Flt_AircraftRegistrations_Ownership] CHECK ([OwnershipStatus] IN (N'OWNED', N'LEASED_DRY', N'LEASED_WET')),\n    CONSTRAINT [CK_Flt_AircraftRegistrations_Mtow] CHECK ([CertifiedMtowTons] > (0)),\n    CONSTRAINT [FK_Flt_AircraftRegistrations_Customers] FOREIGN KEY ([CustomerID]) REFERENCES dbo.[Ar_AirlineCustomers] ([CustomerID]),\n    CONSTRAINT [FK_Flt_AircraftRegistrations_Models] FOREIGN KEY ([ModelCode]) REFERENCES dbo.[Lkp_AircraftModels] ([ModelCode])\n);","columns":[{"name":"RegistrationNo","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"CustomerID","sql_type":"NVARCHAR(40)","type":"nvarchar","max_len":"40","nullable":false,"identity":false,"pk":false},{"name":"ModelCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"OperatingCarrierCode","sql_type":"NVARCHAR(25)","type":"nvarchar","max_len":"25","nullable":false,"identity":false,"pk":false},{"name":"VariantModelName","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":true,"identity":false,"pk":false},{"name":"CertifiedMtowTons","sql_type":"DECIMAL(8, 2)","type":"decimal","max_len":"8,2","nullable":false,"identity":false,"pk":false},{"name":"PassengerSeats","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"OwnershipStatus","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"IsLeased","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"OperationalStatus","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["RegistrationNo"]},"Lkp_GroundServices":{"name":"Lkp_GroundServices","domain":"FLEET_STATIONS","purpose":"Master Lookup #5 — Ground handling services & auxiliary ramp GSE tariff catalog (GPU, ASU, ACU, Pushback, Lavatory, Potable Water, etc.).","isHub":true,"rows":18,"ddl":"-- Master Lookup #5 — Ground handling services & auxiliary ramp GSE tariff catalog (GPU, ASU, ACU, Pushback, Lavatory, Potable Water, etc.).\nCREATE TABLE dbo.[Lkp_GroundServices] (\n    [ServiceCode] NVARCHAR(30) NOT NULL,\n    [ServiceName] NVARCHAR(200) NOT NULL,\n    [StandardTariffUSD] DECIMAL(12, 2) NOT NULL,\n    [BillingUnit] NVARCHAR(30) NOT NULL CONSTRAINT [DF_Lkp_GroundServices_BillingUnit] DEFAULT N'Per Sortie',\n    [SghaAnnexSection] NVARCHAR(60) NULL,\n    [IconSymbol] NVARCHAR(10) NULL,\n    [IsAuxiliaryGse] BIT NOT NULL CONSTRAINT [DF_Lkp_GroundServices_IsAuxiliaryGse] DEFAULT (1),\n    [IsActive] BIT NOT NULL CONSTRAINT [DF_Lkp_GroundServices_IsActive] DEFAULT (1),\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Lkp_GroundServices_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Lkp_GroundServices] PRIMARY KEY CLUSTERED ([ServiceCode] ASC),\n    CONSTRAINT [CK_Lkp_GroundServices_Rate] CHECK ([StandardTariffUSD] >= (0))\n);","columns":[{"name":"ServiceCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"ServiceName","sql_type":"NVARCHAR(200)","type":"nvarchar","max_len":"200","nullable":false,"identity":false,"pk":false},{"name":"StandardTariffUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false},{"name":"BillingUnit","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"SghaAnnexSection","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":true,"identity":false,"pk":false},{"name":"IconSymbol","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":true,"identity":false,"pk":false},{"name":"IsAuxiliaryGse","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"IsActive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ServiceCode"]},"Com_Contracts":{"name":"Com_Contracts","domain":"CORE_CONTRACTS","purpose":"Primary commercial ground handling contract header storing all 5-Step Wizard parameters, validity dates, base tariffs, registration policy, and approval state.","isHub":true,"rows":12,"ddl":"-- Primary commercial ground handling contract header storing all 5-Step Wizard parameters, validity dates, base tariffs, registration policy, and approval state.\nCREATE TABLE dbo.[Com_Contracts] (\n    [ContractID] INT IDENTITY(1,1) NOT NULL,\n    [ContractRef] NVARCHAR(50) NOT NULL,\n    [CustomerReference] NVARCHAR(60) NULL,\n    [CustomerID] NVARCHAR(40) NOT NULL,\n    [CategoryCode] NVARCHAR(20) NOT NULL,\n    [ContractStatus] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Com_Contracts_ContractStatus] DEFAULT N'DRAFT',\n    [CurrentVersionLabel] NVARCHAR(30) NOT NULL CONSTRAINT [DF_Com_Contracts_CurrentVersionLabel] DEFAULT N'v1.0',\n    [PrimaryStationCode] NVARCHAR(10) NOT NULL,\n    [EffectiveFromDate] DATE NOT NULL,\n    [ValidToDate] DATE NOT NULL,\n    [CurrencyCode] NVARCHAR(10) NOT NULL CONSTRAINT [DF_Com_Contracts_CurrencyCode] DEFAULT N'USD',\n    [PaymentTermCode] NVARCHAR(20) NOT NULL,\n    [SghaStandardCode] NVARCHAR(30) NOT NULL,\n    [ApronPolicyCode] NVARCHAR(30) NOT NULL,\n    [MtowTierCode] NVARCHAR(20) NULL,\n    [RegistrationScope] NVARCHAR(15) NOT NULL CONSTRAINT [DF_Com_Contracts_RegistrationScope] DEFAULT N'ALL',\n    [ConcessionRoyaltyPct] DECIMAL(5, 2) NOT NULL CONSTRAINT [DF_Com_Contracts_ConcessionRoyaltyPct] DEFAULT (12.00),\n    [TurnaroundDurationMins] INT NOT NULL CONSTRAINT [DF_Com_Contracts_TurnaroundDurationMins] DEFAULT (45),\n    [MonthlyFlightVolume] INT NOT NULL,\n    [BaseNarrowRateUSD] DECIMAL(12, 2) NOT NULL,\n    [BaseWideRateUSD] DECIMAL(12, 2) NULL,\n    [AnnualEscalationPct] DECIMAL(5, 2) NOT NULL CONSTRAINT [DF_Com_Contracts_AnnualEscalationPct] DEFAULT (0.00),\n    [EstimatedMonthlyRevUSD] DECIMAL(15, 2) NOT NULL,\n    [AnnualContractValueUSD] DECIMAL(15, 2) NOT NULL,\n    [ProfitMarginPct] DECIMAL(5, 2) NOT NULL CONSTRAINT [DF_Com_Contracts_ProfitMarginPct] DEFAULT (27.00),\n    [CommercialRemarks] NVARCHAR(2000) NULL,\n    [CreatedDate] DATE NOT NULL,\n    [CreatedByUserID] INT NOT NULL,\n    [ApprovedByUserID] INT NULL,\n    [ApprovedAt] DATETIME2(0) NULL,\n    [UpdatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_Contracts_UpdatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_Contracts] PRIMARY KEY CLUSTERED ([ContractID] ASC),\n    CONSTRAINT [UQ_Com_Contracts_ContractRef] UNIQUE NONCLUSTERED ([ContractRef] ASC),\n    CONSTRAINT [CK_Com_Contracts_Status] CHECK ([ContractStatus] IN (N'DRAFT', N'PENDING', N'ACTIVE', N'EXPIRING', N'RENEWAL', N'EXPIRED')),\n    CONSTRAINT [CK_Com_Contracts_RegScope] CHECK ([RegistrationScope] IN (N'ALL', N'CUSTOM')),\n    CONSTRAINT [CK_Com_Contracts_DateOrder] CHECK ([ValidToDate] >= [EffectiveFromDate]),\n    CONSTRAINT [FK_Com_Contracts_Customers] FOREIGN KEY ([CustomerID]) REFERENCES dbo.[Ar_AirlineCustomers] ([CustomerID]),\n    CONSTRAINT [FK_Com_Contracts_Categories] FOREIGN KEY ([CategoryCode]) REFERENCES dbo.[Lkp_CarrierCategories] ([CategoryCode]),\n    CONSTRAINT [FK_Com_Contracts_PrimaryStation] FOREIGN KEY ([PrimaryStationCode]) REFERENCES dbo.[Lkp_AirportStations] ([StationCode]),\n    CONSTRAINT [FK_Com_Contracts_Currencies] FOREIGN KEY ([CurrencyCode]) REFERENCES dbo.[Lkp_Currencies] ([CurrencyCode]),\n    CONSTRAINT [FK_Com_Contracts_PaymentTerms] FOREIGN KEY ([PaymentTermCode]) REFERENCES dbo.[Lkp_PaymentTerms] ([PaymentTermCode]),\n    CONSTRAINT [FK_Com_Contracts_SghaStandards] FOREIGN KEY ([SghaStandardCode]) REFERENCES dbo.[Lkp_SghaStandards] ([SghaStandardCode]),\n    CONSTRAINT [FK_Com_Contracts_ApronPolicies] FOREIGN KEY ([ApronPolicyCode]) REFERENCES dbo.[Lkp_ApronPolicies] ([ApronPolicyCode]),\n    CONSTRAINT [FK_Com_Contracts_MtowTiers] FOREIGN KEY ([MtowTierCode]) REFERENCES dbo.[Lkp_MtowTiers] ([MtowTierCode]),\n    CONSTRAINT [FK_Com_Contracts_CreatedByUser] FOREIGN KEY ([CreatedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID]),\n    CONSTRAINT [FK_Com_Contracts_ApprovedByUser] FOREIGN KEY ([ApprovedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID])\n);","columns":[{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":true,"pk":true},{"name":"ContractRef","sql_type":"NVARCHAR(50)","type":"nvarchar","max_len":"50","nullable":false,"identity":false,"pk":false},{"name":"CustomerReference","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":true,"identity":false,"pk":false},{"name":"CustomerID","sql_type":"NVARCHAR(40)","type":"nvarchar","max_len":"40","nullable":false,"identity":false,"pk":false},{"name":"CategoryCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"ContractStatus","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"CurrentVersionLabel","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"PrimaryStationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":false},{"name":"EffectiveFromDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"ValidToDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"CurrencyCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":false},{"name":"PaymentTermCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"SghaStandardCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"ApronPolicyCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"MtowTierCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":true,"identity":false,"pk":false},{"name":"RegistrationScope","sql_type":"NVARCHAR(15)","type":"nvarchar","max_len":"15","nullable":false,"identity":false,"pk":false},{"name":"ConcessionRoyaltyPct","sql_type":"DECIMAL(5, 2)","type":"decimal","max_len":"5,2","nullable":false,"identity":false,"pk":false},{"name":"TurnaroundDurationMins","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"MonthlyFlightVolume","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"BaseNarrowRateUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false},{"name":"BaseWideRateUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":true,"identity":false,"pk":false},{"name":"AnnualEscalationPct","sql_type":"DECIMAL(5, 2)","type":"decimal","max_len":"5,2","nullable":false,"identity":false,"pk":false},{"name":"EstimatedMonthlyRevUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"AnnualContractValueUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"ProfitMarginPct","sql_type":"DECIMAL(5, 2)","type":"decimal","max_len":"5,2","nullable":false,"identity":false,"pk":false},{"name":"CommercialRemarks","sql_type":"NVARCHAR(2000)","type":"nvarchar","max_len":"2000","nullable":true,"identity":false,"pk":false},{"name":"CreatedDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"CreatedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"ApprovedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":true,"identity":false,"pk":false},{"name":"ApprovedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":true,"identity":false,"pk":false},{"name":"UpdatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ContractID"]},"Com_ContractStations":{"name":"Com_ContractStations","domain":"CORE_CONTRACTS","purpose":"Step 2 M:N junction — Authorized airport stations network for each contract, flagging the Primary Hub and whether added via base entry or amendment.","isHub":false,"rows":43,"ddl":"-- Step 2 M:N junction — Authorized airport stations network for each contract, flagging the Primary Hub and whether added via base entry or amendment.\nCREATE TABLE dbo.[Com_ContractStations] (\n    [ContractID] INT NOT NULL,\n    [StationCode] NVARCHAR(10) NOT NULL,\n    [IsPrimaryHub] BIT NOT NULL CONSTRAINT [DF_Com_ContractStations_IsPrimaryHub] DEFAULT (0),\n    [SourceType] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Com_ContractStations_SourceType] DEFAULT N'BASE',\n    [AuthorizedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractStations_AuthorizedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_ContractStations] PRIMARY KEY CLUSTERED ([ContractID] ASC, [StationCode] ASC),\n    CONSTRAINT [CK_Com_ContractStations_Source] CHECK ([SourceType] IN (N'BASE', N'AMENDMENT')),\n    CONSTRAINT [FK_Com_ContractStations_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractStations_Stations] FOREIGN KEY ([StationCode]) REFERENCES dbo.[Lkp_AirportStations] ([StationCode])\n);","columns":[{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"StationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":true},{"name":"IsPrimaryHub","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"SourceType","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"AuthorizedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ContractID","StationCode"]},"Com_ContractFleetModels":{"name":"Com_ContractFleetModels","domain":"CORE_CONTRACTS","purpose":"Step 3 M:N junction — Covered aircraft types and models authorized under each ground handling contract.","isHub":false,"rows":31,"ddl":"-- Step 3 M:N junction — Covered aircraft types and models authorized under each ground handling contract.\nCREATE TABLE dbo.[Com_ContractFleetModels] (\n    [ContractID] INT NOT NULL,\n    [ModelCode] NVARCHAR(20) NOT NULL,\n    [SourceType] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Com_ContractFleetModels_SourceType] DEFAULT N'BASE',\n    [AuthorizedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractFleetModels_AuthorizedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_ContractFleetModels] PRIMARY KEY CLUSTERED ([ContractID] ASC, [ModelCode] ASC),\n    CONSTRAINT [CK_Com_ContractFleetModels_Source] CHECK ([SourceType] IN (N'BASE', N'AMENDMENT')),\n    CONSTRAINT [FK_Com_ContractFleetModels_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractFleetModels_Models] FOREIGN KEY ([ModelCode]) REFERENCES dbo.[Lkp_AircraftModels] ([ModelCode])\n);","columns":[{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"ModelCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"SourceType","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"AuthorizedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ContractID","ModelCode"]},"Com_ContractRegistrations":{"name":"Com_ContractRegistrations","domain":"CORE_CONTRACTS","purpose":"Step 3 M:N junction — Specific Aircraft Registration Whitelist locking turnaround work orders to designated aircraft registrations when RegistrationScope = CUSTOM.","isHub":false,"rows":16,"ddl":"-- Step 3 M:N junction — Specific Aircraft Registration Whitelist locking turnaround work orders to designated aircraft registrations when RegistrationScope = CUSTOM.\nCREATE TABLE dbo.[Com_ContractRegistrations] (\n    [ContractID] INT NOT NULL,\n    [RegistrationNo] NVARCHAR(20) NOT NULL,\n    [WhitelistedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractRegistrations_WhitelistedAt] DEFAULT SYSUTCDATETIME(),\n    [RegistrationNotes] NVARCHAR(250) NULL,\n    CONSTRAINT [PK_Com_ContractRegistrations] PRIMARY KEY CLUSTERED ([ContractID] ASC, [RegistrationNo] ASC),\n    CONSTRAINT [FK_Com_ContractRegistrations_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractRegistrations_Registrations] FOREIGN KEY ([RegistrationNo]) REFERENCES dbo.[Flt_AircraftRegistrations] ([RegistrationNo])\n);","columns":[{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"RegistrationNo","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"WhitelistedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false},{"name":"RegistrationNotes","sql_type":"NVARCHAR(250)","type":"nvarchar","max_len":"250","nullable":true,"identity":false,"pk":false}],"pks":["ContractID","RegistrationNo"]},"Com_ContractServices":{"name":"Com_ContractServices","domain":"CORE_CONTRACTS","purpose":"Step 4 & Step 5 SLA Review M:N junction — Contracted ground handling services & auxiliary GSE items with negotiated sortie rates and monthly commitment.","isHub":false,"rows":48,"ddl":"-- Step 4 & Step 5 SLA Review M:N junction — Contracted ground handling services & auxiliary GSE items with negotiated sortie rates and monthly commitment.\nCREATE TABLE dbo.[Com_ContractServices] (\n    [ContractID] INT NOT NULL,\n    [ServiceCode] NVARCHAR(30) NOT NULL,\n    [NegotiatedRateUSD] DECIMAL(12, 2) NOT NULL,\n    [EstMonthlyCommitmentUSD] DECIMAL(14, 2) NOT NULL,\n    [IsIncludedInSla] BIT NOT NULL CONSTRAINT [DF_Com_ContractServices_IsIncludedInSla] DEFAULT (1),\n    [SourceType] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Com_ContractServices_SourceType] DEFAULT N'BASE',\n    CONSTRAINT [PK_Com_ContractServices] PRIMARY KEY CLUSTERED ([ContractID] ASC, [ServiceCode] ASC),\n    CONSTRAINT [FK_Com_ContractServices_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractServices_Services] FOREIGN KEY ([ServiceCode]) REFERENCES dbo.[Lkp_GroundServices] ([ServiceCode])\n);","columns":[{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"ServiceCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"NegotiatedRateUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false},{"name":"EstMonthlyCommitmentUSD","sql_type":"DECIMAL(14, 2)","type":"decimal","max_len":"14,2","nullable":false,"identity":false,"pk":false},{"name":"IsIncludedInSla","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"SourceType","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false}],"pks":["ContractID","ServiceCode"]},"Com_ContractVersions":{"name":"Com_ContractVersions","domain":"LIFECYCLE_AMENDMENTS","purpose":"Contract Version History backing the Registry table version dropdown (Ver: v1.0, v1.1 AMD, v2.0 Renewed) and read-only lock on archived releases.","isHub":true,"rows":21,"ddl":"-- Contract Version History backing the Registry table version dropdown (Ver: v1.0, v1.1 AMD, v2.0 Renewed) and read-only lock on archived releases.\nCREATE TABLE dbo.[Com_ContractVersions] (\n    [ContractVersionID] INT IDENTITY(1,1) NOT NULL,\n    [ContractID] INT NOT NULL,\n    [VersionLabel] NVARCHAR(30) NOT NULL,\n    [VersionStatus] NVARCHAR(20) NOT NULL,\n    [VersionDate] DATE NOT NULL,\n    [IsLatestVersion] BIT NOT NULL CONSTRAINT [DF_Com_ContractVersions_IsLatestVersion] DEFAULT (1),\n    [IsLockedArchive] BIT NOT NULL CONSTRAINT [DF_Com_ContractVersions_IsLockedArchive] DEFAULT (0),\n    [AnnualValueSnapshotUSD] DECIMAL(15, 2) NOT NULL,\n    [VersionNotes] NVARCHAR(500) NULL,\n    [CreatedByUserID] INT NOT NULL,\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractVersions_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_ContractVersions] PRIMARY KEY CLUSTERED ([ContractVersionID] ASC),\n    CONSTRAINT [CK_Com_ContractVersions_Status] CHECK ([VersionStatus] IN (N'DRAFT', N'PENDING', N'ACTIVE', N'EXPIRING', N'RENEWAL', N'EXPIRED', N'SUPERSEDED')),\n    CONSTRAINT [FK_Com_ContractVersions_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractVersions_Users] FOREIGN KEY ([CreatedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID])\n);","columns":[{"name":"ContractVersionID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":true,"pk":true},{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"VersionLabel","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"VersionStatus","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"VersionDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"IsLatestVersion","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"IsLockedArchive","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"AnnualValueSnapshotUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"VersionNotes","sql_type":"NVARCHAR(500)","type":"nvarchar","max_len":"500","nullable":true,"identity":false,"pk":false},{"name":"CreatedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["ContractVersionID"]},"Com_ContractRenewals":{"name":"Com_ContractRenewals","domain":"LIFECYCLE_AMENDMENTS","purpose":"Contract Renewal Dialog records storing duration presets (+1/+2/+3 yrs), inflation indexation %, generated -R1/-R2 refs, and updated annual values.","isHub":false,"rows":3,"ddl":"-- Contract Renewal Dialog records storing duration presets (+1/+2/+3 yrs), inflation indexation %, generated -R1/-R2 refs, and updated annual values.\nCREATE TABLE dbo.[Com_ContractRenewals] (\n    [RenewalID] INT IDENTITY(1,1) NOT NULL,\n    [ContractID] INT NOT NULL,\n    [PreviousContractRef] NVARCHAR(50) NOT NULL,\n    [GeneratedRenewalRef] NVARCHAR(50) NOT NULL,\n    [PreviousStartDate] DATE NOT NULL,\n    [PreviousEndDate] DATE NOT NULL,\n    [NewEffectiveDate] DATE NOT NULL,\n    [NewExpiryDate] DATE NOT NULL,\n    [ExtensionDurationYears] INT NULL,\n    [InflationIndexationPct] DECIMAL(5, 2) NOT NULL CONSTRAINT [DF_Com_ContractRenewals_InflationIndexationPct] DEFAULT (0.00),\n    [PreviousAnnualValueUSD] DECIMAL(15, 2) NOT NULL,\n    [UpdatedAnnualValueUSD] DECIMAL(15, 2) NOT NULL,\n    [ExecutionMode] NVARCHAR(20) NOT NULL CONSTRAINT [DF_Com_ContractRenewals_ExecutionMode] DEFAULT N'DIRECT_APPLY',\n    [RenewalAddendumNotes] NVARCHAR(500) NULL,\n    [RenewedByUserID] INT NOT NULL,\n    [RenewedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractRenewals_RenewedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_ContractRenewals] PRIMARY KEY CLUSTERED ([RenewalID] ASC),\n    CONSTRAINT [CK_Com_ContractRenewals_Dates] CHECK ([NewExpiryDate] > [NewEffectiveDate]),\n    CONSTRAINT [FK_Com_ContractRenewals_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractRenewals_Users] FOREIGN KEY ([RenewedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID])\n);","columns":[{"name":"RenewalID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":true,"pk":true},{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"PreviousContractRef","sql_type":"NVARCHAR(50)","type":"nvarchar","max_len":"50","nullable":false,"identity":false,"pk":false},{"name":"GeneratedRenewalRef","sql_type":"NVARCHAR(50)","type":"nvarchar","max_len":"50","nullable":false,"identity":false,"pk":false},{"name":"PreviousStartDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"PreviousEndDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"NewEffectiveDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"NewExpiryDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"ExtensionDurationYears","sql_type":"INT","type":"int","max_len":"4","nullable":true,"identity":false,"pk":false},{"name":"InflationIndexationPct","sql_type":"DECIMAL(5, 2)","type":"decimal","max_len":"5,2","nullable":false,"identity":false,"pk":false},{"name":"PreviousAnnualValueUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"UpdatedAnnualValueUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"ExecutionMode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":false},{"name":"RenewalAddendumNotes","sql_type":"NVARCHAR(500)","type":"nvarchar","max_len":"500","nullable":true,"identity":false,"pk":false},{"name":"RenewedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"RenewedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["RenewalID"]},"Com_ContractAmendments":{"name":"Com_ContractAmendments","domain":"LIFECYCLE_AMENDMENTS","purpose":"Contract Amendment & Options Header storing executed addenda (-AMD-1, -AMD-2), effective dates, monthly surcharge USD, and resulting annual contract value.","isHub":true,"rows":3,"ddl":"-- Contract Amendment & Options Header storing executed addenda (-AMD-1, -AMD-2), effective dates, monthly surcharge USD, and resulting annual contract value.\nCREATE TABLE dbo.[Com_ContractAmendments] (\n    [AmendmentID] INT IDENTITY(1,1) NOT NULL,\n    [ContractID] INT NOT NULL,\n    [AmendmentRef] NVARCHAR(60) NOT NULL,\n    [AmendmentTitle] NVARCHAR(200) NOT NULL,\n    [EffectiveDate] DATE NOT NULL,\n    [CreatedDate] DATE NOT NULL,\n    [MonthlySurchargeUSD] DECIMAL(12, 2) NOT NULL CONSTRAINT [DF_Com_ContractAmendments_MonthlySurchargeUSD] DEFAULT (0.00),\n    [PreviousAnnualValueUSD] DECIMAL(15, 2) NOT NULL,\n    [UpdatedAnnualValueUSD] DECIMAL(15, 2) NOT NULL,\n    [ResultingVersionLabel] NVARCHAR(30) NOT NULL,\n    [ClauseNotes] NVARCHAR(1000) NULL,\n    [CreatedByUserID] INT NOT NULL,\n    [CreatedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Com_ContractAmendments_CreatedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Com_ContractAmendments] PRIMARY KEY CLUSTERED ([AmendmentID] ASC),\n    CONSTRAINT [UQ_Com_ContractAmendments_AmendmentRef] UNIQUE NONCLUSTERED ([AmendmentRef] ASC),\n    CONSTRAINT [FK_Com_ContractAmendments_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_ContractAmendments_Users] FOREIGN KEY ([CreatedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID])\n);","columns":[{"name":"AmendmentID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":true,"pk":true},{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"AmendmentRef","sql_type":"NVARCHAR(60)","type":"nvarchar","max_len":"60","nullable":false,"identity":false,"pk":false},{"name":"AmendmentTitle","sql_type":"NVARCHAR(200)","type":"nvarchar","max_len":"200","nullable":false,"identity":false,"pk":false},{"name":"EffectiveDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"CreatedDate","sql_type":"DATE","type":"date","max_len":"3","nullable":false,"identity":false,"pk":false},{"name":"MonthlySurchargeUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false},{"name":"PreviousAnnualValueUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"UpdatedAnnualValueUSD","sql_type":"DECIMAL(15, 2)","type":"decimal","max_len":"15,2","nullable":false,"identity":false,"pk":false},{"name":"ResultingVersionLabel","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":false},{"name":"ClauseNotes","sql_type":"NVARCHAR(1000)","type":"nvarchar","max_len":"1000","nullable":true,"identity":false,"pk":false},{"name":"CreatedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"CreatedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["AmendmentID"]},"Com_AmendmentAmenities":{"name":"Com_AmendmentAmenities","domain":"LIFECYCLE_AMENDMENTS","purpose":"1:1 Amendment Operational Amenities — Crew Housing (hotel tier, board, rooms, station), Crew Transport, Passenger Stairs & Ladders, and Potable Drinking Water.","isHub":false,"rows":3,"ddl":"-- 1:1 Amendment Operational Amenities — Crew Housing (hotel tier, board, rooms, station), Crew Transport, Passenger Stairs & Ladders, and Potable Drinking Water.\nCREATE TABLE dbo.[Com_AmendmentAmenities] (\n    [AmendmentID] INT NOT NULL,\n    [CrewHousingEnabled] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_CrewHousingEnabled] DEFAULT (0),\n    [HousingHotelTier] NVARCHAR(80) NULL,\n    [HousingBoardType] NVARCHAR(40) NULL,\n    [HousingRoomsAllocated] INT NULL,\n    [HousingStationCode] NVARCHAR(10) NULL,\n    [CrewTransportEnabled] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_CrewTransportEnabled] DEFAULT (0),\n    [TransportVehicleType] NVARCHAR(100) NULL,\n    [TransportRouteType] NVARCHAR(120) NULL,\n    [PassengerLaddersEnabled] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_PassengerLaddersEnabled] DEFAULT (0),\n    [LadderSpecification] NVARCHAR(120) NULL,\n    [StairOperatorIncluded] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_StairOperatorIncluded] DEFAULT (1),\n    [StairLightingIncluded] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_StairLightingIncluded] DEFAULT (1),\n    [PotableWaterEnabled] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_PotableWaterEnabled] DEFAULT (0),\n    [WaterRefillCapacity] NVARCHAR(100) NULL,\n    [WaterWhoCertificate] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_WaterWhoCertificate] DEFAULT (1),\n    [WaterAntiBacterialFlush] BIT NOT NULL CONSTRAINT [DF_Com_AmendmentAmenities_WaterAntiBacterialFlush] DEFAULT (1),\n    CONSTRAINT [PK_Com_AmendmentAmenities] PRIMARY KEY CLUSTERED ([AmendmentID] ASC),\n    CONSTRAINT [FK_Com_AmendmentAmenities_Amendments] FOREIGN KEY ([AmendmentID]) REFERENCES dbo.[Com_ContractAmendments] ([AmendmentID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_AmendmentAmenities_Station] FOREIGN KEY ([HousingStationCode]) REFERENCES dbo.[Lkp_AirportStations] ([StationCode])\n);","columns":[{"name":"AmendmentID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"CrewHousingEnabled","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"HousingHotelTier","sql_type":"NVARCHAR(80)","type":"nvarchar","max_len":"80","nullable":true,"identity":false,"pk":false},{"name":"HousingBoardType","sql_type":"NVARCHAR(40)","type":"nvarchar","max_len":"40","nullable":true,"identity":false,"pk":false},{"name":"HousingRoomsAllocated","sql_type":"INT","type":"int","max_len":"4","nullable":true,"identity":false,"pk":false},{"name":"HousingStationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":true,"identity":false,"pk":false},{"name":"CrewTransportEnabled","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"TransportVehicleType","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"TransportRouteType","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":true,"identity":false,"pk":false},{"name":"PassengerLaddersEnabled","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"LadderSpecification","sql_type":"NVARCHAR(120)","type":"nvarchar","max_len":"120","nullable":true,"identity":false,"pk":false},{"name":"StairOperatorIncluded","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"StairLightingIncluded","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"PotableWaterEnabled","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"WaterRefillCapacity","sql_type":"NVARCHAR(100)","type":"nvarchar","max_len":"100","nullable":true,"identity":false,"pk":false},{"name":"WaterWhoCertificate","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false},{"name":"WaterAntiBacterialFlush","sql_type":"BIT","type":"bit","max_len":"1","nullable":false,"identity":false,"pk":false}],"pks":["AmendmentID"]},"Com_AmendmentStations":{"name":"Com_AmendmentStations","domain":"LIFECYCLE_AMENDMENTS","purpose":"Airport stations appended to an existing contract via an Amendment (Airport Stations Network Expansion section).","isHub":false,"rows":3,"ddl":"-- Airport stations appended to an existing contract via an Amendment (Airport Stations Network Expansion section).\nCREATE TABLE dbo.[Com_AmendmentStations] (\n    [AmendmentID] INT NOT NULL,\n    [StationCode] NVARCHAR(10) NOT NULL,\n    [MonthlyStationFeeUSD] DECIMAL(12, 2) NOT NULL CONSTRAINT [DF_Com_AmendmentStations_MonthlyStationFeeUSD] DEFAULT (1200.00),\n    CONSTRAINT [PK_Com_AmendmentStations] PRIMARY KEY CLUSTERED ([AmendmentID] ASC, [StationCode] ASC),\n    CONSTRAINT [FK_Com_AmendmentStations_Amendments] FOREIGN KEY ([AmendmentID]) REFERENCES dbo.[Com_ContractAmendments] ([AmendmentID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_AmendmentStations_Stations] FOREIGN KEY ([StationCode]) REFERENCES dbo.[Lkp_AirportStations] ([StationCode])\n);","columns":[{"name":"AmendmentID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"StationCode","sql_type":"NVARCHAR(10)","type":"nvarchar","max_len":"10","nullable":false,"identity":false,"pk":true},{"name":"MonthlyStationFeeUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false}],"pks":["AmendmentID","StationCode"]},"Com_AmendmentFleetModels":{"name":"Com_AmendmentFleetModels","domain":"LIFECYCLE_AMENDMENTS","purpose":"Aircraft fleet models appended to an existing contract via an Amendment (Covered Airfleet Models Expansion section).","isHub":false,"rows":3,"ddl":"-- Aircraft fleet models appended to an existing contract via an Amendment (Covered Airfleet Models Expansion section).\nCREATE TABLE dbo.[Com_AmendmentFleetModels] (\n    [AmendmentID] INT NOT NULL,\n    [ModelCode] NVARCHAR(20) NOT NULL,\n    [MonthlyFleetFeeUSD] DECIMAL(12, 2) NOT NULL CONSTRAINT [DF_Com_AmendmentFleetModels_MonthlyFleetFeeUSD] DEFAULT (750.00),\n    CONSTRAINT [PK_Com_AmendmentFleetModels] PRIMARY KEY CLUSTERED ([AmendmentID] ASC, [ModelCode] ASC),\n    CONSTRAINT [FK_Com_AmendmentFleetModels_Amendments] FOREIGN KEY ([AmendmentID]) REFERENCES dbo.[Com_ContractAmendments] ([AmendmentID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_AmendmentFleetModels_Models] FOREIGN KEY ([ModelCode]) REFERENCES dbo.[Lkp_AircraftModels] ([ModelCode])\n);","columns":[{"name":"AmendmentID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"ModelCode","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":false,"identity":false,"pk":true},{"name":"MonthlyFleetFeeUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false}],"pks":["AmendmentID","ModelCode"]},"Com_AmendmentServices":{"name":"Com_AmendmentServices","domain":"LIFECYCLE_AMENDMENTS","purpose":"Auxiliary ramp turnaround GSE utilities (GPU, ASU, ACU, Pushback, Lavatory, Cabin Clean) appended via an Amendment.","isHub":false,"rows":7,"ddl":"-- Auxiliary ramp turnaround GSE utilities (GPU, ASU, ACU, Pushback, Lavatory, Cabin Clean) appended via an Amendment.\nCREATE TABLE dbo.[Com_AmendmentServices] (\n    [AmendmentID] INT NOT NULL,\n    [ServiceCode] NVARCHAR(30) NOT NULL,\n    [MonthlyAddendumFeeUSD] DECIMAL(12, 2) NOT NULL,\n    CONSTRAINT [PK_Com_AmendmentServices] PRIMARY KEY CLUSTERED ([AmendmentID] ASC, [ServiceCode] ASC),\n    CONSTRAINT [FK_Com_AmendmentServices_Amendments] FOREIGN KEY ([AmendmentID]) REFERENCES dbo.[Com_ContractAmendments] ([AmendmentID]) ON DELETE CASCADE,\n    CONSTRAINT [FK_Com_AmendmentServices_Services] FOREIGN KEY ([ServiceCode]) REFERENCES dbo.[Lkp_GroundServices] ([ServiceCode])\n);","columns":[{"name":"AmendmentID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":true},{"name":"ServiceCode","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":false,"identity":false,"pk":true},{"name":"MonthlyAddendumFeeUSD","sql_type":"DECIMAL(12, 2)","type":"decimal","max_len":"12,2","nullable":false,"identity":false,"pk":false}],"pks":["AmendmentID","ServiceCode"]},"Sec_ContractAuditLog":{"name":"Sec_ContractAuditLog","domain":"SECURITY_AUDIT","purpose":"Immutable governance audit log recording draft creations, edits (auto-reset to Draft + version bump), Commercial Admin approvals, renewals, and amendments.","isHub":false,"rows":15,"ddl":"-- Immutable governance audit log recording draft creations, edits (auto-reset to Draft + version bump), Commercial Admin approvals, renewals, and amendments.\nCREATE TABLE dbo.[Sec_ContractAuditLog] (\n    [AuditLogID] BIGINT IDENTITY(1,1) NOT NULL,\n    [ContractID] INT NULL,\n    [ActionType] NVARCHAR(40) NOT NULL,\n    [PreviousStatus] NVARCHAR(20) NULL,\n    [NewStatus] NVARCHAR(20) NULL,\n    [VersionLabel] NVARCHAR(30) NULL,\n    [ActionDetails] NVARCHAR(600) NOT NULL,\n    [PerformedByUserID] INT NOT NULL,\n    [PerformedAt] DATETIME2(0) NOT NULL CONSTRAINT [DF_Sec_ContractAuditLog_PerformedAt] DEFAULT SYSUTCDATETIME(),\n    CONSTRAINT [PK_Sec_ContractAuditLog] PRIMARY KEY CLUSTERED ([AuditLogID] ASC),\n    CONSTRAINT [FK_Sec_ContractAuditLog_Contracts] FOREIGN KEY ([ContractID]) REFERENCES dbo.[Com_Contracts] ([ContractID]),\n    CONSTRAINT [FK_Sec_ContractAuditLog_Users] FOREIGN KEY ([PerformedByUserID]) REFERENCES dbo.[Sec_Users] ([UserID])\n);","columns":[{"name":"AuditLogID","sql_type":"BIGINT","type":"bigint","max_len":"8","nullable":false,"identity":true,"pk":true},{"name":"ContractID","sql_type":"INT","type":"int","max_len":"4","nullable":true,"identity":false,"pk":false},{"name":"ActionType","sql_type":"NVARCHAR(40)","type":"nvarchar","max_len":"40","nullable":false,"identity":false,"pk":false},{"name":"PreviousStatus","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":true,"identity":false,"pk":false},{"name":"NewStatus","sql_type":"NVARCHAR(20)","type":"nvarchar","max_len":"20","nullable":true,"identity":false,"pk":false},{"name":"VersionLabel","sql_type":"NVARCHAR(30)","type":"nvarchar","max_len":"30","nullable":true,"identity":false,"pk":false},{"name":"ActionDetails","sql_type":"NVARCHAR(600)","type":"nvarchar","max_len":"600","nullable":false,"identity":false,"pk":false},{"name":"PerformedByUserID","sql_type":"INT","type":"int","max_len":"4","nullable":false,"identity":false,"pk":false},{"name":"PerformedAt","sql_type":"DATETIME2(0)","type":"datetime2","max_len":"","nullable":false,"identity":false,"pk":false}],"pks":["AuditLogID"]}},"relations":[{"constraint_name":"FK_Sec_Users_Sec_Roles","from_table":"Sec_Users","from_col":"RoleCode","to_table":"Sec_Roles","to_col":"RoleCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Lkp_AircraftModels_MtowTiers","from_table":"Lkp_AircraftModels","from_col":"MtowTierCode","to_table":"Lkp_MtowTiers","to_col":"MtowTierCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Ar_AirlineCustomers_Categories","from_table":"Ar_AirlineCustomers","from_col":"CategoryCode","to_table":"Lkp_CarrierCategories","to_col":"CategoryCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Ar_AirlineCustomers_PaymentTerms","from_table":"Ar_AirlineCustomers","from_col":"DefaultPaymentTermCode","to_table":"Lkp_PaymentTerms","to_col":"PaymentTermCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Ar_AirlineCustomers_Currencies","from_table":"Ar_AirlineCustomers","from_col":"DefaultCurrencyCode","to_table":"Lkp_Currencies","to_col":"CurrencyCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Ar_AirlineCustomers_HubStation","from_table":"Ar_AirlineCustomers","from_col":"PrimaryHubStationCode","to_table":"Lkp_AirportStations","to_col":"StationCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Flt_AircraftRegistrations_Customers","from_table":"Flt_AircraftRegistrations","from_col":"CustomerID","to_table":"Ar_AirlineCustomers","to_col":"CustomerID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Flt_AircraftRegistrations_Models","from_table":"Flt_AircraftRegistrations","from_col":"ModelCode","to_table":"Lkp_AircraftModels","to_col":"ModelCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_Customers","from_table":"Com_Contracts","from_col":"CustomerID","to_table":"Ar_AirlineCustomers","to_col":"CustomerID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_Categories","from_table":"Com_Contracts","from_col":"CategoryCode","to_table":"Lkp_CarrierCategories","to_col":"CategoryCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_PrimaryStation","from_table":"Com_Contracts","from_col":"PrimaryStationCode","to_table":"Lkp_AirportStations","to_col":"StationCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_Currencies","from_table":"Com_Contracts","from_col":"CurrencyCode","to_table":"Lkp_Currencies","to_col":"CurrencyCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_PaymentTerms","from_table":"Com_Contracts","from_col":"PaymentTermCode","to_table":"Lkp_PaymentTerms","to_col":"PaymentTermCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_SghaStandards","from_table":"Com_Contracts","from_col":"SghaStandardCode","to_table":"Lkp_SghaStandards","to_col":"SghaStandardCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_ApronPolicies","from_table":"Com_Contracts","from_col":"ApronPolicyCode","to_table":"Lkp_ApronPolicies","to_col":"ApronPolicyCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_MtowTiers","from_table":"Com_Contracts","from_col":"MtowTierCode","to_table":"Lkp_MtowTiers","to_col":"MtowTierCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_CreatedByUser","from_table":"Com_Contracts","from_col":"CreatedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_Contracts_ApprovedByUser","from_table":"Com_Contracts","from_col":"ApprovedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractStations_Contracts","from_table":"Com_ContractStations","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractStations_Stations","from_table":"Com_ContractStations","from_col":"StationCode","to_table":"Lkp_AirportStations","to_col":"StationCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractFleetModels_Contracts","from_table":"Com_ContractFleetModels","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractFleetModels_Models","from_table":"Com_ContractFleetModels","from_col":"ModelCode","to_table":"Lkp_AircraftModels","to_col":"ModelCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractRegistrations_Contracts","from_table":"Com_ContractRegistrations","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractRegistrations_Registrations","from_table":"Com_ContractRegistrations","from_col":"RegistrationNo","to_table":"Flt_AircraftRegistrations","to_col":"RegistrationNo","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractServices_Contracts","from_table":"Com_ContractServices","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractServices_Services","from_table":"Com_ContractServices","from_col":"ServiceCode","to_table":"Lkp_GroundServices","to_col":"ServiceCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractVersions_Contracts","from_table":"Com_ContractVersions","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractVersions_Users","from_table":"Com_ContractVersions","from_col":"CreatedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractRenewals_Contracts","from_table":"Com_ContractRenewals","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractRenewals_Users","from_table":"Com_ContractRenewals","from_col":"RenewedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_ContractAmendments_Contracts","from_table":"Com_ContractAmendments","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_ContractAmendments_Users","from_table":"Com_ContractAmendments","from_col":"CreatedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_AmendmentAmenities_Amendments","from_table":"Com_AmendmentAmenities","from_col":"AmendmentID","to_table":"Com_ContractAmendments","to_col":"AmendmentID","cardinality":"1:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_AmendmentAmenities_Station","from_table":"Com_AmendmentAmenities","from_col":"HousingStationCode","to_table":"Lkp_AirportStations","to_col":"StationCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_AmendmentStations_Amendments","from_table":"Com_AmendmentStations","from_col":"AmendmentID","to_table":"Com_ContractAmendments","to_col":"AmendmentID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_AmendmentStations_Stations","from_table":"Com_AmendmentStations","from_col":"StationCode","to_table":"Lkp_AirportStations","to_col":"StationCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_AmendmentFleetModels_Amendments","from_table":"Com_AmendmentFleetModels","from_col":"AmendmentID","to_table":"Com_ContractAmendments","to_col":"AmendmentID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_AmendmentFleetModels_Models","from_table":"Com_AmendmentFleetModels","from_col":"ModelCode","to_table":"Lkp_AircraftModels","to_col":"ModelCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Com_AmendmentServices_Amendments","from_table":"Com_AmendmentServices","from_col":"AmendmentID","to_table":"Com_ContractAmendments","to_col":"AmendmentID","cardinality":"N:1","on_delete":"CASCADE"},{"constraint_name":"FK_Com_AmendmentServices_Services","from_table":"Com_AmendmentServices","from_col":"ServiceCode","to_table":"Lkp_GroundServices","to_col":"ServiceCode","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Sec_ContractAuditLog_Contracts","from_table":"Sec_ContractAuditLog","from_col":"ContractID","to_table":"Com_Contracts","to_col":"ContractID","cardinality":"N:1","on_delete":"NO ACTION"},{"constraint_name":"FK_Sec_ContractAuditLog_Users","from_table":"Sec_ContractAuditLog","from_col":"PerformedByUserID","to_table":"Sec_Users","to_col":"UserID","cardinality":"N:1","on_delete":"NO ACTION"}]};
+    const PRIMARY_HUB_NAMES = ["Sec_Roles","Sec_Users","Lkp_AirportStations","Lkp_AircraftModels","Ar_AirlineCustomers","Flt_AircraftRegistrations","Lkp_GroundServices","Com_Contracts","Com_ContractVersions","Com_ContractAmendments"];
+
+    let SVG_W = 2910;
+    let SVG_H = 1500;
+    const MIN_SCALE = 0.15;
+    const MAX_SCALE = 2.6;
+
+    const DOMAIN_ORDER = ["FINANCIAL_LEGAL","CORE_CONTRACTS","LIFECYCLE_AMENDMENTS","FLEET_STATIONS","SECURITY_AUDIT"];
+    const DOMAIN_META = {
+  "FINANCIAL_LEGAL": {
+    "label": "Financial & Customers",
+    "headerTitle": "1. Financial, Legal Standards & Airline Customers",
+    "color": "#f43f5e",
+    "bgFill": "rgba(244, 63, 94, 0.06)",
+    "borderStroke": "rgba(244, 63, 94, 0.5)",
+    "hdrGrad": "url(#hdrFinancial)",
+    "arrowUrl": "url(#arrowRose)",
+    "cols": 1,
+    "box": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    },
+    "contentBox": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    }
+  },
+  "CORE_CONTRACTS": {
+    "label": "Core Contracts",
+    "headerTitle": "2. Core Commercial Contracts & Coverage Scope",
+    "color": "#f59e0b",
+    "bgFill": "rgba(245, 158, 11, 0.06)",
+    "borderStroke": "rgba(245, 158, 11, 0.5)",
+    "hdrGrad": "url(#hdrCommercial)",
+    "arrowUrl": "url(#arrowAmber)",
+    "cols": 2,
+    "box": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    },
+    "contentBox": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    }
+  },
+  "LIFECYCLE_AMENDMENTS": {
+    "label": "Lifecycle & Amendments",
+    "headerTitle": "3. Versioning, Renewals & Operational Amendments",
+    "color": "#c084fc",
+    "bgFill": "rgba(168, 85, 247, 0.06)",
+    "borderStroke": "rgba(192, 132, 252, 0.5)",
+    "hdrGrad": "url(#hdrOperations)",
+    "arrowUrl": "url(#arrowPurple)",
+    "cols": 2,
+    "box": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    },
+    "contentBox": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    }
+  },
+  "FLEET_STATIONS": {
+    "label": "Fleet & Stations",
+    "headerTitle": "4. Airport Stations, Fleet, Registrations & Ground Services",
+    "color": "#10b981",
+    "bgFill": "rgba(16, 185, 129, 0.06)",
+    "borderStroke": "rgba(16, 185, 129, 0.5)",
+    "hdrGrad": "url(#hdrFleet)",
+    "arrowUrl": "url(#arrowEmerald)",
+    "cols": 2,
+    "box": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    },
+    "contentBox": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    }
+  },
+  "SECURITY_AUDIT": {
+    "label": "Security & Audit",
+    "headerTitle": "5. Roles, Users & Approval Audit",
+    "color": "#818cf8",
+    "bgFill": "rgba(99, 102, 241, 0.06)",
+    "borderStroke": "rgba(129, 140, 248, 0.5)",
+    "hdrGrad": "url(#hdrAdmin)",
+    "arrowUrl": "url(#arrowIndigo)",
+    "cols": 1,
+    "box": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    },
+    "contentBox": {
+      "x": 35,
+      "y": 120,
+      "w": 344,
+      "h": 1200
+    }
+  }
+};
+
+    function getTableDomain(tname) {
+      const t = DB_DATA.tables[tname];
+      if (t && t.domain && DOMAIN_META[t.domain]) return t.domain;
+      if (tname.startsWith('Sec_')) return 'SECURITY_AUDIT';
+      if (tname.startsWith('Com_Amendment') || ['Com_ContractVersions', 'Com_ContractRenewals', 'Com_ContractAmendments'].includes(tname)) return 'LIFECYCLE_AMENDMENTS';
+      if (tname.startsWith('Com_')) return 'CORE_CONTRACTS';
+      if (tname.startsWith('Ar_') || ['Lkp_Currencies', 'Lkp_PaymentTerms', 'Lkp_SghaStandards', 'Lkp_CarrierCategories'].includes(tname)) return 'FINANCIAL_LEGAL';
+      return 'FLEET_STATIONS';
+    }
+
+    const TABLE_KEY_BY_LOWER = {};
+    Object.keys(DB_DATA.tables).forEach(k => {
+      TABLE_KEY_BY_LOWER[k.toLowerCase()] = k;
+    });
+
+    DB_DATA.relations.forEach((r, idx) => {
+      const fk = DB_DATA.tables[r.from_table] ? r.from_table : (TABLE_KEY_BY_LOWER[(r.from_table || '').toLowerCase()] || r.from_table);
+      const tk = DB_DATA.tables[r.to_table] ? r.to_table : (TABLE_KEY_BY_LOWER[(r.to_table || '').toLowerCase()] || r.to_table);
+      r.from_table = fk;
+      r.to_table = tk;
+      r._idx = idx;
+    });
+
+    const CARD_BOUNDS = {};
+    const erdSvg = document.getElementById('erdSvg');
+    const wrapper = document.getElementById('svgWrapper');
+    const container = document.getElementById('canvasContainer');
+    const zoomPctEl = document.getElementById('zoomPct');
+    const inspectorPanel = document.getElementById('inspectorPanel');
+    const btnToggleInspector = document.getElementById('btnToggleInspector');
+    const btnToggleLines = document.getElementById('btnToggleLines');
+    const searchInput = document.getElementById('searchInput');
+    const searchClearBtn = document.getElementById('searchClearBtn');
+    const searchDropdown = document.getElementById('searchDropdown');
+    const clustersLayer = document.getElementById('clustersLayer');
+    const relationshipsLayer = document.getElementById('relationshipsLayer');
+    const tablesLayer = document.getElementById('tablesLayer');
+    const activeConnLayer = document.getElementById('activeConnectionsLayer');
+
+    function shortenTargetName(targetTable) {
+      const stripped = targetTable.replace(/^(Lkp_|Com_|Flt_|Ar_|Sec_)/, '');
+      return stripped.length > 12 ? (stripped.slice(0, 11) + '…') : stripped;
+    }
+
+    function computeRelationPath(r, idx) {
+      const fromB = CARD_BOUNDS[r.from_table];
+      const toB = CARD_BOUNDS[r.to_table];
+      if (!fromB || !toB) return '';
+
+      const firstFromCol = (r.from_col || '').split(',')[0].trim().toLowerCase();
+      const firstToCol = (r.to_col || '').split(',')[0].trim().toLowerCase();
+
+      const y1 = (fromB.colY[firstFromCol] !== undefined) ? fromB.colY[firstFromCol] : fromB.fallbackY;
+      const y2 = (toB.colY[firstToCol] !== undefined) ? toB.colY[firstToCol] : toB.fallbackY;
+
+      // 1. Self-referencing relationship loop
+      if (r.from_table === r.to_table) {
+        const xEdge = fromB.x + fromB.w;
+        const sy1 = Math.abs(y2 - y1) < 10 ? (y1 - 7) : y1;
+        const sy2 = Math.abs(y2 - y1) < 10 ? (y2 + 7) : y2;
+        const loopOut = 34 + (idx % 3) * 8;
+        return `M ${xEdge} ${sy1} C ${xEdge + loopOut} ${sy1 - 14}, ${xEdge + loopOut} ${sy2 + 14}, ${xEdge} ${sy2}`;
+      }
+
+      // 2. Same sub-column vertical relationship (route cleanly along column gutter)
+      if (Math.abs(fromB.x - toB.x) < 10) {
+        let side = 1;
+        if (fromB.totalCols === 1) {
+          side = (idx % 2 === 0) ? 1 : -1;
+        } else if (fromB.colIdx === 0) {
+          side = -1;
+        } else if (fromB.colIdx === fromB.totalCols - 1) {
+          side = 1;
+        } else {
+          side = (idx % 2 === 0) ? 1 : -1;
+        }
+        const xEdge = side > 0 ? (fromB.x + fromB.w) : fromB.x;
+        const arc = Math.min(28, Math.max(15, Math.abs(y2 - y1) * 0.08)) + (idx % 3) * 3;
+        return `M ${xEdge} ${y1} C ${xEdge + side * arc} ${y1}, ${xEdge + side * arc} ${y2}, ${xEdge} ${y2}`;
+      }
+
+      // 3. Cross-column or cross-domain smooth cubic Bezier
+      const fromCenterX = fromB.x + fromB.w / 2;
+      const toCenterX = toB.x + toB.w / 2;
+      const goingRight = toCenterX >= fromCenterX;
+      const x1 = goingRight ? (fromB.x + fromB.w) : fromB.x;
+      const x2 = goingRight ? toB.x : (toB.x + toB.w);
+      const spanX = Math.abs(x2 - x1);
+      const bend = Math.max(36, Math.min(340, spanX * 0.38));
+      const c1x = x1 + (goingRight ? bend : -bend);
+      const c2x = x2 + (goingRight ? -bend : bend);
+      const arcY = (spanX > 450 && Math.abs(y2 - y1) < 24) ? (-15 - (idx % 4) * 7) : 0;
+
+      return `M ${x1} ${y1} C ${c1x} ${y1 + arcY}, ${c2x} ${y2 + arcY}, ${x2} ${y2}`;
+    }
+
+    function buildFullErdDiagram() {
+      const svgNS = 'http://www.w3.org/2000/svg';
+      clustersLayer.innerHTML = '';
+      relationshipsLayer.innerHTML = '';
+      tablesLayer.innerHTML = '';
+
+      const CARD_W = 312;
+      const INNER_COL_GAP = 34;
+      const ROW_GAP = 24;
+      const CLUSTER_PAD_X = 20;
+      const CLUSTER_Y = 120;
+      const CARDS_START_Y = CLUSTER_Y + 56;
+      const CLUSTER_BOTTOM_PAD = 26;
+      const CLUSTER_GAP = 30;
+      const OUTER_MARGIN_X = 35;
+      const MAX_VISIBLE_COLS = 11;
+
+      const fkTargetByColLower = {};
+      const refColLowerSet = {};
+      const degreeByTable = {};
+
+      Object.keys(DB_DATA.tables).forEach(tname => {
+        fkTargetByColLower[tname] = {};
+        refColLowerSet[tname] = new Set();
+        degreeByTable[tname] = 0;
+      });
+
+      DB_DATA.relations.forEach(r => {
+        if (degreeByTable[r.from_table] !== undefined) degreeByTable[r.from_table]++;
+        if (degreeByTable[r.to_table] !== undefined) degreeByTable[r.to_table]++;
+
+        if (fkTargetByColLower[r.from_table]) {
+          (r.from_col || '').split(',').forEach(part => {
+            const colLower = part.trim().toLowerCase();
+            if (colLower && !fkTargetByColLower[r.from_table][colLower]) {
+              fkTargetByColLower[r.from_table][colLower] = r.to_table;
+            }
+          });
+        }
+        if (refColLowerSet[r.to_table]) {
+          (r.to_col || '').split(',').forEach(part => {
+            const colLower = part.trim().toLowerCase();
+            if (colLower) refColLowerSet[r.to_table].add(colLower);
+          });
+        }
+      });
+
+      const domainTables = {};
+      DOMAIN_ORDER.forEach(d => { domainTables[d] = []; });
+      Object.keys(DB_DATA.tables).forEach(tname => {
+        domainTables[getTableDomain(tname)].push(tname);
+      });
+
+      const PRIMARY_HUBS = new Set(PRIMARY_HUB_NAMES);
+
+      DOMAIN_ORDER.forEach(dom => {
+        domainTables[dom].sort((a, b) => {
+          const hubDiff = (PRIMARY_HUBS.has(b) ? 1 : 0) - (PRIMARY_HUBS.has(a) ? 1 : 0);
+          if (hubDiff !== 0) return hubDiff;
+          const degDiff = (degreeByTable[b] || 0) - (degreeByTable[a] || 0);
+          if (degDiff !== 0) return degDiff;
+          const rowDiff = (DB_DATA.tables[b].rows || 0) - (DB_DATA.tables[a].rows || 0);
+          if (rowDiff !== 0) return rowDiff;
+          return a.localeCompare(b);
+        });
+      });
+
+      const tablesFrag = document.createDocumentFragment();
+      let cursorX = OUTER_MARGIN_X;
+      let maxClusterBottom = CLUSTER_Y + 600;
+
+      DOMAIN_ORDER.forEach(dom => {
+        const meta = DOMAIN_META[dom];
+        const tnames = domainTables[dom];
+        const numCols = meta.cols;
+        const clusterW = CLUSTER_PAD_X * 2 + numCols * CARD_W + (numCols - 1) * INNER_COL_GAP;
+        const colHeights = new Array(numCols).fill(CARDS_START_Y);
+
+        tnames.forEach(tname => {
+          const tinfo = DB_DATA.tables[tname];
+          const allCols = tinfo.columns || [];
+          const fkMap = fkTargetByColLower[tname] || {};
+          const refSet = refColLowerSet[tname] || new Set();
+
+          const picked = [];
+          const pickedSet = new Set();
+          const pushIfNew = (col) => {
+            if (picked.length < MAX_VISIBLE_COLS && !pickedSet.has(col.name)) {
+              picked.push(col);
+              pickedSet.add(col.name);
+            }
+          };
+
+          allCols.forEach(c => { if (c.pk) pushIfNew(c); });
+          allCols.forEach(c => { if (fkMap[c.name.toLowerCase()]) pushIfNew(c); });
+          allCols.forEach(c => { if (refSet.has(c.name.toLowerCase())) pushIfNew(c); });
+          allCols.forEach(c => pushIfNew(c));
+
+          const extraCount = Math.max(0, allCols.length - picked.length);
+          const cardH = 38 + picked.length * 21 + (extraCount > 0 ? 20 : 8);
+
+          let bestCol = 0;
+          for (let c = 1; c < numCols; c++) {
+            if (colHeights[c] < colHeights[bestCol]) bestCol = c;
+          }
+
+          const cardX = cursorX + CLUSTER_PAD_X + bestCol * (CARD_W + INNER_COL_GAP);
+          const cardY = colHeights[bestCol];
+          colHeights[bestCol] = cardY + cardH + ROW_GAP;
+
+          const colY = {};
+          picked.forEach((col, i) => {
+            colY[col.name.toLowerCase()] = cardY + 51 + i * 21 - 4;
+          });
+          const fallbackY = extraCount > 0
+            ? (cardY + cardH - 12)
+            : (cardY + 38 + Math.max(12, (picked.length * 21) / 2));
+
+          const g = document.createElementNS(svgNS, 'g');
+          g.setAttribute('id', `table-card-${tname}`);
+          g.setAttribute('transform', `translate(${cardX}, ${cardY})`);
+          g.setAttribute('filter', 'url(#cardShadow)');
+
+          const titleTooltip = document.createElementNS(svgNS, 'title');
+          titleTooltip.textContent = `${tname} — ${tinfo.rows.toLocaleString()} seed rows · ${allCols.length} columns (${meta.label})`;
+          g.appendChild(titleTooltip);
+
+          const bodyRect = document.createElementNS(svgNS, 'rect');
+          bodyRect.setAttribute('class', 'card-body-rect');
+          bodyRect.setAttribute('width', String(CARD_W));
+          bodyRect.setAttribute('height', String(cardH));
+          bodyRect.setAttribute('rx', '9');
+          bodyRect.setAttribute('fill', 'url(#tableCardBg)');
+          bodyRect.setAttribute('stroke', meta.color);
+          bodyRect.setAttribute('stroke-width', '1.4');
+          g.appendChild(bodyRect);
+
+          const hdrTop = document.createElementNS(svgNS, 'rect');
+          hdrTop.setAttribute('width', String(CARD_W));
+          hdrTop.setAttribute('height', '32');
+          hdrTop.setAttribute('rx', '9');
+          hdrTop.setAttribute('fill', meta.hdrGrad);
+          g.appendChild(hdrTop);
+
+          const hdrSeam = document.createElementNS(svgNS, 'rect');
+          hdrSeam.setAttribute('y', '24');
+          hdrSeam.setAttribute('width', String(CARD_W));
+          hdrSeam.setAttribute('height', '8');
+          hdrSeam.setAttribute('fill', meta.hdrGrad);
+          g.appendChild(hdrSeam);
+
+          const titleTxt = document.createElementNS(svgNS, 'text');
+          titleTxt.setAttribute('x', '10');
+          titleTxt.setAttribute('y', '21');
+          titleTxt.setAttribute('class', 'tbl-title');
+          if (tname.length > 35) {
+            titleTxt.style.fontSize = '8.6px';
+          } else if (tname.length > 31) {
+            titleTxt.style.fontSize = '9.4px';
+          } else if (tname.length > 26) {
+            titleTxt.style.fontSize = '10.6px';
+          } else if (tname.length > 22) {
+            titleTxt.style.fontSize = '11.8px';
+          }
+          titleTxt.textContent = tname;
+          g.appendChild(titleTxt);
+
+          const pillW = 72;
+          const pillX = CARD_W - pillW - 8;
+          const pillRect = document.createElementNS(svgNS, 'rect');
+          pillRect.setAttribute('x', String(pillX));
+          pillRect.setAttribute('y', '6');
+          pillRect.setAttribute('width', String(pillW));
+          pillRect.setAttribute('height', '20');
+          pillRect.setAttribute('rx', '4');
+          pillRect.setAttribute('fill', 'rgba(15, 23, 42, 0.65)');
+          g.appendChild(pillRect);
+
+          const rowsTxt = document.createElementNS(svgNS, 'text');
+          rowsTxt.setAttribute('x', String(pillX + pillW / 2));
+          rowsTxt.setAttribute('y', '19.5');
+          rowsTxt.setAttribute('text-anchor', 'middle');
+          rowsTxt.setAttribute('class', 'tbl-rows');
+          rowsTxt.textContent = `${tinfo.rows.toLocaleString()} rows`;
+          g.appendChild(rowsTxt);
+
+          picked.forEach((col, i) => {
+            const rowY = 51 + i * 21;
+            const fkTarget = fkMap[col.name.toLowerCase()];
+            let badgeStr = '';
+            if (col.pk && fkTarget) {
+              badgeStr = `PK·FK➔${shortenTargetName(fkTarget)}`;
+            } else if (col.pk) {
+              badgeStr = 'PK';
+            } else if (fkTarget) {
+              badgeStr = `FK ➔ ${shortenTargetName(fkTarget)}`;
+            }
+
+            const badgeWidthPx = badgeStr ? (badgeStr.length * 5.6 + 10) : 0;
+            const typeWidthPx = (col.type || '').length * 5.9 + 8;
+            const availForColPx = (CARD_W - 18) - badgeWidthPx - typeWidthPx - 18;
+            const charW = (col.pk || fkTarget) ? 7.0 : 6.7;
+            const maxColChars = Math.max(8, Math.floor(availForColPx / charW));
+            const displayColName = col.name.length > maxColChars
+              ? (col.name.slice(0, maxColChars - 1) + '…')
+              : col.name;
+
+            const colText = document.createElementNS(svgNS, 'text');
+            colText.setAttribute('x', '10');
+            colText.setAttribute('y', String(rowY));
+            colText.setAttribute('class', col.pk ? 'col-pk' : (fkTarget ? 'col-fk' : 'col-norm'));
+            const icon = col.pk ? '🔑 ' : (fkTarget ? '🔗 ' : '• ');
+            colText.appendChild(document.createTextNode(`${icon}${displayColName} `));
+
+            const typeSpan = document.createElementNS(svgNS, 'tspan');
+            typeSpan.setAttribute('class', 'col-type');
+            typeSpan.textContent = col.type;
+            colText.appendChild(typeSpan);
+            g.appendChild(colText);
+
+            if (badgeStr) {
+              const badgeTxt = document.createElementNS(svgNS, 'text');
+              badgeTxt.setAttribute('x', String(CARD_W - 8));
+              badgeTxt.setAttribute('y', String(rowY));
+              badgeTxt.setAttribute('text-anchor', 'end');
+              badgeTxt.setAttribute('font-size', '9');
+              badgeTxt.setAttribute('font-family', "'JetBrains Mono', monospace");
+              badgeTxt.setAttribute('fill', meta.color);
+              badgeTxt.textContent = badgeStr;
+              g.appendChild(badgeTxt);
+            }
+          });
+
+          if (extraCount > 0) {
+            const moreTxt = document.createElementNS(svgNS, 'text');
+            moreTxt.setAttribute('x', '10');
+            moreTxt.setAttribute('y', String(cardH - 9));
+            moreTxt.setAttribute('font-size', '9.5');
+            moreTxt.setAttribute('font-family', 'sans-serif');
+            moreTxt.setAttribute('font-style', 'italic');
+            moreTxt.setAttribute('fill', '#64748b');
+            moreTxt.textContent = `+ ${extraCount} more columns (${allCols.length} total)`;
+            g.appendChild(moreTxt);
+          }
+
+          tablesFrag.appendChild(g);
+
+          CARD_BOUNDS[tname] = {
+            x: cardX,
+            y: cardY,
+            w: CARD_W,
+            h: cardH,
+            colIdx: bestCol,
+            totalCols: numCols,
+            domain: dom,
+            colY,
+            fallbackY,
+            el: g
+          };
+        });
+
+        const clusterBottom = Math.max(...colHeights) - ROW_GAP + CLUSTER_BOTTOM_PAD;
+        const contentH = Math.max(320, clusterBottom - CLUSTER_Y);
+        meta.contentBox = { x: cursorX, y: CLUSTER_Y, w: clusterW, h: contentH };
+        meta._clusterX = cursorX;
+        meta._clusterW = clusterW;
+        meta._tableCount = tnames.length;
+
+        if (clusterBottom > maxClusterBottom) {
+          maxClusterBottom = clusterBottom;
+        }
+        cursorX += clusterW + CLUSTER_GAP;
+      });
+
+      tablesLayer.appendChild(tablesFrag);
+
+      const uniformClusterH = maxClusterBottom - CLUSTER_Y;
+      SVG_W = cursorX - CLUSTER_GAP + OUTER_MARGIN_X;
+      SVG_H = maxClusterBottom + 36;
+
+      erdSvg.setAttribute('viewBox', `0 0 ${SVG_W} ${SVG_H}`);
+      erdSvg.setAttribute('width', String(SVG_W));
+      erdSvg.setAttribute('height', String(SVG_H));
+      wrapper.style.width = `${SVG_W}px`;
+      wrapper.style.height = `${SVG_H}px`;
+
+      const bgRect = document.getElementById('bgRect');
+      const gridRect = document.getElementById('gridRect');
+      const bannerBgRect = document.getElementById('bannerBgRect');
+      const bannerKpiGroup = document.getElementById('bannerKpiGroup');
+
+      if (bgRect) {
+        bgRect.setAttribute('width', String(SVG_W));
+        bgRect.setAttribute('height', String(SVG_H));
+      }
+      if (gridRect) {
+        gridRect.setAttribute('width', String(SVG_W));
+        gridRect.setAttribute('height', String(SVG_H));
+      }
+      if (bannerBgRect) {
+        bannerBgRect.setAttribute('width', String(SVG_W - OUTER_MARGIN_X * 2));
+      }
+      if (bannerKpiGroup) {
+        const kpiX = Math.max(1320, SVG_W - OUTER_MARGIN_X * 2 - 1054);
+        bannerKpiGroup.setAttribute('transform', `translate(${kpiX}, 23)`);
+      }
+
+      // Render 5 Domain Cluster Containers
+      const clustersFrag = document.createDocumentFragment();
+      DOMAIN_ORDER.forEach(dom => {
+        const meta = DOMAIN_META[dom];
+        meta.box = { x: meta._clusterX, y: CLUSTER_Y, w: meta._clusterW, h: uniformClusterH };
+
+        const cRect = document.createElementNS(svgNS, 'rect');
+        cRect.setAttribute('x', String(meta._clusterX));
+        cRect.setAttribute('y', String(CLUSTER_Y));
+        cRect.setAttribute('width', String(meta._clusterW));
+        cRect.setAttribute('height', String(uniformClusterH));
+        cRect.setAttribute('rx', '14');
+        cRect.setAttribute('fill', meta.bgFill);
+        cRect.setAttribute('stroke', meta.borderStroke);
+        cRect.setAttribute('stroke-width', '1.2');
+        cRect.setAttribute('stroke-dasharray', '6,4');
+        clustersFrag.appendChild(cRect);
+
+        const hdrG = document.createElementNS(svgNS, 'g');
+        hdrG.setAttribute('transform', `translate(${meta._clusterX + 14}, ${CLUSTER_Y + 12})`);
+
+        const hdrW = meta._clusterW - 28;
+        const hdrRect = document.createElementNS(svgNS, 'rect');
+        hdrRect.setAttribute('width', String(hdrW));
+        hdrRect.setAttribute('height', '28');
+        hdrRect.setAttribute('rx', '6');
+        hdrRect.setAttribute('fill', meta.hdrGrad);
+        hdrG.appendChild(hdrRect);
+
+        const hdrText = document.createElementNS(svgNS, 'text');
+        hdrText.setAttribute('x', String(hdrW / 2));
+        hdrText.setAttribute('y', '19');
+        hdrText.setAttribute('text-anchor', 'middle');
+        hdrText.setAttribute('class', 'domain-label');
+        if (hdrW < 380) {
+          hdrText.style.fontSize = '12.2px';
+        }
+        hdrText.textContent = `${meta.headerTitle} (${meta._tableCount} tables)`;
+        hdrG.appendChild(hdrText);
+
+        clustersFrag.appendChild(hdrG);
+      });
+      clustersLayer.appendChild(clustersFrag);
+
+      // Render ALL Enforced Physical Relationship Connection Curves
+      const relsFrag = document.createDocumentFragment();
+      DB_DATA.relations.forEach((r, idx) => {
+        const dStr = computeRelationPath(r, idx);
+        if (!dStr) return;
+
+        const fromDom = getTableDomain(r.from_table);
+        const toDom = getTableDomain(r.to_table);
+        const fromMeta = DOMAIN_META[fromDom];
+
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', dStr);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', fromMeta.color);
+        path.setAttribute('stroke-width', '1.5');
+        path.setAttribute('stroke-opacity', '0.48');
+        path.setAttribute('marker-start', 'url(#circleStart)');
+        path.setAttribute('marker-end', fromMeta.arrowUrl);
+        path.setAttribute('data-from', r.from_table);
+        path.setAttribute('data-to', r.to_table);
+        path.setAttribute('data-from-domain', fromDom);
+        path.setAttribute('data-to-domain', toDom);
+
+        const tip = document.createElementNS(svgNS, 'title');
+        tip.textContent = `[${r.constraint_name}] ${r.from_table}.${r.from_col} ➔ ${r.to_table}.${r.to_col} (${r.cardinality})`;
+        path.appendChild(tip);
+
+        relsFrag.appendChild(path);
+      });
+      relationshipsLayer.appendChild(relsFrag);
+    }
+
+    buildFullErdDiagram();
+
+    let selectedTable = 'Com_Contracts';
+    let currentTab = 'details';
+    let activeDomain = 'ALL';
+    let activeSearchQuery = '';
+    let lastGeneratedSql = '';
+    let showAllLines = true;
+
+    let currentScale = 0.48;
+    let panX = 24;
+    let panY = 20;
+
+    let animTimer = null;
+    function updateTransform(smooth = false) {
+      if (smooth) {
+        wrapper.style.transition = 'transform 0.24s cubic-bezier(0.16, 1, 0.3, 1)';
+        clearTimeout(animTimer);
+        animTimer = setTimeout(() => { wrapper.style.transition = 'none'; }, 260);
+      } else {
+        wrapper.style.transition = 'none';
+      }
+      wrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${currentScale})`;
+      if (zoomPctEl) {
+        zoomPctEl.textContent = `${Math.round(currentScale * 100)}%`;
+      }
+    }
+
+    function fitBox(bx, by, bw, bh, padding = 24, maxAutoScale = 1.15) {
+      const cw = container.clientWidth || 960;
+      const ch = container.clientHeight || 640;
+      const scaleX = (cw - padding * 2) / bw;
+      const scaleY = (ch - padding * 2) / bh;
+      currentScale = Math.min(Math.max(Math.min(scaleX, scaleY), MIN_SCALE), maxAutoScale);
+      panX = (cw - bw * currentScale) / 2 - bx * currentScale;
+      panY = (ch - bh * currentScale) / 2 - by * currentScale;
+      updateTransform(true);
+    }
+
+    function resetView() {
+      fitBox(0, 0, SVG_W, SVG_H, 18, 1.0);
+    }
+
+    function zoomAtPoint(factor, clientX, clientY, smooth = false) {
+      const rect = container.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const cy = clientY - rect.top;
+      const worldX = (cx - panX) / currentScale;
+      const worldY = (cy - panY) / currentScale;
+      currentScale = Math.min(Math.max(currentScale * factor, MIN_SCALE), MAX_SCALE);
+      panX = cx - worldX * currentScale;
+      panY = cy - worldY * currentScale;
+      updateTransform(smooth);
+    }
+
+    function zoomIn() {
+      const rect = container.getBoundingClientRect();
+      zoomAtPoint(1.25, rect.left + rect.width / 2, rect.top + rect.height / 2, true);
+    }
+
+    function zoomOut() {
+      const rect = container.getBoundingClientRect();
+      zoomAtPoint(1 / 1.25, rect.left + rect.width / 2, rect.top + rect.height / 2, true);
+    }
+
+    function focusTableOnCanvas(tname) {
+      const b = CARD_BOUNDS[tname];
+      if (!b) return;
+      const cw = container.clientWidth || 960;
+      const ch = container.clientHeight || 640;
+      currentScale = Math.min(Math.max(currentScale, 0.88), 1.25);
+      panX = cw / 2 - (b.x + b.w / 2) * currentScale;
+      panY = ch / 2 - (b.y + b.h / 2) * currentScale;
+      updateTransform(true);
+    }
+
+    let isPointerDown = false;
+    let dragMoved = 0;
+    let downClientX = 0;
+    let downClientY = 0;
+    let downPanX = 0;
+    let downPanY = 0;
+
+    container.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      if (e.target.closest('.zoom-hud')) return;
+      isPointerDown = true;
+      dragMoved = 0;
+      downClientX = e.clientX;
+      downClientY = e.clientY;
+      downPanX = panX;
+      downPanY = panY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isPointerDown) return;
+      const dx = e.clientX - downClientX;
+      const dy = e.clientY - downClientY;
+      dragMoved = Math.hypot(dx, dy);
+      if (dragMoved > 4) {
+        container.classList.add('dragging');
+        panX = downPanX + dx;
+        panY = downPanY + dy;
+        updateTransform(false);
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('click', (e) => {
+      if (e.target.closest('.zoom-hud')) return;
+      if (dragMoved > 6) return;
+      searchDropdown.classList.remove('open');
+
+      const cardEl = e.target.closest('g[id^="table-card-"]');
+      if (cardEl) {
+        const tname = cardEl.id.replace('table-card-', '');
+        selectTable(tname, false);
+      }
+    });
+
+    container.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.zoom-hud')) return;
+      const cardEl = e.target.closest('g[id^="table-card-"]');
+      if (cardEl) {
+        const tname = cardEl.id.replace('table-card-', '');
+        selectTable(tname, true);
+      }
+    });
+
+    container.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.12 : (1 / 1.12);
+      zoomAtPoint(factor, e.clientX, e.clientY, false);
+    }, { passive: false });
+
+    function toggleInspector(forceOpen) {
+      const shouldOpen = typeof forceOpen === 'boolean'
+        ? forceOpen
+        : inspectorPanel.classList.contains('collapsed');
+
+      inspectorPanel.classList.toggle('collapsed', !shouldOpen);
+      btnToggleInspector.classList.toggle('active', shouldOpen);
+    }
+
+    function toggleLinesMode() {
+      showAllLines = !showAllLines;
+      if (btnToggleLines) {
+        btnToggleLines.classList.toggle('active', showAllLines);
+        btnToggleLines.textContent = showAllLines ? `🔗 All ${DB_DATA.total_relations} Lines` : '🎯 Active Lines';
+      }
+      applyCanvasVisibility();
+    }
+
+    function drawActiveConnections(tname) {
+      if (!activeConnLayer) return;
+      activeConnLayer.innerHTML = '';
+      if (!CARD_BOUNDS[tname]) return;
+
+      const related = DB_DATA.relations.filter(
+        r => r.from_table === tname || r.to_table === tname
+      );
+
+      const svgNS = 'http://www.w3.org/2000/svg';
+      related.forEach(r => {
+        const dStr = computeRelationPath(r, r._idx || 0);
+        if (!dStr) return;
+
+        const isSelf = r.from_table === r.to_table;
+        const isOutgoing = r.from_table === tname;
+        const strokeColor = isSelf ? '#f472b6' : (isOutgoing ? '#38bdf8' : '#34d399');
+
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', dStr);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', strokeColor);
+        path.setAttribute('stroke-width', '3.1');
+        path.setAttribute('stroke-dasharray', '9 5');
+        path.setAttribute('class', 'active-conn-path');
+        activeConnLayer.appendChild(path);
+      });
+    }
+
+    function applyCanvasVisibility() {
+      const q = activeSearchQuery.toLowerCase().trim();
+      const matchedTables = new Set();
+
+      Object.keys(CARD_BOUNDS).forEach(tname => {
+        const el = CARD_BOUNDS[tname].el;
+        const tinfo = DB_DATA.tables[tname];
+        const tdom = getTableDomain(tname);
+        const domainMatch = (activeDomain === 'ALL' || tdom === activeDomain);
+
+        let searchMatch = true;
+        if (q) {
+          const nameHit = tname.toLowerCase().includes(q);
+          const colHit = tinfo && tinfo.columns.some(c => c.name.toLowerCase().includes(q));
+          searchMatch = nameHit || colHit;
+        }
+
+        const isVisible = domainMatch && searchMatch;
+        if (isVisible) matchedTables.add(tname);
+        el.style.opacity = isVisible ? '1' : '0.12';
+      });
+
+      relationshipsLayer.querySelectorAll('path').forEach(p => {
+        const fromT = p.getAttribute('data-from');
+        const toT = p.getAttribute('data-to');
+        const fromDom = p.getAttribute('data-from-domain');
+        const toDom = p.getAttribute('data-to-domain');
+
+        if (!showAllLines) {
+          const touchesSelected = (fromT === selectedTable || toT === selectedTable);
+          p.style.opacity = touchesSelected ? '1' : '0';
+          return;
+        }
+
+        if (q) {
+          p.style.opacity = (matchedTables.has(fromT) || matchedTables.has(toT)) ? '0.9' : '0.05';
+        } else if (activeDomain === 'ALL') {
+          p.style.opacity = '1';
+        } else {
+          p.style.opacity = (fromDom === activeDomain || toDom === activeDomain) ? '1' : '0.06';
+        }
+      });
+    }
+
+    function selectTable(tname, shouldFocus = false) {
+      const canonical = DB_DATA.tables[tname] ? tname : TABLE_KEY_BY_LOWER[(tname || '').toLowerCase()];
+      if (!canonical || !DB_DATA.tables[canonical]) return;
+      selectedTable = canonical;
+
+      const neighborSet = new Set();
+      DB_DATA.relations.forEach(r => {
+        if (r.from_table === canonical) neighborSet.add(r.to_table);
+        if (r.to_table === canonical) neighborSet.add(r.from_table);
+      });
+
+      Object.keys(CARD_BOUNDS).forEach(idName => {
+        const el = CARD_BOUNDS[idName].el;
+        el.classList.toggle('table-selected', idName === canonical);
+        el.classList.toggle('table-neighbor', idName !== canonical && neighborSet.has(idName));
+      });
+
+      drawActiveConnections(canonical);
+      if (!showAllLines) {
+        applyCanvasVisibility();
+      }
+      toggleInspector(true);
+      if (currentTab === 'catalog') {
+        switchInspectorTab('details');
+      } else {
+        renderInspector();
+      }
+
+      if (shouldFocus && CARD_BOUNDS[canonical]) {
+        focusTableOnCanvas(canonical);
+      }
+    }
+
+    function switchInspectorTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === tab);
+      });
+      renderInspector();
+    }
+
+    function copyFkSql() {
+      if (!lastGeneratedSql) return;
+      const btn = document.getElementById('btnCopySql');
+      navigator.clipboard.writeText(lastGeneratedSql).then(() => {
+        if (btn) {
+          btn.textContent = '✓ Copied!';
+          setTimeout(() => { btn.textContent = '📋 Copy SQL'; }, 1800);
+        }
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = lastGeneratedSql;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (btn) {
+          btn.textContent = '✓ Copied!';
+          setTimeout(() => { btn.textContent = '📋 Copy SQL'; }, 1800);
+        }
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function renderInspector() {
+      const tinfo = DB_DATA.tables[selectedTable];
+      if (!tinfo) return;
+
+      const tdom = getTableDomain(selectedTable);
+      const domMeta = DOMAIN_META[tdom];
+      const onCanvas = Boolean(CARD_BOUNDS[selectedTable]);
+
+      document.getElementById('inspectorTableName').textContent = selectedTable;
+      const content = document.getElementById('inspectorContent');
+
+      const outgoing = DB_DATA.relations.filter(r => r.from_table === selectedTable);
+      const incoming = DB_DATA.relations.filter(r => r.to_table === selectedTable);
+
+      const fkColMap = {};
+      outgoing.forEach(r => {
+        r.from_col.split(',').map(s => s.trim()).forEach(colName => {
+          fkColMap[colName] = r.to_table;
+        });
+      });
+
+      if (currentTab === 'details') {
+        content.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 99px; background: rgba(255,255,255,0.06); color: ${domMeta.color}; border: 1px solid ${domMeta.color}55;">
+              ● ${escapeHtml(domMeta.label)} Domain
+            </span>
+            ${onCanvas
+              ? `<button type="button" class="mini-btn" data-focus-table="${selectedTable}">🎯 Focus on Canvas</button>`
+              : `<span style="font-size: 11px; color: #94a3b8;">Schema Table</span>`
+            }
+          </div>
+
+          ${tinfo.purpose ? `<div class="purpose-box">${escapeHtml(tinfo.purpose)}</div>` : ''}
+
+          <div class="stat-badge-grid">
+            <div class="stat-badge">
+              <div class="stat-lbl">Seeded Rows</div>
+              <div class="stat-val" style="color: #38bdf8;">${tinfo.rows.toLocaleString()}</div>
+            </div>
+            <div class="stat-badge">
+              <div class="stat-lbl">Columns</div>
+              <div class="stat-val" style="color: #a855f7;">${tinfo.columns.length}</div>
+            </div>
+            <div class="stat-badge">
+              <div class="stat-lbl">Primary Key(s)</div>
+              <div class="stat-val" style="color: #fde047; font-size: 12.5px; word-break: break-word;">${tinfo.pks.join(', ') || 'None'}</div>
+            </div>
+            <div class="stat-badge">
+              <div class="stat-lbl">Enforced FKs</div>
+              <div class="stat-val" style="color: #34d399;">${outgoing.length + incoming.length}</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-title">
+              <span>🔑 Table Columns (${tinfo.columns.length})</span>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">Click 🔗 FK to jump</span>
+            </div>
+            <div style="max-height: 390px; overflow-y: auto; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 10px;">
+              ${tinfo.columns.map(c => {
+                const fkTarget = fkColMap[c.name];
+                return `
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 2px; border-bottom: 1px solid rgba(148, 163, 184, 0.08); font-size: 12px; font-family: 'JetBrains Mono', monospace;">
+                    <div style="min-width: 0; overflow: hidden; text-overflow: ellipsis;">
+                      <span style="color: ${c.pk ? '#fde047' : (fkTarget ? '#38bdf8' : '#f8fafc')}; font-weight: ${c.pk || fkTarget ? '700' : '400'};">
+                        ${c.pk ? '🔑 ' : (fkTarget ? '🔗 ' : '• ')}${c.name}
+                      </span>
+                      ${fkTarget ? `<button type="button" data-jump-table="${fkTarget}" style="margin-left: 6px; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.35); color: #38bdf8; border-radius: 4px; padding: 1px 5px; font-size: 10px; cursor: pointer; font-family: inherit;">➔ ${fkTarget}</button>` : ''}
+                    </div>
+                    <span style="color: #94a3b8; font-size: 11px; flex-shrink: 0;">${escapeHtml(c.sql_type)}${c.nullable ? ' NULL' : ''}</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      } else if (currentTab === 'relations') {
+        content.innerHTML = `
+          <div>
+            <div class="section-title">
+              <span>📤 Outgoing Foreign Keys (${outgoing.length})</span>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">Click to inspect</span>
+            </div>
+            <div class="rel-list">
+              ${outgoing.length ? outgoing.map(r => `
+                <button type="button" class="rel-card" data-jump-table="${r.to_table}">
+                  <div style="display: flex; justify-content: space-between; width: 100%; font-weight: 700; color: #38bdf8;">
+                    <span>🔗 ${r.from_col}</span>
+                    <span style="color: #e2e8f0;">➔ ${r.to_table}</span>
+                  </div>
+                  <div style="color: #94a3b8; font-size: 11.5px;">Constraint: <code>${r.constraint_name}</code> · Target: <code>${r.to_table}.${r.to_col}</code> (${r.cardinality})</div>
+                </button>
+              `).join('') : '<div style="color: #64748b; font-size: 12px;">No outgoing foreign keys (root lookup / parent entity).</div>'}
+            </div>
+          </div>
+
+          <div>
+            <div class="section-title">
+              <span>📥 Incoming References (${incoming.length})</span>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">Click to inspect</span>
+            </div>
+            <div class="rel-list" style="max-height: 310px; overflow-y: auto;">
+              ${incoming.length ? incoming.map(r => `
+                <button type="button" class="rel-card" data-jump-table="${r.from_table}">
+                  <div style="display: flex; justify-content: space-between; width: 100%; font-weight: 700; color: #34d399;">
+                    <span>⬅ ${r.from_table}</span>
+                    <span style="color: #cbd5e1;">(${r.from_col})</span>
+                  </div>
+                  <div style="color: #94a3b8; font-size: 11.5px;">Constraint: <code>${r.constraint_name}</code> · Key: <code>${r.to_col}</code> (${r.cardinality})</div>
+                </button>
+              `).join('') : '<div style="color: #64748b; font-size: 12px;">No incoming child table references.</div>'}
+            </div>
+          </div>
+        `;
+      } else if (currentTab === 'sql') {
+        lastGeneratedSql = tinfo.ddl || '';
+
+        content.innerHTML = `
+          <div>
+            <div class="section-title">
+              <span>💻 T-SQL CREATE TABLE DDL</span>
+              <button type="button" class="mini-btn" id="btnCopySql">📋 Copy SQL</button>
+            </div>
+            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 10px; line-height: 1.5;">
+              Exact Microsoft SQL Server table definition from <code>contract_entry_studio_mssql.sql</code> with enforced PK, Check, Default &amp; Foreign Key constraints.
+            </p>
+            <div class="code-box">${escapeHtml(lastGeneratedSql)}</div>
+          </div>
+        `;
+      } else if (currentTab === 'catalog') {
+        const q = activeSearchQuery.toLowerCase().trim();
+        const allNames = Object.keys(DB_DATA.tables).sort((a, b) => a.localeCompare(b));
+        const filtered = allNames.filter(tname => {
+          const domOk = activeDomain === 'ALL' || getTableDomain(tname) === activeDomain;
+          if (!domOk) return false;
+          if (!q) return true;
+          const t = DB_DATA.tables[tname];
+          return tname.toLowerCase().includes(q) || t.columns.some(c => c.name.toLowerCase().includes(q));
+        });
+
+        content.innerHTML = `
+          <div>
+            <div class="section-title">
+              <span>📚 Database Tables (${filtered.length} / ${DB_DATA.total_tables})</span>
+              <span style="font-size: 11px; color: var(--text-muted);">${activeDomain === 'ALL' ? 'All Domains' : escapeHtml(DOMAIN_META[activeDomain].label)}</span>
+            </div>
+            <div class="rel-list" style="max-height: 560px; overflow-y: auto;">
+              ${filtered.map(tname => {
+                const t = DB_DATA.tables[tname];
+                const d = DOMAIN_META[getTableDomain(tname)];
+                return `
+                  <button type="button" class="rel-card" data-jump-table="${tname}" style="${tname === selectedTable ? 'border-color: #38bdf8; background: rgba(56,189,248,0.12);' : ''}">
+                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                      <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: ${d.color};">${tname}</span>
+                      <span style="font-size: 10.5px; color: #94a3b8;">${t.rows.toLocaleString()} rows</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; width: 100%; font-size: 11px; color: #64748b;">
+                      <span>${t.columns.length} cols · PK: ${t.pks.join(', ')}</span>
+                      <span>🗺️ On Canvas</span>
+                    </div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function handleSearch(term) {
+      activeSearchQuery = term || '';
+      const q = activeSearchQuery.toLowerCase().trim();
+      searchClearBtn.style.display = q ? 'block' : 'none';
+
+      applyCanvasVisibility();
+      if (currentTab === 'catalog') {
+        renderInspector();
+      }
+
+      if (!q) {
+        searchDropdown.classList.remove('open');
+        searchDropdown.innerHTML = '';
+        return;
+      }
+
+      const matches = [];
+      Object.keys(DB_DATA.tables).forEach(tname => {
+        const t = DB_DATA.tables[tname];
+        const nameHit = tname.toLowerCase().includes(q);
+        const matchedCol = !nameHit ? t.columns.find(c => c.name.toLowerCase().includes(q)) : null;
+        if (nameHit || matchedCol) {
+          matches.push({ tname, rows: t.rows, matchedCol: matchedCol ? matchedCol.name : null, nameHit });
+        }
+      });
+
+      matches.sort((a, b) => (b.nameHit - a.nameHit) || a.tname.localeCompare(b.tname));
+
+      if (!matches.length) {
+        searchDropdown.innerHTML = `<div style="padding: 10px; font-size: 12px; color: #94a3b8;">No tables or columns matching "${escapeHtml(q)}"</div>`;
+      } else {
+        searchDropdown.innerHTML = matches.map(m => {
+          const d = DOMAIN_META[getTableDomain(m.tname)];
+          return `
+            <div class="search-item" data-jump-table="${m.tname}">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; color: ${d.color};">${m.tname}</span>
+                <span style="font-size: 10.5px; color: #94a3b8;">${m.rows.toLocaleString()} rows</span>
+              </div>
+              <div style="font-size: 11px; color: #64748b;">
+                ${escapeHtml(d.label)}${m.matchedCol ? ` · Matched column: <code style="color:#38bdf8;">${m.matchedCol}</code>` : ''} · 🗺️ Canvas
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+      searchDropdown.classList.add('open');
+    }
+
+    function filterDomain(dom, btnEl) {
+      activeDomain = dom;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b === btnEl || b.dataset.domain === dom);
+      });
+
+      applyCanvasVisibility();
+
+      if (dom === 'ALL') {
+        resetView();
+      } else if (DOMAIN_META[dom]) {
+        const b = DOMAIN_META[dom].contentBox || DOMAIN_META[dom].box;
+        fitBox(b.x, b.y, b.w, b.h, 28, 0.95);
+      }
+
+      if (currentTab === 'catalog') {
+        renderInspector();
+      }
+    }
+
+    document.getElementById('btnResetZoom').addEventListener('click', resetView);
+    document.getElementById('btnToggleInspector').addEventListener('click', () => toggleInspector());
+    if (btnToggleLines) {
+      btnToggleLines.addEventListener('click', toggleLinesMode);
+    }
+    document.getElementById('btnCloseInspector').addEventListener('click', () => toggleInspector(false));
+    document.getElementById('btnZoomIn').addEventListener('click', zoomIn);
+    document.getElementById('btnZoomOut').addEventListener('click', zoomOut);
+    document.getElementById('btnFitScreen').addEventListener('click', resetView);
+
+    document.getElementById('domainFilters').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (btn && btn.dataset.domain) {
+        filterDomain(btn.dataset.domain, btn);
+      }
+    });
+
+    document.querySelector('.tab-nav').addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-btn');
+      if (btn && btn.dataset.tab) {
+        switchInspectorTab(btn.dataset.tab);
+      }
+    });
+
+    document.getElementById('inspectorContent').addEventListener('click', (e) => {
+      const jumpBtn = e.target.closest('[data-jump-table]');
+      if (jumpBtn) {
+        const targetTbl = jumpBtn.getAttribute('data-jump-table');
+        selectTable(targetTbl, true);
+        return;
+      }
+      const focusBtn = e.target.closest('[data-focus-table]');
+      if (focusBtn) {
+        focusTableOnCanvas(focusBtn.getAttribute('data-focus-table'));
+        return;
+      }
+      if (e.target.closest('#btnCopySql')) {
+        copyFkSql();
+      }
+    });
+
+    searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+    searchInput.addEventListener('focus', () => {
+      if (searchInput.value.trim()) {
+        searchDropdown.classList.add('open');
+      }
+    });
+
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      handleSearch('');
+      searchInput.focus();
+    });
+
+    searchDropdown.addEventListener('click', (e) => {
+      const item = e.target.closest('[data-jump-table]');
+      if (item) {
+        const targetTbl = item.getAttribute('data-jump-table');
+        searchDropdown.classList.remove('open');
+        selectTable(targetTbl, true);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#searchBox')) {
+        searchDropdown.classList.remove('open');
+      }
+    });
+
+    window.zoomIn = zoomIn;
+    window.zoomOut = zoomOut;
+    window.resetView = resetView;
+    window.toggleInspector = toggleInspector;
+    window.toggleLinesMode = toggleLinesMode;
+    window.selectTable = selectTable;
+    window.switchInspectorTab = switchInspectorTab;
+    window.filterDomain = filterDomain;
+    window.handleSearch = handleSearch;
+    window.copyFkSql = copyFkSql;
+
+    selectTable('Com_Contracts', false);
+    requestAnimationFrame(() => {
+      resetView();
+    });
+  </script>
+</body>
+</html>

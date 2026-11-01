@@ -4240,14 +4240,14 @@
           <div class="launch-card-body">
             <h3>Master Lookups Catalog</h3>
             <p>
-              Direct administration for all 9 foundational reference models: Airlines, Egyptian Hub Stations, Aircraft Models, Certified Tail Numbers &amp; MTOW, Ground Handling Tariffs, Billing Currencies, Payment Terms, SGHA Standards, and Apron Stand &amp; Boarding Policies.
+              Direct administration for all 9 foundational reference models: Airlines, Egyptian Hub Stations, Aircraft Models, Certified Aircraft Registrations &amp; MTOW, Ground Handling Tariffs, Billing Currencies, Payment Terms, SGHA Standards, and Apron Stand &amp; Boarding Policies.
             </p>
 
             <div class="launch-tags-group">
               <span class="launch-tag">🏢 Airlines (<strong id="tagAirlinesCount">16</strong>)</span>
               <span class="launch-tag">🛫 Hub Stations (<strong id="tagStationsCount">15</strong>)</span>
               <span class="launch-tag">✈️ Fleet Models (<strong id="tagFleetCount">23</strong>)</span>
-              <span class="launch-tag">🏷️ Tail Numbers (<strong id="tagTailsCount">37</strong>)</span>
+              <span class="launch-tag">🏷️ Registrations (<strong id="tagTailsCount">37</strong>)</span>
               <span class="launch-tag">🧰 Tariffs (<strong id="tagServicesCount">18</strong>)</span>
               <span class="launch-tag">💱 Currencies (<strong id="tagCurrenciesCount">6</strong>)</span>
               <span class="launch-tag">💳 Payment Terms (<strong id="tagPaymentCount">6</strong>)</span>
@@ -4395,18 +4395,18 @@
           </div>
         </div>
 
-        <!-- 4. TAIL REGISTRATIONS -->
+        <!-- 4. AIRCRAFT REGISTRATIONS -->
         <div class="lookup-modal-link-card">
           <div class="lookup-card-top">
             <div class="lookup-card-icon" style="background:#fffbeb; color:#d97706;">🏷️</div>
-            <span class="lookup-count-badge" id="badgeLookupTail">37 Tails</span>
+            <span class="lookup-count-badge" id="badgeLookupTail">37 Registrations</span>
           </div>
-          <h4>Tail Registrations &amp; MTOW</h4>
-          <p>Certified aircraft tail registrations (e.g. SU-GBF, SU-GCT, A6-ENA), certified MTOW tonnage, and seat layouts.</p>
+          <h4>Aircraft Registrations &amp; MTOW</h4>
+          <p>Certified aircraft registrations (e.g. SU-GBF, SU-GCT, A6-ENA), certified MTOW tonnage, and seat layouts.</p>
           <div class="lookup-card-buttons">
             <button type="button" class="btn-lookup-action-add" onclick="openLookupModal('TAIL')">
               <svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>Register Tail</span>
+              <span>Add Registration</span>
             </button>
             <button type="button" class="btn-lookup-action-view" onclick="switchPreviewCatalogTab('TAIL')">
               <span>👁️ Preview</span>
@@ -4527,7 +4527,7 @@
               <span id="prevTabCountFleet" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(23)</span>
             </button>
             <button type="button" class="preview-tab-btn" id="tabPrevTail" onclick="switchPreviewCatalogTab('TAIL')">
-              <span>🏷️ Tails</span>
+              <span>🏷️ Registrations</span>
               <span id="prevTabCountTail" style="font-family:'JetBrains Mono', monospace; font-size:11px;">(37)</span>
             </button>
             <button type="button" class="preview-tab-btn" id="tabPrevService" onclick="switchPreviewCatalogTab('SERVICE')">
@@ -5241,25 +5241,25 @@
             </div>
           </div>
 
-          <!-- Tail Number & Aircraft Registration Section -->
+          <!-- Aircraft Registration Section -->
           <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-light);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
               <div>
                 <label style="margin-bottom: 2px; font-weight: 700; color: var(--text-main); font-size: 13.5px; display: flex; align-items: center; gap: 6px;">
-                  <span>🛩️</span> Covered Numbers &amp; Aircraft Registrations
+                  <span>🛩️</span> Covered Aircraft Registrations
                 </label>
                 <div style="font-size: 12px; color: var(--text-muted);">
-                  Specify individual aircraft tail registrations (Tail No.), certified MTOW, and lease status.
+                  Specify individual aircraft registrations (Registration No.), certified MTOW, and lease status.
                 </div>
               </div>
 
               <!-- Scope Toggle Segmented Buttons -->
               <div class="tail-scope-toggle-group">
                 <button type="button" class="tail-scope-btn active" id="btnTailScopeAll" onclick="setTailCoverageScope('ALL')" title="All active airframes of covered models are automatically authorized">
-                  🌐 All Fleet Tails (Open)
+                  🌐 All Fleet Registrations (Open)
                 </button>
-                <button type="button" class="tail-scope-btn" id="btnTailScopeCustom" onclick="setTailCoverageScope('CUSTOM')" title="Whitelist specific tail numbers for this contract (charter, wet-lease, VIP)">
-                  🎯 Specific Tail Whitelist
+                <button type="button" class="tail-scope-btn" id="btnTailScopeCustom" onclick="setTailCoverageScope('CUSTOM')" title="Whitelist specific aircraft registrations for this contract (charter, wet-lease, VIP)">
+                  🎯 Specific Registration Whitelist
                 </button>
               </div>
             </div>
@@ -5272,31 +5272,31 @@
                   <div>
                     <strong style="color: var(--primary-navy); font-size: 12.5px;">Open Fleet Policy Active:</strong>
                     <span style="color: var(--text-secondary); font-size: 12px; margin-left: 4px;">
-                      All airframes of the selected models operated by the carrier are authorized. Click <strong>"Specific Tail Whitelist"</strong> to lock turnaround work orders to designated tail numbers.
+                      All airframes of the selected models operated by the carrier are authorized. Click <strong>"Specific Registration Whitelist"</strong> to lock turnaround work orders to designated aircraft registrations.
                     </span>
                   </div>
                 </div>
                 <button type="button" class="btn-compact-action" style="white-space: nowrap; font-size: 11px; color: var(--primary-blue);" onclick="setTailCoverageScope('CUSTOM')">
-                  Select Specific Tails &rarr;
+                  Select Specific Registrations &rarr;
                 </button>
               </div>
             </div>
 
-            <!-- Specific Tail Numbers Multi-Check Dropdown (Shown when scope is CUSTOM) -->
+            <!-- Specific Registrations Multi-Check Dropdown (Shown when scope is CUSTOM) -->
             <div class="input-field-unit multi-check-dropdown-wrapper" id="wrapTailDropdown" style="display: none; margin-bottom: 8px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label style="margin-bottom: 0; font-weight: 600; font-size: 12.5px;">Designated Tail Numbers <span class="req-star">*</span></label>
-                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('TAIL')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Register Tail</span></button>
+                <label style="margin-bottom: 0; font-weight: 600; font-size: 12.5px;">Designated Registrations <span class="req-star">*</span></label>
+                <button type="button" class="btn-lookup-trigger-link" onclick="openLookupModal('TAIL')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Add Registration</span></button>
               </div>
 
               <!-- Trigger Control Box -->
               <div class="multi-check-dropdown-control" id="triggerTailDropdown" onclick="toggleMultiDropdown('tail')">
                 <div class="multi-check-selected-preview" id="previewTailSelected">
-                  <span class="multi-check-placeholder">Select or add specific tail registrations (e.g. SU-GBF, OK-TVF)...</span>
+                  <span class="multi-check-placeholder">Select or add specific registrations (e.g. SU-GBF, OK-TVF)...</span>
                 </div>
                 <div class="multi-check-controls-right">
                   <span class="multi-check-count-badge" id="badgeTailCount" style="display: none;">0 selected</span>
-                  <button type="button" class="btn-multi-check-clear" id="btnClearTailTrigger" onclick="event.stopPropagation(); clearTailSelection();" title="Clear selected tails" style="display: none;">✕</button>
+                  <button type="button" class="btn-multi-check-clear" id="btnClearTailTrigger" onclick="event.stopPropagation(); clearTailSelection();" title="Clear selected registrations" style="display: none;">✕</button>
                   <span class="multi-check-chevron">▾</span>
                 </div>
               </div>
@@ -5306,7 +5306,7 @@
                 <div class="multi-check-panel-header">
                   <div class="multi-check-search-wrap">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" id="tailSearchInput" placeholder="Search tail number (e.g. SU-GBF, A320, Boeing)..." oninput="filterTailsDisplay()" onclick="event.stopPropagation()">
+                    <input type="text" id="tailSearchInput" placeholder="Search registration number (e.g. SU-GBF, A320, Boeing)..." oninput="filterTailsDisplay()" onclick="event.stopPropagation()">
                     <button type="button" id="btnClearTailSearch" class="btn-clear-search-mini" onclick="event.stopPropagation(); clearTailSearch();" style="display: none;">✕</button>
                   </div>
                   <div class="multi-check-actions-bar">
@@ -5330,10 +5330,10 @@
                 </div>
               </div>
 
-              <!-- Quick Inline Tail Registration -->
+              <!-- Quick Inline Aircraft Registration -->
               <div class="tail-inline-add-bar">
                 <span class="tail-inline-add-title">⚡ Quick Register:</span>
-                <input type="text" id="inpInlineTailNo" class="form-input-control" placeholder="Tail No (e.g. SU-XYZ)" style="width: 140px; height: 32px; font-size: 12px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;" onkeydown="if(event.key==='Enter'){event.preventDefault(); quickAddInlineTail();}">
+                <input type="text" id="inpInlineTailNo" class="form-input-control" placeholder="Registration (e.g. SU-XYZ)" style="width: 175px; height: 32px; font-size: 12px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;" onkeydown="if(event.key==='Enter'){event.preventDefault(); quickAddInlineTail();}">
                 <select id="selInlineTailModel" class="form-input-control" style="width: 140px; height: 32px; font-size: 12px;">
                   <!-- Dynamic from fleet -->
                 </select>
@@ -5344,7 +5344,7 @@
                 </select>
                 <button type="button" class="btn-compact-action" style="height: 32px; padding: 0 14px; background: linear-gradient(135deg, #5da0d7 0%, #468ec9 50%, #367ea8 100%); color: #ffffff; font-weight: 700; border-radius: var(--radius-sm); border: 1px solid #367ea8; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(87,147,204,0.35); cursor: pointer;" onclick="quickAddInlineTail()">
                   <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  <span>Add Tail</span>
+                  <span>Add Registration</span>
                 </button>
               </div>
             </div>
@@ -5552,7 +5552,7 @@
                 <span class="review-card-icon">🛫</span>
                 <div>
                   <div class="review-card-title">Network Operations, Airport Hubs &amp; Fleet Coverage</div>
-                  <div class="review-card-subtitle">Airport stations, apron boarding protocols, and authorized tail airframes</div>
+                  <div class="review-card-subtitle">Airport stations, apron boarding protocols, and authorized aircraft registrations</div>
                 </div>
               </div>
               <div style="display: flex; gap: 6px;">
@@ -5589,7 +5589,7 @@
                   <div class="review-meta-val" id="revMtowTier">Tier 1: Narrowbody</div>
                 </div>
                 <div class="review-meta-item" style="grid-column: span 3;">
-                  <span class="review-meta-label">Tail Airframe Coverage Policy</span>
+                  <span class="review-meta-label">Aircraft Registration Coverage Policy</span>
                   <div class="review-meta-val" id="revTailList">-</div>
                 </div>
               </div>
@@ -6005,7 +6005,7 @@
                     <option value="MOTORIZED_CANOPY" selected>Self-Propelled Motorized Stairs (Covered Canopy)</option>
                     <option value="MOTORIZED_OPEN">Self-Propelled Motorized Stairs (Open Step)</option>
                     <option value="TOWABLE">Towable Passenger Airstairs</option>
-                    <option value="MAINT_LADDER">Engine &amp; Tail Maintenance Service Ladders</option>
+                    <option value="MAINT_LADDER">Engine &amp; Airframe Maintenance Service Ladders</option>
                   </select>
                 </div>
                 <div class="input-field-unit">
@@ -6125,7 +6125,7 @@
         <button type="button" class="lookup-type-btn active" id="tabLookupAirline" onclick="switchLookupModalType('AIRLINE')">Airline / Customer</button>
         <button type="button" class="lookup-type-btn" id="tabLookupStation" onclick="switchLookupModalType('STATION')">Airport Station</button>
         <button type="button" class="lookup-type-btn" id="tabLookupFleet" onclick="switchLookupModalType('FLEET')">Aircraft Model</button>
-        <button type="button" class="lookup-type-btn" id="tabLookupTail" onclick="switchLookupModalType('TAIL')">Tail Registration</button>
+        <button type="button" class="lookup-type-btn" id="tabLookupTail" onclick="switchLookupModalType('TAIL')">Aircraft Registration</button>
         <button type="button" class="lookup-type-btn" id="tabLookupService" onclick="switchLookupModalType('SERVICE')">Ground Service</button>
         <button type="button" class="lookup-type-btn" id="tabLookupCurrency" onclick="switchLookupModalType('CURRENCY')">Billing Currency</button>
         <button type="button" class="lookup-type-btn" id="tabLookupPayment" onclick="switchLookupModalType('PAYMENT')">Payment Terms</button>
@@ -6213,11 +6213,11 @@
           </div>
         </div>
 
-        <!-- Fields for TAIL REGISTRATION -->
+        <!-- Fields for AIRCRAFT REGISTRATION -->
         <div id="lookupFieldsTail" class="lookup-form-section" style="display: none;">
           <div class="form-grid-2">
             <div class="input-field-unit">
-              <label for="inpLookupTailNo">Tail / Registration Number <span class="req-star">*</span></label>
+              <label for="inpLookupTailNo">Aircraft Registration Number <span class="req-star">*</span></label>
               <input type="text" id="inpLookupTailNo" class="form-input-control" placeholder="e.g. SU-GBF, OK-TVF" style="text-transform: uppercase; font-family: 'JetBrains Mono', monospace; font-weight: 700;">
             </div>
             <div class="input-field-unit">
@@ -7935,10 +7935,10 @@
         if (tailCoverageScope === 'ALL') {
           previewEl.innerHTML = '<span class="multi-check-placeholder" style="color: var(--emerald-600); font-weight: 600;">🌐 All Fleet Airframes Authorized (Open Policy)</span>';
         } else if (selectedTailRegistrations.length === 0) {
-          previewEl.innerHTML = '<span class="multi-check-placeholder">Select or add specific tail registrations (e.g. SU-GBF, OK-TVF)...</span>';
+          previewEl.innerHTML = '<span class="multi-check-placeholder">Select or add specific registrations (e.g. SU-GBF, OK-TVF)...</span>';
         } else {
           let html = selectedTailRegistrations.map(tailNo => `
-            <span class="selected-tag-pill tail-pill" title="Tail ${tailNo}">
+            <span class="selected-tag-pill tail-pill" title="Registration ${tailNo}">
               ✈️ ${tailNo}
               <span class="tag-x" onclick="event.stopPropagation(); removeTailTag('${tailNo}')" title="Remove ${tailNo}">✕</span>
             </span>
@@ -7961,7 +7961,7 @@
       }
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div class="multi-check-empty">No aircraft tail registrations match search. Use quick register below to add one!</div>';
+        container.innerHTML = '<div class="multi-check-empty">No aircraft registrations match search. Use quick register below to add one!</div>';
         return;
       }
 
@@ -8071,7 +8071,7 @@
       const isLeased = selLease?.value === 'LEASED';
 
       if (!tailNo) {
-        alert('Validation notice: Please enter a Tail Registration Number (e.g. SU-XYZ or OK-TVF).');
+        alert('Validation notice: Please enter an Aircraft Registration Number (e.g. SU-XYZ or OK-TVF).');
         if (inpNo) inpNo.focus();
         return;
       }
@@ -8110,7 +8110,7 @@
       if (inpNo) inpNo.value = '';
       if (inpMtow) inpMtow.value = '';
 
-      showToast(`✅ Registered & whitelisted tail [${tailNo}] (${modelCode}) for this contract!`);
+      showToast(`✅ Added & whitelisted registration [${tailNo}] (${modelCode}) for this contract!`);
     }
 
     // Step 4: Auxiliary Ground Services Dropdown with Checkboxes
@@ -8385,8 +8385,8 @@
         if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Aircraft Model`;
         if (subEl) subEl.textContent = 'Add an aircraft type, ICAO/IATA designator, and MTOW weight category.';
       } else if (type === 'TAIL') {
-        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Aircraft Tail Registration`;
-        if (subEl) subEl.textContent = 'Register an individual aircraft tail number with certified MTOW into the fleet catalog.';
+        if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Aircraft Registration`;
+        if (subEl) subEl.textContent = 'Register an individual aircraft registration number with certified MTOW into the fleet catalog.';
         populateTailLookupSelects();
       } else if (type === 'SERVICE') {
         if (titleEl) titleEl.innerHTML = `${badgeIcon} Add Ground Handling Service`;
@@ -8548,7 +8548,7 @@
         const ownership = document.getElementById('selLookupTailOwnership')?.value || 'OWNED';
 
         if (!tailNo) {
-          alert('Validation error: Please provide Aircraft Tail Registration Number (e.g. SU-GBF).');
+          alert('Validation error: Please provide Aircraft Registration Number (e.g. SU-GBF).');
           return;
         }
 
@@ -8580,9 +8580,9 @@
             renderFleetChips();
           }
           setTailCoverageScope('CUSTOM');
-          showToast(`✅ Added tail [${tailNo}] (${modelCode}) and selected for current contract!`);
+          showToast(`✅ Added registration [${tailNo}] (${modelCode}) and selected for current contract!`);
         } else {
-          showToast(`💾 Saved tail [${tailNo}] to fleet registrations catalog.`);
+          showToast(`💾 Saved registration [${tailNo}] to fleet registrations catalog.`);
         }
 
         renderTailChips();
@@ -8884,7 +8884,7 @@
 
       const btnAdd = document.getElementById('btnAddPreviewCurrent');
       if (btnAdd) {
-        const label = type === 'AIRLINE' ? 'Add Airline' : type === 'STATION' ? 'Add Station' : type === 'FLEET' ? 'Add Aircraft' : type === 'TAIL' ? 'Register Tail' : type === 'SERVICE' ? 'Add Service' : type === 'CURRENCY' ? 'Add Currency' : type === 'PAYMENT' ? 'Add Terms' : type === 'SGHA' ? 'Add Standard' : 'Add Policy';
+        const label = type === 'AIRLINE' ? 'Add Airline' : type === 'STATION' ? 'Add Station' : type === 'FLEET' ? 'Add Aircraft' : type === 'TAIL' ? 'Add Registration' : type === 'SERVICE' ? 'Add Service' : type === 'CURRENCY' ? 'Add Currency' : type === 'PAYMENT' ? 'Add Terms' : type === 'SGHA' ? 'Add Standard' : 'Add Policy';
         btnAdd.innerHTML = `<svg class="btn-add-svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>${label}</span>`;
       }
 
@@ -8910,7 +8910,7 @@
       setEl('badgeLookupAirline', `${lookupAirlines.length} Airlines`);
       setEl('badgeLookupStation', `${lookupStations.length} Stations`);
       setEl('badgeLookupFleet', `${lookupFleet.length} Models`);
-      setEl('badgeLookupTail', `${lookupTails.length} Tails`);
+      setEl('badgeLookupTail', `${lookupTails.length} Registrations`);
       setEl('badgeLookupService', `${lookupServices.length} Services`);
       setEl('badgeLookupCurrency', `${lookupCurrencies.length} Currencies`);
       setEl('badgeLookupPayment', `${lookupPaymentTerms.length} Terms`);
@@ -9029,7 +9029,7 @@
       } else if (currentPreviewLookupType === 'TAIL') {
         thead.innerHTML = `
           <tr>
-            <th style="width: 140px;">Tail Registration</th>
+            <th style="width: 155px;">Registration</th>
             <th>Operating Airline</th>
             <th style="width: 150px;">Aircraft Model</th>
             <th style="width: 140px;">Certified MTOW</th>
@@ -9041,7 +9041,7 @@
         `;
         const list = lookupTails.filter(t => !term || t.tail.toLowerCase().includes(term) || t.airlineCode.toLowerCase().includes(term) || t.model.toLowerCase().includes(term));
         if (list.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:var(--text-muted);">No tails match "${term}".</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:var(--text-muted);">No registrations match "${term}".</td></tr>`;
         } else {
           tbody.innerHTML = list.map(t => `
             <tr>
@@ -9053,7 +9053,7 @@
               <td>${t.leased ? '<span class="status-badge-chip expiring">Leased</span>' : '<span class="status-badge-chip active">Owned</span>'}</td>
               <td><span class="status-badge-chip active">${t.status}</span></td>
               <td style="text-align: center;">
-                ${rowAddBtn('TAIL', 'Register tail')}
+                ${rowAddBtn('TAIL', 'Add registration')}
               </td>
             </tr>
           `).join('');
@@ -9881,13 +9881,13 @@
         revMtowEl.textContent = tierMap[mtowTierVal] || 'Tier 1: Narrowbody (<100T)';
       }
 
-      // Tail Whitelist
+      // Aircraft Registration Whitelist
       const revTailListEl = document.getElementById('revTailList');
       if (revTailListEl) {
         if (tailCoverageScope === 'ALL') {
           revTailListEl.innerHTML = '<span style="color: var(--primary-blue); font-weight: 700;">🌐 All Fleet Airframes (Open Policy)</span>';
         } else if (selectedTailRegistrations.length === 0) {
-          revTailListEl.innerHTML = '<span style="color: var(--amber-700); font-weight: 600;">⚠️ Specific Whitelist (0 tails selected - all models allowed)</span>';
+          revTailListEl.innerHTML = '<span style="color: var(--amber-700); font-weight: 600;">⚠️ Specific Whitelist (0 registrations selected - all models allowed)</span>';
         } else {
           revTailListEl.innerHTML = selectedTailRegistrations.map(t => `<span class="selected-tag-pill tail-pill" style="display:inline-flex; margin:2px 3px; font-size:11px; padding:2px 6px;">✈️ ${t}</span>`).join('') + ` <span style="font-size:11px; color:var(--text-muted); font-weight:600;">(${selectedTailRegistrations.length} registered)</span>`;
         }
@@ -10829,7 +10829,7 @@
               </div>
             </div>
             <div style="grid-column: span 2;">
-              <span style="color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase;">Tail Registrations Coverage</span>
+              <span style="color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase;">Aircraft Registrations Coverage</span>
               <div style="margin-top: 5px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
                 ${(contract.tails && contract.tails.length > 0)
                   ? contract.tails.map(t => `<span class="selected-tag-pill tail-pill" style="font-size: 11px; padding: 2px 7px;">✈️ ${t}</span>`).join('') + ` <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">(${contract.tails.length} airframes whitelisted)</span>`
